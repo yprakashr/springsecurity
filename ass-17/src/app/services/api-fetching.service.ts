@@ -8,9 +8,6 @@ export class ApiFetchingService {
 
   constructor(private http:HttpClient) { }
 
-  // username = sessionStorage.getItem('username');
-  // password = sessionStorage.getItem('password');
-
  
   url:string='http://localhost:8081/user';
 
@@ -27,9 +24,9 @@ public sendEmail(Email: any):any {
 }
 
 
-    public postApi(data:any):any{
-      return  this.http.post(this.url,data);
-      }
+public postApi(data:any):any{
+  return  this.http.post(this.url,data);
+  }
 
 
       public getApi():any{

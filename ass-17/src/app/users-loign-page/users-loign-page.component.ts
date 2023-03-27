@@ -92,7 +92,7 @@ public regForm = this.fb.group({
   phone: this.fb.control(null, [Validators.required,Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/im)]),
   confirmpassword: this.fb.control(null,[Validators.required]),
   email: this.fb.control(null,[Validators.required,Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]),
-  role: this.fb.control('user',[])
+
 },
 {
   validators:this.matchpassword,
@@ -121,7 +121,8 @@ get f():any{ return this.login.controls; }
 
 onSubmit(data:any):any{
   // console.log(data);
-  this.fetch.postApi(data.value).subscribe(() => {
+  this.fetch.postApi(data.value).subscribe((res:any) => {
+    console.log(res)
     this.regForm.reset();
     swal.fire('Good job!', 'Now you can login!', 'success');
   });

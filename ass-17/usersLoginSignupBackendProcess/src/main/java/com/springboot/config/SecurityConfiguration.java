@@ -56,9 +56,8 @@ public class SecurityConfiguration {
 		.authorizeHttpRequests()
 		.requestMatchers("/user").permitAll()
 		.requestMatchers("/user/**").hasRole("ADMIN")
-		.requestMatchers("/user/get").hasRole("ADMIN")
+		.requestMatchers("/user/get").hasAnyRole("ADMIN","USER")
 		.requestMatchers("/user/get/**").hasRole("ADMIN")
-		
          .and().httpBasic();
 		return http.build();
 	}

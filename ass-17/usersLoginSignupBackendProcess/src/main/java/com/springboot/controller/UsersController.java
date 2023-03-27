@@ -58,9 +58,7 @@ public class UsersController {
     
 	@PostMapping
 	public ResponseEntity<?> usersRegistration(@RequestBody Users user){
-		System.out.println(user);
-		String encryptedpassword= passwordEncoder.encode(user.getPassword());
-		user.setPassword(encryptedpassword);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return new	ResponseEntity<Users>(userRepository.save(user),HttpStatus.CREATED);	
 	}
 
@@ -196,8 +194,7 @@ public class UsersController {
 	public ResponseEntity<Users> updateById(@PathVariable long id,@RequestBody Users user1){
 		user=userRepository.findById(id);
 	System.out.println(id);
-	BCryptPasswordEncoder bcrypt=new BCryptPasswordEncoder();
-	String encryptedpassword= bcrypt.encode(user1.getPassword());
+	String encryptedpassword= passwordEncoder.encode(user1.getPassword());
 	user.get().setPassword(encryptedpassword);
 	if(user.isPresent()) {
 		user.get().setFullname(user1.getFullname());

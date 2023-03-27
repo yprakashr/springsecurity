@@ -19,7 +19,7 @@ public class Users {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(unique=true)
 	private long 	 id;
-
+	
 	private String 	 fullname;
 	private String 	 username;
 	
@@ -29,8 +29,8 @@ public class Users {
 	private String 	 email;
 	private String 	 gender;
  
-	   @JsonIgnore
-	    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
+		@JsonIgnore
+	    @OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	    private Set<Roles> role;
 
 
@@ -45,8 +45,6 @@ public class Users {
 
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "Users [id=" + id + ", fullname=" + fullname + ", username=" + username + ", password=" + password
