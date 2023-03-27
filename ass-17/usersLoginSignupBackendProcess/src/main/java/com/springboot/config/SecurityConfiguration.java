@@ -1,5 +1,6 @@
 package com.springboot.config;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 import org.springframework.context.annotation.Bean;
@@ -29,10 +30,10 @@ public class SecurityConfiguration {
  	   CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
        requestHandler.setCsrfRequestAttributeName("_csrf");
        
-    http.csrf().disable()
+    http
     .securityContext().requireExplicitSave(false)
     .and()
-    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
     .cors().configurationSource(new CorsConfigurationSource() {
     	
         @Override
@@ -42,6 +43,7 @@ public class SecurityConfiguration {
             config.setAllowedMethods(Collections.singletonList("*"));
             config.setAllowCredentials(true);
             config.setAllowedHeaders(Collections.singletonList("*"));
+//            config.setExposedHeaders(Arrays.asList("Authorization"));
             config.setMaxAge(3600L);
             return config;
             }
@@ -50,11 +52,13 @@ public class SecurityConfiguration {
     .csrf((csrf) -> csrf.csrfTokenRequestHandler(requestHandler).ignoringRequestMatchers("/user")
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
             .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)  
+            
 		.authorizeHttpRequests()
 		.requestMatchers("/user").permitAll()
-//		.requestMatchers("/user/getmap").permitAll()
-		.requestMatchers("/user/**").authenticated()	
-//		.and().formLogin()
+		.requestMatchers("/user/**").hasRole("ADMIN")
+		.requestMatchers("/user/get").hasRole("ADMIN")
+		.requestMatchers("/user/get/**").hasRole("ADMIN")
+		
          .and().httpBasic();
 		return http.build();
 	}

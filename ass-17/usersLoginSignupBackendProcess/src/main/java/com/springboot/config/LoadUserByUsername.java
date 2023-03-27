@@ -24,17 +24,16 @@ import com.springboot.repo.UserRepository;
 
 @Service
 public class LoadUserByUsername implements AuthenticationProvider{
-	
 //	public class LoadUserByUsername implements UserDetailsService{
 
 //	@Autowired
 //	UserRepository userRepository;
-
+//
 //	@Autowired
 //    private PasswordEncoder passwordEncoder;
-
-
-
+//
+//
+//
 //    @Override
 //	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //		String userName,password=null;
@@ -51,8 +50,8 @@ public class LoadUserByUsername implements AuthenticationProvider{
 //	}
 //		return new User(username,password,authorities);
 //	}
-																																
-		@Autowired
+
+	 @Autowired
 	    private UserRepository userRepository;
 
 	    @Autowired
@@ -66,7 +65,7 @@ public class LoadUserByUsername implements AuthenticationProvider{
 	        if (user.size() > 0) {
 	            if (passwordEncoder.matches(pwd, user.get(0).getPassword())) {
 	                List<GrantedAuthority> authorities = new ArrayList<>();
-	                authorities.add(new SimpleGrantedAuthority(user.get(0).getRole()));
+//	                authorities.add(new SimpleGrantedAuthority(user.get(0).getRole()));
 	                System.out.println(user.get(0).getRole());
 	                return new UsernamePasswordAuthenticationToken(username, pwd, authorities);
 	            } else {
@@ -81,11 +80,4 @@ public class LoadUserByUsername implements AuthenticationProvider{
 	    public boolean supports(Class<?> authentication) {
 	        return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
 	    }
-	    
 	}
-
-
-
-
-
-

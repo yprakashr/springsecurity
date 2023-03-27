@@ -10,6 +10,8 @@ import { EditBoxComponentComponent } from '../dialog-box-components/edit-box-com
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import swal from 'sweetalert2';
+import { User } from '../model/user.model';
+
 
 @Component({
   selector: 'app-usersdatatable',
@@ -22,7 +24,7 @@ export class UsersdatatableComponent implements OnInit {
     private dialog: MatDialog,
     private fetch: ApiFetchingService,
     private fb: FormBuilder
-  ) {console.warn(sessionStorage.getItem('XSRF-TOKEN') || '')}
+  ) {}
 
 
   @ViewChild(MatSort) matSort: any;
@@ -35,18 +37,21 @@ export class UsersdatatableComponent implements OnInit {
     'edit',
     'delete',
   ];
-  fullName: any;
-  phoneno: any;
+  fullname:any;
+  phone: any;
   age: any;
   gender: any;
   date: any;
   time: any;
+model:object=new User();
   id: any;
   userDetails: any;
   popup: any;
   collapsed = true;
   token: any;
   Editdetails: any;
+
+   suneeltest:Array<User> = [];
 
   ngOnInit(): void {
     this.gettingData();
@@ -81,7 +86,6 @@ export class UsersdatatableComponent implements OnInit {
 
   gettingData() {
     this.fetch.getApi().subscribe((res: any) => {
-      console.warn(res.body.data)
       this.userDetails = new MatTableDataSource(res.body.data);
       this.userDetails.sort = this.matSort;
       this.userDetails.paginator = this.paginator;
@@ -91,19 +95,18 @@ export class UsersdatatableComponent implements OnInit {
   // ********************** delete data ****************************************************
   openDialog(id: any): void {
     this.id = id.id;
-    this.fullName = id.fullname;
+    this.fullname = id.fullname;
     const ref = this.dialog.open(DeleteDialogComponent, {
       width: 'auto',
       disableClose: true,
       data: {
-        data: `${this.fullName}`,
+        data: `${this.fullname}`,
       },
     });
 
     ref.afterClosed().subscribe((data: any) => {
       if (data.id) {
         this.fetch.deleteApi(this.id).subscribe((res: any) => {
-          console.warn(res.status)
           this.gettingData();
         });
       }
@@ -114,26 +117,25 @@ export class UsersdatatableComponent implements OnInit {
 
   OpenForm(element: any) {
     this.fetch.getById(element.id).subscribe((res: any) => {
-      this.Editdetails = res.data;
+      this.suneeltest = res.body.data;
       const ref = this.dialog.open(EditBoxComponentComponent, {
         width: 'fit-content',
         height: 'fit-content',
         disableClose: true,
         data: {
-          Fullname: `${this.Editdetails.fullname}`,
-          Username: `${this.Editdetails.username}`,
-          Password: `${this.Editdetails.password}`,
-          Phone: `${this.Editdetails.phone}`,
-          Gender: `${this.Editdetails.gender}`,
+          Fullname: `${this.suneeltest[0].fullname}`,
+          Username: `${this.suneeltest[0].username}`,
+          Phone: `${this.suneeltest[0].phone}`,
+          Gender: `${this.suneeltest[0].gender}`,
+          Email: `${this.suneeltest[0].email}`,
         },
       });
       ref.afterClosed().subscribe((data: any) => {
-        console.warn(data);
+
         if (data) {
           this.fetch
             .updateById(this.Editdetails.id, data)
             .subscribe((res: any) => {
-
               this.gettingData();
               swal.fire('Good job!', 'Now you can login!', 'success');
             });

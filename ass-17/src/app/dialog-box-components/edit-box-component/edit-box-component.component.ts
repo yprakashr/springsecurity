@@ -18,57 +18,28 @@ form={
 id:'',
 fullname:'',
 username:'',
-password:'',
-confirmPassword:'',
+email:'',
 phone:'',
 gender:''
 }
 
 
 
-phoneRegex=/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/im
-passwordRegex=/^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{6,}$/
+phoneRegex=/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/im;
+emailRegex=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 ngOnInit(): void {
 this.form.id=this.data.id;
 this.form.fullname=this.data.Fullname;
 this.form.username=this.data.Username;
-this.form.password=this.data.Password;
-this.form.confirmPassword=this.data.Password;
+this.form.email=this.data.email;
 this.form.phone=this.data.Phone;
-this.form.gender=this.data.Gender;
-
+this.form.gender=this.data.gender;
 }
-
-comparePassword(){
-if(this.form.confirmPassword!=this.form.password){
-  this.cpassword=true;
-}else{
-  this.cpassword=false;
-}
-console.log(this.cpassword);
-console.log(this.form.password);
-console.log(this.form.confirmPassword);
-
-}
-
-
-matchpassword:ValidatorFn=(control:AbstractControl):ValidationErrors|null=>{
- 
-  if(this.form.password&& this.form.confirmPassword&&this.form.password!=this.form.confirmPassword){
-    return {passwordmatcherror:true}
-  }
-  return null;
-};
-
-
-
 
 onSubmit(){
- 
-
-  this.ref.close(this.form);}
-
+  this.ref.close(this.form);
+}
 }
 
 

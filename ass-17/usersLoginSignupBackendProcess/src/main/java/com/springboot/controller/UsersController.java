@@ -34,7 +34,7 @@ import com.springboot.services.EmailService;
 
 @RestController
 @RequestMapping("/user")
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 public class UsersController {
 	
 	@Autowired
@@ -126,7 +126,7 @@ public class UsersController {
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/get")
-	@Secured({"admin"})
+	//@Secured({"admin"})
 	public ResponseEntity<?> getAll(){
 		users=userRepository.findAll();
 		try {
@@ -178,8 +178,8 @@ public class UsersController {
 	
 	
 	
-	@DeleteMapping("/delete")
-	public ResponseEntity<Users> deleteUser(@RequestParam long id) {
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Users> deleteUser(@PathVariable long id) {
 		 user=userRepository.findById(id);
 		 System.out.println(id);
 		if(user.isPresent()) {

@@ -131,13 +131,11 @@ onSubmit(data:any):any{
 loginDetails(data:any){
   this.usernames=data.value.username;
   this.passwords=data.value.password;
-  // console.log(this.usernames,this.passwords);
   sessionStorage.setItem('username',`${this.usernames}`);
   sessionStorage.setItem('password',`${this.passwords}`);
   this.fetch.fetchApipost(data.value.username,data.value.password).subscribe((res:any)=>{
-    // console.warn(res);
+
     let xsrf:any=getCookie('XSRF-TOKEN');
-    console.warn(xsrf);
     window.sessionStorage.setItem("XSRF-TOKEN",xsrf);
     if(res.status==200){
       window.location.replace('data');

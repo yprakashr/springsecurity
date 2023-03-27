@@ -1,10 +1,15 @@
 package com.springboot.entity;
 
+import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
@@ -17,19 +22,38 @@ public class Users {
 
 	private String 	 fullname;
 	private String 	 username;
+	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String 	 password;
 	private long	 phone;
 	private String 	 email;
 	private String 	 gender;
-	private String 	role;
+ 
+	   @JsonIgnore
+	    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
+	    private Set<Roles> role;
 
 
+	public Set<Roles> getRole() {
+		return role;
+	}
+	public void setRole(Set<Roles> role) {
+		this.role = role;
+	}
 	public Users() {
 		super();
 
 	}
+
+	
+	
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", fullname=" + fullname + ", username=" + username + ", password=" + password
+				+ ", phone=" + phone + ", email=" + email + ", gender=" + gender + ", role=" + role + "]";
+	}
 	public Users(long id, String fullname, String username, String password, long phone, String email, String gender,
-			String role) {
+			Set<Roles> role) {
 		super();
 		this.id = id;
 		this.fullname = fullname;
@@ -38,17 +62,6 @@ public class Users {
 		this.phone = phone;
 		this.email = email;
 		this.gender = gender;
-		this.role = role;
-	}
-	@Override
-	public String toString() {
-		return "Users [id=" + id + ", fullname=" + fullname + ", username=" + username + ", password=" + password
-				+ ", phone=" + phone + ", email=" + email + ", gender=" + gender + ", role=" + role + "]";
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
 		this.role = role;
 	}
 	public long getId() {

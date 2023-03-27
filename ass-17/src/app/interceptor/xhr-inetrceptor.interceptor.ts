@@ -7,19 +7,17 @@ import { Router } from '@angular/router';
 export class XhrInetrceptorInterceptor implements HttpInterceptor {
 username:any;
 password:any;
-  constructor(private router: Router) {
-    console.warn(this.username,this.password)
-  }
+  constructor(private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    
+
     let httpHeaders = new HttpHeaders();
-    
+
     if(sessionStorage.getItem('username')){
       this.username = sessionStorage.getItem('username');
     }
 
-    if(sessionStorage.getItem('username')){
+    if(sessionStorage.getItem('password')){
       this.password = sessionStorage.getItem('password');
     }
 
@@ -27,9 +25,9 @@ password:any;
       httpHeaders = httpHeaders.append('Authorization', 'Basic ' + window.btoa(this.username + ':' + this.password));
     }
 
-    let xsrf = sessionStorage.getItem('XSRF-TOKEN') || '';
+    let xsrf = sessionStorage.getItem('XSRF-TOKEN');
     if(xsrf){
-      httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);  
+      httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
     }
 
 
@@ -44,14 +42,14 @@ password:any;
           if (err.status !== 401) {
             return;
           }
-          // this.router.navigate(['data']);
+          this.router.navigate(['data']);
         }
       }));
 
   }
 }
 
-      
+
 
 
 

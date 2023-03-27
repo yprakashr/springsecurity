@@ -8,7 +8,7 @@ import { UsershomepageComponent } from './usershomepage/usershomepage.component'
 import { UsersLoignPageComponent } from './users-loign-page/users-loign-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersdatatableComponent } from './usersdatatable/usersdatatable.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,6 +24,7 @@ import { ComparePasswordDirective } from './compare-password.directive';
 import { EmailForForgotpasswordComponent } from './email-for-forgotpassword/email-for-forgotpassword.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { HeaderComponent } from './header/header.component';
+import { XhrInetrceptorInterceptor } from './interceptor/xhr-inetrceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,11 @@ import { HeaderComponent } from './header/header.component';
     MatDialogModule,
     NewModuleModule
   ],
-  providers: [AuthGuard],
+  providers: [  {
+    provide : HTTP_INTERCEPTORS,
+    useClass : XhrInetrceptorInterceptor,
+    multi : true
+  },AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,22 +32,22 @@
 
       <div class="form-field d-flex align-items-center">
           <span class="fas fa-key"></span>
-          <input type="password" [pattern]="passwordRegex"  [(ngModel)]="form.password"  #password="ngModel" name="password" id="pwd" placeholder="Password">
+          <input type="email" [pattern]="emailRegex"  [(ngModel)]="form.email"  #email="ngModel" name="password" id="pwd" placeholder="Password">
       </div>
 
-      <div class="text-center" *ngIf="password.invalid&&password.touched" >
-        <small class="text-danger valid" *ngIf="password.errors?.['required']">Password is required</small>
-        <small class="text-danger valid" *ngIf="password.errors?.['pattern']">Password must contain atleast one number,specialcharacter,uppercaseletter,and lower case letter</small>
+      <div class="text-center" *ngIf="email.invalid&&email.touched" >
+        <small class="text-danger valid" *ngIf="email.errors?.['required']">email is required</small>
+        <small class="text-danger valid" *ngIf="email.errors?.['pattern']">email is not vaid</small>
       </div>
 
 
-      <div class="form-field d-flex align-items-center">
+      <!-- <div class="form-field d-flex align-items-center">
         <span class="fas fa-key"></span>
         <input type="password" (keyup)="comparePassword()" required [(ngModel)]="form.confirmPassword"  name="confirmPassword" id="pwd" placeholder="Confirm Password">
       </div>
         <div class="text-center">
         <small class="text-danger valid-phone" *ngIf="cpassword">Password doesn't matched</small>
-      </div>
+      </div> -->
 
 
     <div class="form-field d-flex align-items-center">

@@ -49,7 +49,7 @@ public sendEmail(Email: any):any {
 
 
        public deleteApi(id:number):any{
-        return this.http.delete<Object[]>(`${this.url}`+ "?id="+id,{ observe: 'response',withCredentials: true });
+        return this.http.delete<Object[]>(`${this.url}/${id}`,{ observe: 'response',withCredentials: true });
        }
 
 
