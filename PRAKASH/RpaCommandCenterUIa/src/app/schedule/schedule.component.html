@@ -1,0 +1,65 @@
+
+ <div class="container">
+    <h2 class="text-success text-center">Schedule</h2>
+    <div class="">
+      <label>Workflow Name:</label>
+      <select class="form-control" [(ngModel)]="workflowOption">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+      </select>
+    </div>
+  
+    <div class="">
+      <label>Bot Name:</label>
+      <select class="form-control" [(ngModel)]="botsOption">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+      </select>
+    </div>
+  
+    <div class="">
+      <label for="start-date">Start Date:</label>
+      <input class="form-control" type="date" id="start-date" [(ngModel)]="startDate" [min]="minDate">
+    </div>
+    <div class="">
+      <label>Run:</label>
+      <select class="form-control" [(ngModel)]="frequencyOptions">
+        <option value="m">Minutely</option>
+        <option value="h">Hourly</option>
+        <option value="d">Daily</option>
+        <option value="w">Weekly</option>
+        <option value="M">Monthly</option>
+        <option value="y">Yearly</option>
+      </select>
+    </div>
+  
+    <div class="">
+      <label for="start-on-time">Start On Time:</label>
+      <input class="form-control" type="time" id="start-on-time" [(ngModel)]="startOnTime">
+    </div>
+  
+    <div class="radio-buttons">
+      <label>Expires:</label>
+      &nbsp;
+      <input type="radio" id="never" name="expire-option" [(ngModel)]="expireOption" value="never">
+      <label for="never">Never</label>
+      &nbsp;
+      <input type="radio" id="date-time" name="expire-option" [(ngModel)]="expireOption" value="date-time">
+      <label for="date-time">Date and Time</label>
+    </div>
+  
+    <div class="" *ngIf="expireOption === 'date-time'">
+      <label for="expire-date-time">Expire Date Time:</label>
+      <input class="form-control" type="datetime-local" id="expire-date-time" [(ngModel)]="expireDateTime" [min]="minDate">
+    </div>
+    <div class="mt-2">
+    <button class="btn btn-primary" (click)="schedule()">Schedule</button>
+    <button class="btn btn-danger" mat-dialog-close>Cancel</button>
+    </div>
+  </div> 
+
+

@@ -1,0 +1,29 @@
+/* table {
+   width: 70%;
+ }
+ 
+ .mat-mdc-form-field {
+   font-size: 14px;
+   width: 100%;
+ }
+ td, th {
+   width: 25%;
+ } */
+
+ .mat-table {
+  width: 80%; 
+  margin: 0 auto; 
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-cell, .mat-header-cell {
+  padding: 8px 16px; 
+}
+
+.mat-row {
+  height: 40px; 
+}

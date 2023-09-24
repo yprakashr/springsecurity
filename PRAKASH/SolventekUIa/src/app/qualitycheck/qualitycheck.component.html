@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+        <div class="center-block clear">
+            <h2> <small><i>Quality Check</i></small></h2>
+            <hr>
+        </div>
+        <!-- <div class="col-md-1">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                Actions &nbsp;<mat-icon> more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/programsdata">
+                    <mat-icon>playlist_add_check</mat-icon>
+                    <span>Data Modeler</span>
+                </button>
+                <button mat-menu-item routerLink="/annotations">
+                    <mat-icon>aspect_ratio</mat-icon>
+                    <span>Annotations</span>
+                </button>
+            </mat-menu>
+        </div> -->
+
+        <div class="col-md-4 w-25 h-25 mt-2 ml-3">
+            <button type="button" class="btn btn-info" routerLink="/home">
+                <i class="fa fa-home"></i>&nbsp;
+                <span>Home</span>
+            </button>
+        </div>
+
+        <div class="col-md-8">
+            <div class="example-header col-md-12" style="text-align: right;">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="example-container mat-elevation-z8 ">
+
+            <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-header-cell> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <span  routerLink="/qualitydata">{{row.name}} </span>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="description">
+                    <mat-header-cell *matHeaderCellDef mat-header-cell> Description </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="cdate">
+                    <mat-header-cell *matHeaderCellDef mat-header-cell> Created Date </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.cdate}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+    </div>
+</div>
+
+<div class="example-header"></div>
+<div class="example-header"></div>

@@ -1,0 +1,149 @@
+.bi-circle-fill{
+  color:#57b846
+}
+
+.username{
+  color:rgb(0, 62, 79);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:medium;
+  word-wrap: break-word;
+  width:100px;
+}
+
+
+/* --------------------------------------------------------------------------------------------------------- */
+
+
+.i-top-header {
+  height: 70px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.46);
+  background-color: #84ceeb;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+a, a:link:hover, a:visited:hover {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+.hright {
+  display: flex;
+  align-items: center;
+}
+
+.hright ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.hright ul li:first-child {
+  margin-left: 0;
+}
+
+.hright ul li {
+  margin-left: 45px;
+  position: relative;
+  color: #ecf0f1;
+}
+
+ul, ul li {
+  list-style: none;
+}
+
+
+.hright ul li a {
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  padding-bottom: 8px;
+}
+
+a, a:link:hover, a:visited:hover {
+  text-decoration: none;
+}
+
+
+/* --------------------------------prafull--------------------------------------------- */
+.extra {
+  flex: 1 1 auto;
+}
+
+
+.sidenav-wrapper {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+
+button span {
+  margin: 10px;
+}
+
+button{
+  display: flex;
+  gap: 10px;
+}
+
+.font{
+  font-size: xx-large;
+  font-weight: 900;
+  color: #ecf0f1  ;
+}
+
+mat-sidenav {
+  width: 280px;
+  padding: 15px;
+}
+
+.sidenav-btn {
+  border: none;
+  outline: none;
+  background-color: white;
+  color: black;
+}
+
+.active button {
+  color: blue;
+}
+
+
+
+
+
+
+
+
+

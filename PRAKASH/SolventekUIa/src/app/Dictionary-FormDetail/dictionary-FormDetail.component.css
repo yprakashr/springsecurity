@@ -1,0 +1,7 @@
+.title h2{
+   color: blue;
+   margin-top: 15px;
+}
+mat-icon:hover{
+    cursor: pointer;
+}

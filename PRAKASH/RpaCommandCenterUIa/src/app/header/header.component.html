@@ -1,0 +1,102 @@
+<div *ngIf="dash==true">
+  <mat-toolbar  data-navigation="container" class="container-fluid i-top-header">
+    <button  [hidden]=toggleButtonhidden (click)="nav.toggle()"><i class="text-white bi bi-list"></i></button>
+    <div class="row w-100 justify-content-between">
+      <div class="col-3  justify-content-center">
+        <img alt="logo"  width="150" height="150" 
+          src="../../assets/images/solventeklogo.webp">
+    </div> 
+
+    <nav class="col-3 hright dnav  justify-content-end">
+      <ul>
+        <li routerLinkActive="active">
+        <div class="dropdown dropleft">
+        <div class="btn dropdown-toggle" data-toggle="dropdown"  id="dropdownMenuButton"  aria-haspopup="true" aria-expanded="true">  
+        <img src="../../assets/images/emptypic.jpg" width="35" height="35" class="rounded-circle" alt="...">
+        </div>
+   
+        <div class="dropdown-menu">
+          <div class="btn btn-default w-25" ><span class="username"><i class="bi bi-circle-fill"></i>&nbsp;&nbsp;{{fullname}}</span></div>
+          <div class=""></div>
+          <div class="btn btn-default w-25"><span class="username"><i class="bi bi-circle-fill"></i>&nbsp;&nbsp;{{email}}</span></div>
+          <div class="dropdown-divider"></div>
+          <div class="btn-default text-danger"><div class="menu-item ml-5 pl-3" role='button'><div (click)="Logout()">Logout</div></div></div>
+        </div>
+      </div>
+      </li>
+      </ul>
+    </nav>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container  class="sidenav-wrapper">
+    <mat-sidenav  [opened]=openedNavBar #nav mode="side">
+      <mat-list class="mt-5">
+        <mat-list-item routerLinkActive="active">
+          <button class="sidenav-btn" routerLink="workflow">
+            <i class="bi bi-person-workspace"></i>
+            Workflows
+          </button>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+          <button class="sidenav-btn" routerLink="executions">
+            <i class="bi bi-filetype-exe"></i>
+            Executions
+          </button>
+        </mat-list-item>
+       
+        <mat-list-item routerLinkActive="active">
+          <button class="sidenav-btn" routerLink="jobprofile">
+            <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+            Reports
+          </button>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+          <button class="sidenav-btn" routerLink="schedulecon">
+            <i class="bi bi-calendar-check-fill"></i>
+            Schedule
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+<!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+
+<div *ngIf="dash==false">
+  <mat-toolbar  data-navigation="container" class="container-fluid i-top-header">
+    <div class="row w-100 justify-content-between">
+      <div class="col-3 justify-content-start">
+   <img alt="logo" width="150" height="150"
+      src="../../assets/images/solventeklogo.webp">
+</div>
+    <nav class="col-3 hright dnav  justify-content-center">
+      <!-- <ul>
+        <li *ngIf="login==true" routerLinkActive="active"><a class="text-light" routerLink="/reg">Sign Up</a></li>
+        <li *ngIf="reg==true" routerLinkActive="active"><a class="text-light" routerLink="/login">Sign In</a></li>
+      </ul> -->
+    </nav>
+  </div>
+  </mat-toolbar>
+  <mat-sidenav-container  class="sidenav-wrapper">
+    <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+
+
+
+
+
+
+
+
+

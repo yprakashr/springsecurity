@@ -1,0 +1,77 @@
+<!-- <h2 mat-dialog-title>Update Workflow</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Workflow Name" [(ngModel)]="workflow.workflowname">
+    </mat-form-field>
+    
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="ml-3">
+    <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+  <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+ 
+</mat-dialog-actions> -->
+
+<div class="container p-4">
+    <div class="w-60">
+      <label>Workflow Name:</label>
+      <select class="form-control">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+      </select>
+    </div>
+  
+    <div class="w-60">
+      <label>Bot Name:</label>
+      <select class="form-control">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+      </select>
+    </div>
+  
+    <div class="w-60">
+      <label for="start-date">Start Date:</label>
+      <input class="form-control" type="date" id="start-date">
+    </div>
+    <div class="w-60">
+      <label>Run:</label>
+      <select class="form-control">
+        <option value="m">Minutely</option>
+        <option value="h">Hourly</option>
+        <option value="d">Daily</option>
+        <option value="w">Weekly</option>
+        <option value="M">Monthly</option>
+        <option value="y">Yearly</option>
+      </select>
+    </div>
+  
+    <div class="w-60">
+      <label for="start-on-time">Start On Time:</label>
+      <input class="form-control" type="time" id="start-on-time">
+    </div>
+  
+    <div class="radio-buttons">
+      <label>Expires:</label>
+      &nbsp;
+      <input type="radio" id="never" name="expire-option" value="never">
+      <label for="never">Never</label>
+      &nbsp;
+      <input type="radio" id="date-time" name="expire-option" value="date-time">
+      <label for="date-time">Date and Time</label>
+    </div>
+  
+    <div class="w-60">
+      <label for="expire-date-time">Expire Date Time:</label>
+      <input class="form-control" type="datetime-local" id="expire-date-time">
+    </div>
+    <div class="">
+    <button class="btn btn-primary">Update</button>
+    <button class="btn btn-danger" mat-dialog-close>Cancel</button>
+    </div>
+  </div> 
+

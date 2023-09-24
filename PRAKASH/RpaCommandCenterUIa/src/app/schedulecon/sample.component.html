@@ -1,0 +1,76 @@
+
+ <div class="scheduler-container">
+    <h3 class="ml-5">Schedule Configuration</h3>
+    <div class="w-25 ml-5">
+      <label>Workflow Name:</label>
+      <select class="form-control" [(ngModel)]="workflowOption">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+      </select>
+    </div>
+  
+    <div class="w-25 ml-5">
+      <label>Bot Name:</label>
+      <select class="form-control" [(ngModel)]="botsOption">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+      </select>
+    </div>
+  
+    <div class="w-25 ml-5">
+      <label for="start-date">Start Date:</label>
+      <input class="form-control" type="date" id="start-date" [(ngModel)]="startDate">
+    </div>
+  
+    <div class="radio-buttons ml-5">
+      <label>Run Frequency:</label>
+       &nbsp;
+      <input type="radio" id="hourly" name="run-frequency" [(ngModel)]="runFrequency" value="h">
+      <label for="hourly">Hourly</label>
+
+       &nbsp;
+      <input type="radio" id="minutely" name="run-frequency" [(ngModel)]="runFrequency" value="M">
+      <label for="minutely">Minutely</label>
+      
+       &nbsp;
+      <input type="radio" id="daily" name="run-frequency" [(ngModel)]="runFrequency" value="d">
+      <label for="daily">Daily</label>
+       <br>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" id="weekly" name="run-frequency" [(ngModel)]="runFrequency" value="w">
+      <label for="weekly">Weekly</label>
+       &nbsp;
+      <input type="radio" id="monthly" name="run-frequency" [(ngModel)]="runFrequency" value="m">
+      <label for="monthly">Monthly</label>
+       &nbsp;
+      <input type="radio" id="yearly" name="run-frequency" [(ngModel)]="runFrequency" value="y">
+      <label for="yearly">Yearly</label>
+    </div>
+  
+    <div class="w-25 ml-5">
+      <label for="start-on-time">Start On Time:</label>
+      <input class="form-control" type="time" id="start-on-time" [(ngModel)]="startOnTime">
+    </div>
+  
+    <div class="radio-buttons ml-5">
+      <label>Expires:</label>
+      &nbsp;
+      <input type="radio" id="never" name="expire-option" [(ngModel)]="expireOption" value="never">
+      <label for="never">Never</label>
+      &nbsp;
+      <input type="radio" id="date-time" name="expire-option" [(ngModel)]="expireOption" value="date-time">
+      <label for="date-time">Date and Time</label>
+    </div>
+  
+    <div class="w-25 ml-5" *ngIf="expireOption === 'date-time'">
+      <label for="expire-date-time">Expire Date Time:</label>
+      <input class="form-control" type="datetime-local" id="expire-date-time" [(ngModel)]="expireDateTime">
+    </div>
+    <button class="btn btn-primary ml-5" (click)="schedule()">Schedule</button>
+  </div>
