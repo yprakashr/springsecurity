@@ -1,0 +1,108 @@
+<form name="vm.editProvSegWinForm" autocomplete="off" ng-submit="vm.updateProviderSegmentWindowPrefs()" novalidate>
+<div class="modal-header">
+  <h3 class="modal-title">
+    Inventory Allocation for {{vm.provWeightsForm.provider_name}}
+    <a class="close-btn pull-right" ng-click="vm.closeModal()"><i class="glyphicon glyphicon-remove"></i></a>
+  </h3>
+</div>
+<div class="modal-body">
+  <div class="col-sm-12 text-center text-danger" *ngIf="vm.editProviderPrefsErrorMsg">{{vm.editProviderPrefsErrorMsg}}
+  </div>
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Location</div>
+    <div class="col-sm-6 text-center">
+      <div class="select-arrow">
+        <select class="form-control" name="sel_location" ng-change="vm.changeProvPrefLocInvAllocation(sel_location)" ng-model="sel_location" ng-options="opt as opt.location_name for opt in vm.providerOptLocations">
+          <option value="">Select</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="sel_location">
+    <div>
+      <div class="row">
+        <div class="col-sm-3 text-center"><h4>Hour/Segment</h4></div>
+        <div class="col-sm-3 text-center"><h4>Range 1</h4></div>
+        <div class="col-sm-3 text-center"><h4>Range 2</h4></div>
+        <div class="col-sm-3 text-center"><h4>Range 3</h4></div>
+      </div>
+      <div class="mt15 row">
+        <div class="col-sm-3 text-center"><b>Start Hour</b></div>
+        <div class="col-sm-3 text-center">Present</div>
+        <div class="col-sm-3 text-center">&#60; {{vm.practProviderSegWinPrefs.window_1}}</div>
+        <div class="text-center">&#60; {{vm.practProviderSegWinPrefs.window_2}}</div>
+      </div>
+      <div class="mt15 row">
+        <div class="col-sm-3 pt10 text-center"><b>End Hour</b></div>
+        <div class="col-sm-3 text-center">
+          <div class="form-group" *ngClass="{'has-error':vm.editProvSegWinForm.window_1.$invalid}">
+            <input class="center-block form-control text-center w150" name="window_1" type="number" min="1" ng-model="vm.practProviderSegWinPrefs.window_1" required>
+            <div *ngIf="vm.editProvSegWinForm.$submitted || vm.editProvSegWinForm.window_1.$dirty"
+              ng-messages="vm.editProvSegWinForm.window_1.$error">
+              <div class="text-danger" ng-message="required">A range is required</div>
+              <div class="text-danger" ng-message="min">Range must be greater than 0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 text-center">
+          <div class="form-group" *ngClass="{'has-error':vm.editProvSegWinForm.window_2.$invalid}">
+            <input class="center-block form-control text-center w150" name="window_2" type="number" min="1" ng-model="vm.practProviderSegWinPrefs.window_2" required>
+            <div *ngIf="vm.editProvSegWinForm.$submitted || vm.editProvSegWinForm.window_2.$dirty"
+              ng-messages="vm.editProvSegWinForm.window_2.$error">
+              <div class="text-danger" ng-message="required">A range is required</div>
+              <div class="text-danger" ng-message="min">Range must be greater than 0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 pt10 text-center">Future</div>
+      </div>
+      <hr>
+      <div class="mt15 row" ng-repeat="setting in vm.practProviderInvAllocationPrefs | orderBy: 'segment_num'">
+        <div ng-form="segmentpercform">
+          <div class="col-sm-3 pt10 text-center"><b>{{setting.segment_num}}</b></div>
+          <div class="col-sm-3">
+            <input class="center-block form-control text-center w150" name="w1perc" type="number" min="0" ng-model="setting.window_1" ng-change="vm.calcInventoryTotals()" required>
+            <div *ngIf="vm.editProvSegWinForm.$submitted || segmentpercform.w1perc.$dirty"
+              ng-messages="segmentpercform.w1perc.$error">
+              <div class="text-danger text-center" ng-message="required">A number is required</div>
+              <div class="text-danger text-center" ng-message="min">Number must be greater than or equal to 0</div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <input class="center-block form-control text-center w150" name="w2perc" type="number" min="0" ng-model="setting.window_2" ng-change="vm.calcInventoryTotals()" required>
+            <div *ngIf="vm.editProvSegWinForm.$submitted || segmentpercform.w2perc.$dirty"
+              ng-messages="segmentpercform.w2perc.$error">
+              <div class="text-danger text-center" ng-message="required">A number is required</div>
+              <div class="text-danger text-center" ng-message="min">Number must be greater than or equal to 0</div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <input class="center-block form-control text-center w150" name="w3perc" type="number" min="0" ng-model="setting.window_3" ng-change="vm.calcInventoryTotals()" required>
+            <div *ngIf="vm.editProvSegWinForm.$submitted || segmentpercform.w3perc.$dirty"
+              ng-messages="segmentpercform.w3perc.$error">
+              <div class="text-danger text-center" ng-message="required">A number is required</div>
+              <div class="text-danger text-center" ng-message="min">Number must be greater than or equal to 0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-3 text-center"><b>Total</b></div>
+        <div class="col-sm-3 text-center">{{vm.providerInvTotals.window_1}}%</div>
+        <div class="col-sm-3 text-center">{{vm.providerInvTotals.window_2}}%</div>
+        <div class="col-sm-3 text-center">{{vm.providerInvTotals.window_3}}%</div>
+      </div>
+      <div class="row" *ngIf="vm.editProvSegWinForm.$submitted && vm.percentageError">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-9 pt10 text-center text-danger">Percentage totals must equal out to 100% for each range. Please check the percentages entered.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn primary-btn" type="submit" *ngIf="sel_location">Save</button>
+  <a class="btn btn-default secondary-btn" type="button" ng-click="vm.closeModal()">Close</a>
+</div>
+</form>

@@ -1,0 +1,93 @@
+---------------------------------------------------------------
+HTML
+---------------------------------------------------------------
+
+<hello name="{{ name }}"></hello>
+<p>
+  Start editing to see some magic happen :)
+</p>
+<button (click)="getSel()" >Click.!</button>
+<div style="color:red">
+  all 
+  <p *ngFor="let d of all">
+    <input type="checkbox" [checked]="d.checked" (change)="d.checked = !d.checked">  {{ d.name }}
+  </p>
+</div>
+<button (click)="add()" >add.!</button>
+
+<div style="color:blue">
+  selected 
+  <p *ngFor="let d of selected">
+    {{ d.name }}
+  </p>
+</div>
+
+
+----------------------------------------------------------------
+TS
+----------------------------------------------------------------
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.css' ]
+})
+export class AppComponent  {
+  name = 'Angular';
+all  = [
+    {
+      id:1,
+      name:'d1',
+      checked: false
+    },
+    {
+      id:2,
+      name:'d2',
+      checked: false
+    },
+    {
+      id:3,
+      name:'d3',
+      checked: false
+    },
+    {
+      id:4,
+      name:'d4',
+      checked: false
+    },
+    {
+      id:5,
+      name:'d5',
+      checked: false
+    },
+  ];
+  selected = [
+    {
+      id:1,
+      name:'d1'
+    },
+    {
+      id:3,
+      name:'d3'
+    },
+  ];
+
+  getSel() {
+    for(let i=0;i<this.selected.length; i++){
+      for(let j=0;j<this.all.length;j++){
+        if(this.all[j].id === this.selected[i].id) {
+          this.all[j].checked = true;
+        }
+      }
+    }
+  }
+
+   add() {
+     var t = this.all
+      .filter(opt => opt.checked)
+      .map(opt => opt);
+    this.selected = t;
+   }
+}

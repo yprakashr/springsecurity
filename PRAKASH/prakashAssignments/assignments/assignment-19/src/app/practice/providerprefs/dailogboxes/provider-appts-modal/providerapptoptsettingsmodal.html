@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    Activity Types Preferences for {{vm.provWeightsForm.provider_name}}
+    <a class="close-btn pull-right" ng-click="vm.closeModal()"><i class="glyphicon glyphicon-remove"></i></a>
+  </h3>
+</div>
+<div class="modal-body">
+  <div class="col-sm-12 text-center text-danger" ng-if="vm.editProviderPrefsErrorMsg">{{vm.editProviderPrefsErrorMsg}}</div>
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Value Weight</div>
+    <div class="col-sm-10 text-center">
+      <rzslider rz-slider-model="vm.provWeightsForm.activity_weight" rz-slider-options="vm.provWeightSliderOpt.options"></rzslider>
+    </div>
+  </div>
+  <hr>
+  <div class="row" ng-repeat="activityPref in vm.filteredPaginationList">
+    <div class="col-sm-2 mt15 pl35">{{activityPref.activity_name}}</div>
+    <div class="col-sm-10 text-center">
+      <ng-repeat-slider val-model="activityPref.desirability" on-change="vm.updateProviderActivityPref(activityPref)"></ng-repeat-slider>
+    </div>
+  </div>
+  <div class="row text-center mt15" ng-if="vm.providerActivityPref.length > vm.numPerPage">
+    <a class ="btn btn-default ml10 mr5" ng-disabled="vm.currentPage === 1" ng-click="vm.firstPage(vm.providerActivityPref)">First</a>
+    <a class ="btn btn-default mr5" ng-disabled="vm.currentPage === 1" ng-click="vm.previousPage(vm.currentPage, vm.providerActivityPref)">Previous</a>
+    <a class ="btn btn-default mr5" ng-disabled="vm.currentPage === vm.maxSize" ng-click="vm.nextPage(vm.currentPage, vm.providerActivityPref)">Next</a>
+    <a class ="btn btn-default mr5" ng-disabled="vm.currentPage === vm.maxSize" ng-click="vm.lastPage(vm.providerActivityPref)">Last</a>
+  </div>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-default secondary-btn" type="button" ng-click="vm.closeModal()">Close</a>
+</div>

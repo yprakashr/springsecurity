@@ -1,0 +1,40 @@
+<div class="my-account">
+    <div *ngIf="session == null; then sessionBAD else sessionOK">
+    </div>
+
+    <ng-template #sessionBAD>
+        <div id="sessionBAD">
+
+            <div class="row">
+                <div class="text-center text-danger h4 col-sm col1">
+                    Please login to continue <button type="button" routerLink="/login"
+                        class="btn btn-primary m-3">Login</button>
+                </div>
+                <div class="container-fluid col-sm-auto">
+                    <img class="img-fluid mx-auto d-block" src="assets/images/users-login.png" width="500vw">
+                </div>
+            </div>
+
+        </div>
+    </ng-template>
+
+    <ng-template #sessionOK>
+
+        <div class="p-3 mt-5 container">
+            <div class="row">
+                <div class="col text-center mt-5">
+                    <h1><img src=" assets/images/user-icon.jpg" alt="" width="30px"> {{user.fullname}} </h1>
+                    <p>@{{user.username}}</p>
+                </div>
+                <div class="col ms-3 right-col">
+                    <div><i class="bi bi-telephone-fill"></i> &nbsp;{{user.phonenumber}}</div><br>
+                    <div><i class="bi bi-gender-ambiguous"></i>&nbsp;&nbsp;{{user.gender}}</div><br>
+                    <div><i class="bi bi-envelope-fill"></i> &nbsp;{{user.email}}</div><br>
+                    <div><i class="bi bi-person-lines-fill"></i>&nbsp; {{user.role}}</div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    
+    <app-ass15-footer></app-ass15-footer>
+</div>

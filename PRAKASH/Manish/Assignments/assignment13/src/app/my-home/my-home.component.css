@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+
+.h1 {
+  font-family: "Poppins", sans-serif;
+  color: rgb(211, 0, 0);
+}
+
+.text-right,
+.pt-4,
+.oneliner {
+  font-size: 20px;
+  color: rgb(163, 0, 0);
+}
+
+.row1 {
+  background-image: linear-gradient(rgb(255, 201, 201), white);
+  padding: 20px;
+  border-radius: 40px;
+}

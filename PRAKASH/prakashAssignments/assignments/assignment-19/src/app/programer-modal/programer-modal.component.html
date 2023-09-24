@@ -1,0 +1,32 @@
+
+<div style="padding-left: 15px;padding-top: 10px;padding-bottom: 15px;padding-right: 15px;border-bottom: 1px solid #e5e5e5;">
+  <h3 class="modal-title">
+    Create Program
+    <a class="close-btn pull-right" (click)="dialogRef.close(false)"><i class="fa fa-window-close"></i></a>
+    
+  </h3>
+</div>
+<div class="container-fluid">
+  
+    <mat-dialog-content >
+      <form autocomplete="off" class="mt-4" [formGroup]="form"  novalidate  >
+        <mat-form-field>        
+        <input matInput placeholder="Program Name" formControlName="name" />
+        </mat-form-field>
+        <br>
+        
+        <mat-form-field>       
+        <input matInput placeholder="Enter Description" formControlName="description" />
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions class="mt-2 p-4">
+      <button type="button" class="btn btn-danger" (click)="dialogRef.close(false)">
+        Close
+      </button>
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <button type="button" class="btn btn-success " (click)="submit(form.value)">
+        Submit
+      </button>
+    </mat-dialog-actions>
+  </div>

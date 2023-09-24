@@ -1,0 +1,158 @@
+<html>
+  <head>
+    <title>Slide Navbar</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet"/>
+  </head>
+  <body class="loginSignup-body">
+
+        <!-- signup page -->
+
+    <div class="main">
+      <input type="checkbox" id="chk" aria-hidden="true" />
+
+      <div class="signup">
+        <form #signuppage="ngForm" (ngSubmit)="onSubmit(signuppage)" [formGroup]="regForm">
+          
+          <label for="chk" class="label" aria-hidden="true">Sign up</label>
+          <div class="userlog">
+            <div>
+              <input class="userslogin1" type="text" formControlName="fullname" placeholder="Full name" />
+                <div *ngIf="fullname.invalid && fullname.touched" >
+                <small class="text-danger valid" *ngIf="fullname.errors?.['required']">Name is required</small>
+                <small class="text-danger valid" *ngIf="fullname.errors?.['maxlength']">Name is too long...</small>
+              </div>
+            </div>
+
+            <div>
+              <input class="userslogin1" type="text" formControlName="username" placeholder="User name" />
+              <div *ngIf="username.invalid && username.touched" >
+                <small class="text-danger valid" *ngIf="username.errors?.['required']">Username is required</small>
+                <small class="text-danger valid" *ngIf="username.errors?.['maxlength']">Name is too long...</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="password-strength-checker"> -->
+            <div class="userlog">
+            <div>
+              <input class="userslogin1" id="password" type="password" [(ngModel)]="Password" (input)="checkPasswordStrength()" formControlName="password" placeholder="Password" />
+              <!-- <app-password-strength [passwordToCheck]="regForm.value.password" (passwordStrength)="passwordValid($event)"></app-password-strength> -->
+              <div  class="text-center">
+                <div class="strength-indicator" ></div>
+                <div [ngClass]="strengthClass">{{strengthText}}</div>
+            </div>
+              <div  class="text-center" *ngIf="username.invalid && username.touched" >
+
+                <small class="text-danger valid" *ngIf="password.errors?.['required']">Password is required</small>
+                <small class="text-danger valid" *ngIf="password.errors?.['pattern']">Password must be very strong</small>
+              </div>
+            </div>
+
+            <input type="text" formControlName="role" hidden>
+            <div>
+              <input class="userslogin1" type="password" name="confirmpassword" [(ngModel)]="confirmpassword" formControlName="confirmpassword" placeholder="Confirm Password" />
+              <div class="text-center" *ngIf="username.touched">
+              <small  *ngIf="regForm.errors?.['passwordmatcherror']" class="text-danger valid">
+                Sorry! Password did'nt matched
+              </small></div>
+            </div>
+            </div>
+
+              <input class="userslogin"  type="email" name="email"  formControlName="email" placeholder="Enter your email" />
+              <div class="text-center" *ngIf="email.invalid && email.touched" >
+                <small class="text-danger valid" *ngIf="email.errors?.['required']">email is required</small>
+                <small class="text-danger valid" *ngIf="email.errors?.['pattern']">email must be very strong</small>
+              </div>
+
+            <div class="form-group">
+            <label class="input-label-head">Gender : </label>
+            <div class="">
+              <div class="form-check form-check-inline">
+                <label class="input-label">Male</label>
+                <input class="form-check-input" type="radio" value="Male" formControlName="gender"/>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <label class="input-label">Female</label>
+                <input class="form-check-input" type="radio" value="Female" formControlName="gender"/>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <label class="input-label">Others</label>
+                <input type="radio" class="form-check-input" value="Others" formControlName="gender"/>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+          <small *ngIf="gender.touched&& gender.errors?.['required']" class="text-danger valid">Please select your gender</small>
+        </div>
+
+          <input class="userslogin" type="number" formControlName="phone" placeholder="Phone"/>
+          <div class="text-left" *ngIf="phone.invalid && phone.touched" >
+            <small class="text-danger valid-phone" *ngIf="phone.errors?.['required']">phone is required</small>
+            <small class="text-danger valid-phone" *ngIf="phone.errors?.['pattern']">Please enter minimum of 10 no's</small>
+          </div>
+
+          <button type="submit" [disabled]="regForm.invalid" class="usersloginsignup-btn">
+            Sign up
+          </button>
+        </form>
+      </div>
+
+
+
+            <!-- login page -->
+
+
+      <div class="login">
+        <form #loginform="ngForm" (ngSubmit)="loginDetails(loginform)" [formGroup]="login" >
+          <label for="chk" class="label" aria-hidden="true">Login</label>
+          <input class="userslogin" type="text" formControlName="username" placeholder="username"/>
+          <div class="text-center" *ngIf="uname.invalid && uname.touched" >
+                <small class="text-danger valid" *ngIf="uname.errors?.['required']">Username is required</small>
+                <small class="text-danger valid" *ngIf="uname.errors?.['maxlength']">Username is too long...</small>
+              </div>
+
+          <input class="userslogin" type="password" formControlName="password" placeholder="Password"/>
+          <div class="text-center" *ngIf="pswd.invalid && pswd.touched" >
+            <small class="text-danger valid" *ngIf="pswd.errors?.['required']">Password is required</small>
+          </div>
+
+          <button [disabled]="login.invalid" type="submit" class="usersloginsignup-btn">Login</button>
+        </form>
+        
+        <button routerLink="/forgotpassword" class="btn btn-link float-end">Forgot password?</button>
+        <br><br>
+        <div class="text-center text-danger">
+        <P  class="h5">{{message}}</P>
+      </div>
+      </div>
+    </div>
+
+    <!-- <button routerLink="/home" class="home-button btn btn-outline-danger">Home</button> -->
+    <a routerLink="/home" class="home-button btn btn-outline-secondary nav-link">Home</a>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

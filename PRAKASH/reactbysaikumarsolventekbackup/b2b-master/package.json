@@ -1,0 +1,20 @@
+{
+	"name": "vivek-ram-script",
+	"author": "Vivek Narayan",
+	"version": "1.0.0",
+	"description": "vivek-ram build script",
+	"main": "server.js",
+	"repository": {
+		"type": "git"
+	},
+	"scripts": {
+		 "react" : "cd app && npm run start",
+		 "server" : "cd api && npm run start",
+		"dev": "concurrently \"npm run server\" \"  npm run react\" ",
+		"build": "concurrently \"cd api && npm install && npm run start\" \"cd app && npm install &&  npm run start\" "
+
+	},
+	"devDependencies": {
+		"concurrently": "^7.3.0"
+	}
+}

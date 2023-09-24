@@ -1,0 +1,7 @@
+.parent,
+.child {
+  text-align: center;
+  padding: 10px;
+  background-color: olivedrab;
+  border: 1px solid black;
+}

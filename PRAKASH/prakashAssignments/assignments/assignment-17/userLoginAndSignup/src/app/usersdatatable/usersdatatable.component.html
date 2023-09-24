@@ -1,0 +1,91 @@
+
+<app-header></app-header>
+
+
+   <div class="container my-auto mx-auto">
+    <div class="row">
+      <div class="col">
+        <div class="ass10-div2-search">
+          <div class="ass10-div-search">
+            <mat-form-field>
+              <input
+                type="text"
+                class="mr-5 ml-5"
+                matInput
+                (keyup)="filter($event)"
+                placeholder="Search Here"
+              />
+            </mat-form-field>
+            <i class="bi bi-search search-icon"></i>
+          </div>
+        </div>
+      </div>
+
+<div class="col">
+  <button class="btn btn-outline-primary float-end" routerLink="/login">Logout</button>
+</div>
+
+      <div class="wrapper">
+        <table mat-table [dataSource]="userDetails" matSort class="table-sm  mat-elevation-z8">
+
+          <ng-container matColumnDef="fullname">
+            <th mat-header-cell mat-sort-header  *matHeaderCellDef>Full Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.fullname }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>User Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Gender</th>
+            <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Phone</th>
+            <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef>Edit</th>
+            <td mat-cell *matCellDef="let element">
+              <i (click)="OpenForm(element)" class="bi bi-pencil-fill"></i>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="delete" >
+            <th mat-header-cell mat-sort-header  *matHeaderCellDef>Delete</th>
+            <td mat-cell *matCellDef="let element">
+              <i (click)="openDialog(element)" class="bi bi-trash-fill"></i>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+
+  <div>
+    <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10, 25,75, 100]" >
+    </mat-paginator>
+  </div>
+</div>
+
+    <!--------------- Footer content ------------------->
+
+    <footer class="usershome-footer">
+    <hr>
+    <p class="text-center bg text-white">&copy; 2023 Prakash Infohub | All rights are reserved | Terms of service | Privacy</p>
+    </footer>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,388 @@
+
+
+    @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes slideInLeft {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+
+:root{
+    --bg-color: #573b8a;
+    --secondary-bg-color:#e0dede;
+    --text-color:#000;
+    --second-color:#a09dab;
+    --primary-color:#fff;
+    --main-color:#ea1538;
+    --big-font:5rem;
+    --h2-font:3rem;
+    --p-font:1.1rem;
+}
+
+/*<--------- home page ---------------->  */
+
+.user-home-header{
+    width: 100vw;
+    height:30vh;
+    background: url(./assets/images/himalayahills.jpg);
+    background-size:auto;
+    background-position: center center;
+    background-attachment: fixed;
+    clip-path: polygon(0% 0%,100% 0%,100% 80%,50% 100%,0% 80%);
+    position:-webkit-sticky;
+    width:100%;
+    /* animation: 1s ease-out 0s 1 slideInLeft; */
+    margin-top: 0;
+    }
+
+    .body-of-homepage{
+        width: 100%;
+        animation: fadeIn 5s;
+    }
+
+    nav div ul li a{
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     font-weight: 300;
+     color:var(--main-color);
+    }
+    .body-background-usershomepage{
+        background: url(./assets/images/background3.jpg);
+        background-size: cover;
+        height: 600px;
+        width: 100%;
+    }
+   .nav-link{
+        color:var(--main-color);
+    }
+    .navbar-brand{
+        color:var(--main-color);
+    }
+    .text-primary{
+        color:var(--text-color);
+    }
+    .navbar-brand{
+        font-size: 30px;
+       font-weight:700;
+       justify-content: space-between;
+    }
+    .ml-auto{
+        display: flex;
+        float: right;
+        margin-left:900px;
+
+    }
+    .image{
+    padding-top:20px;
+    width: 18vw;
+    }
+    .h1{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight:700;
+    }
+    .navbarNav{
+        height: 30px;
+    }
+    .main-footer{
+        width: 100%;
+    }
+
+.text{
+    color:var(--text-color);
+}
+.text-col p{
+    color:var(--second-color);
+}
+
+
+    /* ****************************** Login page ************************************** */
+
+
+                        .password-strength-checker {
+                            position: relative;
+                            width: 300px;
+                            margin: 0 auto ;
+                            text-align: center;
+                          }
+
+                          .password-strength-checker input {
+                            width: 100%;
+                            padding: 10px;
+                            margin-bottom: 20px;
+                            border: none;
+                            border-bottom: 2px solid #ccc;
+                            font-size: 16px;
+                          }
+
+                          .strength-indicator {
+                            position: absolute;
+                            bottom: -30px;
+                            left: 0;
+                            width: 100%;
+                            font-size: 14px;
+                            font-weight: bold;
+                          }
+
+                          .strength-1 {
+                            color: red;
+                          }
+
+                          .strength-2 {
+                            color: orange;
+                          }
+
+                          .strength-3 {
+                            color: yellow;
+                          }
+
+                          .strength-4 {
+                            color: green;
+                          }
+
+                          .strength-5 {
+                            color: blue;
+                          }
+
+
+                        .loginSignup-body{
+                            margin: 0;
+                            padding: 0;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            min-height: 100vh;
+                            font-family: 'Jost',sans-serif;
+                            background: url(./assets/images/himalayahills.jpg);
+                            background-size:cover;
+                            position: relative;
+                        }
+                        .float{
+                            gap:0;
+                        }
+                        .valid{
+                            margin-left: 30px;
+                        }
+                        .valid-phone{
+                            margin-left:150px;
+                        }
+                        .main{
+                            width: 400px;
+                            height: 600px;
+                            background: url(./assets/images/himalayahills.jpg);
+                            overflow: hidden;
+                            border-radius: 10px;
+                            box-shadow: 5px 20px 50px #000;
+                            /* animation: fadeIn 3s; */
+                        }
+                        .valid{
+                            text-align: center;
+                        }
+                        #chk{
+                            display: none;
+                        }
+                        .signup{
+                            position:relative;
+                            width:100%;
+                            height: 100%;
+                            bottom:20px;
+                        }
+                        .label{
+                            color: var(--primary-color);
+                            font-size: 2.3em;
+                            justify-content: center;
+                            display: flex;
+                            margin: 40px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            transition: .5s ease-in-out;
+                        }
+                        .userslogin{
+                            width: 90%;
+                            height: 30px;
+                            background: var(--primary-color);
+                            justify-content: center;
+                            display: flex;
+                            margin: 5px auto;
+                            padding: 10px;
+                            border: none;
+                            outline: none;
+                            border-radius: 5px;
+                        }
+                        .userslogin1{
+                            height: 30px;
+                            background: var(--primary-color);
+                            margin: 10px 10px;
+                            border: none;
+                            outline: none;
+                            border-radius: 5px;
+                        }
+                        .userlog{
+                            display:flex;
+                            justify-content: center;
+                        }
+
+                        .usersloginsignup-btn{
+                            width: 60%;
+                            height: 40px;
+                            margin: 8px auto;
+                            justify-content: center;
+                            display: block;
+                            color: var(--second-color);
+                            background:#302b63;
+                            font-size: 1em;
+                            font-weight: bold;
+                            margin-top: 20px;
+                            outline: none;
+                            border: none;
+                            border-radius: 5px;
+                            transition: .2s ease-in;
+                            cursor: pointer;
+                        }
+                        .usersloginsignup-btn:hover{
+                            background: #6d44b8;
+                        }
+                          .usersloginsignup-btn:disabled,
+                          .usersloginsignup-btn[disabled]{
+                            background: #cccccc;
+                          }
+                        .login{
+                            height: 600px;
+                            background: var(--secondary-bg-color);
+                            border-radius: 60% / 10%;
+                            transform: translateY(-160px);
+                            transition: .8s ease-in-out;
+                        }
+                        .login .label{
+                            color: var(--bg-color);
+                            transform: scale(.6);
+                        }
+                        #chk:checked ~ .login{
+                            transform: translateY(-600px);
+                        }
+                        #chk:checked ~ .login label{
+                            transform: scale(1);
+                        }
+                        #chk:checked ~ .signup label{
+                            transform: scale(.6);
+                        }
+                        .home-button{
+                            position:absolute ;
+                            top:20px;
+                            right:50px;
+                            width:60px;
+                            height: 30px;
+                            border: 1px solid red;
+                          }
+                          .input-label{
+                            color:var(--second-color);
+
+                        }
+                        .input-label-head{
+                            margin-right:30px;
+                            color:var(--second-color);
+                        }
+                        .form-group{
+                            display: flex;
+                            justify-content: center;
+                        }
+
+
+
+
+     /* *********************************  User Data table ************************************* */
+
+      .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgb(0, 0, 0, 0.1);
+        z-index: 100;
+      }
+      .wrapper th {
+        background-color: rgb(175, 255, 242);
+      }
+      .bi-trash-fill {
+        color: red;
+        font-size: x-large;
+      }
+      .bi-pencil-fill {
+        color: blue;
+        font-size: x-large;
+      }
+      .bi-trash-fill:hover {
+        font-size: large;
+        cursor: pointer;
+      }
+      .bi-pencil-fill:hover {
+        font-size: large;
+        cursor: pointer;
+      }
+
+      /*  delete pop-up box */
+
+      .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgb(0, 0, 0, 0.1);
+        z-index: 100;
+      }
+      .mobile-form {
+        background-color: aliceblue;
+        width: 500px;
+        padding: 20px 50px;
+        border-radius: 5px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        margin-right: 8px;
+      }
+
+      /*  signup form */
+
+      .search-icon {
+        font-size: x-large;
+        color: yellowgreen;
+        font-weight: bolder;
+        position: absolute;
+        left: 170px;
+        top: 15px;
+      }
+      .ass10-div-search {position: relative;}
+
+
+     /* *********************************** footer style **************************************** */
+
+     .bg{
+      background: url(./assets/images/himalayahills.jpg);
+  }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

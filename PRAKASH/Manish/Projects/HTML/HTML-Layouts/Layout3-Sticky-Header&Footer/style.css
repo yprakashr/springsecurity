@@ -1,0 +1,32 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header{
+    background-color: bisque;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.content{
+    padding: 10px;
+    background-color: azure;
+    text-align: justify;
+    font-size: 18px;
+}
+
+.footer{
+    background-color: plum;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,201 @@
+<div class="new">
+
+    <div class="container p-5 mt-3 mb-3">
+
+        <!-- row 1 -->
+        <div class="row ROW">
+
+            <!-- col 1 -->
+            <div class="col-sm p-5 left d-block">
+
+                <div class="h2 pb-3 text-center" id="form-name">
+                    Register your appointment
+                </div>
+
+                <form [formGroup]="AppointmentForm" id="registration-form" class="form-inline"
+                    (ngSubmit)="saveAppointment(AppointmentForm)" #regForm="ngForm">
+
+                    <!-- Names -->
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" name="firstname" id="firstname"
+                                placeholder="First name" formControlName="firstname" (focus)="respStatus=0" />
+                            <div class="text-center" *ngIf="AppointmentForm.get('firstname')?.invalid && 
+                            AppointmentForm.get('firstname')?.errors && 
+                            (AppointmentForm.get('firstname')?.dirty || AppointmentForm.get('firstname')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="AppointmentForm.get('firstname')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="AppointmentForm.get('firstname')?.hasError('minlength')">
+                                    Minimum 3 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="AppointmentForm.get('firstname')?.hasError('maxlength')">
+                                    Maximum 20 characters.
+                                </small>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <input type="text" class="form-control" name="lastname" id="lastname"
+                                placeholder="Last name" formControlName="lastname" />
+                            <div class="text-center" *ngIf="AppointmentForm.get('lastname')?.invalid && 
+                            AppointmentForm.get('lastname')?.errors && 
+                            (AppointmentForm.get('lastname')?.dirty || AppointmentForm.get('lastname')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="AppointmentForm.get('lastname')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="AppointmentForm.get('lastname')?.hasError('minlength')">
+                                    Minimum 3 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="AppointmentForm.get('lastname')?.hasError('maxlength')">
+                                    Maximum 20 characters.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Age phone -->
+                    <div class="row pt-3">
+                        <div class="col">
+                            <input type="number" class="form-control" name="age" id="age" placeholder="Age"
+                                formControlName="age" />
+                            <div class="text-center" *ngIf="AppointmentForm.get('age')?.invalid && 
+                                AppointmentForm.get('age')?.errors && 
+                                (AppointmentForm.get('age')?.dirty || AppointmentForm.get('age')?.touched)">
+                                <small class="text-danger" *ngIf="AppointmentForm.get('age')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="AppointmentForm.get('age')?.hasError('min')">
+                                    Minimum 1.
+                                </small>
+                                <small class="text-danger" *ngIf="AppointmentForm.get('age')?.hasError('max')">
+                                    Maximum 100.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <input type="number" class="form-control" name="phonenumber" id="phonenumber"
+                                placeholder="Phone" formControlName="phone" />
+                            <div class="text-center" *ngIf="AppointmentForm.get('phone')?.invalid && 
+                                AppointmentForm.get('phone')?.errors && 
+                                (AppointmentForm.get('phone')?.dirty || AppointmentForm.get('phone')?.touched)">
+                                <small class="text-danger" *ngIf="AppointmentForm.get('phone')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="AppointmentForm.get('phone')?.hasError('min')">
+                                    Enter valid phonenumber.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group pt-3">
+                        <label class="form-check-label m-2" for="gender">Gender:</label>
+                        <div class="form-check form-check-inline">
+                            <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio1"
+                                value="male" />
+                            <label class="form-check-label" for="inlineRadio1">Male 👦🏻</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio2"
+                                value="female" />
+                            <label class="form-check-label" for="inlineRadio2">Female 👧🏻</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio3"
+                                value="others" />
+                            <label class="form-check-label" for="inlineRadio3">Others ⚧️</label>
+                        </div>
+
+                        <div class="text-center" *ngIf="AppointmentForm.get('gender')?.invalid && 
+                                AppointmentForm.get('gender')?.errors && 
+                                (AppointmentForm.get('gender')?.dirty || AppointmentForm.get('gender')?.touched)">
+                            <small class="text-danger" *ngIf="AppointmentForm.get('gender')?.hasError('required')">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- date time -->
+                    <div class="row pt-3">
+                        <div class="col">
+                            <input class="form-control" type="text" name="date" id="date" placeholder="Date"
+                                formControlName="date" min="{{today | date:'yyyy-MM-dd'}}" onfocus="this.type='date'" />
+                            <div class="text-center" *ngIf="AppointmentForm.get('date')?.invalid && 
+                                AppointmentForm.get('date')?.errors && 
+                                (AppointmentForm.get('date')?.dirty || AppointmentForm.get('date')?.touched)">
+                                <small class="text-danger" *ngIf="AppointmentForm.get('date')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input class="form-control" type="text" name="time" id="time" placeholder="Time"
+                                formControlName="time" onfocus="this.type='time'" />
+                            <div class="text-center" *ngIf="AppointmentForm.get('time')?.invalid && 
+                                AppointmentForm.get('time')?.errors && 
+                                (AppointmentForm.get('time')?.dirty || AppointmentForm.get('time')?.touched)">
+                                <small class="text-danger" *ngIf="AppointmentForm.get('time')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- submit-btn -->
+                    <div class="form-group pt-3 text-center">
+
+                        <button [disabled]="!regForm.form.valid" type="submit" class="btn btn-primary">Book</button>
+
+                    </div>
+
+                    <div id="appointment-msg" class="mt-2" *ngIf="respStatus==201">
+                        <p>Appointment booked</p>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- col 2 -->
+            <div class="container-fluid col-sm-auto p-5">
+
+                <img id="rightImg" class="img-fluid mx-auto d-block mt-3" src="../../assets/images/new.png"
+                    alt="Medical Image" width="450vw" height="auto" />
+
+                <div class="row p-4 text-center text-primary h4">
+                    <p>One Appointment, Your health is ours.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="pagesection wf-section text-center pt-5">
+
+        <div class="pagecontainer">
+
+            <h4 class="oneliner mb-5">The world’s health rely on Medicare to make better life and habitat.</h4>
+
+        </div>
+
+    </div>
+
+</div>
+
+<app-ass14-footer></app-ass14-footer>

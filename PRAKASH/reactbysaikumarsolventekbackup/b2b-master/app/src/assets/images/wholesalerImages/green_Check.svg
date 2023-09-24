@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Check_circle_icon" data-name="Check circle icon" transform="translate(0.385 0.298)">
+    <circle id="Ellipse_1" data-name="Ellipse 1" cx="12" cy="12" r="12" transform="translate(-0.385 -0.298)" fill="#54c885"/>
+    <path id="Icon_ionic-ios-checkmark" data-name="Icon ionic-ios-checkmark" d="M23.108,13.348l-1.041-1.071a.224.224,0,0,0-.166-.071h0a.215.215,0,0,0-.166.071l-7.218,7.272L11.89,16.922a.229.229,0,0,0-.331,0l-1.053,1.053a.236.236,0,0,0,0,.337l3.313,3.313a1.048,1.048,0,0,0,.692.337,1.1,1.1,0,0,0,.686-.325H15.2l7.911-7.952A.253.253,0,0,0,23.108,13.348Z" transform="translate(-5.189 -5.382)" fill="#fff"/>
+  </g>
+</svg>

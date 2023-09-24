@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form</title>
+
+<link rel="stylesheet" href="../../styles/stylesheet.css">
+  <script src="../../java script/formvalid.js" defer></script>
+</head>
+<body class="assg7-forma">
+    <form name="f1" action="formvalidationthankyou.html" id="formvalid-forma" onsubmit="return validate()">
+       
+    <legend> <h1>Registration form</h1></legend>
+        <label for="name" class="font-forma">Full Name</label>  <input class="des-forma desn-forma" type="text" oninvalid="namevalid()" name="name" id="contact-name" placeholder="Enter your name" onkeyup="validatename()">
+    
+     <label for="" class="font-forma">Email</label>   <input  type="text" class="des-forma desn-forma" placeholder="Enter your Email"  name="email" id="contact-mail" >
+      
+     <label for="#" class="font-forma"> Password</label>
+     <input type="password" name="pass" id="password" class="des-forma desn-forma" placeholder="Please enter your password">
+
+     <label for="#" class="font-forma">Phone no</label><input type="text" class="des-forma desn-forma" name="phone" id="contact-no"  placeholder="Please enter your contact no" onkeyup="validatephone()">
+ <label for="#" class="font-forma">Select your state</label>
+         <select class="des-forma desn-forma" name="state" id="contact-state">
+            <option value="-1">Select</option>
+            <option value="Andhra pradesh">Andhra pradesh</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tamilnadu">Tamilnadu</option>
+            <option value="Kerala">Kerala</option>
+        </select>
+     <label for="#" class="des-forma font-forma" >Gender</label>
+     <label for="#" class="font1-forma" >Male</label><input type="radio" value="Male" name="gender" id="gen">&nbsp;&nbsp;&nbsp;
+     <label for="#" class="font1-forma" >Female</label><input type="radio" value="Female" name="gender" id="gen">&nbsp;&nbsp;&nbsp;
+ <label for="#" class="font1-forma">Others</label><input type="radio" name="gender" value="Others" id="gen">&nbsp;&nbsp;&nbsp;
+
+<label for="#" class="des-forma font-forma" > Interests</label>
+
+<label for="#" class="font1-forma" >Java</label><input type="checkbox" class="check-box" name="check" value="Java" id="Java">&nbsp;&nbsp;&nbsp;
+<label for="#" class="font1-forma" >Python</label><input type="checkbox" class="check-box" name="check" value="Python" id="Python">&nbsp;&nbsp;&nbsp;
+<label for="#" class="font1-forma" >C++</label><input type="checkbox" class="check-box" name="check"  value="C++" id="C++">&nbsp;&nbsp;&nbsp;
+<label for="#" class="font1-forma" >C</label><input type="checkbox" class="check-box" name="check"  value="C" id="C">&nbsp;&nbsp;&nbsp;
+
+        <!-- State<input type="text" name="state" id="contact-state"  placeholder="State is required"> -->
+        
+        <label for="#" class="des-forma font-forma" > Zip code</label>
+        <input type="number" name="post" id="postal" class="des-forma desn-forma" placeholder="Zip code">
+
+        <label for="#" class="font-forma" >Comments</label> <textarea name="text" class="des-forma desn-forma" id="contact-message"  cols="30" rows="10" placeholder="Message is required"></textarea><br><br>
+<div class="btn-form-valid-forma">
+
+       <input  id="btn-forma" type="submit" value="Submit"  name="submit">
+
+</div>
+    </form>
+</body>
+</html>
+
+
+

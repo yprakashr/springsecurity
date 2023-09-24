@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../Styles/style.css" />
+    <script src="assignment7.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body class="ass7">
+    <h1 id="heading">Assignment7 form validation</h1>
+    <form action="Thankyou.html" onsubmit="return validate()">
+      <!-- logo input -->
+      <div class="logo">
+        <label for="logo">Logo: </label>
+        <input type="file" name="" id="logo" accept="image/png" />
+      </div>
+
+      <!-- Interests Radios -->
+      <div class="radios">
+        <label for="interests">Interests: </label>
+        <input type="radio" name="interests" id="java-radio" value="java" />Java
+        <input type="radio" name="interests" id="html-radio" value="html" />HTML
+        <input type="radio" name="interests" id="css-radio" value="css" />CSS
+      </div>
+
+      <!-- Java dropdown -->
+      <div id="java">
+        <label for="java">Java: </label>
+        <select name="java" id="java-dropdown" oninput="selectDrop()">
+          <option value="N/A">- select -</option>
+          <option value="spring">Spring</option>
+          <option value="springboot">Springboot</option>
+          <option value="hibernate">Hibernate</option>
+        </select>
+      </div>
+
+      <!-- html dropdown -->
+      <div id="html">
+        <label for="html">HTML: </label>
+        <select name="html" id="html-dropdown" oninput="selectDrop()">
+          <option value="N/A">- select -</option>
+          <option value="header">Header</option>
+          <option value="footer">Footer</option>
+          <option value="body">Body</option>
+        </select>
+      </div>
+
+      <!-- css dropdown -->
+      <div id="css">
+        <label for="css">CSS: </label>
+        <select name="css" id="css-dropdown" oninput="selectDrop()">
+          <option value="N/A">- select -</option>
+          <option value="borders">Borders</option>
+          <option value="grids">Grids</option>
+          <option value="boxes">Boxes</option>
+        </select>
+      </div>
+
+      <!-- second form  -->
+      <div id="form2" class=".form2">
+
+        <!-- name input -->
+        <label for="name">Name: </label>
+        <input type="text" id="name" maxlength="100"/>
+
+        <!-- phone input -->
+        <label for="phone">Phone: </label>
+        <input type="number" id="phone" />
+
+        <!-- gender radios-->
+        <div class="radios">
+          <label for="gender">Gender: </label>&nbsp;
+          <input type="radio" name="gender" value="male" id="male" />&nbsp;Male
+          <input type="radio" name="gender" value="female" id="female" />&nbsp;Female
+          <input type="radio" name="gender" value="others" id="others" />&nbsp;Others
+        </div>
+
+        <!-- hobbies checkboxes-->
+        <div class="checkboxes">
+          <label for="hobbies">Hobbies: </label>
+          <input type="checkbox" name="hobbies" value="cricket" />Cricket
+          <input type="checkbox" name="hobbies" value="football" />Football
+          <input type="checkbox" name="hobbies" value="baseball" />Baseball
+        </div>
+
+        <!-- comments text area-->
+        <label for="comments">Comments: </label>
+        <textarea name="" id="comments" cols="30" rows="2"></textarea>
+      </div>
+
+      <!-- submit button-->
+      <div class="submit">
+        <input type="submit" value="submit" id="submit-btn" />
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,503 @@
+Adv java
+J2SE
+J2EE
+J2ME
+JAVAFX(VFX)
+
+1995=>Java
+core java is a part of javaSE
+adv java is a part of JavaSE & JavaEE
+
+4 categories of adv java
+
+
+
+
+Advanced java concepts:
+1.JDBC(java data base connection).///JAVA SE
+2.Serverlets
+3.servelets Listeners
+4.Filters
+5.JSP(JAVA server pages)
+6.JSP EL(JSP expression language)
+7.JSTL(JSP standard tag language)
+8.MVC (Model view controller)by using java bean, JSP&Servelets
+9.Reflection API(Application Programming interface) /////java SE
+
+
+JavaSE stands for java platform,Standard Edition.
+JavaEE stands for java platform,Enterprise Edition.
+
+JDBC
+====
+JDBC stands for java database connectivity.
+
+JDBC is a specification for developing database application with 
+java programming language.
+
+Data Base Application
+=====================
+An application that communiction with database is known as database application.
+
+Application:
+============
+An application is a program in which we interact with on the desktop.
+
+Database:
+=========
+A database is asoftware and it is an organized collection of data.
+Data organized in a datbase in the form of table.
+
+Each  table contains fields&records.
+
+Application is afront end where as database is a backend.
+
+SQL
+===
+SQL stands for structured query language
+
+it is used by an application to communicate with the data base.
+
+List of database softwares:
+===========================
+1)oracle
+2)MySQL
+3)MS-SQL server
+4)DB2
+5)Derby
+6)Sybase
+7)DBbase
+8)FoxPro
+9)Visual FoxPro
+10)MS-Access
+11)MongoDB .. etc.,
+
+All databases can understand one language SQL.
+
+(MYSQL is a database)
+
+Databse software contains two parts:
+1)Database Application(Example:SQL*Plus (or) SQL Prompt)
+2)Database (Example:Oracle)
+
+Application is also called as client.
+Database is also called as server.
+
+Client:
+======
+A client is a software that sends request to a server to get the response.
+
+Server
+======
+A server is a software that receives from the client, process the request, constructs the 
+response &sends the response back to a client.
+
+			 Driver:
+			==========
+A driver is a software and it is used to connect application and
+database
+Drivers can be developed by first party vendors, second party vendors
+& third party vendors.
+In the above example, Sun microsystems is a first party vendor,
+Oracle corporation is a second party vendor & other than these
+two vendors is a third party vendor.
+
+
+There are two ways to connect Java application & database:
+1) By using JDBC & ODBC drivers
+2) By using only JDBC drivers
+
+
+			ODBC drivers  (outdated)
+			============
+ODBC stands for Open DataBase Connectivity.
+All odbc drivers are the part odbc tool.
+ODBC drivers were present before Java technology.
+ODBC drivers were used to connect Non Java applications &
+databases.
+
+Java instructions odbc cannot understand
+
+To solve the problem, jdbc drivers were introduced.
+There are four types of JDBC drivers
+1) Type-1 Driver(JDBC ODBC Bridge Driver)
+2) Type-2 Driver(JDBC Native API Driver)
+3) Type-3 Driver(JDBC Network Protocol Driver)
+4) Type-4 Driver(JDBC 100% Pure Java Driver)
+
+
+
+
+
+
+
+
+07/11/2022
+***********
+Type 3 Driver Architecture:
+=========================
+Type 3 Driver Functionality:
+============================
+It passes the Java instructions to middleware system.
+
+Type 3 Driver Advantages:
+========================
+1) Java calls are database independent from local system to
+middleware system.
+2) It is a platform independent.
+3) Database client software & database not needed on local system.
+
+Type 3 Driver Disadvantages:
+===========================
+1)extra layer added in this architecture
+
+Type 4 Driver(JDBC 100% Pure Java Driver):
+=========================================
+It is also called as JDBC Native Protocol Driver (or) JDBC Thin Driver.
+Type 4 drivers are developed in Java language only.
+
+Type 4 Driver Architecture:
+
+Type 4 Driver Functionality
+===========================
+It passes the Java instructions directly to a database.
+
+Type 4 Driver Advantages:
+========================
+1) It is a highest performance driver as compared to all other
+drivers
+2) Database not needed on same system.
+3) It is a platform independent.
+
+Type 4 Driver Disadvantages
+===========================
+1)Separate driver needed for every database.
+
+Type4 Driver class name for oracle database;
+=============================================
+oracle.jdbc.driver.OracleDriver
+
+URL(Unifom Resource Locator):
+==============================
+jdbc:oracle:thin:@domain-name:port-no:service-id
+
+Open tnsnames.ora file from the following location to view port number
+
+C:loraclexelapploraclelproduct 11.2.01serverinetwork ADMIN
+
+To get service id, use the following SQL query
+SQL>select from global_info;
+
+If the database installed on same computer then use localhost as a
+domain name otherwise use computer name as a domain name.
+
+
+import java.sql."
+class Connection Demo
+{
+public static void main(String[] args)
+{
+try{
+Class.forName("oracle.jdbc.driver.OracleDriver");
+Connection con=DriverManager.getConnection("
+jdbc:oracle:thin:@localhost:1521:xe", "system","manager");
+System.out.printin("Connection Established Successfully");
+}catch(Exception e){
+System.err.printn(e);
+}}
+
+Note: If the application requires more than one database then use
+type 3 driver otherwise use type 4 driver.
+
+Note: All jdbc interfaces are implemented in driver software.
+
+java.sql.Connection
+Methods:
+public abstract Statement createStatement() throws SQLException;
+public abstract PreparedStatement prepareStatement(String) throws SQLException;
+public abstract CallableStatement prepareCall(String) throws SQLException;
+
+Statement interface:
+====================
+It is used to execute static sql queries.
+
+PreparedStatement interface:
+=============================
+It is used to execute dynamic sql queries.
+
+CallableStatement interface:
+==========================
+It is used to execute PL/SQL programs.
+
+execute() method:
+=================
+It is suitable to execute DDL queries.
+DDL stands for Data Definition Language.
+Examples:
+======
+CREATE, ALTER, DROP,. etc.,
+
+executeUpdate() method:
+======================
+It is suitable to execute DML queries.
+DML stands for Data Manipulation Language.
+Examples:
+==========
+INSERT, UPDATE, DELETE, . etc.,
+
+executeQuery() method:
+=====================
+It is suitable to execute DQL queries.
+DQL stands for Data Query Language.
+
+Example
+=======
+SELECT
+
+
+example:
+//JDBC program to create a table
+import java.sql.";
+class Demo{
+public static void main(String argsl)
+try{
+Class.forName 'oracle.jdbc.driver.OracleDriver");
+Connection con=DriverManager.getConnection(
+"jdbc:oracle:thin:@localhost: 1521:xe","system","manager");
+Statement stmt=con.createStatement();
+stmt.execute("create table student(rollIno number(3),
+
+name varchar2(10), marks number(3))");
+System.out.println("Table Created Successfully"):
+
+}catch(Exception e)
+}
+System.err.println(e);
+}}
+
+//JDBC program to insert a table
+import java.sql.";
+class Demo{
+public static void main(String argsl)
+try{
+Class.forName 'oracle.jdbc.driver.OracleDriver");
+Connection con=DriverManager.getConnection(
+"jdbc:oracle:thin:@localhost: 1521:xe","system","manager");
+Statement stmt=con.createStatement();
+stmt.executeUpdate("create table student(rollIno number(3),
+
+name varchar2(10), marks number(3))");
+System.out.println("Table Created Successfully"):
+
+}catch(Exception e)
+}
+System.err.println(e);
+}}
+
+In the above example Java code executed under Java Runtime
+Environment and SQL code executed under Database Environment.
+
+19/aug/22
+********
+1) create table student(rollno number(3), name varchar2(10),
+marks number(3);
+2) insert into student values(1, 'aaa', 59);
+3) select from student
+
+ResultSet:
+A ResultSet is an object that encapsulates set of rows from database.
+ResultSet is generated based on sql query.
+Whenever ResultSet is generated then ResultSet pointer/cursor points to before first record.
+
+Meta Data:
+========
+It means data about data.
+
+ResultsetMetaData:
+==================
+It means data about ResultSet
+
+java.sql.ResultSetMetaData
+Methods:
+public abstract int getColumnCount() throws sQLException;
+=>lt returns no. of columns
+public abstract String getColumnName(int) throws SQLException;
+=>lt returns column name at specified column number
+
+1 /Program to retrieve data from database
+2 import java.sql.";
+3
+4 class Demo
+5
+public static void main(String[] args)
+try{
+Class.forName "oracle.jdbc.driver.OracleDriver");
+Connection con=DriverManager.getConnection(
+"jdbe:oracle:thin:@localhost: 1521:xe", "system", "manager");
+
+Statement stmt=con.createStatement():
+ResultSet rs=stmt.executeQuery("'select " from student");
+ResultSetMetaData rm=rs.getMetaData():
+int n=rm.getColumnCount();
+for(int i=1;i<=n;i++)
+{
+System.out.print(rm.getColumnName(i)+"\r");
+System.out.printin():
+while(rs.next())
+{
+System.out.print(rs.getlnt(1)+"\"):
+System.out.print(rs.getString(2)+"\e");
+System.out.println(rs.getint(3);
+}
+catch(Exception e){
+System.err.printin(e)
+}}}
+
+
+
+DatabaseMetaData:
+=================
+It means data about database
+
+
+java.sql.ResultSet
+
+Methods:
+public abstract boolean next() throws SQLException;
+=>It returns true& moves the cursor to next record if the record is
+present, otherwise returns false.
+public abstract String getString(int) throws sQLException;
+public abstract int getlnt(int) throws SQLException;
+public abstract float getFloat(int) throws SQLException;
+=>The above 3 methods are used to get the data from ResultSet
+public abstract ResultSetMetaData getMetaData()
+throws SQLEXception
+=>It returns ResultSetMeta Data
+
+
+Static SQL Queries:
+==================
+1) create table student(rollno number(3), name varchar2(10),
+marks number(3);
+2) insert into student values(1, 'aaa', 93);
+3) select*from student;
+4) update student set marks=55 where rollno=3;
+5) delete from student where rollno=9;
+
+Dynamic sQL Queries:
+======================
+1) insert into student values(?, ?, ?);
+2) update student set marks=? where rollno=?;
+3)delete from student where rollno=?
+4)select * from student where rollno=?;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

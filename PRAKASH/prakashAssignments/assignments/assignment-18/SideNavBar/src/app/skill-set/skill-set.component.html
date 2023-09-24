@@ -1,0 +1,79 @@
+<body class="body mt-5">
+    <div class="justify-content-center  align-center main-block" >
+    <form #personal="ngForm">
+      <h1>Skill-sets</h1>
+      <fieldset>
+        <p for="" *ngIf="errorMessage" class="text-danger">Please select atleast one skill set...</p>
+
+
+        <!-- <h1>Hello {{name}}</h1>
+        <p>
+          Start editing to see some magic happen :
+        </p> -->
+
+
+            <!-- <input type="checkbox" [checked]="d.checked" (change)="d.checked = !d.checked"> -->
+
+
+            <div class="mb-3 d-flex justify-content-center">
+            <div class="form-check mt-5 form-check-inline " *ngFor="let d of all">
+              <input class="form-check-input" required type="checkbox" [checked]="d.checked" (change)="d.checked = !d.checked">
+              <label class="form-check-label" for="flexCheckChecked">
+                {{ d.name }}
+              </label>
+            </div>
+          </div>
+
+
+      <!-- --------------------------------------------------- -->
+
+
+
+
+          <!-- <p *ngFor="let d of selected">{{ d.name }}</p> -->
+
+<div class="float-center px">
+        <button [disabled]="personal.invalid"  (click)="add()" class="w-50" >Next</button>
+      </div>
+
+        <!-- <div  *ngFor="regForm.get('myValues')?.value.length" >
+  {{regForm.get('myValue')?.value | json}}
+</div> -->
+
+
+<!-- </div>
+    <div class="form-check mx-5 form-check-inline">
+      <input class="form-check-input" formControlName="myValues" (change)="handlelangs($event)"  type="checkbox" value="python" id="flexCheckChecked" >
+      <label class="form-check-label" for="flexCheckChecked">
+       Python
+      </label>
+    </div>
+      <div class="form-check mx-5 form-check-inline">
+        <input class="form-check-input" formControlName="myValues" (change)="handlelangs($event)"   type="checkbox" value="angular" id="flexCheckChecked" >
+        <label class="form-check-label" for="flexCheckChecked">
+         Angular
+        </label>
+      </div>
+        <div class="form-check mx-5 form-check-inline">
+          <input class="form-check-input" formControlName="myValues" (change)="handlelangs($event)" type="checkbox" value="react" id="flexCheckChecked" >
+          <label class="form-check-label" for="flexCheckChecked">
+           React
+          </label> -->
+  <!-- </div>
+</div>
+</ng-container>
+      </fieldset> -->
+<!--
+
+      <div class="container">
+        <div class="row"><div class="col">
+          <button routerLink="/tech" type="submit">Next</button>
+        </div>
+
+      </div>
+      </div> -->
+    <!-- </form> -->
+    <!-- </div> -->
+  <!-- </body> -->
+</fieldset>
+</form></div></body>

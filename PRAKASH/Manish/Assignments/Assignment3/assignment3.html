@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment3</title>
+    <link rel="stylesheet" href="../../Styles/style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="ass3-header">
+      <b>Employee Registration</b>
+    </div>
+    <br /><br />
+  </head>
+  <body id="ass3-body">
+    <div class="ass3-form">
+      <form action="submit.html" name="xyz">
+        Name: <input class="ass3-inputs" type="text"/> <br /><br />
+        Email: <input class="ass3-inputs" type="email"/> <br /><br />
+        <label for="states">States: </label>
+        <select class="ass3-inputs" id="state" oninput="myFunction()">
+          <option value="">-select-</option>
+          <option value="Assam">Assam</option>
+          <option value="Bihar">Bihar</option>
+          <option value="Goa">Goa</option>
+          <option value="Sikkim">Sikkim</option>
+          <option value="Kerala">Kerala</option></select
+        ><br /><br />
+        <div id="ass3-dist">
+          <label for="Districts">Districts: </label>
+        <select class="ass3-inputs" name="">
+          <option value="">-select-</option>
+          <option value="Dist1">Dist1</option>
+          <option value="Dist2">Dist2</option>
+          <option value="Dist3">Dist3</option>
+          <option value="Dist4">Dist4</option>
+          <option value="Dist5">Dist5</option>
+        </select>
+        </div>
+        <br /><br />
+        Gender:
+        <input type="radio" name="gender" value="Male" />Male
+        <input type="radio" name="gender" value="Female" />Female <br /><br />
+        Comments: <textarea class="ass3-inputs" name="" id="" cols="" rows=""></textarea>
+        <br /><br />
+        Interests:
+        <input type="checkbox" name="" id="" />
+        <label for="java">Java</label>
+        <input type="checkbox" name="" id="" />
+        <label for="C++">C++</label>
+        <input type="checkbox" name="" id="" />
+        <label for="Python">Pyhton</label>
+        <br /><br />
+        <input class="ass3-submit" type="submit" value="submit" />
+      </form>
+    </div>
+  </body>
+</html>

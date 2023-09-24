@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+        <div class="center-block clear">
+            <h2><small><i> Data Modeler</i></small></h2>
+            <hr>
+        </div>
+   
+        <div class="col-md-4 w-25 h-25 mt-2 ml-3">
+            <button type="button" class="btn btn-info" routerLink="/home">
+                <i class="fa fa-home"></i>&nbsp;
+                <span>Home</span>
+            </button>
+        </div>
+        <div class="col-md-1 w-25 h-25 mt-2 mr-2">
+            <button type="button" class="btn btn-info" (click)="OpenModal()">
+                <i class="fa fa-lightbulb-o"></i>&nbsp;
+                <span>New Project</span>
+            </button>
+        </div>
+
+    
+        <div class="col-md-6">
+            <div class="example-header col-md-12" style="text-align: right;">
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="modal-body ">
+            <div class=" table-view table-responsive mat-elevation-z8 ">
+
+                <table mat-table [dataSource]="dataSource" matSort class="table-width w-100">
+
+                    <!-- Define columns -->
+                    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                            <ng-container *ngIf="column === 'name'">Name</ng-container>
+                            <ng-container *ngIf="column === 'description'">Description</ng-container>
+                            <ng-container *ngIf="column === 'cdate'">Created Date</ng-container>
+                            <ng-container *ngIf="column === 'actions'">Actions</ng-container>
+                        </th>
+
+                        <td mat-cell *matCellDef="let element">
+                            <ng-container *ngIf="column === 'name'">
+                               <span (click)="datadefine(element)"> {{element.name}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="column === 'description'" (click)="datadefine(element)">
+                               <span (click)="datadefine(element)">  {{element.description}}</span>                              
+                            </ng-container>
+                            <ng-container *ngIf="column === 'cdate'" (click)="datadefine(element)">
+                               <span (click)="datadefine(element)">{{element.createddate}}</span>
+                            </ng-container>
+                            <ng-container *ngIf="column === 'actions'">
+                                <mat-icon class="cursor-pointer" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+                                <mat-menu #menu="matMenu">
+                                    <button (click)="openeditprograms(element)" mat-menu-item><i
+                                            class="glyphicon glyphicon-pencil mr-3"></i>Edit
+                                    </button>
+                                    <button (click)="opendeleteprogram(element)" mat-menu-item><i
+                                            class="glyphicon glyphicon-pencil mr-3"> </i> Delete
+                                    </button>
+                                    <!-- <button (click)="datadefine(element)" mat-menu-item><i class="glyphicon glyphicon-trash mr-3"> </i> Define Data
+                                         Dictionary</button> -->
+                                </mat-menu>
+                            </ng-container>
+                        </td>
+                    </ng-container>
+
+                    <!-- Create rows -->
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                </table>
+
+                <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10,50,100]"> </mat-paginator>
+
+            </div>
+        </div>
+    </div>
+    <div class="example-header">  </div>
+    <div class="example-header">  </div>

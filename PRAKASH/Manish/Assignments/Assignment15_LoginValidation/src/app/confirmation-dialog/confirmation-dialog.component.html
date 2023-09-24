@@ -1,0 +1,10 @@
+<div class="conf-dialog">
+  <div class="modal-body">
+    {{ message }} <p class="text-primary"><b>{{Action}}</b></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="decline()">{{ btnCancelText }}</button>
+    <button type="button" class="btn btn-primary" (click)="accept()">{{ btnOkText }}</button>
+  </div>
+
+</div>

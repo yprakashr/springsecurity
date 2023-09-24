@@ -1,0 +1,87 @@
+<div class="wrapper-signup">
+  <div class="text-center mt-4 name">
+      Edit your details
+  </div>
+
+  <form #register="ngForm" (ngSubmit)="onSubmit()" class="p-3 mt-3">
+    <div class="row">
+      <div class="col">
+    <div class="form-field d-flex align-items-center">
+          <span class="far fa-user"></span>
+          <input required maxlength="20" type="text" name="fullname"  #fullname="ngModel" [(ngModel)]="form.fullname" placeholder="Full name">
+      </div>
+
+      <div class="text-center" *ngIf="fullname.invalid && fullname.touched" >
+        <small class="text-danger valid" *ngIf="fullname.errors?.['required']">Name is required</small>
+        <small class="text-danger valid" *ngIf="fullname.errors?.['maxlength']">Name is too long...</small>
+      </div>
+    </div>
+
+<div class="col px-3">
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input type="text" required maxlength="15" [(ngModel)]="form.username" #username="ngModel" name="username" placeholder="Username">
+    </div>
+    <div class="text-center" *ngIf="username.invalid && username.touched" >
+      <small class="text-danger valid" *ngIf="username.errors?.['required']">Username is required</small>
+      <small class="text-danger valid" *ngIf="username.errors?.['maxlength']">Name is too long...</small>
+    </div>
+  </div>
+  </div>
+
+
+      <div class="form-field d-flex align-items-center">
+          <span class="fas fa-key"></span>
+          <input type="email" [pattern]="emailRegex"  [(ngModel)]="form.email"  #email="ngModel" name="password" id="pwd" placeholder="Password">
+      </div>
+
+      <div class="text-center" *ngIf="email.invalid&&email.touched" >
+        <small class="text-danger valid" *ngIf="email.errors?.['required']">email is required</small>
+        <small class="text-danger valid" *ngIf="email.errors?.['pattern']">email is not vaid</small>
+      </div>
+
+
+      <!-- <div class="form-field d-flex align-items-center">
+        <span class="fas fa-key"></span>
+        <input type="password" (keyup)="comparePassword()" required [(ngModel)]="form.confirmPassword"  name="confirmPassword" id="pwd" placeholder="Confirm Password">
+      </div>
+        <div class="text-center">
+        <small class="text-danger valid-phone" *ngIf="cpassword">Password doesn't matched</small>
+      </div> -->
+
+
+    <div class="form-field d-flex align-items-center">
+      <span class="fas fa-key"></span>
+      <input type="number"  #phone="ngModel" [pattern]="phoneRegex" required [(ngModel)]="form.phone" name="phone" placeholder="Phone"/>
+  </div>
+
+  <div class="text-center" *ngIf="phone.touched" >
+    <small class="text-danger valid-phone" *ngIf="phone.errors?.['required']">phone is required</small>
+    <small class="text-danger valid-phone" *ngIf="phone.errors?.['pattern']">Please enter minimum of 10 no's</small>
+  </div>
+
+
+  <div class="form-field d-flex align-items-center">
+    <span class="fas fa-key">Gender:</span>
+    <input type="radio" [(ngModel)]="form.gender" #gender="ngModel"  required value="Male"   name="gender"  >Male
+    <input type="radio" [(ngModel)]="form.gender" #gender="ngModel"  required value="Female" name="gender" >Female
+    <input type="radio" [(ngModel)]="form.gender" #gender="ngModel"  required value="Other"  name="gender" >other
+</div>
+
+<div class="text-center" *ngIf="gender.invalid && gender.touched" >
+
+  <small *ngIf="gender.errors?.['required']" class="text-danger valid">Please select your gender</small>
+</div>
+
+      <button [disabled]="register.form.status==='INVALID'" class="btn btn-save mx-2 mt-5">Save Changes</button>
+      <button  mat-dialog-close class="btn btn-cancel mx-2 mt-5">Cancel</button>
+
+  </form>
+
+  </div>
+
+
+
+
+
+

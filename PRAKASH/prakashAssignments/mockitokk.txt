@@ -1,0 +1,3231 @@
+What is Mocking? 
+
+Mocking is a way to test the functionality of a class in an isolation fashion.
+When we use mockito then we do not require a database connection or file server read or properties file to read to test functionality.
+The mocking object usually does the mocking of the real service. A mock object usually returns a dummy data which corresponds to some dummy input passed to it.
+Mockito uses Java Reflection in order to create mock objects for a given interface. Mock objects are nothing but a proxy for actual implementations.
+  What is Mockito?
+
+The mockito is a very popular mocking framework and It is a java based library that is used for unit testing of any java applications.
+Mockito is usually used to mock interfaces so that a dummy method can be used for a mock interface that can be used in unit testing.
+The main use of using the Mockito framework is to simplify the development of a test case by mocking external dependencies and then use them in the test code.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Why Need for mocking ?
+
+Why Need for mocking (Reason-01)?
+
+If you want to test a component that depends on the other component, but that component is under development. It generally happens when working in a team and different components are divided between several team members. In that case, mocking plays an important role in the testing. Without mocking, we need to wait for the completion of the required elements for testing.
+
+Why Need for mocking (Reason-02)?
+
+As you know the real components perform slow operations while dealing with database connections or another complex read/ write operation. Sometimes the database queries can take a longer time to execute. In such cases, we require mock objects to perform testing and it can be done using mocking.
+
+Why Need for mocking (Reason-03)?
+
+Whenever there is any infrastructure concern or issue that makes the testing impossible. For example, when we create a connection to the database, some issues related to configurations occur. It requires mocking for creating mock components to provide unit testing.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+What are the Benefits of Mockito ?
+
+Annotation Support: It supports creating mocks using various annotations.
+No Handwriting: We do not need to write mock objects by own.
+Return value support: Supports return values.
+Exception support: It supports exceptions.
+Order check support: It also supports check on the order of method calls.
+Refactoring Safe: Even if we rename an interface method names or reordering parameters will not break the test code as Mocks are created at run time.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Mockito and JUnit Integration Using Maven Example
+
+Mockito Extension
+Mockito provides an implementation for JUnit5 or Jupiter extensions in the library – mockito-junit-jupiter. we have to include the following dependency with test scope  in our pom.xml
+
+<dependency>
+<groupId>org.mockito</groupId>
+<artifactId>mockito-junit-jupiter</artifactId>
+<version>3.5.7</version>
+<scope>test</scope>
+</dependency>
+Let’s try to understand the above concept using a demo project
+
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.intotech</groupId>
+	<artifactId>MockitoAndJUnit5IntegrationExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.21</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+ 
+</project>
+ 
+
+EmployeeDAO.java
+
+package com.infotech.dao;
+ 
+import java.util.List;
+import com.infotech.model.Employee;
+public interface EmployeeDAO {
+ 
+	public abstract void createEmployee(Employee employee);
+	public abstract Employee getEmployeeById(Integer employeeId);
+	public abstract void updateEmployeeEmailById(String newEmail,Integer employeeId);
+	public abstract void deleteEmployeeById(Integer employeeId);
+	public abstract List<Employee> getAllEmployeesInfo();
+}
+ 
+
+EmployeeDAOImpl.java
+
+package com.infotech.dao.impl;
+ 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+ 
+import com.infotech.dao.EmployeeDAO;
+import com.infotech.model.Employee;
+import com.infotech.util.DBUtil;
+ 
+public class EmployeeDAOImpl implements EmployeeDAO {
+ 
+	@Override
+	public void createEmployee(Employee employee) {
+		
+		String SQL = "INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)VALUES(?,?,?,?,?)";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setString(1, employee.getEmployeeName());
+			ps.setString(2, employee.getEmail());
+			ps.setDouble(3, employee.getSalary());
+			ps.setDate(4, new Date(employee.getDoj().getTime()));
+			ps.setBigDecimal(5, employee.getBonus());
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee is crated..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	@Override
+	public Employee getEmployeeById(Integer employeeId) {
+		Employee employee = null;
+		String SQL = "SELECT *FROM employee_table WHERE employee_id=?";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setInt(1, employeeId);
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				int empId = rs.getInt("employee_id");
+				String eName = rs.getString("employee_name");
+				String email = rs.getString("email");
+				Double salary = rs.getDouble("salary");
+				BigDecimal bonus = rs.getBigDecimal("bonus");
+				Date date = rs.getDate("date_of_joining");
+				
+				employee = new Employee();
+				employee.setEmployeeName(eName);
+				employee.setBonus(bonus);
+				employee.setDoj(date);
+				employee.setEmail(email);
+				employee.setEmployee_id(empId);
+				employee.setSalary(salary);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		return employee;
+	}
+ 
+	@Override
+	public void updateEmployeeEmailById(String newEmail, Integer employeeId) {
+ 
+		String SQL = "UPDATE employee_table set email=? WHERE employee_id=?;";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setString(1, newEmail);
+			ps.setInt(2,employeeId);
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee email is updated..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	@Override
+	public void deleteEmployeeById(Integer employeeId) {
+ 
+		String SQL = "DELETE FROM employee_table WHERE employee_id=?;";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setInt(1,employeeId);
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee is deleted with ID::"+employeeId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+ 
+	@Override
+	public List<Employee> getAllEmployeesInfo() {
+ 
+		List<Employee> empList = new ArrayList<>();
+		String SQL = "SELECT *FROM employee_table";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int empId = rs.getInt("employee_id");
+				String eName = rs.getString("employee_name");
+				String email = rs.getString("email");
+				Double salary = rs.getDouble("salary");
+				BigDecimal bonus = rs.getBigDecimal("bonus");
+				Date date = rs.getDate("date_of_joining");
+				
+				Employee employee = new Employee();
+				employee.setEmployeeName(eName);
+				employee.setBonus(bonus);
+				employee.setDoj(date);
+				employee.setEmail(email);
+				employee.setEmployee_id(empId);
+				employee.setSalary(salary);
+				
+				empList.add(employee);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empList;
+	}
+}
+ 
+
+EmpoyeeService.java
+
+package com.infotech.service;
+ 
+import java.util.List;
+ 
+import com.infotech.model.Employee;
+ 
+public interface EmpoyeeService {
+ 
+	public abstract void createEmployee(Employee employee);
+	public abstract Employee fetchEmployeeById(Integer employeeId);
+	public abstract void updateEmployeeEmailById(String newEmail,Integer employeeId);
+	public abstract void deleteEmployeeById(Integer employeeId);
+	public abstract List<Employee> fetchAllEmployeesInfo();
+}
+ 
+
+EmployeeServiceImpl.java
+
+package com.infotech.service;
+ 
+import java.util.List;
+ 
+import com.infotech.dao.EmployeeDAO;
+import com.infotech.dao.impl.EmployeeDAOImpl;
+import com.infotech.model.Employee;
+ 
+public class EmployeeServiceImpl implements EmpoyeeService {
+ 
+	private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+	
+	@Override
+	public void createEmployee(Employee employee) {
+		employeeDAO.createEmployee(employee);
+	}
+ 
+	@Override
+	public Employee fetchEmployeeById(Integer employeeId) {
+		return employeeDAO.getEmployeeById(employeeId);
+	}
+ 
+	@Override
+	public void updateEmployeeEmailById(String newEmail, Integer employeeId) {
+		employeeDAO.updateEmployeeEmailById(newEmail, employeeId);
+	}
+ 
+	@Override
+	public void deleteEmployeeById(Integer employeeId) {
+		employeeDAO.deleteEmployeeById(employeeId);
+	}
+ 
+	@Override
+	public List<Employee> fetchAllEmployeesInfo() {
+		return employeeDAO.getAllEmployeesInfo();
+	}
+ 
+}
+ 
+
+DBUtil.java
+
+package com.infotech.util;
+ 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+ 
+public class DBUtil {
+	private static final String DB_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
+	private static final String DB_USERNAME = "root";
+	private static final String DB_PASSWORD = "root";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/test";
+	
+	private static Connection connection = null;
+	static{
+		try {
+			Class.forName(DB_DRIVER_CLASS);
+			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Connection getConnection(){
+		return connection;
+	}
+}
+ 
+
+Employee.java
+
+package com.infotech.model;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+public class Employee {
+ 
+	private int employee_id;
+	private String employeeName;
+	private String email;
+	private Double salary;
+	private Date doj;
+	private BigDecimal bonus;
+	
+	public int getEmployee_id() {
+		return employee_id;
+	}
+	public void setEmployee_id(int employee_id) {
+		this.employee_id = employee_id;
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Double getSalary() {
+		return salary;
+	}
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+	public Date getDoj() {
+		return doj;
+	}
+	public void setDoj(Date doj) {
+		this.doj = doj;
+	}
+	public BigDecimal getBonus() {
+		return bonus;
+	}
+	public void setBonus(BigDecimal bonus) {
+		this.bonus = bonus;
+	}
+	@Override
+	public String toString() {
+		return "Employee [employee_id=" + employee_id + ", employeeName=" + employeeName + ", email=" + email
+				+ ", salary=" + salary + ", doj=" + doj + ", bonus=" + bonus + "]";
+	}
+}
+ 
+
+ClientTest.java
+
+package com.infotech.client;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+ 
+import com.infotech.model.Employee;
+import com.infotech.service.EmployeeServiceImpl;
+import com.infotech.service.EmpoyeeService;
+ 
+public class ClientTest {
+ 
+	public static void main(String[] args) {
+		EmpoyeeService empoyeeService = new EmployeeServiceImpl();
+		
+		Employee employee = getEmployee();
+		empoyeeService.createEmployee(employee);
+		//getEmployeeById(empoyeeService);
+		//empoyeeService.updateEmployeeEmailById("sean.cs2020@gmail.com", 3);
+		//empoyeeService.deleteEmployeeById(4);
+		//getAllEmployeesInfo(empoyeeService);
+	}
+ 
+	private static void getAllEmployeesInfo(EmpoyeeService empoyeeService) {
+		List<Employee> empList = empoyeeService.fetchAllEmployeesInfo();
+		for (Employee employee : empList) {
+			System.out.println(employee);
+		}
+	}
+ 
+	private static void getEmployeeById(EmpoyeeService empoyeeService) {
+		Employee employee2 = empoyeeService.fetchEmployeeById(1);
+		if(employee2 != null){
+			System.out.println(employee2);
+		}else{
+			System.out.println("Employee does not exist..");
+		}
+	}
+ 
+	private static Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+ 
+
+DbScript
+
+CREATE TABLE `employee_table` (
+  `employee_id` int(11) NOT NULL auto_increment,
+  `employee_name` varchar(60) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `salary` double default NULL,
+  `date_of_joining` datetime default NULL,
+  `bonus` decimal(10,0) default NULL,
+  PRIMARY KEY  (`employee_id`)
+) ;
+ 
+ 
+INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)
+					VALUES('Paul','paul.cs2009@yahoo.com',60000.00,'2017-05-17',400.00);
+
+Building the Test Class using Junit 5 and Mockito 3
+Let’s build our test classes and use the Mockito extension for it.
+
+EmpoyeeServiceTest1.java
+
+package com.infotech.service;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+ 
+import com.infotech.model.Employee;
+ 
+@ExtendWith(value = { MockitoExtension.class })
+@TestInstance(value = Lifecycle.PER_CLASS)
+public class EmpoyeeServiceTest1 {
+ 
+	private EmpoyeeService empoyeeService;
+	
+	@BeforeAll
+	public void setUp() {
+		empoyeeService = mock(EmpoyeeService.class);
+	}
+	
+	@Test
+	 void testFetchEmployeeById() {
+		Employee employee = getEmployee();
+		when(empoyeeService.fetchEmployeeById(10)).thenReturn(employee);
+		assertEquals("KK", empoyeeService.fetchEmployeeById(10).getEmployeeName());
+		assertEquals(50000.00, empoyeeService.fetchEmployeeById(10).getSalary());
+	}
+	
+	private  Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setEmployee_id(10);
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+ 
+
+EmpoyeeServiceTest2.java
+
+package com.infotech.service;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+ 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+ 
+import com.infotech.model.Employee;
+ 
+@ExtendWith(value = { MockitoExtension.class })
+@TestInstance(value = Lifecycle.PER_CLASS)
+public class EmpoyeeServiceTest2 {
+ 
+	@Mock
+	private EmpoyeeService empoyeeService;
+	
+	/*
+	 * @BeforeAll public void setUp() {
+	 *  MockitoAnnotations.openMocks(this);
+	 *  }
+	 */
+	
+	@Test
+	public void testFetchEmployeeById() {
+		Employee employee = getEmployee();
+		when(empoyeeService.fetchEmployeeById(10)).thenReturn(employee);
+		
+		assertEquals("KK", empoyeeService.fetchEmployeeById(10).getEmployeeName());
+		assertEquals(50000.00, empoyeeService.fetchEmployeeById(10).getSalary());
+		
+		assertAll("testFetchEmployeeById", ()->assertEquals("KK", empoyeeService.fetchEmployeeById(10).getEmployeeName()),
+				()->assertEquals(50000.00, empoyeeService.fetchEmployeeById(10).getSalary()),
+				()->assertEquals("kk.cs2016@yahoo.com", empoyeeService.fetchEmployeeById(10).getEmail()));
+	}
+	
+	
+	private  Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setEmployee_id(10);
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+How to mock interface using Mockito example
+
+In this post, We will learn How to set up Mockito Maven Dependency Workspace in Eclipse?
+
+We can use org.mockito.Mockito class mock() method to create a mock object of a given class or interface. This is really the simplest way to mock an object.
+
+We can mock an object using @Mock annotation also. It’s really useful when we want to use the mocked object in multiple test methods because we want to avoid calling the mock() method multiple times. 
+
+When we use @Mock annotation then make sure that we call to initialize the mocked object. We can do this in the testing framework setup method or test method that is executed before the tests.
+
+We have to add the following maven dependency  in pom.xml to use Maven 3.0 
+
+<dependency>
+<groupId>org.mockito</groupId>
+<artifactId>mockito-core</artifactId>
+<version>3.5.7</version>
+<scope>test</scope>
+</dependency>
+Let’s try to understand the above concept using a demo project
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.intotech</groupId>
+	<artifactId>MockitoBasicExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.21</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+ 
+</project>
+ 
+
+EmployeeDAO.java
+
+package com.infotech.dao;
+ 
+import java.util.List;
+import com.infotech.model.Employee;
+public interface EmployeeDAO {
+ 
+	public abstract void createEmployee(Employee employee);
+	public abstract Employee getEmployeeById(Integer employeeId);
+	public abstract void updateEmployeeEmailById(String newEmail,Integer employeeId);
+	public abstract void deleteEmployeeById(Integer employeeId);
+	public abstract List<Employee> getAllEmployeesInfo();
+}
+ 
+
+EmployeeDAOImpl.java
+
+package com.infotech.dao.impl;
+ 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+ 
+import com.infotech.dao.EmployeeDAO;
+import com.infotech.model.Employee;
+import com.infotech.util.DBUtil;
+ 
+public class EmployeeDAOImpl implements EmployeeDAO {
+ 
+	@Override
+	public void createEmployee(Employee employee) {
+		
+		String SQL = "INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)VALUES(?,?,?,?,?)";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setString(1, employee.getEmployeeName());
+			ps.setString(2, employee.getEmail());
+			ps.setDouble(3, employee.getSalary());
+			ps.setDate(4, new Date(employee.getDoj().getTime()));
+			ps.setBigDecimal(5, employee.getBonus());
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee is crated..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	@Override
+	public Employee getEmployeeById(Integer employeeId) {
+		Employee employee = null;
+		String SQL = "SELECT *FROM employee_table WHERE employee_id=?";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setInt(1, employeeId);
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				int empId = rs.getInt("employee_id");
+				String eName = rs.getString("employee_name");
+				String email = rs.getString("email");
+				Double salary = rs.getDouble("salary");
+				BigDecimal bonus = rs.getBigDecimal("bonus");
+				Date date = rs.getDate("date_of_joining");
+				
+				employee = new Employee();
+				employee.setEmployeeName(eName);
+				employee.setBonus(bonus);
+				employee.setDoj(date);
+				employee.setEmail(email);
+				employee.setEmployee_id(empId);
+				employee.setSalary(salary);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		return employee;
+	}
+ 
+	@Override
+	public void updateEmployeeEmailById(String newEmail, Integer employeeId) {
+ 
+		String SQL = "UPDATE employee_table set email=? WHERE employee_id=?;";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setString(1, newEmail);
+			ps.setInt(2,employeeId);
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee email is updated..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	@Override
+	public void deleteEmployeeById(Integer employeeId) {
+ 
+		String SQL = "DELETE FROM employee_table WHERE employee_id=?;";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setInt(1,employeeId);
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee is deleted with ID::"+employeeId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+ 
+	@Override
+	public List<Employee> getAllEmployeesInfo() {
+ 
+		List<Employee> empList = new ArrayList<>();
+		String SQL = "SELECT *FROM employee_table";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int empId = rs.getInt("employee_id");
+				String eName = rs.getString("employee_name");
+				String email = rs.getString("email");
+				Double salary = rs.getDouble("salary");
+				BigDecimal bonus = rs.getBigDecimal("bonus");
+				Date date = rs.getDate("date_of_joining");
+				
+				Employee employee = new Employee();
+				employee.setEmployeeName(eName);
+				employee.setBonus(bonus);
+				employee.setDoj(date);
+				employee.setEmail(email);
+				employee.setEmployee_id(empId);
+				employee.setSalary(salary);
+				
+				empList.add(employee);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empList;
+	}
+}
+ 
+
+EmpoyeeService.java
+
+package com.infotech.service;
+ 
+import java.util.List;
+ 
+import com.infotech.model.Employee;
+ 
+public interface EmpoyeeService {
+ 
+	public abstract void createEmployee(Employee employee);
+	public abstract Employee fetchEmployeeById(Integer employeeId);
+	public abstract void updateEmployeeEmailById(String newEmail,Integer employeeId);
+	public abstract void deleteEmployeeById(Integer employeeId);
+	public abstract List<Employee> fetchAllEmployeesInfo();
+}
+ 
+
+EmployeeServiceImpl.java
+
+package com.infotech.service;
+ 
+import java.util.List;
+ 
+import com.infotech.dao.EmployeeDAO;
+import com.infotech.dao.impl.EmployeeDAOImpl;
+import com.infotech.model.Employee;
+ 
+public class EmployeeServiceImpl implements EmpoyeeService {
+ 
+	private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+	
+	@Override
+	public void createEmployee(Employee employee) {
+		employeeDAO.createEmployee(employee);
+	}
+ 
+	@Override
+	public Employee fetchEmployeeById(Integer employeeId) {
+		return employeeDAO.getEmployeeById(employeeId);
+	}
+ 
+	@Override
+	public void updateEmployeeEmailById(String newEmail, Integer employeeId) {
+		employeeDAO.updateEmployeeEmailById(newEmail, employeeId);
+	}
+ 
+	@Override
+	public void deleteEmployeeById(Integer employeeId) {
+		employeeDAO.deleteEmployeeById(employeeId);
+	}
+ 
+	@Override
+	public List<Employee> fetchAllEmployeesInfo() {
+		return employeeDAO.getAllEmployeesInfo();
+	}
+ 
+}
+ 
+
+DBUtil.java
+
+package com.infotech.util;
+ 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+ 
+public class DBUtil {
+	private static final String DB_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
+	private static final String DB_USERNAME = "root";
+	private static final String DB_PASSWORD = "root";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/test";
+	
+	private static Connection connection = null;
+	static{
+		try {
+			Class.forName(DB_DRIVER_CLASS);
+			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Connection getConnection(){
+		return connection;
+	}
+}
+ 
+
+Employee.java
+
+package com.infotech.model;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+public class Employee {
+ 
+	private int employee_id;
+	private String employeeName;
+	private String email;
+	private Double salary;
+	private Date doj;
+	private BigDecimal bonus;
+	
+	public int getEmployee_id() {
+		return employee_id;
+	}
+	public void setEmployee_id(int employee_id) {
+		this.employee_id = employee_id;
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Double getSalary() {
+		return salary;
+	}
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+	public Date getDoj() {
+		return doj;
+	}
+	public void setDoj(Date doj) {
+		this.doj = doj;
+	}
+	public BigDecimal getBonus() {
+		return bonus;
+	}
+	public void setBonus(BigDecimal bonus) {
+		this.bonus = bonus;
+	}
+	@Override
+	public String toString() {
+		return "Employee [employee_id=" + employee_id + ", employeeName=" + employeeName + ", email=" + email
+				+ ", salary=" + salary + ", doj=" + doj + ", bonus=" + bonus + "]";
+	}
+}
+ 
+
+ClientTest.java
+
+package com.infotech.client;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+ 
+import com.infotech.model.Employee;
+import com.infotech.service.EmployeeServiceImpl;
+import com.infotech.service.EmpoyeeService;
+ 
+public class ClientTest {
+ 
+	public static void main(String[] args) {
+		EmpoyeeService empoyeeService = new EmployeeServiceImpl();
+		
+		Employee employee = getEmployee();
+		empoyeeService.createEmployee(employee);
+		//getEmployeeById(empoyeeService);
+		//empoyeeService.updateEmployeeEmailById("sean.cs2020@gmail.com", 3);
+		//empoyeeService.deleteEmployeeById(4);
+		//getAllEmployeesInfo(empoyeeService);
+	}
+ 
+	private static void getAllEmployeesInfo(EmpoyeeService empoyeeService) {
+		List<Employee> empList = empoyeeService.fetchAllEmployeesInfo();
+		for (Employee employee : empList) {
+			System.out.println(employee);
+		}
+	}
+ 
+	private static void getEmployeeById(EmpoyeeService empoyeeService) {
+		Employee employee2 = empoyeeService.fetchEmployeeById(1);
+		if(employee2 != null){
+			System.out.println(employee2);
+		}else{
+			System.out.println("Employee does not exist..");
+		}
+	}
+ 
+	private static Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+ 
+
+DbScript
+
+CREATE TABLE `employee_table` (
+  `employee_id` int(11) NOT NULL auto_increment,
+  `employee_name` varchar(60) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `salary` double default NULL,
+  `date_of_joining` datetime default NULL,
+  `bonus` decimal(10,0) default NULL,
+  PRIMARY KEY  (`employee_id`)
+) ;
+ 
+ 
+INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)
+					VALUES('Paul','paul.cs2009@yahoo.com',60000.00,'2017-05-17',400.00);
+ 
+InterfaceMethodMockingUsingmockMethodTest.java
+
+package com.infotech.service;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+import static org.mockito.Mockito.*;
+ 
+import com.infotech.model.Employee;
+ 
+public class InterfaceMethodMockingUsingmockMethodTest {
+ 
+	private EmpoyeeService empoyeeService;
+	
+	public static void main(String[] args) {
+		new InterfaceMethodMockingUsingmockMethodTest().testFetchEmployeeById();
+	}
+ 
+	
+	public void testFetchEmployeeById() {
+		empoyeeService = mock(EmpoyeeService.class);
+		
+		Employee employee = getEmployee();
+		when(empoyeeService.fetchEmployeeById(10)).thenReturn(employee);
+		
+		System.out.println(empoyeeService.fetchEmployeeById(10));
+	}
+	
+	
+	private  Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setEmployee_id(10);
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+ 
+
+InterfaceMethodMockingUsingMockAnnotationTest.java
+
+package com.infotech.service;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+ 
+import static org.mockito.Mockito.*;
+ 
+import com.infotech.model.Employee;
+ 
+public class InterfaceMethodMockingUsingMockAnnotationTest {
+ 
+	@Mock
+	private EmpoyeeService empoyeeService;
+	
+	public static void main(String[] args) {
+		new InterfaceMethodMockingUsingMockAnnotationTest().testFetchEmployeeById();
+	}
+	
+	public void testFetchEmployeeById() {
+		//empoyeeService = mock(EmpoyeeService.class);
+		MockitoAnnotations.openMocks(this);
+		Employee employee = getEmployee();
+		when(empoyeeService.fetchEmployeeById(10)).thenReturn(employee);
+		
+		System.out.println(empoyeeService.fetchEmployeeById(10));
+	}
+	
+	
+	private  Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setEmployee_id(10);
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Mockito and JUnit Integration Using Maven Example
+
+Mockito Extension
+Mockito provides an implementation for JUnit5 or Jupiter extensions in the library – mockito-junit-jupiter. we have to include the following dependency with test scope  in our pom.xml
+
+<dependency>
+<groupId>org.mockito</groupId>
+<artifactId>mockito-junit-jupiter</artifactId>
+<version>3.5.7</version>
+<scope>test</scope>
+</dependency>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.intotech</groupId>
+	<artifactId>MockitoAndJUnit5IntegrationExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.21</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>
+
+package com.infotech.dao;
+
+import java.util.List;
+import com.infotech.model.Employee;
+public interface EmployeeDAO {
+ 
+	public abstract void createEmployee(Employee employee);
+	public abstract Employee getEmployeeById(Integer employeeId);
+	public abstract void updateEmployeeEmailById(String newEmail,Integer employeeId);
+	public abstract void deleteEmployeeById(Integer employeeId);
+	public abstract List<Employee> getAllEmployeesInfo();
+}
+
+package com.infotech.dao.impl;
+ 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+ 
+import com.infotech.dao.EmployeeDAO;
+import com.infotech.model.Employee;
+import com.infotech.util.DBUtil;
+ 
+public class EmployeeDAOImpl implements EmployeeDAO {
+ 
+	@Override
+	public void createEmployee(Employee employee) {
+		
+		String SQL = "INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)VALUES(?,?,?,?,?)";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setString(1, employee.getEmployeeName());
+			ps.setString(2, employee.getEmail());
+			ps.setDouble(3, employee.getSalary());
+			ps.setDate(4, new Date(employee.getDoj().getTime()));
+			ps.setBigDecimal(5, employee.getBonus());
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee is crated..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	@Override
+	public Employee getEmployeeById(Integer employeeId) {
+		Employee employee = null;
+		String SQL = "SELECT *FROM employee_table WHERE employee_id=?";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setInt(1, employeeId);
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				int empId = rs.getInt("employee_id");
+				String eName = rs.getString("employee_name");
+				String email = rs.getString("email");
+				Double salary = rs.getDouble("salary");
+				BigDecimal bonus = rs.getBigDecimal("bonus");
+				Date date = rs.getDate("date_of_joining");
+				
+				employee = new Employee();
+				employee.setEmployeeName(eName);
+				employee.setBonus(bonus);
+				employee.setDoj(date);
+				employee.setEmail(email);
+				employee.setEmployee_id(empId);
+				employee.setSalary(salary);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		return employee;
+	}
+ 
+	@Override
+	public void updateEmployeeEmailById(String newEmail, Integer employeeId) {
+ 
+		String SQL = "UPDATE employee_table set email=? WHERE employee_id=?;";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setString(1, newEmail);
+			ps.setInt(2,employeeId);
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee email is updated..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	@Override
+	public void deleteEmployeeById(Integer employeeId) {
+ 
+		String SQL = "DELETE FROM employee_table WHERE employee_id=?;";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setInt(1,employeeId);
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee is deleted with ID::"+employeeId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+ 
+	@Override
+	public List<Employee> getAllEmployeesInfo() {
+ 
+		List<Employee> empList = new ArrayList<>();
+		String SQL = "SELECT *FROM employee_table";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int empId = rs.getInt("employee_id");
+				String eName = rs.getString("employee_name");
+				String email = rs.getString("email");
+				Double salary = rs.getDouble("salary");
+				BigDecimal bonus = rs.getBigDecimal("bonus");
+				Date date = rs.getDate("date_of_joining");
+				
+				Employee employee = new Employee();
+				employee.setEmployeeName(eName);
+				employee.setBonus(bonus);
+				employee.setDoj(date);
+				employee.setEmail(email);
+				employee.setEmployee_id(empId);
+				employee.setSalary(salary);
+				
+				empList.add(employee);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empList;
+	}
+}
+
+
+package com.infotech.service;
+
+import java.util.List;
+
+import com.infotech.model.Employee;
+
+public interface EmpoyeeService {
+
+	public abstract void createEmployee(Employee employee);
+	public abstract Employee fetchEmployeeById(Integer employeeId);
+	public abstract void updateEmployeeEmailById(String newEmail,Integer employeeId);
+	public abstract void deleteEmployeeById(Integer employeeId);
+	public abstract List<Employee> fetchAllEmployeesInfo();
+}
+
+
+package com.infotech.service;
+
+import java.util.List;
+
+import com.infotech.dao.EmployeeDAO;
+import com.infotech.dao.impl.EmployeeDAOImpl;
+import com.infotech.model.Employee;
+
+public class EmployeeServiceImpl implements EmpoyeeService {
+
+	private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+	
+	@Override
+	public void createEmployee(Employee employee) {
+		employeeDAO.createEmployee(employee);
+	}
+
+	@Override
+	public Employee fetchEmployeeById(Integer employeeId) {
+		return employeeDAO.getEmployeeById(employeeId);
+	}
+
+	@Override
+	public void updateEmployeeEmailById(String newEmail, Integer employeeId) {
+		employeeDAO.updateEmployeeEmailById(newEmail, employeeId);
+	}
+
+	@Override
+	public void deleteEmployeeById(Integer employeeId) {
+		employeeDAO.deleteEmployeeById(employeeId);
+	}
+
+	@Override
+	public List<Employee> fetchAllEmployeesInfo() {
+		return employeeDAO.getAllEmployeesInfo();
+	}
+
+}
+
+package com.infotech.util;
+ 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+ 
+public class DBUtil {
+	private static final String DB_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
+	private static final String DB_USERNAME = "root";
+	private static final String DB_PASSWORD = "root";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/test";
+	
+	private static Connection connection = null;
+	static{
+		try {
+			Class.forName(DB_DRIVER_CLASS);
+			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Connection getConnection(){
+		return connection;
+	}
+}
+
+
+package com.infotech.model;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+public class Employee {
+ 
+	private int employee_id;
+	private String employeeName;
+	private String email;
+	private Double salary;
+	private Date doj;
+	private BigDecimal bonus;
+	
+	public int getEmployee_id() {
+		return employee_id;
+	}
+	public void setEmployee_id(int employee_id) {
+		this.employee_id = employee_id;
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Double getSalary() {
+		return salary;
+	}
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+	public Date getDoj() {
+		return doj;
+	}
+	public void setDoj(Date doj) {
+		this.doj = doj;
+	}
+	public BigDecimal getBonus() {
+		return bonus;
+	}
+	public void setBonus(BigDecimal bonus) {
+		this.bonus = bonus;
+	}
+	@Override
+	public String toString() {
+		return "Employee [employee_id=" + employee_id + ", employeeName=" + employeeName + ", email=" + email
+				+ ", salary=" + salary + ", doj=" + doj + ", bonus=" + bonus + "]";
+	}
+}
+
+package com.infotech.client;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
+import com.infotech.model.Employee;
+import com.infotech.service.EmployeeServiceImpl;
+import com.infotech.service.EmpoyeeService;
+ 
+public class ClientTest {
+ 
+	public static void main(String[] args) {
+		EmpoyeeService empoyeeService = new EmployeeServiceImpl();
+		
+		Employee employee = getEmployee();
+		empoyeeService.createEmployee(employee);
+		//getEmployeeById(empoyeeService);
+		//empoyeeService.updateEmployeeEmailById("sean.cs2020@gmail.com", 3);
+		//empoyeeService.deleteEmployeeById(4);
+		//getAllEmployeesInfo(empoyeeService);
+	}
+ 
+	private static void getAllEmployeesInfo(EmpoyeeService empoyeeService) {
+		List<Employee> empList = empoyeeService.fetchAllEmployeesInfo();
+		for (Employee employee : empList) {
+			System.out.println(employee);
+		}
+	}
+ 
+	private static void getEmployeeById(EmpoyeeService empoyeeService) {
+		Employee employee2 = empoyeeService.fetchEmployeeById(1);
+		if(employee2 != null){
+			System.out.println(employee2);
+		}else{
+			System.out.println("Employee does not exist..");
+		}
+	}
+ 
+	private static Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+
+CREATE TABLE `employee_table` (
+  `employee_id` int(11) NOT NULL auto_increment,
+  `employee_name` varchar(60) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `salary` double default NULL,
+  `date_of_joining` datetime default NULL,
+  `bonus` decimal(10,0) default NULL,
+  PRIMARY KEY  (`employee_id`)
+) ;
+ 
+
+INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)
+					VALUES('Paul','paul.cs2009@yahoo.com',60000.00,'2017-05-17',400.00);
+
+package com.infotech.service;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+import com.infotech.model.Employee;
+
+@ExtendWith(value = { MockitoExtension.class })
+@TestInstance(value = Lifecycle.PER_CLASS)
+public class EmpoyeeServiceTest1 {
+
+	private EmpoyeeService empoyeeService;
+	
+	@BeforeAll
+	public void setUp() {
+		empoyeeService = mock(EmpoyeeService.class);
+	}
+	
+	@Test
+	 void testFetchEmployeeById() {
+		Employee employee = getEmployee();
+		when(empoyeeService.fetchEmployeeById(10)).thenReturn(employee);
+		assertEquals("KK", empoyeeService.fetchEmployeeById(10).getEmployeeName());
+		assertEquals(50000.00, empoyeeService.fetchEmployeeById(10).getSalary());
+	}
+	
+	
+	private  Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setEmployee_id(10);
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+
+package com.infotech.service;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+import com.infotech.model.Employee;
+
+@ExtendWith(value = { MockitoExtension.class })
+@TestInstance(value = Lifecycle.PER_CLASS)
+public class EmpoyeeServiceTest2 {
+
+	@Mock
+	private EmpoyeeService empoyeeService;
+	
+	/*
+	 * @BeforeAll public void setUp() {
+	 *  MockitoAnnotations.openMocks(this);
+	 *  }
+	 */
+	
+	@Test
+	public void testFetchEmployeeById() {
+		Employee employee = getEmployee();
+		when(empoyeeService.fetchEmployeeById(10)).thenReturn(employee);
+		
+		assertEquals("KK", empoyeeService.fetchEmployeeById(10).getEmployeeName());
+		assertEquals(50000.00, empoyeeService.fetchEmployeeById(10).getSalary());
+		
+		assertAll("testFetchEmployeeById", ()->assertEquals("KK", empoyeeService.fetchEmployeeById(10).getEmployeeName()),
+				()->assertEquals(50000.00, empoyeeService.fetchEmployeeById(10).getSalary()),
+				()->assertEquals("kk.cs2016@yahoo.com", empoyeeService.fetchEmployeeById(10).getEmail()));
+	}
+	
+	
+	private  Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setEmployee_id(10);
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+@Mock and @Spy Mockito Annotations With Example
+
+In this post, We will learn about @Mock and @Spy Mockito Annotations With Example?
+
+@ Mock Annotation
+
+The most Frequently used annotation in Mockito is @Mock
+Use @Mock annotation to create and inject mocked instances without having to call Mockito.mock(abc.class) manually.
+We may use org.mockito.Mockito class mock() method to create a mock object of a given class or interface.
+@Spy Annotation
+
+Use @Spyannotation to spy on an existing instance
+We usually use Mockito Spy to partial mock an object. When we spy on an object then the real methods are being called unless it’s stubbed.
+Let’s try to understand the above concept using a demo project
+
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.intotech</groupId>
+	<artifactId>MockAndSpyInMockitoExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.21</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+ 
+</project>
+ 
+
+EmployeeDAO.java
+
+package com.infotech.dao;
+ 
+import java.util.List;
+import com.infotech.model.Employee;
+public interface EmployeeDAO {
+ 
+	public abstract void createEmployee(Employee employee);
+	public abstract Employee getEmployeeById(Integer employeeId);
+	public abstract void updateEmployeeEmailById(String newEmail,Integer employeeId);
+	public abstract void deleteEmployeeById(Integer employeeId);
+	public abstract List<Employee> getAllEmployeesInfo();
+}
+ 
+
+EmployeeDAOImpl.java
+
+package com.infotech.dao.impl;
+ 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+ 
+import com.infotech.dao.EmployeeDAO;
+import com.infotech.model.Employee;
+import com.infotech.util.DBUtil;
+ 
+public class EmployeeDAOImpl implements EmployeeDAO {
+ 
+	@Override
+	public void createEmployee(Employee employee) {
+		
+		String SQL = "INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)VALUES(?,?,?,?,?)";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setString(1, employee.getEmployeeName());
+			ps.setString(2, employee.getEmail());
+			ps.setDouble(3, employee.getSalary());
+			ps.setDate(4, new Date(employee.getDoj().getTime()));
+			ps.setBigDecimal(5, employee.getBonus());
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee is crated..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	@Override
+	public Employee getEmployeeById(Integer employeeId) {
+		Employee employee = null;
+		String SQL = "SELECT *FROM employee_table WHERE employee_id=?";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setInt(1, employeeId);
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				int empId = rs.getInt("employee_id");
+				String eName = rs.getString("employee_name");
+				String email = rs.getString("email");
+				Double salary = rs.getDouble("salary");
+				BigDecimal bonus = rs.getBigDecimal("bonus");
+				Date date = rs.getDate("date_of_joining");
+				
+				employee = new Employee();
+				employee.setEmployeeName(eName);
+				employee.setBonus(bonus);
+				employee.setDoj(date);
+				employee.setEmail(email);
+				employee.setEmployee_id(empId);
+				employee.setSalary(salary);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		return employee;
+	}
+ 
+	@Override
+	public void updateEmployeeEmailById(String newEmail, Integer employeeId) {
+ 
+		String SQL = "UPDATE employee_table set email=? WHERE employee_id=?;";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setString(1, newEmail);
+			ps.setInt(2,employeeId);
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee email is updated..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+	@Override
+	public void deleteEmployeeById(Integer employeeId) {
+ 
+		String SQL = "DELETE FROM employee_table WHERE employee_id=?;";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ps.setInt(1,employeeId);
+			
+			int executeUpdate = ps.executeUpdate();
+			
+			if(executeUpdate ==1){
+				System.out.println("Employee is deleted with ID::"+employeeId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+ 
+	@Override
+	public List<Employee> getAllEmployeesInfo() {
+ 
+		List<Employee> empList = new ArrayList<>();
+		String SQL = "SELECT *FROM employee_table";
+		try(Connection connection = DBUtil.getConnection();PreparedStatement ps = connection.prepareStatement(SQL)) {
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int empId = rs.getInt("employee_id");
+				String eName = rs.getString("employee_name");
+				String email = rs.getString("email");
+				Double salary = rs.getDouble("salary");
+				BigDecimal bonus = rs.getBigDecimal("bonus");
+				Date date = rs.getDate("date_of_joining");
+				
+				Employee employee = new Employee();
+				employee.setEmployeeName(eName);
+				employee.setBonus(bonus);
+				employee.setDoj(date);
+				employee.setEmail(email);
+				employee.setEmployee_id(empId);
+				employee.setSalary(salary);
+				
+				empList.add(employee);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return empList;
+	}
+}
+ 
+
+EmpoyeeService.java
+
+package com.infotech.service;
+ 
+import java.util.List;
+ 
+import com.infotech.model.Employee;
+ 
+public interface EmpoyeeService {
+ 
+	public abstract void createEmployee(Employee employee);
+	public abstract Employee fetchEmployeeById(Integer employeeId);
+	public abstract void updateEmployeeEmailById(String newEmail,Integer employeeId);
+	public abstract void deleteEmployeeById(Integer employeeId);
+	public abstract List<Employee> fetchAllEmployeesInfo();
+}
+ 
+
+EmployeeServiceImpl.java
+
+package com.infotech.service;
+ 
+import java.util.List;
+ 
+import com.infotech.dao.EmployeeDAO;
+import com.infotech.dao.impl.EmployeeDAOImpl;
+import com.infotech.model.Employee;
+ 
+public class EmployeeServiceImpl implements EmpoyeeService {
+ 
+	private EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+	
+	@Override
+	public void createEmployee(Employee employee) {
+		employeeDAO.createEmployee(employee);
+	}
+ 
+	@Override
+	public Employee fetchEmployeeById(Integer employeeId) {
+		return employeeDAO.getEmployeeById(employeeId);
+	}
+ 
+	@Override
+	public void updateEmployeeEmailById(String newEmail, Integer employeeId) {
+		employeeDAO.updateEmployeeEmailById(newEmail, employeeId);
+	}
+ 
+	@Override
+	public void deleteEmployeeById(Integer employeeId) {
+		employeeDAO.deleteEmployeeById(employeeId);
+	}
+ 
+	@Override
+	public List<Employee> fetchAllEmployeesInfo() {
+		return employeeDAO.getAllEmployeesInfo();
+	}
+ 
+}
+ 
+
+DBUtil.java
+
+package com.infotech.util;
+ 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+ 
+public class DBUtil {
+	private static final String DB_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
+	private static final String DB_USERNAME = "root";
+	private static final String DB_PASSWORD = "root";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/test";
+	
+	private static Connection connection = null;
+	static{
+		try {
+			Class.forName(DB_DRIVER_CLASS);
+			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Connection getConnection(){
+		return connection;
+	}
+}
+ 
+
+Employee.java
+
+package com.infotech.model;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+public class Employee {
+ 
+	private int employee_id;
+	private String employeeName;
+	private String email;
+	private Double salary;
+	private Date doj;
+	private BigDecimal bonus;
+	
+	public int getEmployee_id() {
+		return employee_id;
+	}
+	public void setEmployee_id(int employee_id) {
+		this.employee_id = employee_id;
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Double getSalary() {
+		return salary;
+	}
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+	public Date getDoj() {
+		return doj;
+	}
+	public void setDoj(Date doj) {
+		this.doj = doj;
+	}
+	public BigDecimal getBonus() {
+		return bonus;
+	}
+	public void setBonus(BigDecimal bonus) {
+		this.bonus = bonus;
+	}
+	@Override
+	public String toString() {
+		return "Employee [employee_id=" + employee_id + ", employeeName=" + employeeName + ", email=" + email
+				+ ", salary=" + salary + ", doj=" + doj + ", bonus=" + bonus + "]";
+	}
+}
+ 
+
+ClientTest.java
+
+package com.infotech.client;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+ 
+import com.infotech.model.Employee;
+import com.infotech.service.EmployeeServiceImpl;
+import com.infotech.service.EmpoyeeService;
+ 
+public class ClientTest {
+ 
+	public static void main(String[] args) {
+		EmpoyeeService empoyeeService = new EmployeeServiceImpl();
+		
+		Employee employee = getEmployee();
+		empoyeeService.createEmployee(employee);
+		//getEmployeeById(empoyeeService);
+		//empoyeeService.updateEmployeeEmailById("sean.cs2020@gmail.com", 3);
+		//empoyeeService.deleteEmployeeById(4);
+		//getAllEmployeesInfo(empoyeeService);
+	}
+ 
+	private static void getAllEmployeesInfo(EmpoyeeService empoyeeService) {
+		List<Employee> empList = empoyeeService.fetchAllEmployeesInfo();
+		for (Employee employee : empList) {
+			System.out.println(employee);
+		}
+	}
+ 
+	private static void getEmployeeById(EmpoyeeService empoyeeService) {
+		Employee employee2 = empoyeeService.fetchEmployeeById(1);
+		if(employee2 != null){
+			System.out.println(employee2);
+		}else{
+			System.out.println("Employee does not exist..");
+		}
+	}
+ 
+	private static Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+ 
+
+DbScript
+
+CREATE TABLE `employee_table` (
+  `employee_id` int(11) NOT NULL auto_increment,
+  `employee_name` varchar(60) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `salary` double default NULL,
+  `date_of_joining` datetime default NULL,
+  `bonus` decimal(10,0) default NULL,
+  PRIMARY KEY  (`employee_id`)
+) ;
+ 
+ 
+INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)
+					VALUES('Paul','paul.cs2009@yahoo.com',60000.00,'2017-05-17',400.00);
+INSERT INTO employee_table(employee_name,email,salary,date_of_joining,bonus)
+					VALUES('John','jonh.cs2016@yahoo.com',90000.00,'28-08-2020 ',290.00);
+Database Screen Shot
+
+
+Building the Test Class using Junit 5 and Mockito 3
+Let’s build our test classes and use the Mockito extension for it.
+
+
+Use of @Mock Annotation
+
+package com.infotech.service;
+ 
+import static org.mockito.Mockito.when;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+ 
+import com.infotech.model.Employee;
+/**
+ * @author KK JavaTutorials
+ * Use of @Mock Annotation
+ *
+ */
+@ExtendWith(value = { MockitoExtension.class })
+public class MockEmpoyeeServiceTest_1 {
+ 
+	@Mock
+	private EmployeeServiceImpl employeeService;
+	
+	@Test
+	public void testFetchEmployeeById() {
+		
+		when(employeeService.fetchEmployeeById(2)).thenReturn(getEmployee());
+		Employee employee = employeeService.fetchEmployeeById(2);
+		System.out.println(employee);
+	}
+	
+	private static Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setEmployee_id(2);
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+Console Output of Above Test class when you run as JUnit Test:
+Employee [employee_id=2, employeeName=KK, email=kk.cs2016@yahoo.com, salary=50000.0, doj=Thu Oct 08 09:32:54 IST 2020, bonus=600]
+
+Use of mock method
+
+package com.infotech.service;
+ 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+ 
+import org.junit.jupiter.api.Test;
+ 
+import com.infotech.model.Employee;
+/**
+ * @author KK JavaTutorials
+ * Use of mock method
+ */
+public class MockEmpoyeeServiceTest_2 {
+ 
+	@Test
+	public void testFetchEmployeeById() {
+		
+		EmployeeServiceImpl employeeService = mock(EmployeeServiceImpl.class);
+		when(employeeService.fetchEmployeeById(2)).thenReturn(getEmployee());
+		Employee employee = employeeService.fetchEmployeeById(2);
+		System.out.println(employee);
+	}
+	
+	private static Employee getEmployee() {
+		Employee employee = new Employee();
+		employee.setEmployee_id(2);
+		employee.setBonus(new BigDecimal(600));
+		employee.setDoj(new Date());
+		employee.setEmployeeName("KK");
+		employee.setEmail("kk.cs2016@yahoo.com");
+		employee.setSalary(50000.00);
+		return employee;
+	}
+}
+Console Output of Above Test class when you run as JUnit Test:
+
+Employee [employee_id=2, employeeName=KK, email=kk.cs2016@yahoo.com, salary=50000.0, doj=Thu Oct 08 09:34:01 IST 2020, bonus=600]
+
+Use of @Spy Annotation
+
+package com.infotech.service;
+ 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
+ 
+import com.infotech.model.Employee;
+/**
+ * @author KK JavaTutorials
+ * Use of @Spy Annotation
+ */
+@ExtendWith(value = { MockitoExtension.class })
+public class SpyEmpoyeeServiceTest_1 {
+ 
+	@Spy
+	private EmployeeServiceImpl employeeService;
+	
+	@Test
+	public void testFetchEmployeeById() {
+		
+		System.out.println(employeeService.hashCode());
+		Employee employee = employeeService.fetchEmployeeById(2);
+		System.out.println(employee);
+	}
+}
+
+
+Use of spy method
+
+package com.infotech.service;
+ 
+import static org.mockito.Mockito.spy;
+ 
+import org.junit.jupiter.api.Test;
+ 
+import com.infotech.model.Employee;
+/**
+ * @author KK JavaTutorials
+ * Use of spy method
+ */
+public class SpyEmpoyeeServiceTest_2 {
+ 
+	@Test
+	public void testFetchEmployeeById() {
+		
+		EmployeeServiceImpl employeeService = spy(EmployeeServiceImpl.class);
+		
+		Employee employee = employeeService.fetchEmployeeById(2);
+		System.out.println(employee);
+	}
+}
+
+Console Output of Above Test class when you run as JUnit Test:
+Employee [employee_id=2, employeeName=John, email=jonh.cs2016@yahoo.com, salary=90000.0, doj=2020-08-28, bonus=290]
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+@Captor Annotation in Mockito with Example
+
+In this post, We will talk and learn about @Captor Annotation in Mockito with Example
+
+Mockito ArgumentCaptor and @Captor Annotation
+Usually, Mockito’s ArgumentCaptor is used to capture arguments for mocked methods. ArgumentCaptor is used with Mockito to verify() methods to get the arguments passed when any method is called. This way usually, we can use additional JUnit assertions for our test cases.
+
+Mockito ArgumentCaptor
+We can usually create ArgumentCaptor an instance for any given class, then we use its capture() method to  use with verify() methods.
+
+Finally, we can get arguments from getValue() and getAllValues() methods.
+
+getValue() the method can be used when we have captured a single argument. If the verified method was called multiple times then getValue() the method will return the latest captured value.
+
+If you have multiple arguments to capture then you have to call getAllValues() to get the list of arguments.
+
+Mockito ArgumentCaptor Example
+Mockito @Captor
+We can use @Captor Mockito annotation to create argument captor at field level. So instead of initializing field level ArgumentCaptor as:
+
+ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+
+We can use @Captor as:
+
+@Captor
+private ArgumentCaptor<String> argumentCaptor;
+
+Note that we have to call MockitoAnnotations.initMocks(this); before test methods to get it initialized by the Mockito framework.
+
+Mockito @Captor Example
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.kkjavatutoials</groupId>
+	<artifactId>MockitoCaptorAnnotationExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.21</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+ 
+</project>
+Person.java
+
+package com.kkjavatutorials.model;
+ 
+public class Person {
+ 
+	private Integer id;
+	private String name;
+ 
+	public Person(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+ 
+	public Integer getId() {
+		return id;
+	}
+ 
+	public String getName() {
+		return name;
+	}
+}
+ 
+
+MockitoCaptorTest1.java
+
+package com.kkjavatutoials;
+ 
+import java.util.List;
+ 
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+ 
+public class MockitoCaptorTest1 {
+ 
+	@Test
+	void capterTest() {
+		
+		List<String> mockList = mock(List.class);
+		mockList.add("KK");
+	  
+		ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+	    
+		verify(mockList).add(argumentCaptor.capture());
+	    assertEquals("KK", argumentCaptor.getValue());
+	}
+}
+ 
+
+MockitoCaptorTest2.java
+
+package com.kkjavatutoials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+ 
+import java.util.List;
+ 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.junit.jupiter.MockitoExtension;
+ 
+@ExtendWith(value = { MockitoExtension.class })
+public class MockitoCaptorTest2 {
+ 
+	@Captor
+	private ArgumentCaptor<String> argumentCaptor;
+	
+	@Test
+	void capterTest() {
+		
+		List<String> mockList = mock(List.class);
+		mockList.add("KK");
+	 
+	    verify(mockList).add(argumentCaptor.capture());
+	    assertEquals("KK", argumentCaptor.getValue());
+	}
+}
+ 
+
+MockitoCaptorTest3.java 
+
+package com.kkjavatutoials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+ 
+import java.util.List;
+ 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static org.mockito.Mockito.times;
+ 
+import com.kkjavatutorials.model.Person;
+ 
+@ExtendWith(value = { MockitoExtension.class })
+public class MockitoCaptorTest3 {
+ 
+	@Captor
+	private ArgumentCaptor<Person> argumentCaptor;
+	
+	@Test
+	void capterTest() {
+		
+		List<Person> mockList = mock(List.class);
+		mockList.add(new Person(10, "KK"));
+		mockList.add(new Person(20, "PK"));
+		mockList.add(new Person(30, "SK"));
+	 
+		verify(mockList, times(3)).add(argumentCaptor.capture());
+		
+		List<Person> personList = argumentCaptor.getAllValues();
+	 
+		assertEquals(10, personList.get(0).getId());
+	    assertEquals("KK", personList.get(0).getName());
+	    
+	    assertEquals(20, personList.get(1).getId());
+	    assertEquals("PK", personList.get(1).getName());
+	    
+	    assertEquals(30, personList.get(2).getId());
+	    assertEquals("SK", personList.get(2).getName());
+	}
+}
+Now right-click on the Project and select Run As then JUnit Test as shown in the below Image.
+
+
+
+
+The Output of the above project:
+
+
+
+Some Key Points:
+
+We may use to create org.mockito.ArgumentCaptor<T> instance for any class then its capture() method is used with verify() methods.
+We can  capture arguments from getValue() and getAllValues() methods.
+ArgumentCaptor getValue() method can be used when we have captured a single argument. If the verify method was called multiple times then getValue() method will return the latest captured value only.
+If multiple arguments are captured then we may call getAllValues() to get the list of arguments.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+@InjectMocks Annotation in Mockito with Example
+
+In this post, We will learn about @InjectMocks Annotation in Mockito with Example 
+
+Mockito’s @InjectMocks annotation usually allows us to inject mocked dependencies in the annotated class mocked object. This is very useful when we have an external dependency in the class want to mock. We can specify the mock objects to be injected using @Mock annotation.
+
+Let’s try to understand the above concept using a demo project
+
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.kkjavatutorials</groupId>
+  <artifactId>MockitoInjectMocksAnnotationExample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.21</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+  
+</project>
+Resource interface and class
+
+Dictionary.java
+
+package com.kkjavatutorials;
+ 
+public interface Dictionary {
+ 
+	public abstract void add(String word, String meaning);
+	public abstract String getMeaning(String word);
+}
+ 
+WordDictionary.java
+
+package com.kkjavatutorials;
+ 
+import java.util.HashMap;
+import java.util.Map;
+ 
+public class WordDictionary implements Dictionary {
+	
+    private Map<String, String> wordsMap;
+ 
+    public WordDictionary() {
+        wordsMap = new HashMap<String, String>();
+    }
+    public void add(String word, String meaning) {
+        wordsMap.put(word, meaning);
+    }
+    public String getMeaning(String word) {
+        return wordsMap.get(word);
+    }
+}
+ 
+
+Test class InjectMocksTest.java
+
+package com.kkjavatutorials;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+ 
+import java.util.Map;
+ 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.mockito.Mockito.when;
+import org.mockito.junit.jupiter.MockitoExtension;
+ 
+@ExtendWith(value = { MockitoExtension.class })
+public class InjectMocksTest {
+ 
+	@Mock
+	private Map<String, String> wordMap;
+ 
+	@InjectMocks
+	private Dictionary wordDictionary = new WordDictionary();
+ 
+	@Test
+	public void injectMocksTest() {
+		
+		when(wordMap.get("awesome")).thenReturn("Very Good");
+ 
+		assertEquals("Very Good", wordDictionary.getMeaning("awesome"));
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Mockito’s mock Methods
+
+In this post, We will talk and learn about different overloaded mock() methods of org.mockito.Mockito class
+
+Mockito’s class org.mockito.Mockito provides below overloaded mock Methods:
+
+public static <T> T mock(Class<T> classToMock): It creates mock object of given class or interface.
+
+public static <T> T mock(Class<T> classToMock, String name) : In this method we can specify mock name. mock name can be helpful for debugging in all verification errors.
+
+public static <T> T mock(Class<T> classToMock, Answer defaultAnswer) : This method creates mock with a specified strategy for its answers to interactions. It’s quite an advanced feature and typically we don’t need it to write general tests. However, it can be helpful when we work with legacy systems.
+
+public static <T> T mock(Class<T> classToMock, MockSettings mockSettings) :  This method creates a mock with some non-standard settings.The number of configuration points for a mock grows so we need a fluent way to use new configuration without adding lot of overloaded Mockito.mock() methods.
+
+Let’s try to understand the above concept using a demo project:
+
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.kkjavatutorials</groupId>
+  <artifactId>MockitoMocksMethodExample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+   	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+</project>
+ 
+
+MyList.java
+
+package com.kkjavatutorials;
+ 
+import java.util.AbstractList;
+ 
+public class MyList extends AbstractList<String> {
+ 
+	@Override
+	public String get(int index) {
+		return null;
+	}
+ 
+	@Override
+	public int size() {
+		return 10;
+	}
+}
+MyCustomAnswer.java
+
+package com.kkjavatutorials;
+ 
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+ 
+public class MyCustomAnswer implements Answer<Boolean> {
+ 
+	public Boolean answer(InvocationOnMock invocation) throws Throwable {
+		return false;
+	}
+}
+ 
+
+MockitoMocksTest,java
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+ 
+import org.junit.jupiter.api.Test;
+import org.mockito.MockSettings;
+ 
+public class MockitoMocksTest {
+ 
+	@Test
+	void simplemockTest() {
+		MyList mockMyList = mock(MyList.class);
+		
+		boolean added = mockMyList.add("KK");
+		
+		when(mockMyList.add(anyString())).thenReturn(false);
+		
+		verify(mockMyList).add(anyString());
+		assertEquals(false, added);
+	}
+	
+	@Test
+	void mockingWithNameTest() {
+		MyList mockMyList = mock(MyList.class,"Mocking MyList");
+		
+		boolean added = mockMyList.add("KK");
+		
+		when(mockMyList.add(anyString())).thenReturn(false);
+		verify(mockMyList).add(anyString());
+		assertEquals(false, added);
+	}
+	
+	@Test
+	void mockingWithAnswerTest() {
+		MyList mockMyList = mock(MyList.class,new MyCustomAnswer());
+		
+		boolean added = mockMyList.add("KK");
+		
+		when(mockMyList.add(anyString())).thenReturn(false);
+		verify(mockMyList).add(anyString());
+		assertEquals(false, added);
+	}
+	
+	@Test
+	void mockingWithMockSettingsTest() {
+		
+		MockSettings mockSettings = withSettings().defaultAnswer(new MyCustomAnswer());
+		MyList mockMyList = mock(MyList.class,mockSettings);
+		
+		boolean added = mockMyList.add("KK");
+		
+		when(mockMyList.add(anyString())).thenReturn(false);
+		verify(mockMyList).add(anyString());
+		
+		assertEquals(false, added);
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Mocking Exception Throwing using Mockito
+
+In this post, We will learn How to throw an Exception using Mockito
+
+Let’s try to understand the above concept using a demo project
+
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.kkjavatutorials</groupId>
+	<artifactId>ExceptionThrowingUsingMockitoExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+ 
+</project>
+ 
+
+Dictionary.java
+
+package com.kkjavatutorials;
+ 
+public interface Dictionary {
+ 
+	public abstract void add(String word, String meaning);
+	public abstract String getMeaning(String word);
+}
+ 
+
+WordDictionary.java
+
+package com.kkjavatutorials;
+ 
+import java.util.HashMap;
+import java.util.Map;
+ 
+public class WordDictionary implements Dictionary {
+	
+    private Map<String, String> wordsMap;
+ 
+    public WordDictionary() {
+        wordsMap = new HashMap<String, String>();
+    }
+    public void add(String word, String meaning) {
+        wordsMap.put(word, meaning);
+    }
+    public String getMeaning(String word) {
+        return wordsMap.get(word);
+    }
+}
+ 
+
+WordDictionaryTest.java
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+ 
+import org.junit.jupiter.api.Test;
+/**
+ * Method Exception Throwing testing using Mockito
+ * @author KK JavaTutorials
+ */
+public class WordDictionaryTest {
+ 
+	/**
+	 * Test for non-void Return Type method with Exception
+	 */
+	@Test
+	public void nonVoidMethodThrowingExceptionMockitoTest() {
+		try {
+			WordDictionary wordDictionary = mock(WordDictionary.class);
+			
+			when(wordDictionary.getMeaning(anyString()))
+			      .thenThrow(NullPointerException.class);
+			    
+			 wordDictionary.getMeaning("awesome");
+		} catch (Exception e) {
+			System.out.println("Exception occured!!");
+			assertTrue(e instanceof NullPointerException);
+		}
+	}
+	
+	/**
+	 * Test for void Return Type method with Exception
+	 */
+	@Test
+	public void voidMethodThrowingExceptionMockitoTest() {
+		WordDictionary wordDictionary = mock(WordDictionary.class);
+		
+		doThrow(new IllegalStateException("Error occurred!!"))
+	      .when(wordDictionary)
+	      .add(anyString(), anyString());
+	    
+	    assertThrows(IllegalStateException.class, ()->wordDictionary.add("awesome", "Very Good"));
+	}
+	
+	/**
+	 * Configuring Spy to throw an exception the same way we've done with the mock
+	 */
+	@Test
+	public void nonVoidMethodThrowingExceptionWithSpyMockitoTest() {
+		String emptyWord ="";
+		try {
+			WordDictionary wordDictionary = new WordDictionary();
+			WordDictionary spyWordDictionary = spy(wordDictionary);
+			
+			when(spyWordDictionary.getMeaning(emptyWord))
+			  .thenThrow(new IllegalArgumentException("Input is not valid!!"));
+ 
+			spyWordDictionary.getMeaning(emptyWord);
+		} catch (Exception e) {
+			assertTrue(e instanceof IllegalArgumentException);
+			assertEquals("Input is not valid!!",e.getMessage());
+		}
+	}
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Mockito – Verifying Method Calls
+
+We can use org.mockito.Mockito.verify(T mock) method to ensure whether a mock() method was called with required arguments or not. In other words, we can say that Mockito.verify(T mock) is used to confirm that specific interactions took place.
+
+Let’s try to understand the above concept using a demo project
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.kkjavatutorials</groupId>
+	<artifactId>MockitoVerifyingMethodCallsExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+ 
+</project>
+ 
+
+MyUtils.java
+
+package com.kkjavatutorials;
+ 
+public interface MyUtils {
+ 
+	public abstract int add(int n1,int n2);
+	public abstract int multiply(int n1,int n2);
+}
+ 
+
+MyUtilsTest.java 
+
+package com.kkjavatutorials;
+ 
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+ 
+import java.awt.List;
+ 
+public class MyUtilsTest {
+ 
+	@Test
+	void verify1Test() {
+		
+		MyUtils mock = mock(MyUtils.class);
+		mock.add(10, 30);
+		
+		verify(mock).add(10, 30);
+		verify(mock,times(1)).add(10, 30);
+	}
+	
+	@Test
+	void verify2Test() {
+		MyUtils mock = mock(MyUtils.class);
+		mock.add(10, 30);
+		mock.add(10, 30);
+		mock.add(10, 30);
+		mock.add(10, 30);
+		mock.add(10, 30);
+		
+		verify(mock,times(5)).add(10, 30);
+		
+		verify(mock,atLeast(2)).add(10, 30);
+		verify(mock,atLeast(5)).add(10, 30);
+		verify(mock,atLeastOnce()).add(10, 30);
+	}
+	
+	@Test
+	void verify3Test() {
+		
+		MyUtils mock1 = mock(MyUtils.class);
+		MyUtils mock2 = mock(MyUtils.class);
+		//mock1.add(10, 30);
+		
+		verifyNoInteractions(mock1,mock2);
+	}
+	
+	@Test
+	void verify4Test() {
+		
+		List mock = mock(List.class);
+		mock.add("KK");
+		
+		ArgumentCaptor<String>  argumentCaptor = ArgumentCaptor.forClass(String.class);
+		
+		verify(mock).add(argumentCaptor.capture());
+		
+		assertEquals("KK", argumentCaptor.getValue());
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Adding behavior to mocked object in Mockito
+-------------------------------------------
+
+Mockito adds functionality to a mock object using the when() method. Take a look at the following code snippet.
+
+MyUtils mock = mock(MyUtils.class);
+		
+when(mock.add(10, 40)).thenReturn(50);
+doReturn(50).when(mock).add(10, 40);
+Here we are instructing the Mockito to provide or give a behavior of adding 10 and 40 to the add method of MyUtils and as a result, to return the value of 50
+
+Let’s try to understand the above concept using a demo project
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.kkjavatutorials</groupId>
+  <artifactId>MockitoAddingBehaviorExample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+   	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+</project>
+ 
+
+MyUtils.java
+
+package com.kkjavatutorials;
+ 
+public interface MyUtils {
+ 
+	public abstract int add(int n1,int n2);
+	public abstract int multiply(int n1,int n2);
+}
+ 
+
+MyUtilsTest.java
+
+package com.kkjavatutorials;
+ 
+import org.junit.jupiter.api.Test;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+ 
+import java.util.List;
+ 
+public class MyUtilsTest {
+ 
+	@Test
+	void addMockitoSimpleBehaviorTest1() {
+		MyUtils mock = mock(MyUtils.class);
+		
+		when(mock.add(10, 40)).thenReturn(50);
+		doReturn(50).when(mock).add(10, 40);
+		
+		assertEquals(50, mock.add(10, 40));
+		assertEquals(50, mock.add(10, 40));
+	}
+	
+	
+	@Test
+	void addMockitoSimpleBehaviorTest2() {
+		MyUtils mock = mock(MyUtils.class);
+		
+		when(mock.multiply(20, 20)).thenReturn(400);
+		assertEquals(400, mock.multiply(20, 20));
+	}
+	
+	
+	@Test
+	void addMockitoconsecutiveMethodCallsTest() {
+		
+		MyUtils mock = mock(MyUtils.class);
+		
+		when(mock.add(anyInt(), anyInt())).thenReturn(60,70,90);
+		
+		assertEquals(60, mock.add(20, 40));
+		assertEquals(70, mock.add(20, 50));
+		assertEquals(90, mock.add(50, 40));
+	}
+	
+	
+	@Test
+	void addMockitoSpyBehaviorTest() {
+		
+		List<String> spy = spy(List.class);
+		doReturn(20).when(spy).size();
+		assertEquals(20, spy.size());
+	}
+	
+	@Test
+	void addMockitoBehaviorWithCustomAnswerTest() {
+		
+		List mock = mock(List.class);
+		doAnswer(answer ->"My Answer").when(mock).get(anyInt());
+		
+		assertEquals("My Answer", mock.get(2));
+	}
+ 
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Mocking Void Methods with Mockito
+
+In this post, We will learn How to mock void methods with Mockito
+
+Usually most of the time Mockito’s org.mockito.stubbing.Stubber.when(T) method is really good enough to mock an object’s behavior but when we need to mock a void method then we can’t use when(T) method.
+
+Mockito Mock Void Method
+Mockito provides the following methods that can be used to mock void methods.
+
+org.mockito.Mockito.doAnswer(Answer): We can use  this method in Mockito when we want to stub a void method with generic Answer
+org.mockito.Mockito.doThrow(Throwable...): We can use this method when we want to stub a void method with an exception
+org.mockito.Mockito.doNothing(): We can use this method for setting void methods to do nothing. We should be beware that the void method on mocks does nothing by default. However, there are very rare situations when the doNothing() method comes handy
+org.mockito.Mockito.doCallRealMethod(): We  can use this method when we want to call the real implementation of a method
+Mockito mock void method example
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.kkjavatutorials</groupId>
+	<artifactId>MockingVoidMethodsWithMockitoExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+	</properties>
+ 
+	<dependencies>
+ 
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.5.7</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+</project>
+ 
+
+Dictionary.java
+---------------
+
+package com.kkjavatutorials;
+ 
+public interface Dictionary {
+ 
+	public abstract void add(String word, String meaning);
+	public abstract String getMeaning(String word);
+}
+ 
+
+WordDictionary.java
+-------------------
+
+package com.kkjavatutorials;
+ 
+import java.util.HashMap;
+import java.util.Map;
+ 
+public class WordDictionary implements Dictionary {
+	
+    private Map<String, String> wordsMap;
+ 
+    public WordDictionary() {
+        wordsMap = new HashMap<String, String>();
+    }
+    public void add(String word, String meaning) {
+        wordsMap.put(word, meaning);
+    }
+    public String getMeaning(String word) {
+        return wordsMap.get(word);
+    }
+}
+
+
+WordDictionaryTest.java
+-----------------------
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
+ 
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+/**
+ * Mocking Void Methods with Mockito Examples
+ * @author KK JavaTutorials
+ */
+public class WordDictionaryTest {
+	
+	@Test
+	public void whenAddCalledWithVerify() {
+		
+		WordDictionary wordDictionary = mock(WordDictionary.class);
+	  
+		doNothing().when(wordDictionary).add(anyString(), anyString());
+	    wordDictionary.add("awesome", "Very Good");
+	 
+	    verify(wordDictionary, times(1)).add("awesome", "Very Good");
+	    
+	    System.out.println(wordDictionary.getMeaning("awesome"));
+	}
+	
+	@Test
+	public void whenAddCalledValueCaptured() {
+		
+		WordDictionary wordDictionary = mock(WordDictionary.class);
+	    ArgumentCaptor<String> valueCapture = ArgumentCaptor.forClass(String.class);
+	    
+	    doNothing().when(wordDictionary).add(anyString(), valueCapture.capture());
+	 
+	    wordDictionary.add("awesome", "Very Good");
+	    
+	    assertEquals("Very Good", valueCapture.getValue());
+	}
+	
+	@Test
+	public void whenAddCalledRealMethodUsingSpy() {
+		
+		WordDictionary wordDictionary = spy(WordDictionary.class);
+	    doCallRealMethod().when(wordDictionary).add(anyString(),anyString());
+	    
+	    wordDictionary.add("awesome", "Very Good");
+	 
+	    verify(wordDictionary, times(1)).add("awesome", "Very Good");
+	    assertEquals("Very Good", wordDictionary.getMeaning("awesome"));
+	    //System.out.println(wordDictionary.getMeaning("awesome"));
+	}
+	
+	/**
+	 * Test for void Return Type method with Exception
+	 */
+	@Test
+	public void voidMethodThrowingExceptionMockitoTest() {
+		WordDictionary wordDictionary = mock(WordDictionary.class);
+		
+		doThrow(new IllegalStateException("Error occurred!!"))
+	      .when(wordDictionary)
+	      .add(anyString(), anyString());
+	    
+	    assertThrows(IllegalStateException.class, ()->wordDictionary.add("awesome", "Very Good"));
+	}
+ 
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

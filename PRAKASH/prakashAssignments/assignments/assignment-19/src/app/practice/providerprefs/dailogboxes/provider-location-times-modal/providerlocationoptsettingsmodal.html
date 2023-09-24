@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    Time &amp; Location Preferences for {{vm.provWeightsForm.provider_name}}
+    <a class="close-btn pull-right" ng-click="vm.closeModal()"><i class="glyphicon glyphicon-remove"></i></a>
+  </h3>
+</div>
+<div class="modal-body">
+<div class="col-sm-12 text-center text-danger" ng-if="vm.editProviderPrefsErrorMsg">{{vm.editProviderPrefsErrorMsg}}</div>
+<h3>Value Weights</h3>
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Location</div>
+    <div class="col-sm-10 text-center">
+      <rzslider rz-slider-model="vm.provWeightsForm.loc_weight" rz-slider-options="vm.provWeightSliderOpt.options"></rzslider>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Time of Day</div>
+    <div class="col-sm-10 text-center">
+      <rzslider rz-slider-model="vm.provWeightsForm.tofd_weight" rz-slider-options="vm.provWeightSliderOpt.options"></rzslider>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Proximity</div>
+    <div class="col-sm-10 text-center">
+      <rzslider rz-slider-model="vm.provWeightsForm.prox_weight" rz-slider-options="vm.provWeightSliderOpt.options"></rzslider>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Patient Distance</div>
+    <div class="col-sm-10 text-center">
+      <rzslider rz-slider-model="vm.provWeightsForm.loc_prox_weight" rz-slider-options="vm.provWeightSliderOpt.options"></rzslider>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Location</div>
+    <div class="col-sm-6 text-center">
+      <div class="select-arrow">
+        <select class="form-control" name="sel_location" ng-change="vm.changeProvPrefLocTimeSlots(sel_location)" ng-model="sel_location" ng-options="opt as opt.location_name for opt in vm.providerOptLocations">
+          <option value="">Select</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div ng-if="sel_location">
+    <div class="mt15">
+      <div class="row">
+        <div class="col-sm-2 mt15 pl35">Location Desirability</div>
+        <div class="col-sm-10 text-center">
+          <ng-repeat-slider val-model="sel_location.desirability" on-change="vm.updateProviderLocPref(sel_location)"></ng-repeat-slider>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2 mt15 pl35">Patient Distance Desirability</div>
+        <div class="col-sm-10 text-center">
+          <ng-repeat-slider val-model="sel_location.proximity" on-change="vm.updateProviderLocPref(sel_location)"></ng-repeat-slider>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 mt15 pl35"><h4>Time Slots</h4></div>
+      <div class="col-sm-10"></div>
+    </div>
+      <div class="row" ng-repeat="timeslot in vm.providerLocTimes">
+      <div class="col-sm-2 mt15 pl35">{{timeslot.start_time}} - {{timeslot.end_time}}</div>
+      <div class="col-sm-10 text-center">
+        <ng-repeat-slider val-model="timeslot.desirability" on-change="vm.updateProviderLocTimeSlotPref(sel_location, timeslot)"></ng-repeat-slider>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-default secondary-btn" type="button" ng-click="vm.closeModal()">Close</a>
+</div>

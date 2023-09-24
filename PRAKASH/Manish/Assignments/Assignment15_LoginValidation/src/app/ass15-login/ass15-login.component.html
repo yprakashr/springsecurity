@@ -1,0 +1,88 @@
+<div class="login" *ngIf="!session">
+
+    <div class="section-1">
+        <div class="row">
+
+            <!-- left col -->
+            <div class="col form-col">
+
+                <div class="h3 text-center form-label">Login to your account</div>
+                <div class=" text-center text-danger h6">See your growth and get consulting support</div>
+
+                <!-- login form -->
+                <form [formGroup]="LoginForm" id="registration-form" class="form-inline"
+                    (ngSubmit)="LoginAction(LoginForm)" #loginForm="ngForm">
+
+                    <!-- username -->
+                    <div class="mt-3">
+                        <input type="text" class="form-control" placeholder="username" formControlName="username">
+
+                        <div class="text-center" *ngIf="LoginForm.get('username')?.invalid && 
+                    LoginForm.get('username')?.errors && 
+                    (LoginForm.get('username')?.dirty || LoginForm.get('username')?.touched)">
+                            <small class="text-danger" *ngIf="LoginForm.get('username')?.hasError('required')">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- password -->
+                    <div class="mt-3">
+
+                        <div class="input-group">
+                            <input type="password" id="password" class="form-control" placeholder="password"
+                                formControlName="password">
+                            <button type="button" id="show-pass-btn" class="btn btn-outline-primary"
+                                (click)="togglePassword()"><i class="bi bi-eye"></i></button>
+                        </div>
+
+                        <div class="text-center" *ngIf="LoginForm.get('password')?.invalid && 
+                    LoginForm.get('password')?.errors && 
+                    (LoginForm.get('password')?.dirty || LoginForm.get('password')?.touched)">
+                            <small class="text-danger" *ngIf="LoginForm.get('password')?.hasError('required')">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- login btn -->
+                    <div class="text-center mt-3">
+                        <button type="submit" [disabled]="!loginForm.form.valid"
+                            class="btn btn-primary rounded-pill">Login</button>
+                    </div>
+
+                    <div class="mt-3 text-center">
+                        <a routerLink="/acc_recovery">Forgot password ?</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- right col -->
+            <div class="col right-col right text-center">
+                <div class="h1 ">New here ?</div>
+                <p class=" h6">Signup and discover a great experience on ManishHub</p>
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn" routerLink="/register">Signup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-2">
+        <p>ManishHub is a software solution that allows administrators to manage users within an organization. This
+            system
+            typically includes features such as user authentication, access control, and user provisioning. With a user
+            management system, administrators can easily create, modify, and delete user accounts, as well as assign
+            specific permissions to each user.</p>
+
+        <p>This helps to ensure that only authorized users have access to sensitive data or resources, while also
+            simplifying the process of managing large numbers of users. Additionally, some user management systems also
+            include features such as password management and multi-factor authentication to further enhance security.
+        </p>
+    </div>
+
+    <app-ass15-footer></app-ass15-footer>
+</div>

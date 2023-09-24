@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebZone</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+  <div class="container-fluid">
+    <header class="ass-1-header">
+      <a>
+        <img src="../assets/images/java.webp" class="d-inline-block align-top" width="50" height="50" alt="java">
+        </a>
+
+<span class="navt-ass-1">Java</span>  <span class="navbar-brand mb-0 h1">Developer</span>
+
+      </header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <button (click)="collapsed=!this.collapsed" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [ngClass]="{collapse:collapsed}" id="navbarNavAltMarkup">
+      <div class="navbar-nav ass-1-ng">
+      <a class="nav-link " routerLink="home" >Home</a>
+      <a class="nav-link " routerLink="about" >About</a>
+      <a class="nav-link " routerLink="contact">Contact</a>
+</div>
+</div>
+</nav>
+</div>
+<router-outlet></router-outlet>
+
+
+<app-footer></app-footer>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title> -->
+  <!-- <link rel="icon" type="image/x-icon" href="../../../../../../../bootstrap-5.3.0-alpha1-dist/js/bootstrap.js">
+  <link rel="icon" type="image/x-icon" href="../../../../../../../jquery/jquery-3.6.3.js production.js"> -->
+<!-- </head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button (click)="collapsed=!this.collapsed" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [ngClass]="{collapse:collapsed,'navbar-collapse':true}" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="#">Disabled</a>
+      </div>
+    </div>
+  </nav>
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+

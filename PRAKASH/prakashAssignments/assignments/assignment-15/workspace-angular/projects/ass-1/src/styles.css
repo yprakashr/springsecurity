@@ -1,0 +1,47 @@
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+.ass-1-ng-home{
+  background-image: radial-gradient( rgb(241, 241, 12),rgb(255, 255, 255));
+  background-clip: border-box;
+  border-radius: 20px;
+  }
+.ce-danger{
+    text-align: center;
+    color: red;
+}
+.about-ass{
+margin-left: 20px;
+padding:20px;
+}
+.banner-contact{
+width: 100%;
+height: 200px;
+}
+.contact-text{
+  padding-left: 10px;
+letter-spacing: 5px;
+color: red;
+}
+.icon{
+  background-color: rgb(133, 118, 70);
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 20px;
+
+}
+.icon:hover{
+  rotate: 180deg;
+}
+.bi-icon-contact{
+  margin-top: 100px;
+  margin-bottom: 20px;
+  padding:20px;
+}
+
+
+
+
+
+
+

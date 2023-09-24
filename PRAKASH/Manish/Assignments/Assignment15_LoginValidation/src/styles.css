@@ -1,0 +1,706 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+
+body {
+  height: 800px;
+}
+
+/* ------------------------------ HEADER ------------------------------ */
+.header {
+  font-family: "Dancing Script", cursive;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, green);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.header a:hover {
+  cursor: pointer;
+}
+
+/* ------------------------------ FOOTER ------------------------------ */
+footer a:hover,
+footer span:hover {
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, green);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+footer {
+  box-shadow: 0px -1px 5px lightgray;
+  background-color: white;
+}
+
+footer .logo {
+  font-family: "Dancing Script", cursive;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, green);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* ------------------------------ NAVBAR ------------------------------ */
+.NAVBAR {
+  position: sticky;
+  top: 0;
+  background-image: linear-gradient(
+    to left,
+    rgb(255, 223, 255),
+    rgb(255, 222, 222)
+  );
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar .nav-link {
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  color: rgb(159, 0, 180);
+}
+
+.navbar .navbar-nav > .active > a {
+  display: none;
+}
+
+.navbar .navbar-nav a:hover {
+  color: rgb(159, 0, 180);
+  transform: scale(1.05);
+  font-weight: 600;
+  /* transition: 300ms; */
+}
+
+.navbar a:last-child {
+  margin-right: 10px;
+}
+
+.navbar .navbar-nav .logout {
+  color: red;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.navbar .navbar-nav .logout:hover {
+  background: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  transform: scale(1.05);
+  cursor: pointer;
+  color: red;
+}
+
+.navbar .dropdown button {
+  border: 1px solid rgb(167, 0, 189);
+}
+.navbar .dropdown button:hover {
+  border: 1px solid rgb(170, 60, 170);
+  background-color: rgb(170, 60, 170);
+}
+
+.navbar .dropdown-menu a {
+  background-color: transparent;
+  margin: 0;
+}
+
+.navbar .dropdown-menu a:hover {
+  color: black;
+}
+
+.navbar .dropdown-menu {
+  --bs-dropdown-min-width: fit-content !important;
+}
+/* ------------------------------ HOME ------------------------------ */
+.home .section-1 {
+  margin: 25px;
+}
+
+.home .footer {
+  width: 100%;
+  box-shadow: 0px -1px 5px lightgray;
+  background-color: white;
+}
+
+.home .section-2 {
+  padding: 50px;
+  background-image: linear-gradient(to right, #8b1341, #831783);
+  color: white;
+}
+
+.home .section-2 .boxes-4 {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border: 1px solid rgba(136, 136, 136, 0.3);
+  margin: 20px;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0px 0px 50px #5a005a;
+  height: auto;
+}
+
+.home .section-2 .boxes-4:hover {
+  backdrop-filter: unset;
+  -webkit-backdrop-filter: unset;
+  transform: scale(1.05);
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.home .h1 {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #f32170, #cf23cf);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.home .left-para {
+  text-align: justify;
+  color: rgb(224, 0, 131);
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.home .container-fluid img:hover {
+  transform: scale(1.1, 1.1);
+  transition: 500ms;
+}
+
+/* ------------------------------ REGISTER ------------------------------ */
+.register footer {
+  margin-top: 50px;
+  width: 100%;
+  box-shadow: 0px -1px 5px lightgray;
+  background-color: white;
+}
+
+.register .container {
+  box-shadow: 0px 0px 10px rgb(250, 203, 250);
+  border-radius: 20px;
+}
+
+.register .form,
+.register .form-col {
+  margin-top: 2%;
+}
+
+.register input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.register .form-label {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #cf23cf, #ff6b08);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.register input[type="text"],
+.register input[type="password"],
+.register input[type="number"] {
+  outline: none;
+  border: 1px solid rgb(204, 204, 204);
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.register #password {
+  outline: none;
+  border: 1px solid rgb(204, 204, 204);
+  border-right: none;
+  width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top-right-radius: none;
+  border-bottom-right-radius: none;
+}
+
+@media (max-width: 450px) {
+  .register input[type="text"],
+  .register input[type="password"],
+  .register input[type="number"] {
+    width: 200px;
+  }
+
+  .register #password {
+    width: 160px;
+  }
+  
+  .register .gender {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .register .form-check {
+    display: flex;
+    margin-left: 27vw;
+  }
+}
+
+.register .gender {
+  text-align: center;
+}
+
+.register input:hover {
+  border: 1px solid blue;
+  box-shadow: 0px 0px 5px rgb(77, 77, 255);
+  transform: scale(1.05);
+  transition: 400ms;
+}
+
+.register .container-fluid img:hover {
+  transform: scale(1.1, 1.1);
+  transition: 500ms;
+}
+
+.register .input-group {
+  width: fit-content !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ------------------------------ LOGIN ------------------------------ */
+.login {
+  overflow: hidden;
+}
+
+.login footer {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.login .form-label,
+#recovery-form-name {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #cf23cf, #ff6b08);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.login input {
+  outline: none;
+  border: 1px solid rgb(204, 204, 204);
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.login input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.login input:hover {
+  transform: scale(1.05);
+  border: 1px solid rgb(136, 0, 255);
+  box-shadow: 0px 0px 5px rgb(0, 0, 255);
+  transition: 500ms;
+}
+
+.login .form-col {
+  padding: 10%;
+  padding-bottom: 5%;
+}
+
+.login .form-col button[type="submit"] {
+  box-shadow: 0px 0px 5px rgb(62, 0, 134);
+}
+.login .form-col button:hover {
+  transform: scale(1.05);
+  transition: 300ms;
+}
+
+.login .right-col {
+  padding: 10%;
+  padding-bottom: 5%;
+}
+
+.login .section-2 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  text-align: justify;
+  color: rgb(175, 0, 123);
+  border-radius: 40px;
+  background-image: radial-gradient(rgb(255, 212, 219), white);
+  padding: 40px;
+  box-shadow: 0px 0px 5px rgb(255, 210, 218);
+  font-size: 15px;
+}
+
+.login .right button {
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0px 0px 5px rgb(135, 0, 0);
+  background-color: rgb(255, 62, 62);
+  border: none;
+}
+
+.login .right button:hover {
+  transform: scale(1.1);
+  transition: 500ms;
+}
+
+.login .right .h1,
+.login .h6 {
+  background: linear-gradient(to right, #cf23cf, #ff6b08);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.login #password {
+  outline: none;
+  border: 1px solid rgb(204, 204, 204);
+  width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top-right-radius: none;
+  border-bottom-right-radius: none;
+}
+
+.login .input-group {
+  width: fit-content !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ------------------------------ USERS ------------------------------ */
+.users {
+  height: auto;
+}
+
+.users #heading {
+  font-family: "Poppins", sans-serif;
+  color: rgb(255, 58, 58);
+}
+
+.users footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  bottom: 0px;
+  background-color: white;
+  box-shadow: 0px -1px 5px lightgray;
+  width: 100%;
+}
+
+.users #Users-table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  /* box-shadow: 0px 0px 20px gray */
+}
+
+.users .paginator {
+  transform: translate(0px, -16px);
+  background-color: white;
+  border-radius: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  box-shadow: 0px 10px 10px rgb(207, 207, 207);
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding-bottom: 10px;
+}
+
+.users table {
+  border-radius: 20px;
+}
+
+.users .table {
+  border-bottom: 0px solid transparent;
+}
+
+.users .table table th {
+  text-shadow: 0px 0px 5px rgb(255, 0, 0);
+  background-color: rgb(255, 88, 88);
+  color: white;
+  text-align: center;
+}
+
+.users tbody {
+  text-align: center;
+}
+
+.users td {
+  text-align: center;
+}
+
+.users .mat-sort-header-container {
+  justify-content: center;
+}
+
+.users thead th:first-child {
+  border-top-left-radius: 20px;
+}
+.users thead th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.users tbody tr:nth-child(even) td {
+  background-color: rgb(255, 231, 231);
+}
+
+.users tbody tr:last-child td:first-child {
+  border-bottom: none;
+}
+
+.users tbody tr:last-child td:last-child {
+  border-bottom: none;
+}
+
+.users tbody tr:last-child {
+  border-bottom: 1px solid rgb(255, 199, 199);
+}
+
+.users thead tr th:hover {
+  background-color: rgb(163, 26, 26);
+  color: white;
+  cursor: pointer;
+  transform: scale(1.1);
+  border-radius: 5px;
+  transition: 300ms; 
+}
+
+.users #search {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgb(172, 172, 172);
+  padding: 3px;
+  padding-left: 10px;
+}
+
+.users #search:focus {
+  outline: none;
+  border-bottom: 2px solid rgb(255, 87, 87);
+  transition: 300ms;
+}
+
+.users #search:hover {
+  outline: none;
+  border-bottom: 2px solid rgb(255, 87, 87);
+  transition: 300ms;
+  transform: scale(1.05);
+}
+
+.users .table > :not(caption) > * > * {
+  border-bottom: none;
+}
+
+.users .mat-sort-header-stem,
+.users .mat-sort-header-indicator {
+  color: white;
+}
+
+.users .pagecontainer {
+  color: rgb(0, 0, 190);
+}
+
+.users .edit-btn {
+  border: none;
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.users .edit-btn:hover {
+  box-shadow: 0px 0px 5px rgb(0, 75, 0);
+  transition: 300ms;
+}
+
+.users .delete-btn {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.users .delete-btn:hover {
+  box-shadow: 0px 0px 5px rgb(151, 0, 0);
+  transition: 300ms;
+}
+
+.users #sessionBAD .row .col1 {
+  padding-top: 20%;
+}
+
+/* ------------------------------ EDIT OVERLAY ------------------------------ */
+.edit-overlay .modal-header {
+  display: block !important;
+}
+
+.edit-overlay label {
+  margin-left: 5px;
+}
+
+.edit-overlay .modal-title {
+  font-family: "Poppins", sans-serif;
+  color: blue;
+}
+
+.edit-overlay input:hover {
+  transform: scale(1.02);
+  border: 1px solid rgb(136, 0, 255);
+  box-shadow: 0px 0px 5px rgb(0, 0, 255);
+  transition: 500ms;
+}
+
+.edit-overlay input[type="password"] {
+  border-right: none;
+}
+
+.edit-overlay input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+.edit-overlay select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/* ------------------------------ MY ACCOUNT ------------------------------ */
+.my-account .container {
+  transform: scale(1.25);
+  margin-top: 20vh !important;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 0px 5px rgb(255, 161, 247);
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.my-account footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.my-account .right-col div {
+  width: fit-content;
+  margin-left: 15%;
+}
+
+.my-account #sessionBAD {
+  box-shadow: unset;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  transform: unset;
+  margin-top: unset;
+  height: 10;
+}
+
+.my-account #sessionBAD .row .col1 {
+  padding-top: 21%;
+}
+
+/* ------------------------------ SNACKBAR ------------------------------ */
+.registerSnackbar {
+  margin-bottom: 30% !important;
+}
+
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 10000;
+}
+
+.updateSnackbar {
+  z-index: 999 !important;
+}
+
+/* ------------------------------ ACCOUNT RECOVERY ------------------------------ */
+.forgot-form input {
+  width: 250px;
+}
+
+.forgot-form #pass {
+  width: 210px;
+}
+
+.acc_rec footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#show-pass-btn {
+  z-index: 0;
+}
+
+/* ------------------------------ CONTACT US ------------------------------ */
+.contact-us #heading {
+  font-family: "Poppins", cursive;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, green);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.contact-us footer {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.contact-us .form-col {
+  margin-top: 5rem !important;
+}
+
+.contact-us .container {
+  box-shadow: 0px 0px 10px rgb(250, 203, 250);
+  border-radius: 20px;
+}
+
+.contact-us input:hover,
+.contact-us textarea:hover {
+  border: 1px solid blue;
+  box-shadow: 0px 0px 5px rgb(77, 77, 255);
+  transform: scale(1.05);
+  transition: 400ms;
+}
+
+@media screen and (min-width: 450px) {
+  .contact-us .img-fluid {
+    transform: translate(50px, 0px);
+  }
+}
+
+/* ------------------------------ LOADER SPINNER ------------------------------ */
+.loading-spinner {
+  background-color: #0000001f;
+  position: fixed;
+  width: 100%;
+  top: 50vh;
+  left: 0;
+  height: 0;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  z-index: 9999;
+}
+
+.loading-spinner img {
+  align-self: end;
+}
+
+.loading-message {
+  text-align: center;
+  align-self: start;
+}

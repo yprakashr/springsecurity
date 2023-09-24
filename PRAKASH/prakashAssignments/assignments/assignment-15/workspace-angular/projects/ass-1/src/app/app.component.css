@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+
+
+*{
+  padding: 0;
+  margin:0;
+  box-sizing: border-box;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+  .navbar  a{
+    text-decoration: none;
+    color:rgb(255, 14, 14);
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+  .navbar a:hover{
+  color: rgb(255, 158, 242);
+}
+
+  button:hover{
+  transform: scale(1.07);
+  cursor:pointer;
+}
+
+  .navbar ul li a:hover{
+  color:#ea1538;
+  transition: .10s;
+}
+
+  button a{
+text-decoration: none;
+color: whitesmoke;
+}
+
+.ass-1-img{
+display:inline-flex;
+}
+
+.btn{
+width: 100px;
+height: 50px;
+background-color:rgb(2, 190, 172);
+margin-left: 200px;
+}
+
+.row{
+  display: flex;
+  justify-content:space-evenly;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 10px;
+  align-items: center;
+  width:100%;
+}
+
+.ass-1-ng{
+/* margin-left: 10px; */
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+.ass-1-header{
+text-align: center;
+align-items: center;
+justify-content: center;
+box-shadow:0 0 5 10px lightblue;
+}
+
+.nav-link{
+  color:red;
+  align-items: center;
+}
+
+.navt-ass-1{
+font-size: 30px;
+font-weight:900;
+margin-right: 10px;
+margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+

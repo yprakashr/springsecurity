@@ -1,0 +1,139 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      
+<div class="limiter mt-3 py-5">
+  <div class="container-login100">
+    <div class="wrap-login100">
+    
+    
+    
+      <form [formGroup]="RegForm"  class="login100-form validate-form p-l-35 p-r-35 p-t-85" (ngSubmit)="RegAction()">
+        <span class="login100-form-title">
+          Sign Up
+        </span> 
+    
+        
+
+        <div class="form-group">
+          <div class="wrap-input100 my-3 validate-input m-b-16" data-validate="Please enter email">
+            <input class="input100" type="text" name="fname" id="fname" placeholder="First Name" 
+            formControlName="firstname">
+          </div>
+          <div class="text-center" *ngIf="RegForm.get('fname')?.invalid && 
+          RegForm.get('firstname')?.errors && 
+          (RegForm.get('firstname')?.dirty || RegForm.get('firstname')?.touched)">
+          <span class="text-danger" *ngIf="RegForm.get('firstname')?.hasError('required')">Error : First Name is required !</span>
+          <span class="text-danger" *ngIf="RegForm.get('firstname')?.hasError('pattern')">Error : Please provide a valid Name(numbers,special characters are not allowed) !</span>
+        </div>
+      </div>
+
+
+
+
+        <div class="form-group">
+          <div class="wrap-input100 my-3 validate-input m-b-16" data-validate="Please enter email">
+            <input class="input100" type="text" name="lname" id="lname" placeholder="Last Name" 
+            formControlName="lastname">
+          </div><div class="text-center" *ngIf="RegForm.get('lastname')?.invalid && 
+          RegForm.get('lastname')?.errors && 
+          (RegForm.get('lastname')?.dirty || RegForm.get('lastname')?.touched)">
+          <span class="text-danger" *ngIf="RegForm.get('lastname')?.hasError('required')">Error : Last Name is required !</span>
+          <span class="text-danger" *ngIf="RegForm.get('lastname')?.hasError('pattern')">Error : Please provide a valid Name(numbers,special characters are not allowed) !</span>
+        </div></div>
+
+      
+      
+      
+      
+      
+      
+      
+        <div class="form-group">
+          <div class="wrap-input100 my-3 validate-input" data-validate="Please enter password">
+            <input class="input100"  type="email" name="email" placeholder="Email" id="email" 
+            formControlName="email" > 
+          </div>
+          <div class="text-center" *ngIf="RegForm.get('email')?.invalid && 
+          RegForm.get('email')?.errors && 
+          (RegForm.get('email')?.dirty || RegForm.get('email')?.touched)">
+          <span class="text-danger" *ngIf="RegForm.get('email')?.hasError('required')">Error : Email is required !</span>
+          <span class="text-danger" *ngIf="RegForm.get('email')?.hasError('pattern')">Error : Invlaid Email (Ex: yprakashr@gmail.com) !</span>
+        </div>
+      </div>
+        
+      
+      
+
+
+
+
+
+        <div class="form-group">
+          <div class="wrap-input100 my-3 validate-input">
+            <input class="input100" type="password" name="password" placeholder="Password" id="password"
+            formControlName="password" >  
+              <button type="button" id="show-pass-btn" class="btn-eye"
+              (click)="togglePassword()"><i class="bi bi-eye"></i></button>
+          </div>
+         <div class="text-center" *ngIf="RegForm.get('password')?.invalid && 
+         RegForm.get('password')?.errors && 
+          RegForm.get('password')?.touched">
+          <span class="text-danger" *ngIf="RegForm.get('password')?.hasError('required')">Error : Password is required !</span>
+          <span class="text-danger" *ngIf="RegForm.get('password')?.hasError('pattern')">Error : Password must be at least 5 characters long(atleast one number,special character,one capital letter,one small letter). !</span>
+        </div>
+      </div>
+
+
+
+
+
+        <div class="form-group ">
+          <div class="wrap-input100 my-3 validate-input" data-validate="Please enter password">
+            <input class="input100" type="password"  name="cpassword" placeholder="Confirm Password" id="Confirm-Password" 
+            formControlName="cpassword">
+              <button type="button" id="show-pass-btn" class="btn-eye"
+              (click)="togglecPassword()"><i class="bi bi-eye"></i></button>
+          </div>
+          <div class="text-center text-danger" *ngIf="RegForm.get('cpassword')?.touched"> 
+            <div class="text-center text-danger" *ngIf="RegForm.get('password')?.invalid && 
+            RegForm.get('password')?.errors">
+              <span class="text-danger" *ngIf="RegForm.get('cpassword')?.hasError('required')">Error : Password is required. !</span>
+            </div>
+            <span *ngIf="RegForm.errors?.['passwordmatcherror']">Error : Confirm password not matching. !</span>
+        </div>
+      </div>
+
+
+  
+
+        <div class="container-login100-form-btn">
+          <button id="subm" class="login100-form-btn" [disabled]="RegForm.invalid" type="submit">
+            Sign Up
+          </button>
+        </div>
+        <!-- <div class="success text-center" *ngIf="message">Great! you Registered Successfully.</div> -->
+       
+
+
+
+        <div class="flex-col-c p-t-20 p-b-20">
+          <span class="txt1 p-b-9">
+            Do you have an account?
+          </span>
+          <a  routerLink="/login" class="txt3">
+            Sign In now
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+

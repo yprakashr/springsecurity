@@ -1,0 +1,14 @@
+.abs{
+  position: absolute;
+}
+.success{
+  color:rgb(0, 130, 19);
+  font-family: 'EB Garamond', serif;
+  font-size:larger;
+  font-weight: 700;
+  margin-top: 10px;
+  background-image: linear-gradient(to bottom right, rgb(0, 255, 34), rgb(0, 238, 255));
+  border-radius: 25px;
+ 
+
+}

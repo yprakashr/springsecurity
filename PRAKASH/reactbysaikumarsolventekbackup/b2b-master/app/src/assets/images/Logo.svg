@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="215" height="32" viewBox="0 0 215 32">
+  <g id="Logo" transform="translate(-10 -28)">
+    <g id="Group_16824" data-name="Group 16824" transform="translate(6 4)">
+      <text id="Medex_Pharma" data-name="Medex Pharma" transform="translate(43 48)" fill="#fff" font-size="22" font-family="NeutraDisp-Titling, Neutra Display Titling" font-style="italic" letter-spacing="0.02em"><tspan x="0" y="0">Medex Pharma</tspan></text>
+    </g>
+    <g id="Group_16887" data-name="Group 16887" transform="translate(-297.528 -2.528)">
+      <rect id="Rectangle_4270" data-name="Rectangle 4270" width="32" height="32" rx="4" transform="translate(307.528 30.528)" fill="#3a63f3"/>
+      <text id="M" transform="translate(314.528 54.528)" fill="#fff" font-size="23" font-family="NeutraDisp-Titling, Neutra Display Titling" font-style="italic"><tspan x="0" y="0">M</tspan></text>
+    </g>
+  </g>
+</svg>

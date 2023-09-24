@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            justify-content: center;
+        }
+
+        h1{
+            text-align: center;
+        }
+        
+        .content{
+            border-collapse: collapse;
+            margin: 25px 200px ;
+            font-size: 0.9cm;
+            /* padding: 20px; */
+            min-width: 400px;
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            
+        }
+        .content thead tr th{
+            background-color:cornflowerblue;
+            color:aliceblue;
+            text-align: left;
+            font-weight:bold;
+            padding: 10px;    
+            opacity: 80%;
+        }
+        .content th, .content td{
+            padding: 12px 15px;
+            border-left: 1px solid wheat; 
+        }
+         .content td:hover{
+            color: crimson;
+
+        }
+        .content tbody tr:nth-last-of-type(even){
+            background-color: darkgrey;
+        }
+        .content tbody tr{
+            border-bottom: 1px solid wheat;
+            /* border-left: 1px solid wheat; */
+        }
+        .content tbody tr:last-of-type{
+            border-bottom: 2px solid green;
+        }
+            </style>
+</head>
+<body>
+    <h1>Styling HTML Tables w/ CSS</h1>
+    <table class="content"  text="center">
+        <thead>
+            <tr>
+                <th rowspan="2">Emp.ID</th>
+                <th rowspan="2">Name</th>
+                <th rowspan="2">Grade</th>
+                <th rowspan="2">DOB</th>
+                <th colspan="2" style="text-align: center; border-bottom:1px solid wheat">Payscale</th>
+            </tr>
+            <tr>
+            <th>min</th>
+            <th>max</th>
+        </tr>
+        </thead>
+            <tr>
+            <td>1</td>
+            <td>Manish</td>
+            <td>A</td>
+            <td>29/09/1999</td>
+            <td>50,000</td>
+            <td>1,00,000</td>
+            </tr>
+<tr>
+    <td>2</td>
+    <td>Prafull</td>
+    <td>A</td>
+    <td>20/09/1996</td>
+    <td>50,000</td>
+    <td>1,00,000</td>
+
+</tr>
+<tr>
+    <td>3</td>
+    <td>Mahesh</td>
+    <td>A</td>
+<td>15/06/1996</td>
+<td>50,000</td>
+<td>1,00,000</td>
+</tr>
+<tr>
+    <td>4</td>
+    <td>Prakash</td>
+    <td>A</td>
+<td>27/11/1994</td>
+<td>50,000</td>
+<td>1,00,000</td>
+</tr>
+<tr>
+    <td>5</td>
+    <td>Vikram</td>
+    <td>A</td>
+<td>09/09/1992</td>
+<td>50,000</td>
+<td>1,00,000</td>
+</tr>
+<tr>
+    <td>6</td>
+    <td>Ramesh</td>
+    <td>A</td>
+<td>05/01/1996</td>
+<td>50,000</td>
+<td>1,00,000</td>
+</tr>
+<tr>
+   
+    </table>
+    
+</body>
+</html>

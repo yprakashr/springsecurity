@@ -1,0 +1,9 @@
+api/node_modules
+api/package-lock.json
+api/.env
+api/error.log
+app/node_modules
+app/package-lock.json
+node_modules
+package-lock.json
+api/public

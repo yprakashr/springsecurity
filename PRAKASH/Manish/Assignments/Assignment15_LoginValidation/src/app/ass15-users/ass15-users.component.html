@@ -1,0 +1,116 @@
+<div class="users" id="users">
+    
+        <div>
+
+            <div class="h3 text-center mt-3" id="heading">
+                Users Data
+            </div>
+
+            <div class="text-center container mt-3">
+                <input id="search" matInput [(ngModel)]="search" (keyup)="applyFilter()" placeholder="Filter">
+                <button (click)="AddUser()" *ngIf="userRole=='ROLE_ADMIN'" class="btn btn-outline-danger btn-sm"
+                    style="margin-left: 10px;" placement="right" ngbTooltip="Add user">
+                    <i class="bi bi-person-add"></i>
+                </button>
+            </div>
+            <div class="table table-responsive mat-elevation-z8 mt-3" id="Users-table">
+
+                <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
+                            ID
+                        </th>
+                        <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+                    </ng-container>
+
+                    <!-- fullname Column -->
+                    <ng-container matColumnDef="fullname">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fullname">
+                            Fullname
+                        </th>
+                        <td mat-cell id="fullname{{user.id}}" *matCellDef="let user"> {{user.fullname}} </td>
+                    </ng-container>
+
+                    <!-- username Column -->
+                    <ng-container matColumnDef="username">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by username">
+                            Username
+                        </th>
+                        <td mat-cell id="username{{user.id}}" *matCellDef="let user"> {{user.username}} </td>
+                    </ng-container>
+
+                    <!-- phonenumber Column -->
+                    <ng-container matColumnDef="phonenumber">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="Sort by phonenumber">
+                            Phonenumber
+                        </th>
+                        <td mat-cell id="phonenumber{{user.id}}" *matCellDef="let user"> {{user.phonenumber}} </td>
+                    </ng-container>
+
+                    <!-- email Column -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by email">
+                            Email
+                        </th>
+                        <td mat-cell id="email{{user.id}}" *matCellDef="let user"> {{user.email}} </td>
+                    </ng-container>
+
+                    <!-- gender Column -->
+                    <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender">
+                            Gender
+                        </th>
+                        <td mat-cell id="gender{{user.id}}" *matCellDef="let user"> {{user.gender}} </td>
+                    </ng-container>
+
+                    <!-- role Column -->
+                    <ng-container matColumnDef="role">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by role">
+                            Role
+                        </th>
+                        <td mat-cell id="gender{{user.role}}" *matCellDef="let user"> {{user.role}} </td>
+                    </ng-container>
+
+                    <!-- edit Column -->
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Edit
+                        </th>
+                        <td mat-cell *matCellDef="let user"> <button (click)="editUser(user.id)" class="edit-btn"
+                                placement="right" ngbTooltip="Edit user {{user.id}}">Edit</button> </td>
+                    </ng-container>
+
+                    <!-- delete Column -->
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Delete
+                        </th>
+                        <td mat-cell *matCellDef="let user"> <button (click)="deleteUser(user.id)" class="delete-btn"
+                                placement="left" ngbTooltip="Delete user {{user.id}}">Delete</button> </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                </table>
+
+            </div>
+
+            <div>
+                <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+
+            <div class="text-center pt-5 text-danger">
+                <h4>Committed to People, Committed to the Future.</h4>
+            </div>
+        </div>
+
+
+    <app-ass15-footer></app-ass15-footer>
+</div>

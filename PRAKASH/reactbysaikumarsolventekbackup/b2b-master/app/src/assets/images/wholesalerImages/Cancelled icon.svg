@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="23.758" viewBox="0 0 24 23.758">
+  <g id="Cancelled_icon" data-name="Cancelled icon" transform="translate(128 1181)">
+    <path id="Subtraction_1" data-name="Subtraction 1" d="M10.552,17H1.594A1.6,1.6,0,0,1,0,15.406V7.438H17v2.913A8.281,8.281,0,0,0,10.552,17Zm6.4-10.625H9.031V0h4.695a1.589,1.589,0,0,1,1.511,1.089l1.68,5.04a.776.776,0,0,1,.029.163c0,.027.006.054.01.082Zm-8.988,0H.043c0-.027.007-.055.01-.082a.776.776,0,0,1,.029-.163l1.68-5.04A1.589,1.589,0,0,1,3.274,0H7.969V6.375Z" transform="translate(-128 -1181)" fill="#fff"/>
+    <path id="Icon_material-cancel" data-name="Icon material-cancel" d="M8.909,3a5.909,5.909,0,1,0,5.909,5.909A5.9,5.9,0,0,0,8.909,3Zm2.955,8.031-.833.833L8.909,9.743,6.788,11.864l-.833-.833L8.076,8.909,5.955,6.788l.833-.833L8.909,8.076l2.121-2.121.833.833L9.743,8.909Z" transform="translate(-118.819 -1172.061)" fill="#fff"/>
+  </g>
+</svg>

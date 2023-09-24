@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    Referring Provider Preferences for {{vm.provWeightsForm.provider_name}}
+    <a class="close-btn pull-right" ng-click="vm.closeModal()"><i class="glyphicon glyphicon-remove"></i></a>
+  </h3>
+</div>
+<div class="modal-body">
+  <div class="col-sm-12 text-center text-danger" ng-if="vm.editProviderPrefsErrorMsg">{{vm.editProviderPrefsErrorMsg}}</div>
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Value Weight</div>
+    <div class="col-sm-10 text-center">
+      <rzslider rz-slider-model="vm.provWeightsForm.refProv_weight" rz-slider-options="vm.provWeightSliderOpt.options"></rzslider>
+    </div>
+  </div>
+  <hr>
+  <div class="row" ng-repeat="refProvPref in vm.filteredPaginationList">
+    <div class="col-sm-2 mt15 pl35">{{refProvPref.refProv_name}}</div>
+    <div class="col-sm-10 text-center">
+      <ng-repeat-slider val-model="refProvPref.desirability" on-change="vm.updateProviderRefProvPref(refProvPref)"></ng-repeat-slider>
+    </div>
+  </div>
+  <div class="row text-center mt15" ng-if="vm.providerRefProviderPref.length > vm.numPerPage">
+    <a class ="btn btn-default ml10 mr5" ng-disabled="vm.currentPage === 1" ng-click="vm.firstPage(vm.providerRefProviderPref)">First</a>
+    <a class ="btn btn-default mr5" ng-disabled="vm.currentPage === 1" ng-click="vm.previousPage(vm.currentPage, vm.providerRefProviderPref)">Previous</a>
+    <a class ="btn btn-default mr5" ng-disabled="vm.currentPage === vm.maxSize" ng-click="vm.nextPage(vm.currentPage, vm.providerRefProviderPref)">Next</a>
+    <a class ="btn btn-default mr5" ng-disabled="vm.currentPage === vm.maxSize" ng-click="vm.lastPage(vm.providerRefProviderPref)">Last</a>
+  </div>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-default secondary-btn" type="button" ng-click="vm.closeModal()">Close</a>
+</div>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animations</title>
+    <script src="jquerylibrary.js"></script>
+    <script>
+        $(function(){
+            $("#txtpwd").keyup(function(){
+                var pwd = $("#txtpwd").val();
+            var regExp=/[A-Z]{4,10}/;
+                // alert(pwd)
+if(pwd.match(regExp)){
+$("#pas").text("strong password");}else
+{
+    $("#pas").text("weak password");
+}
+            })
+            $("#txtpwd").keyup(function(){
+                if(event.keyCode>=65&&event.keyCode<=90){
+                    $("h2").html("caps is on");
+                }else{
+                    $("h2").html("");
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    password: <input type="password" name="pwd" id="txtpwd">
+    <span id="pas"></span>
+    <h2></h2>
+</body>
+</html>

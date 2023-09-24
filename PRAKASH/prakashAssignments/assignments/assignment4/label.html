@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+   <link rel="stylesheet" href="form.css">
+   <!-- <style>
+     /* #content{
+        box-shadow: -5px -5px 2px;
+        
+       }
+  
+       #content{
+        filter: drop-shadow(7px 7px .75em);
+       } */
+       /* .form{
+        margin :20px auto;
+       } */
+       h2{
+        text-align: center;
+    }
+       body{
+        background-repeat: no-repeat;
+        
+       }
+       #center{
+        align-self: start;
+       }
+       .form-table{
+        margin:20px auto;
+        border: 2px solid red;
+        padding:10px;
+        background-image: url("OIP.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 500px;
+        height:500px;
+        color: black;
+       }
+       /* input[type="text"],[type="email"]{
+        font-size:large ;
+       } */
+   </style> -->
+</head>
+<body bgcolor="pink">
+<h2>Form creation</h2>
+<div class="form-table">
+<form action="#" method="post" >
+   <label>Name :</label> <input type="text" placeholder="First Name" autofocus><br><br>
+    <label>Email :</LABEL> <input type="email" placeholder="enter your email"><br><br>
+    
+<label>Select your state</LABEL>            <select id="State">
+                <option value="-1">Select</option>
+                <option value="0">Andhra pradesh</option>
+                <option value="1">Telangana</option>
+                <option value="2">Delhi</option>
+                <option value="3">Uttar pradesh</option>
+                <option value="4">Kashmir</option>
+                <option value="5">Karnataka</option>
+                <option value="6">Tamil nadu</option>
+            </select><br><br>
+           <label for="selection">Select your district</label>
+                <select name="select-district" id="district" class="dnone">
+                    <option value="rajamundry">Rajamundry</option>
+                    <option value="bheemavaram">bheemavaram</option>
+                    <option value="vizag">vizag</option>
+                </select><br><br>
+           
+             <label>Gender :</label><input type="radio" value="Male" name="gender" class="Radio">Male 
+       <input type="radio" value="Female" class="Radio" name="gender"><Female><br></Female><br><br>
+  
+        <label>Comments :</label><textarea name="text" id="text-area" rows="5" cols="30" ></textarea><br><br>
+        <label>Hobbies</LABEL><input type="checkbox" name="java" value="Java">Java
+    <input type="checkbox" name="PHP" value="PHP">PHP 
+ <input type="checkbox" name="python" value="Python">python
+ <input type="checkbox" name="ruby" value="Ruby">Ruby <br><br>
+
+ <button>Submit</button>
+
+</form>
+</div>
+</body>
+</html>

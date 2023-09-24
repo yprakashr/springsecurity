@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="nav.toggle()"><mat-icon>menu</mat-icon></button>
+  <div class="logo">Solventek</div>
+  <div class="extra">
+  <button mat-icon-button></button>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-wrapper">
+  <mat-sidenav opened="true" #nav mode="side">
+    <mat-list class="mt-5">
+      <mat-list-item routerLinkActive="active">
+        <button class="sidenav-btn" routerLink="workflow">
+          <mat-icon>adb</mat-icon>
+          Workflows
+        </button>
+      </mat-list-item>
+      <mat-list-item routerLinkActive="active">
+        <button class="sidenav-btn" routerLink="executions">
+          <mat-icon>settings</mat-icon>
+          Executions
+        </button>
+      </mat-list-item>
+     
+      <mat-list-item routerLinkActive="active">
+        <button class="sidenav-btn" routerLink="jobprofile">
+          <mat-icon>description</mat-icon>
+          Reports
+        </button>
+      </mat-list-item>
+
+      <mat-list-item routerLinkActive="active">
+        <button class="sidenav-btn" routerLink="schedule">
+          <mat-icon>edit</mat-icon>
+          Schedule
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

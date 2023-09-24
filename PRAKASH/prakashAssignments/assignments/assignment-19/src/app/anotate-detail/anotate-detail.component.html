@@ -1,0 +1,140 @@
+
+<div class="container bg-light">
+  <div class="heading"><h2>Annotate The Documents</h2></div>
+  <div id='selectionMarquee'>
+  
+  </div>
+      <ol id='all-cords'></ol>
+    <div *ngIf="sucess">
+    <div class="alert alert-success alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>{{apiMessage}}</strong>
+    </div>
+  </div>
+  <div *ngIf="error" >
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>{{apiMessage}}</strong>
+    </div>
+  </div>
+  <div class="col-md-12" style="display: flex;margin-top: 20px;">
+    <div class="col col-md-6">
+
+<mat-form-field appearance="fill">
+  <mat-label>Select the Dictionary Name</mat-label>
+  <mat-select [(value)]="selected" (selectionChange)="selectedVal($event)">
+    <mat-option *ngFor="let item of array; let i=index" [value]="getValuesOf(item)" >
+      {{item.dictionaryname}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+
+<div class="col col-md-6">
+  <mat-form-field appearance="fill">
+  <mat-label>Select the PDF</mat-label>
+  <mat-select [(value)]="selectedPDF" (selectionChange)="selectedPDFview($event)">
+    <mat-option *ngFor="let item of pdfList" [value]=item.url>
+      {{item.value}}
+    </mat-option>
+   
+    
+  </mat-select>
+</mat-form-field>
+</div>
+</div>
+</div>
+
+<div class="row" style="width: 100%;">
+  <div class="column" *ngIf="fieldsList.length>0">
+    <form style="margin-left: 80px;">
+      <mat-form-field class="example-full-width">
+        <mat-label>Search Field</mat-label>
+        <input matInput  name="searchField" [(ngModel)]="searchField">
+      </mat-form-field>
+    </form>
+    
+<table class="locationtable">
+  <thead class="locationhead">
+    <tr>
+      <th>Select key</th>
+      <th>S.No</th>
+      <th>List of Fields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let val of fieldsList | filterPipe:searchField;let i=index">
+      <td><input type="checkbox" value="{{val.fieldName}}" (change)="isChecked($event)"></td>
+      <td>{{i+1}}</td>
+    <td>{{val.fieldName}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="column">
+  <!-- <div class="flex-child magenta scroll" id="viewer">
+        
+        
+  </div> -->
+  <div class="pspdfkit-container" style="width: 100%; height: 100vh;" id="xyz">
+    </div>
+    
+<!-- <pdf-viewer [src]=pdfSrcURL *ngIf="pdfSrcURL"
+    [render-text]="true"
+    [original-size]="false"
+    [render-text-mode]="1"
+    #pdfViewerOnDemand 
+    style="width: 500px; height: 500px;text-align: justify;"
+    (mouseup)="getSelectedText()"
+    [show-all]="true"
+    [zoom]="1"
+    [show-borders]="true"
+></pdf-viewer> -->
+
+
+</div>
+<div class="column">
+  <div class="tableclass">
+    <div *ngIf="contentList.length>0">
+        <div>
+        <h4> 1. First we need to select the Key on first click. <br>
+          2. Then select the value for the key from the pdf'</h4>
+      </div>
+          <div>&nbsp;&nbsp;</div><div [innerHTML]="message"></div>
+      </div>
+    <table  *ngIf="contentList.length>0" class="locationtable">
+        <thead class="locationhead">
+            <tr>
+                <th>Keys</th>
+                <th>Height</th>
+                <th>left</th>
+                <th>top</th>
+                <th>width</th>
+                <th>Page No</th>
+                <th>Action</th>
+                </tr>
+        </thead>
+       <tbody>
+        <tr *ngFor="let text of contentList">
+            <td><input  class="input" type="text" [(ngModel)]="text.key" value="text.key" [disabled]="text.height==''" (keyup)="validateKey(text.key)" /></td>
+        <td>{{text.height!==''?text.height.toFixed(2):''}}</td>
+        <td>{{text.left!==''?text.left.toFixed(2):''}}</td>
+        <td>{{text.top!==''?text.top.toFixed(2):''}}</td>
+        <td>{{text.width!==''?text.width.toFixed(2):''}}</td>
+        <td>{{text.page}}</td>
+        <td>
+            <button class=" btn-default" type="button" (click)="delete(text)">
+                <i class="material-icons">delete</i>
+              </button>
+        </td>
+        </tr>
+       </tbody>
+        
+        
+        </table>
+        <p *ngIf="isKey">Key should not be Empty</p>
+        <button class="butn" (click)="convertToJson()" *ngIf="contentList.length>0" [disabled]="isKey">Submit</button>
+</div>
+
+</div>
+</div>

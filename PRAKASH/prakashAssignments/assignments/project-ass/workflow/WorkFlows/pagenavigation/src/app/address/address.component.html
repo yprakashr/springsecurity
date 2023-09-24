@@ -1,0 +1,42 @@
+<div class="p-5 mt-4">
+<button  mat-raised-button  [matMenuTriggerFor]="menu">Workflow</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+  <button mat-menu-item>Item 3</button>
+</mat-menu>
+</div>
+
+<div class="container">
+  <div class="selected-date-wrapper">
+    <span (click)="calendarVisible = !calendarVisible">{{ selectedDate }}</span>
+  </div>
+  <div class="calendar-wrapper">
+
+    <mat-calendar
+      [selected]="selectedDate"
+      (selectedChange)="onSelectedChange($event)"
+      class="mat-elevation-z3">
+    </mat-calendar>
+
+  </div>
+  <div class="text-center mt-5">
+  <button mat-raised-button color="primary">Schedule</button>
+  </div>
+</div>
+
+
+<div class="p-5 mt-5">
+  <button class="mt-5" style="font-size:17px" mat-raised-button  [matMenuTriggerFor]="menu">Bot List</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+    <button mat-menu-item>Item 3</button>
+    <button mat-menu-item>Item 4</button>
+  </mat-menu>
+  </div>
+
+   
+
+
+

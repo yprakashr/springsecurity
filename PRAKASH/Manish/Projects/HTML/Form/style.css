@@ -1,0 +1,49 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  text-shadow: 10px 10px 30px darkgreen;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+form {
+  border: 2px solid forestgreen;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 15px;
+  width: 30%;
+  margin: auto;
+  background-color: rgb(219, 219, 219);
+  box-shadow: 10px 10px 30px forestgreen;
+  font-weight: bold;
+}
+input[type="text"] {
+  background-color: forestgreen;
+  border: 2px solid forestgreen;
+  border-radius: 10px;
+  background-color: lavenderblush;
+  padding: 5px;
+  color: forestgreen;
+  text-shadow: 10px 10px 30px darkgreen;
+}
+
+input[type="submit"] {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  background-color: forestgreen;
+  color:white; 
+  padding: 5px;
+}
+#cont {
+  text-align: center;
+}
+
+h1 {
+  color: forestgreen;
+}
+label {
+  color: forestgreen;
+}

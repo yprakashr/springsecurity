@@ -1,0 +1,29 @@
+.error{
+    color:rgb(229, 230, 229);
+    font-family: 'EB Garamond', serif;
+    font-size:larger;
+    font-weight: 700;
+    margin-top: 10px;
+    background-image: linear-gradient(to bottom right, rgb(255, 0, 0), rgb(255, 77, 0));
+    border-radius: 25px;
+    padding:3px;
+  }
+  .mt{
+    margin-top: 80px;
+    width: 50vh;
+    margin-left: 700px;
+
+  }
+  .my-custom-snackbar{
+    position: absolute;
+    top: 60px;
+    margin: 200px;
+    padding:500px
+  }
+  .bgimg{
+    background-image: url(../../assets/images/bg1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* margin-top: 20px; */
+    /* width: 2750px; */
+  }

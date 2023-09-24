@@ -1,0 +1,126 @@
+<div class="">
+<div class="modal-header p-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <h3 class="modal-title">
+          Time &amp; Location Preferences for
+              {{providerPreferences.name}}
+            </h3>
+            </div>
+        <div class="col-sm-12 col-md-4"> <a class="pull-right float-end" (click)="closeDialog()"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>
+        </div>
+        </div>
+  </div>
+
+<div class="modal-body">
+    <div class="col-sm-12 text-center text-danger" *ngIf="editProviderPrefsErrorMsg">
+      {{editProviderPrefsErrorMsg}}
+    </div>
+    <div *ngIf="!editProviderPrefsErrorMsg">
+  <div class="">
+  <div class="row">
+    <h3>Value Weights</h3>
+    <div class="col-sm-2 mt15 pl35">Location</div>
+    <div class="col-sm-10 text-center">
+      <ngx-slider [(value)]="isValueNaN(singleObject.loc_weight)?0:singleObject.loc_weight"
+        (valueChange)="providerLocationWeight()"
+        [options]="locationOptions"></ngx-slider>
+    </div>
+  </div>
+  </div>
+  <div class="">
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Time of Day</div>
+    <div class="col-sm-10 text-center">
+              <ngx-slider [(value)]="isValueNaN(singleObject.tofday_weight)?0:singleObject.tofday_weight"
+                (valueChange)="providerTodayWeight()"
+                [options]="locationOptions"></ngx-slider>
+    </div>
+  </div>
+  </div>
+
+  <div class="">
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Proximity</div>
+    <div class="col-sm-10 text-center">
+              <ngx-slider [(value)]=" isValueNaN(singleObject.prox_weight)?0:singleObject.prox_weight"
+                (valueChange)="providerProxWeight()"
+[options]="locationOptions"></ngx-slider>
+    </div>
+  </div>
+  </div>
+  <div class="">
+  <div class="row">
+    <div class="col-sm-2 mt15 pl35">Patient Distance</div>
+    <div class="col-sm-10 text-center">
+              <ngx-slider [(value)]="isValueNaN(singleObject.loc_prox_weight)?0:singleObject.loc_prox_weight"
+                (valueChange)="providerLocProxWeight()"
+                [options]="locationOptions"></ngx-slider>
+              </div>
+  </div>
+  </div>
+  </div>
+<div class=" ">
+  <div *ngFor="let option of providerOptLocations">
+  <div class="row">
+    <hr class="mt15 mt-5">
+    <div class="col-sm-2 mt15 pl35">Location</div>
+
+
+    <div class="col-sm-6 text-center">
+<div class="select-arrow">
+  <select class="form-control" name="sel_location" (change)="changeProvPrefLocTimeSlots(option)"
+          [(ngModel)]="sel_location">
+          <option value="">Select</option>
+          <option [value]="option">{{ option.location_name }}</option>
+          </select>
+      </div>
+    </div>
+  </div>
+
+<div *ngIf="sel_location">
+  <div class="">
+      <div class="row">
+        <div class="col-sm-2 mt15 pl35">Location Desirability</div>
+        <div class="col-sm-10 text-center">
+        <ngx-slider [(value)]="option.desirability" (valueChange)="updateProviderLocPref(sel_location)"
+          [options]="provPrefSliderOpt"></ngx-slider>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2 mt15 pl35">Patient Distance Desirability</div>
+        <div class="col-sm-10 text-center">
+        <ngx-slider [(value)]="option.proximity" (valueChange)="updateProviderLocPref(sel_location)"
+          [options]="provPrefSliderOpt"></ngx-slider>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+
+<hr>
+
+    <div class="row">
+      <div class="col-sm-2 mt15 pl35"><h4>Time Slots</h4></div>
+      <div class="col-sm-10"></div>
+    </div>
+
+
+    <div class="row" *ngFor="let timeslot of providerLocTimes">
+      <div class="col-sm-3 mt15 pl35">
+        {{timeslot.start_time}} - {{timeslot.end_time}}
+      </div>
+      <div class="col-sm-9 text-center">
+        <ngx-slider [(value)]="timeslot.desirability" (valueChange)="updateProviderLocTimeSlotPref(sel_location, timeslot)"
+          [options]="provPrefSliderOpt"></ngx-slider>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-default secondary-btn" type="button" (click)="closeDialog()">Close</a>
+</div>
+</div>

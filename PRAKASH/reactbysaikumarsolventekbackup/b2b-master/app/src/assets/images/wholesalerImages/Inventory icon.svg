@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="Inventory_icon" data-name="Inventory icon" transform="translate(-18 -236)">
+    <rect id="Rectangle_4197" data-name="Rectangle 4197" width="16" height="16" transform="translate(18 236)" fill="none"/>
+    <path id="Inventory_icon-2" data-name="Inventory icon" d="M15.381,7.91h-2.2v2.637L12.3,9.962l-.879.585V7.91h-2.2a.441.441,0,0,0-.439.439v5.273a.441.441,0,0,0,.439.439h6.152a.441.441,0,0,0,.439-.439V8.349A.441.441,0,0,0,15.381,7.91ZM4.834,6.152h6.152a.441.441,0,0,0,.439-.439V.439A.441.441,0,0,0,10.986,0h-2.2V2.637L7.91,2.052l-.879.585V0h-2.2a.441.441,0,0,0-.439.439V5.713A.441.441,0,0,0,4.834,6.152ZM6.592,7.91h-2.2v2.637l-.879-.585-.879.585V7.91H.439A.441.441,0,0,0,0,8.349v5.273a.441.441,0,0,0,.439.439H6.592a.441.441,0,0,0,.439-.439V8.349A.441.441,0,0,0,6.592,7.91Z" transform="translate(18 237)" fill="#fff" opacity="0.9"/>
+  </g>
+</svg>

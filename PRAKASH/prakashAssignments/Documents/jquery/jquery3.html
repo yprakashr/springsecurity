@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animations</title>
+    <style>
+        #pic{
+            position: absolute;
+
+        }
+    </style>
+    <script src="jquerylibrary.js"></script>
+    <script>
+        $(function(){
+            // $("button").click(function(){
+            // $("#pic").toggle(3000);
+            // })
+            // $("button").click(function(){
+            // $("#pic").slideToggle(3000);
+            // })
+            // $("button").click(function(){
+            // $("#pic").fadeToggle(3000);
+            // })
+            // $("button").click(function(){
+            // $("#pic").animate({left:'400px'},3000);
+            // })
+            $("button").click(function(){
+            $("#pic").animate({right:'400px'},3000);
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <button>Show/Hide</button>
+    </div>
+    <div id="pic">
+        <img src="shirt.jpeg" alt="shirt">
+    </div>
+
+</body>
+</html>

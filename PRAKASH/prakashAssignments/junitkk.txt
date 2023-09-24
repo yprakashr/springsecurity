@@ -1,0 +1,2558 @@
+What is JUnit ?
+
+
+Unit is a unit testing framework for the Java programming language that plays a big role in regression testing.
+We can perform unit testing by creating test cases. The unit test cases written by the developer/tester is a  source code which ensures that the program logic works as expected.
+Running tests automatically helps to identify the bug in the software due to changes in the source code.
+In case of high test coverage of our code allows us to continue developing features without having to perform lots of manual tests.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ Architecture --------------------------------------------------------------------------
+
+Junit 5 Architecture
+
+In This post, we will  talk and learn about JUnit 5 Architecture
+JUnit 5 is mainly built on below three Components or sub-projects:
+
+1. JUnit Platform
+2. JUnit Jupiter
+3. JUnit Vintage
+
+                                            Junit 5 Architecture
+
+Unlike previous versions of JUnit 4 0r 3, JUnit 5 is combinations of several different modules from three different sub-projects.
+
+JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
+
+JUnit Platform
+To execute or lunch JUnit Test cases builds tools, IDEs and plugins required to include and extend platform APIs.it provides TestEngine APIs to develop new testing frameworks that run on the platform.
+
+Additionally, it also provides console Launcher to launch the platform from the command line and build plugins for building tool like Gradle and Maven.
+
+JUnit Jupiter
+It is the combination of the new programming model and extension model for writing tests and extensions in JUnit 5. It has newly added annotations for running Jupiter based tests on the platform.
+
+JUnit Vintage
+It has the main purpose to support running JUnit 3 and JUnit 4 written tests on the JUnit 5 platform. It provides assurance for backward compatibility.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------JUnit 5 Maven Dependency-----------------------------------------------------------------------------------
+
+JUnit 5 Maven Dependency
+
+In this post, we will learn how to configure Maven Dependency for JUnit 5 and how to use them to create and execute JUnit Tests
+
+Note: JUnit 5 requires minimum Java 8 at runtime.
+
+To execute JUnit 5 tests using maven we will need a minimum of two dependencies.
+
+1.    JUnit Jupiter Engine Dependency
+junit-jupiter-engine has internally dependency on  junit-platform-engine and junit-jupiter-api so if you add junit-jupiter-engine dependency then it will bring all three dependencies into class path.
+
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.5.2</version>
+    <scope>test</scope>
+</dependency>
+
+ Junit 5 jupiter engine dependency tree
+
+
+
+junit-jupiter-api has all JUnit annotations to write tests and extensions and junit-platform-engine has test engine implementation which is required at runtime to run the tests.
+
+2.    JUnit Platform Runner Dependency
+We usually need junit-platform-runner for executing JUnit tests and test suites on the JUnit Platform environment.
+
+As junit-platform-runner is internally dependents on junit-platform-launcher  and junit-platform-suite-api  so if you add junit-platform-runner  dependency then it will bring all three dependencies into class path.
+
+<dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-platform-runner</artifactId>
+    <version>1.5.2</version>
+    <scope>test</scope>
+</dependency>
+
+
+
+Junit 5 platform runner dependency tree
+
+Project structure
+
+Utility Class for that we have to write JUnit Test:
+
+
+package kkjavatutorials.com;
+ 
+public class MyUtils {
+ 
+	public int add (int n1,int n2) {
+		return n1+n2;
+	}
+}
+
+JUnit Test class
+
+package kkjavatutorials.com;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+ 
+class MyUtilsTest {
+ 
+	@Test
+	 void addTest() {
+		MyUtils myUtils = new MyUtils();
+		
+		assertEquals(10, myUtils.add(6, 4));
+	}
+}
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>kkjavatutorials.com</groupId>
+	<artifactId>JUnitExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>JUnitExample</name>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+		<junit.jupiter.version>5.5.2</junit.jupiter.version>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+   
+</project>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- Junit life cycle --------------------------------------------------------------------------------
+
+JUnit 5 Test Lifecycle
+
+JUnit 5 Test lifecycle mainly contains 4 primary annotations:
+
+@BeforeAll
+@AfterAll
+@BeforeEach
+@AfterEach 
+ Apart from above 4 each test method must be marked with any one of the below annotations
+
+@Test
+@RepeatedTest
+@ParameterizedTest
+@TestFactory
+@TestTemplate.
+Before and After cycle annotations
+When we write JUnit test cases than in JUnit test life cycle usually we primarily need to have some methods to set up and tear down the environment or test data on which the tests run.
+
+When we run JUnit test cases than for each test – a new instance of a test is created. 
+
+When we looked into @BeforeAll and @AfterAll annotations. It is very clear by their name itself it should be called only once in the entire tests execution cycle so they must be declared static.
+
+On the other hand, @BeforeEach and @AfterEach are invoked for each instance of the test so they need not be static.
+
+NOTE: If you annotate multiple methods with the same annotation (e.g. two methods with @BeforeAll or AfterEach ) then their execution order is undetermined.
+
+Let’s try to understand JUnit 5 Test Lifecycle annotations using an example project
+
+Project Structure
+
+
+
+Utility Class for that we have to write JUnit Test:
+
+package kkjavatutorials.com;
+ 
+public class MyUtils {
+ 
+	public int add (int n1,int n2) {
+		return n1+n2;
+	}
+}
+ JUnit Test Class with Life Cycle
+
+package kkjavatutorials.com;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+ 
+class MyUtilsTest {
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp(){
+		System.out.println("Test data set up..");
+		myUtils = new MyUtils();
+	}
+	
+	@BeforeEach
+    void beforeEach(){
+        System.out.println("@BeforeEach executed");
+    }
+	
+	@Test
+	 void addPositiveNumbersTest() {
+		System.out.println("addPositiveNumbersTest Method..");
+		assertEquals(10, myUtils.add(6, 4));
+	}
+	
+	@Test
+	 void addNegativeNumbersTest() {
+		System.out.println("addNegativeNumbersTest Method..");
+		assertEquals(-10, myUtils.add(-6, -4));
+	}
+	
+	@AfterAll
+	static void tearDown(){
+		System.out.println("Test data tearDown..");
+		myUtils = null;
+	}
+	
+	@AfterEach
+    void afterEach(){
+        System.out.println("@AfterEach executed");
+    }
+}
+ pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>kkjavatutorials.com</groupId>
+	<artifactId>JUnitLifeCycleExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>JUnitLifeCycleExample</name>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+		<junit.jupiter.version>5.5.2</junit.jupiter.version>
+	</properties>
+ 
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+   
+</project>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JUnit 5 Annotations
+
+This tutorial provides brief introduction on  JUnit 5 Annotations
+
+JUnit Jupiter sub-project supports the following annotations for configuring tests and extending the framework.
+
+All core annotations are bundled in the org.junit.jupiter.api package in the junit-jupiter-api module.
+
+ @Test
+
+This annotation denotes that a method is a test method and this does not declare any attributes.
+
+@BeforeAll
+
+This annotation usually denotes that the annotated test method should be executed before all @Test, @ParameterizedTest, @RepeatedTest and @TestFactory methods in the current class.it is similar to JUnit 4  @Before Class annotation.
+
+@AfterAll
+
+This annotation usually denotes that the annotated test method should be executed after all @Test, @ParameterizedTest,@RepeatedTest,and @TestFactory methods in the current class. It is  analogous to JUnit 4 @AfterClass annotation.
+
+@BeforeEach
+
+This annotation usually indicates that the annotated method should be executed before each @Test, @ParameterizedTest, @RepeatedTest or @TestFactory method in the current test class. It is analogous to JUnit 4 @Before annotation
+
+@AfterEach
+
+This annotation usually indicates that the annotated method should be executed after each @Test, @ParameterizedTest,@RepeatedTestor @TestFactory method in the current test class . it is primarily analogous to JUnit 4  @After annotation
+
+@DisplayName
+
+This annotation is used for a custom display name for the test class or test method
+
+@DisplayNameGeneration
+
+This annotation is used to declare a custom display name generator for the test class.
+
+@Disabled
+
+This annotation  used to disable a test class or test method. It is analogous to JUnit 4 @Ignore annotation .
+
+@Timeout
+
+This annotation   is used to fail a test, test factory, test template, or lifecycle method if its execution exceeds a given time duration
+
+@Nested
+
+
+This annotation  indicates that the annotated class is a non-static nested test class. You should always keep in mind that @BeforeAll and @AfterAll  annotated methods cannot be used directly in a @Nested test class unless the “per-class” test instance lifecycle is used.
+
+@RepeatedTest
+
+This annotation indicates that a test method is executed at given number of times.
+
+@Tag
+
+This annotation is used to declare tags for filtering tests, either at the class or method level. It is analogous to test groups in TestNG or Categories in JUnit 4.
+
+@ParameterizedTest
+
+This annotation is indicates that a method is a parameterized test
+
+@TestFactory
+
+This annotation indicates that a method is a test factory for dynamic tests. 
+
+@TestInstance
+
+This annotation used to configure the test instance lifecycle for the annotated test class. 
+
+@TestTemplate
+
+This annotation indicates that a method is as a template for test cases designed to be invoked multiple times depending on the number of invocation contexts returned by the registered providers.
+
+@TestMethodOrder
+
+This annotation is used to configure the test method execution order for the annotated test class. It is very similar to JUnit 4 @FixMethodOrder annotation
+
+@ExtendWith
+
+It is Used to register extensions declaratively.
+
+@RegisterExtension
+
+It is used to register extensions programmatically via fields
+
+@TempDir
+
+It is Used to supply a temporary directory via field injection or parameter injection in a lifecycle method or test method. It is located in the org.junit.jupiter.api.io package.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JUnit 5 Display Names
+
+In JUnit 5, Test classes and test methods may declare custom display names using @DisplayName — with spaces, special characters, and even emojis — that will be displayed in test reports and by test runners and IDEs.
+
+2. Customize the name of test class and test methods using @DisplayName Annotatio
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.kkjavatutorials</groupId>
+  <artifactId>JUnit5DisplayNameExample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+		<junit.jupiter.version>5.6.2</junit.jupiter.version>
+	</properties>
+  
+  <dependencies>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+	
+</project>
+ Java  Class for that we have to write JUnit Tests: 
+
+package com.kkjavatutorials;
+ 
+public class MyUtils {
+ 
+	public int add(int n1, int n2) {
+		return n1+n2;
+	}
+}
+Test class
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+ 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+ 
+@DisplayName(value = "All the Test Cases of MyUtils")
+public class MyUtilsTest {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	@DisplayName(value = "adding two positive numbers")
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	@DisplayName(value = "adding two negtaive numbers")
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	@DisplayName(value = "😱")
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+The output of the above project:
+
+You can see the output of the above test display names is customized.
+
+
+
+3. Display Name Generators
+
+In JUnit Jupiter, we can create custom display name generators that can be configured via the @DisplayNameGeneration annotation. One thing you should note here that values specified via @DisplayName annotations always take precedence over display names generated by a DisplayNameGenerator
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.kkjavatutorials</groupId>
+  <artifactId>JUnit5DisplayNameGeneratorExample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+		<junit.jupiter.version>5.6.2</junit.jupiter.version>
+	</properties>
+  
+  <dependencies>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+</project>
+ Java  Class for that we have to write JUnit Tests: 
+
+package com.kkjavatutorials;
+ 
+public class MyUtils {
+ 
+	public int add(int n1, int n2) {
+		return n1+n2;
+	}
+}
+Test Classes:
+
+MyUtilsTest1.java
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+ 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
+ 
+@DisplayNameGeneration(value = DisplayNameGenerator.ReplaceUnderscores.class)
+public class MyUtilsTest1 {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+MyUtilsTest2.java
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+ 
+import java.lang.reflect.Method;
+ 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
+ 
+@DisplayNameGeneration(value = MyUtilsTest2.CustomDiplayNameGenerator.class)
+public class MyUtilsTest2 {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+	
+	static class CustomDiplayNameGenerator extends DisplayNameGenerator.ReplaceUnderscores{
+	
+		@Override
+		public String generateDisplayNameForClass(Class<?> testClass) {
+			return testClass.getName()+" Test Cases";
+		}
+		
+		@Override
+		public String generateDisplayNameForMethod(Class<?> testClass, Method testMethod) {
+			
+			String name  = testClass.getSimpleName()+" "+testMethod.getName();
+			return name.replace('_', ' ');
+		}
+		
+		@Override
+		public String generateDisplayNameForNestedClass(Class<?> nestedClass) {
+			return super.generateDisplayNameForNestedClass(nestedClass);
+		}
+	}
+}
+The output of the above project:
+
+
+
+4. Parameterized Tests  Customization display Name:
+
+We can also customize the display name of Parameterized Tests  via the name attribute of the @ParameterizedTest, see the following example
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.kkjavatutorials</groupId>
+  <artifactId>JUnit5CustomizingDisplayNamesInParameterizedTestsExample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+		<junit.jupiter.version>5.6.2</junit.jupiter.version>
+	</properties>
+ 
+	<dependencies>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+</project>
+Test Class
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+ 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+ 
+public class CustomizingDisplayNamesInParameterizedTest {
+ 
+	@DisplayName("Display name of fruit container")
+	@ParameterizedTest(name = "{index} ==> the rank of ''{0}'' is {1}")
+	//@ParameterizedTest(name = "{arguments}")
+	@CsvSource({ "apple, 1", "banana, 2", "'lemon, lime', 3" })
+	void testWithCustomDisplayNames(String fruitName, int fruitRank) {
+		assertTrue(!fruitName.isEmpty());
+		assertTrue(fruitRank > 0);
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+JUnit 5 @Disabled Test Example
+
+JUnit 5 @Disabled annotation can be used to disable the entire test class or individual test method.
+
+It accepts only one optional parameter, which indicates the reason why this test is disabled.
+
+When @Disabled annotation is applied over test class then all test methods within that class are automatically disabled, or if it is used before any specific test method then that test method is only disabled.
+
+Let’s try to understand how to use @Disabled annotation in Junit using a demo project
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.kkjavatutorials</groupId>
+	<artifactId>JUnit5DisablingTestsExample</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+ 
+	<properties>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.source>8</maven.compiler.source>
+		<junit.jupiter.version>5.6.2</junit.jupiter.version>
+	</properties>
+ 
+	<dependencies>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+ 
+	</dependencies>
+</project>
+MyUtils.java
+
+package com.kkjavatutorials;
+ 
+public class MyUtils {
+ 
+	public int add(int n1, int n2) {
+		return n1+n2;
+	}
+}
+
+MyUtilsTest1.java
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+ 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+ 
+@Disabled("Disabled until bug #1024 has been fixed")
+public class MyUtilsTest1 {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+MyUtilsTest2.java 
+
+package com.kkjavatutorials;
+ 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+ 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+ 
+public class MyUtilsTest2 {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	@Disabled("Disabled until bug #1044 has been fixed")
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Assertions in JUnit 5
+
+JUnit Jupiter comes with many of the assertion methods that JUnit 4 already has and added a few more so that it may support Java 8 lambdas. Also in this library, assertions are present for all primitive types, Objects, and arrays (either of primitives or Objects). The assertions are a collection of utility methods that support asserting conditions in tests.
+
+Assertions help us to validate the expected output with the actual output of test cases. 
+
+All JUnit Jupiter assertions methods are static and present in the org.junit.jupiter.api.Assertions class.
+
+Junit 5 Assertions
+
+You will get below list of Assert methods(static methods and present in the org.junit.jupiter.api.Assertions class) are avialabe in Junit 5with Overloaded versions:
+
+assertTrue
+assertFalse
+assertEquals
+assertNotEquals
+assertNull
+assertNotNull
+assertSame
+assertNotSame
+assertArrayEquals
+assertAll
+assertThrows
+assertDoesNotThrow
+assertIterableEquals
+assertTimeout
+assertTimeoutPreemptively
+assertLinesMatch
+fail
+
+@Test
+	void assertTrueTest() {
+	    assertTrue(10 > 6, "10 is greater the 6");
+	   //assertTrue(10 > 6,()->"10 is greater the 6");
+	}
+	
+	/**
+	 * Using assertFalse assertion, it is possible to verify/test the supplied conditions are false
+	 */
+	@Test
+	void assertFalseTest() {
+	    BooleanSupplier condition = () -> 78 > 120;
+	    assertFalse(condition, "78 is not greater then 120");
+	}
+	
+	/**
+	 * In case you want to assert that two int values are equals, we can use the assertEquals assertion.
+	 */
+	@Test
+	void assertEqualsTest1() {
+		
+		MyUtils myUtils = new MyUtils();
+		int actual = myUtils.add(14, 6);
+	    assertEquals(20, actual);
+	}
+	
+	/**
+	 * If You want to assert that the actual value differs by a predefined delta from the 
+	 * expected value then we can still use the assertEquals but we have to pass the delta 
+	 * value as the third parameter.
+	 */
+	@Test
+	void assertEqualsTest2() {
+	    float square = 4 * 4;
+	    float rectangle = 5 * 4;
+	    float delta = 4;
+	 
+	    assertEquals(square, rectangle, delta);
+	}
+	
+	/**
+	 *You can use assertNotEquals assertion when expected and the actual values are not equal.
+	 */
+	@Test
+	void assertNotEqualsTest() {
+		// result of an algorithm
+	    Integer value = 100; 
+	    
+	    assertNotEquals(10, value, "The result cannot be 100");
+	}
+	
+	/**
+	 * When you want to assert that an object is not null then you can use the assertNotNull assertion.
+	 *Here good Thing is that the failure message will be retrieved in a lazy way since it's a Supplier.
+	 */
+	@Test
+	void assertNotNullTest() {
+	    Object obj = new Object();
+	 
+	    assertNotNull(obj, () -> "The object should not be null");
+	}
+	
+	/**
+	 * you can use the assertNull assertion to check if the actual is null
+	 * Here good Thing is that the failure message will be retrieved in a lazy way since it's a Supplier.
+	 */
+	@Test
+	void assertNullTest() {
+	    Object obj = null;
+	 
+	    assertNull(obj, () -> "The object should be null");
+	}
+	
+	/**
+	 * When you want to assert that the expected and the actual result refer to the same Object then
+	 * you must use the assertSame assertion
+	 */
+	@Test
+	void assertSameTest() {
+	    String language = "C++";
+	    Optional<String> optional = Optional.of(language);
+	 
+	    assertSame(language, optional.get());
+	}
+	
+	/**
+	 * When you want to assert that the expected and the actual result not refer to the same Object then
+	 * you must use the assertNotSame assertion
+	 */
+	@Test
+	void assertNotSameTest() {
+	    String language = "C++";
+	    Optional<String> optional = Optional.of(language);
+	 
+	    language = "Java";
+	    
+	    assertNotSame(language, optional.get());
+	}
+	
+	/**
+	 * You can use assertArrayEquals assertion to verify that the expected and actual arrays are equals.
+	 * If the arrays are not equal then the message "Both Arrays should be equal" will be displayed as output.
+	 */
+	@Test
+	void assertArrayEqualsTest() {
+	    char[] expected = { 'J', 'a', 'v', 'a'};
+	    char[] actual = "Java".toCharArray();
+	 
+	    assertArrayEquals(expected, actual, "Both Arrays should be equal");
+	}
+	
+	/**
+	 * assertAll assertion allows the creation of grouped assertions, where all the assertions are 
+	 * executed and their failures are reported together. 
+	 * The point to be noted here that the execution of a grouped assertion is interrupted only when 
+	 * one of the executables throws an exception
+	 */
+	@Test
+	void assertAllTest() {
+		Employee employee = new Employee("Sean", "Murphy");
+		
+	    assertAll(
+	      "employeeInfo",
+	      () -> assertNotNull(employee.getFirstName(), ()->"First Name Should not be null"),
+	      () -> assertNotNull("murphy", employee.getLastName().toLowerCase())
+	    );
+	}
+	
+	/**
+	 * assertThrows assertion allows us to assert if an executable
+	 * throws the specified exception type.
+	 * This assertion will be failed if no exception is thrown or if an exception
+	 * of a different type is thrown
+	 */
+	@Test
+	void assertThrowsTest() {
+	    Throwable exception = assertThrows(
+	      IllegalArgumentException.class, 
+	      () -> {
+	          throw new IllegalArgumentException("Your Exception message");
+	      }
+	    );
+	    
+	    assertEquals("Your Exception message", exception.getMessage());
+	}
+	
+	/**
+	 * This assertion assert that execution of the supplied executable does not throw any kind of exception.
+	 */
+	@Test
+	void assertDoesNotThrowTest() {
+		String input = "25.24E+8";
+		assertDoesNotThrow(() -> Double.parseDouble(input),"String not able to parse into double");
+	}
+	
+	/**
+	 * The assertIterableEquals assertion use to compare that the expected and the actual iterables are deeply equal.
+	 * both iterable must return equal elements in the same order and it is not required that the two
+	 * iterables are of the same type in order to compare
+	 */
+	@Test
+	public void assertIterableEqualsTest() {
+	    Iterable<String> list1 = new ArrayList<>(Arrays.asList("KK", "PK", "MK"));
+	    Iterable<String> liat2 = new LinkedList<>(Arrays.asList("KK", "PK", "MK"));
+	 
+	    assertIterableEquals(list1, liat2);
+	}
+	
+	/**
+	 * In case you want to assert that the execution of a supplied Executable ends before a 
+	 * specified Timeout then you can use the assertTimeout assertion.
+	 * Using this assertion the supplied executable will be executed in the same 
+	 * thread of the calling code. You should note that execution of the supplier won't be preemptively
+	 * aborted if the timeout is exceeded.
+	 *In case you want to be sure that execution of the executable will be aborted once it 
+	 *exceeded the timeout,you can use the assertTimeoutPreemptively assertion.
+	 */
+	@Test
+	void assertTimeoutTest() {
+	    assertTimeout(
+	    Duration.ofMillis(500), 
+	      () -> {
+	        //code that requires less then 500 MillisSeconds to execute
+	        Thread.sleep(400);
+	      }
+	    );
+	}
+	
+	/**
+	 * In case of assertTimeoutPreemptively() execution of the Executable or ThrowingSupplier 
+	 * can be preemptively aborted if the timeout is exceeded by specified limit. In case of assertTimeout()
+	 *  Executable or ThrowingSupplier will NOT be aborted.
+	 */
+	@Test
+	void assertTimeoutPreemptivelyTest() {
+		assertTimeoutPreemptively(Duration.ofMillis(500), 
+				
+				() -> {
+	        Thread.sleep(400);
+	        return "Final Result";
+	    });
+	}
+	
+	/**
+	 * The assertLinesMatch assertion is used to compare the expected list of String matches the actual list.
+	 * 
+	 * This assertion differs from the assertEquals and assertIterableEquals since, for each pair of expected 
+	 * and actual lines, it performs below algorithm:
+	 *	1.check if the expected line is equal to the actual one. If yes it continues with the next pair
+	 *	2.treat the expected line as a regular expression and performs a check with the String.matches() method. If yes
+	 *    it continues with the next pair
+	 *	3.check if the expected line is a fast-forward marker. If yes then apply fast-forward and repeat the algorithm from the step 1
+	 *
+	 */
+	@Test
+	void assertLinesMatchTest() {
+	    List<String> expected = Arrays.asList("Scala", "\\d+", "Java");
+	    List<String> actual = Arrays.asList("Scala", "34", "Java");
+	 
+	    assertLinesMatch(expected, actual);
+	}
+	
+	/**
+	 * The fail assertion fails a test case with the provided failure message as well as the underlying 
+	 * cause. This can be useful to mark a test when it's development it's not completed:
+	 */
+	@Test
+	void failTest() {
+	    //Test not completed yet
+	   //fail("Test not completed yet!!");
+	}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Third-party Assertion Libraries support in JUnit 5
+
+Assertion facilities provided by JUnit Jupiter or Junit 5 are sufficient for most testing scenarios, there are times when we need more power and additional functionality such as matchers are desired. In that case, the JUnit team recommends the use of third-party assertion libraries such as AssertJ, Truth,Hamcrest, etc. Developers are free to use the assertion library of their own choices.
+
+For example, the combination of matchers and a fluent API can be used to make assertions more readable and descriptive. However, JUnit Jupiter’s org.junit.jupiter.api.Assertions class does not provide an assertThat() method like the one available in JUnit 4’s org.junit.Assert class which accepts a Hamcrest Matcher. Instead, developers are recommended to use the built-in support for matchers provided by third-party assertion libraries.
+
+This example demonstrates how to use the assertThat() support from Hamcrest in a JUnit Jupiter test. As long as the Hamcrest library has been added to the classpath, We can statically import methods such as assertThat(),equalTo(), and is() and then use them in tests like in the test_add_two_positive_numbers() method below.
+
+
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertThat(actualResult, is(equalTo(30)));
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JUnit 5 Assumptions Examples
+
+Junit-5 org.junit.jupiter.api.Assumptions class has static methods to support conditional test execution based on assumptions.
+
+If the assumption is failed then the test will be aborted. Assumptions are typically used whenever it does not make sense to continue the execution of a given test method.
+
+JUnit Jupiter org.junit.jupiter.api.Assumptions  class has three such methods: assumeFalse(), assumeTrue() and assumingThat()
+
+Assumptions.assumeTrue()
+
+assumeTrue()  assumption validates the given assumption to true and if assumption is true – test proceed otherwise test execution is aborted.
+
+Assumptions.assumeFalse()
+
+assumeFalse() assumption validates the given assumption to false and if assumption is false test proceed, otherwise test execution is aborted. It’s functionality is just opposite to assumeTrue().
+
+Assumptions.assumingThat()
+
+This assumption method executes the supplied Executable, but only if the supplied assumption is valid. If this assumption is invalid then this method does nothing.
+
+If the executable throws an exception, it will be rethrown as is but as an unchecked exception.
+
+
+@DisplayName(value = "All the Test Cases of MyUtilsTest")
+public class MyUtilsTest {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	@DisplayName(value = "adding two positive numbers")
+	void test_add_two_positive_numbers() {
+		System.setProperty("ENV", "DEV");
+		assumeTrue("DEV".equals(System.getProperty("ENV")));
+		
+		//If above assumption is true then rest of test will proceed
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	@DisplayName(value = "adding two negative numbers")
+	void test_add_two_negative_numbers() {
+		
+		 System.setProperty("ENV", "PROD");
+	     assumeTrue("DEV".equals(System.getProperty("ENV")), MyUtilsTest::message);
+	        
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	@DisplayName(value = "adding one positive and one negative number")
+	void test_add_one_positive_and_one_negative_number() {
+		
+		 System.setProperty("ENV", "DEV");
+	     assumeFalse("DEV".equals(System.getProperty("ENV")), MyUtilsTest::message);
+	     
+	    //If above assumption is false then rest of test will be aborted
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@Test
+	@DisplayName(value = "adding one two numbers")
+    void testInAllEnvironments() {
+		System.setProperty("ENV", "CI");
+        assumingThat("CI".equals(System.getenv("ENV")),
+            () -> {
+                // This assertion only perform on the CI server
+                assertEquals(60, myUtils.add(40, 20));
+            });
+ 
+        // perform these assertions in all environments
+        assertEquals(130, myUtils.add(60, 70));
+    }
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+	
+	private static String message () {
+        return "Test Execution is Failed. ";
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Conditional Test Execution in JUnit 5
+
+JUnit Jupiter allows developers to either disable or enable a test based on certain conditions programmatically.
+
+The org.junit.jupiter.api.condition package that allows developers to disable or enable containers and tests declaratively.
+
+If you want to specify details about why they might be disabled, every annotation associated with these built-in conditions has a disabledReason attribute available for that purpose.
+
+public class OperatingSystemConditionsTest {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	@EnabledOnOs(value = { OS.WINDOWS })
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	@EnabledOnOs(value = { OS.WINDOWS,OS.LINUX })
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	@DisabledOnOs(value = { OS.MAC })
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+
+
+------------------------------------------------------------
+public class JavaRuntimeEnvironmentConditionsTest {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	@EnabledOnJre(value = { JRE.JAVA_8 })
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	@EnabledOnJre(value = { JRE.JAVA_8,JRE.JAVA_9 })
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	@EnabledForJreRange(min = JRE.JAVA_8,max = JRE.JAVA_13)
+	//@DisabledOnJre(value = { JRE.JAVA_10,JRE.JAVA_13 })
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+
+----------------------------------------------------------------------------
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+
+public class SystemPropertyConditionsTest {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	@EnabledIfSystemProperty(named = "java.vm.vendor", matches = "Oracle.*")
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	@DisabledIfSystemProperty(named = "ci-server", matches = "true")
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+
+-------------------------------------------------------------------------
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+
+public class EnvironmentVariableConditionsTest {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.setProperty("ENV", "staging-server");
+		System.out.println("Test data set up is done..");
+	}
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	@EnabledIfEnvironmentVariable(matches = "staging-server", named = "ENV")
+	void test_add_two_positive_numbers() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	@DisabledIfEnvironmentVariable(named = "ENV", matches = ".*dev.*")
+	void test_add_two_negative_numbers() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+
+---------------------------------------------------------------------------------
+
+package com.kkjavatutorials;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIf;
+import org.junit.jupiter.api.condition.EnabledIf;
+
+public class CustomConditionsTest {
+
+	@Test
+	@EnabledIf("customCondition")
+	void enabled() {
+		System.out.println("enabled:Test execution depends on customCondition");
+	}
+
+	@Test
+	@DisabledIf("customCondition")
+	void disabled() {
+		System.out.println("disabled:Test execution depends on customCondition");
+	}
+
+	boolean customCondition() {
+	    return true;
+	}
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Test Execution Order in Junit 5
+
+The true unit tests typically should not rely on the order in which they are executed but there are times when it is necessary to enforce a specific test method execution order — for example when We write integration tests or functional tests where the sequence of the tests is important.
+
+To control the order in which test methods are executed, annotate your test class or test interface with @TestMethodOrder and specify the desired MethodOrderer implementation.
+
+
+We can use one of the following built-in MethodOrderer implementations.
+
+Alphanumeric: it will sort test methods alphanumerically based on test method names and formal parameter lists.
+
+OrderAnnotation: It will sort test methods numerically based on values specified via the @Order annotation.
+
+
+Random: It will order test methods pseudo-randomly and supports the configuration of a custom seed.
+
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
+@TestMethodOrder(value = OrderAnnotation.class)
+public class MyUtilsTest {
+	
+	private static MyUtils myUtils;
+	
+	@BeforeAll
+	static void setUp() {
+		myUtils = new MyUtils();
+		System.setProperty("ENV", "staging-server");
+		System.out.println("Test data set up is done..");
+	}
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	@Order(value = 3)
+	void test1() {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+	}
+	
+	@Test
+	@Order(value = 2)
+	void test2() {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	@Order(value = 1)
+	void test3() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown() {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+	}
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+JUnit 5 Nested Tests Example
+
+The @Nested tests give the test developer more capabilities to express the relationship among several groups of tests.
+
+Only non-static nested classes (i.e. inner classes) can serve as @Nested test classes.
+
+Nesting can be arbitrarily deep and these inner classes are considered to be full members of the test class family with one exception: @BeforeAll and @AfterAll methods do not work by default. The main reason is that Java does not allow static members in inner classes.
+
+However, this restriction can be circumvented by annotating a @Nested test class with @TestInstance(Lifecycle.PER_CLASS)
+
+package com.kkjavatutorials;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+
+public class OuterTest {
+
+	@BeforeAll
+	static void setUp() {
+		System.out.println("Outer class Test data set up is done..");
+	}
+
+	@AfterAll
+	static void tearDown() {
+		System.out.println("Outer class Test data teardown is done..");
+	}
+	
+	@Test
+	void outerTest1() {
+		System.out.println("outerTest1");
+	}
+	
+	@Test
+	void outerTest2() {
+		System.out.println("outerTest2");
+	}
+	
+	@Nested
+	@TestInstance(Lifecycle.PER_CLASS)
+class innerTest{
+		
+		@BeforeAll
+	 	void setUp() {
+				System.out.println("Inner class Test data set up is done..");
+			}
+
+		@AfterAll
+		void tearDown() {
+				System.out.println("Inner class Test data teardown is done..");
+			}
+		
+		@Test
+		void innerTest1() {
+			System.out.println("innerTest1");
+		}
+		
+		@Test
+		void innerTest2() {
+			System.out.println("innerTest2");
+		}
+		
+		@Test
+		void innerTest3() {
+			System.out.println("innerTest3");
+		}
+	}
+}
+
+---------------------------------------------------------------------
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.EmptyStackException;
+import java.util.Stack;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Nested Tests JUnit 5 Example
+ * @author KK JavaTutorials
+ */
+@DisplayName("A Stack")
+class TestingAStack {
+
+    private Stack<String> stack;
+
+    @Test
+    @DisplayName("is instantiated with new Stack()")
+    void isInstantiatedWithNew() {
+    	stack = new Stack<String>();
+    }
+
+    @Nested
+    @DisplayName("when new")
+    class WhenNew {
+
+        @BeforeEach
+        void createNewStack() {
+            stack = new Stack<>();
+        }
+
+        @Test
+        @DisplayName("is empty")
+        void isEmpty() {
+            assertTrue(stack.isEmpty());
+        }
+
+        @Test
+        @DisplayName("throws EmptyStackException when popped")
+        void throwsExceptionWhenPopped() {
+            assertThrows(EmptyStackException.class, stack::pop);
+        }
+
+        @Test
+        @DisplayName("throws EmptyStackException when peeked")
+        void throwsExceptionWhenPeeked() {
+            assertThrows(EmptyStackException.class, stack::peek);
+        }
+
+        @Nested
+        @DisplayName("after pushing an element")
+        class AfterPushing {
+
+            String element = "KK JavaTutorials";
+
+            @BeforeEach
+            void pushAnElement() {
+                stack.push(element);
+            }
+
+            @Test
+            @DisplayName("it is no longer empty")
+            void isNotEmpty() {
+                assertFalse(stack.isEmpty());
+            }
+
+            @Test
+            @DisplayName("returns the element when popped and is empty")
+            void returnElementWhenPopped() {
+                assertEquals(element, stack.pop());
+                assertTrue(stack.isEmpty());
+            }
+
+            @Test
+            @DisplayName("returns the peek element but remains not empty")
+            void returnElementWhenPeeked() {
+                assertEquals(element, stack.peek());
+                assertFalse(stack.isEmpty());
+            }
+        }
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JUnit 5 Temporary Directory Support
+
+The built-in TempDirectory extension is mainly used to create and cleanup a temporary directory for an individual test or all tests in a test class.
+
+To use it, We have to annotate a non-private field of type java.io.File Or java.nio.file.Path with @TempDir or add a parameter of type  java.io.File Or java.nio.file.Path annotated with @TempDir to a lifecycle method or test method.
+
+For example, the following test declares a parameter annotated with @TempDir for a single test method, creates and writes to a file in the temporary directory, and checks its content.
+
+@Test
+	void testWithTempDir(@TempDir Path tempDir) throws IOException {
+	   
+		Path numbersPath = tempDir.resolve("numberstest.txt");
+	 
+	    List<String> numberList = Arrays.asList("100", "200", "300");
+	    Files.write(numbersPath, numberList);
+	 
+	    assertAll(
+	      () -> assertTrue(Files.exists(numbersPath),"File should exist"),
+	      () -> assertLinesMatch(numberList, Files.readAllLines(numbersPath)));
+	}
+
+Key Points:
+
+@TempDir is not supported on constructor parameters. If you wish to retain a single reference to a temp directory across lifecycle methods and the current test method, please use field injection, by annotating a non-private instance field with @TempDir.
+
+Let’s try to understand the above concept using a demo project
+
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertLinesMatch;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+/**
+ * @TempDir(TempDirectory Extension) example in JUnit 5
+ * @author KK JavaTutorials
+ */
+public class SharedTempDirectoryTest {
+
+	@TempDir
+	static Path sharedTempDir;
+	
+	@BeforeAll
+	static void beforeAll() {
+		System.out.println(sharedTempDir);
+	}
+
+	/**
+	 * @TempDir as a Method Parameter
+	 * @param tempDir
+	 * @throws IOException
+	 */
+	@Test
+	void testWithTempDir(@TempDir Path tempDir) throws IOException {
+	   
+		Path numbersPath = tempDir.resolve("numberstest.txt");
+	 
+	    List<String> numberList = Arrays.asList("100", "200", "300");
+	    Files.write(numbersPath, numberList);
+	 
+	    assertAll(
+	      () -> assertTrue(Files.exists(numbersPath),"File should exist"),
+	      () -> assertLinesMatch(numberList, Files.readAllLines(numbersPath)));
+	}
+	
+	/**
+	 * @TempDir on an Instance Field
+	 * @throws IOException
+	 */
+	@Test
+	void testAsSharedTempDir1() throws IOException {
+	    Path numbersPath = sharedTempDir.resolve("mynumbers.txt");
+	 
+	    List<String> numberList = Arrays.asList("10", "20", "30");
+	    Files.write(numbersPath, numberList);
+	 
+	    assertAll(
+	        () -> assertTrue(Files.exists(numbersPath),"File should exist"),
+	        () -> assertLinesMatch(numberList, Files.readAllLines(numbersPath)));
+	}
+	 
+	/**
+	 * @TempDir on an Instance Field
+	 * @throws IOException
+	 */
+	@Test
+	void testAsSharedTempDir2() throws IOException {
+	    Path path = sharedTempDir.resolve("names.txt");
+	 
+	    List<String> nameList = Arrays.asList("KK", "PK", "SK");
+	    Files.write(path, nameList);
+	    assertLinesMatch(nameList, Files.readAllLines(path));
+	  }
+	
+	
+	@AfterAll
+	static void afterAll() {
+		System.out.println(sharedTempDir.getFileName());
+	}
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Dependency Injection and Testing in JUnit 5
+
+In this post, We will talk and learn about Dependency Injection for Constructors and Methods
+
+In all previous JUnit versions, test constructors or methods were not allowed to have parameters. We have one of the major changes in JUnit Jupiter, both test constructors and methods are now permitted to have parameters. These allow for greater flexibility and enable Dependency Injection for constructors and methods.
+
+In case if a test class method or constructor, or a lifecycle method accepts TestInfo as a parameter then the parameter must be resolved at runtime by automatically registered ParameterResolver.
+
+We can use TestInfo to retrieve information about the current container or test such as the display name, the test class, the test method, and associated tags.
+
+Let’s try to understand the above concept using a demo project:
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Set;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+
+@DisplayName("Dependency Injection for Constructors and Methods")
+public class DIForConstructorAndMethodTest {
+
+	private static MyUtils myUtils;
+	
+	public DIForConstructorAndMethodTest(TestInfo testInfo) {
+		System.out.println("Inside DIForConstructorAndMethodTest Constructor..");
+		String displayName = testInfo.getDisplayName();
+		assertEquals("Dependency Injection for Constructors and Methods", displayName);
+	}
+	
+	@BeforeAll
+	static void setUp(TestInfo testInfo) {
+		myUtils = new MyUtils();
+		System.out.println("Test data set up is done..");
+		//System.out.println(testInfo.getTags());
+	}
+	
+	
+	@BeforeEach
+	void beforeEach() {
+		System.out.println("@BeforeEach is executed..");
+	}
+	
+	@Test
+	@Tag(value = "tag_1")
+	@DisplayName(value = "adding two positive numbers")
+	void test_add_two_positive_numbers(TestInfo testInfo) {
+		int actualResult = myUtils.add(20, 10);
+		assertEquals(30, actualResult);
+		Set<String> tags = testInfo.getTags();
+		System.out.println(tags);
+		assertTrue(tags.contains("tag_1"));
+	}
+	
+	@Test
+	@Tag(value = "tag_2")
+	@DisplayName(value = "adding two negtaive numbers")
+	void test_add_two_negative_numbers(TestInfo testInfo) {
+		int actualResult = myUtils.add(-20, -10);
+		assertEquals(-30, actualResult);
+	}
+	
+	@Test
+	@DisplayName(value = "adding one positive and one negative number")
+	void test_add_one_positive_and_one_negative_number() {
+		int actualResult = myUtils.add(20, -10);
+		assertEquals(10, actualResult);
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("@AfterEach is executed..");
+	}
+	
+	@AfterAll
+	static void tearDown(TestInfo testInfo) {
+		myUtils = null;
+		System.out.println("Test data teardown is done..");
+		//System.out.println(testInfo.getTags());
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Test Interfaces and Default Methods in JUnit 5
+
+JUnit Jupiter allows @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, @TestTemplate, @BeforeEach, and @AfterEach to be declared on interface default methods.
+
+ @BeforeAll and @AfterAll can either be declared on static methods in a test interface or on interface default methods if the test interface or test class is annotated with @TestInstance(Lifecycle.PER_CLASS)
+
+@ExtendWith and @Tag can be declared on a test interface so that classes that implement the interface automatically inherit its tags and extensions.
+
+Finally, In your test class, you can implement these test interfaces to have them applied.
+
+Let’s try to understand the above concept using a demo project:
+
+
+package com.kkjavatutorials;
+
+import java.util.logging.Logger;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+
+@TestInstance(value = Lifecycle.PER_CLASS)
+public interface LifecycleLoggerTest {
+
+    static final Logger LOG = Logger.getLogger(LifecycleLoggerTest.class.getName());
+
+    @BeforeAll
+    default void beforeAll() {
+        LOG.info("This Method runs before all tests");
+    }
+
+    @AfterAll
+    default void afterAll() {
+        LOG.info("This Method runs after all tests");
+    }
+
+    @BeforeEach
+    default void beforeEach(TestInfo testInfo) {
+        LOG.info(() -> String.format("About to execute [%s]",
+            testInfo.getDisplayName()));
+    }
+
+    @AfterEach
+    default void afterEach(TestInfo testInfo) {
+        LOG.info(() -> String.format("Finished executing [%s]",
+            testInfo.getDisplayName()));
+    }
+}
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
+
+public interface InterfaceDynamicTestsDemo {
+
+    @TestFactory
+    default Stream<DynamicTest> dynamicTestsForPalindromes() {
+        return Stream.of("pop", "radar", "mom", "dad","madam")
+            .map(inputText -> dynamicTest(inputText, () -> assertTrue(isPalindrome(inputText))));
+    }
+
+    /**
+     * Method to check whether input String is Palindrome or not
+     * @param inputText 
+     * @return return true if input is Palindrome else false
+     */
+    default boolean isPalindrome(String inputText) {
+		return new StringBuffer(inputText).reverse().toString().equals(inputText);
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JUnit 5 @RepeatedTest Annotation example
+
+JUnit Jupiter provides the ability to repeat a test a specified number of times by annotating a method with @RepeatedTest and specifying the total number of repetitions desired.
+
+Every invocation of a repeated test behaves like the execution of a regular @Test method having full support for the same lifecycle callbacks and extensions.
+
+The following example demonstrates how to declare a test named repeatedTest() that will be automatically repeated 5 times.
+
+ @RepeatedTest(5)
+
+    void repeatedTest() {
+
+        // …
+
+    }
+
+Let’s try to understand the above concept using a demo project:
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.logging.Logger;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
+import org.junit.jupiter.api.TestInfo;
+
+public class RepeatedTestsDemo {
+
+	private static final Logger logger = Logger.getLogger(RepeatedTestsDemo.class.getName());
+
+    @BeforeEach
+    void beforeEach(TestInfo testInfo, RepetitionInfo repetitionInfo) {
+        int curRepetition = repetitionInfo.getCurrentRepetition();
+        int totalRepetitions = repetitionInfo.getTotalRepetitions();
+        String methodName = testInfo.getTestMethod().get().getName();
+        logger.info(String.format("Now about to execute repetition %d of %d for %s", curRepetition, totalRepetitions, methodName));
+    }
+
+    @RepeatedTest(5)
+    void repeatedTest() {
+    	//Testing code Logic goes here
+    }
+
+    @RepeatedTest(10)
+    void repeatedTestWithRepetitionInfo(RepetitionInfo repetitionInfo) {
+        assertEquals(10, repetitionInfo.getTotalRepetitions());
+    }
+
+    @RepeatedTest(value = 1, name = "{displayName} {currentRepetition}/{totalRepetitions}")
+    @DisplayName("RepeatTest")
+    void customDisplayName(TestInfo testInfo) {
+        assertEquals("RepeatTest 1/1", testInfo.getDisplayName());
+    }
+
+    @RepeatedTest(value = 1, name = RepeatedTest.LONG_DISPLAY_NAME)
+    @DisplayName("RepeatedTestWithLongDisplayName")
+    void customTestNameWithLongDisplayName(TestInfo testInfo) {
+        assertEquals("RepeatedTestWithLongDisplayName :: repetition 1 of 1", testInfo.getDisplayName());
+    }
+
+    @RepeatedTest(value = 6, name = "Wiederholung {currentRepetition} von {totalRepetitions}")
+    void repeatedTestInGerman() {
+    	//Testing code Logic goes here
+    }
+
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Dynamic Tests example in Junit 5
+
+When we write standard test cases using @Test annotation then tests are static in nature so that is fully specified at compile time and their behavior cannot be changed by anything happening at runtime.
+
+A dynamic test is a test that is generated at runtime by a factory method that is annotated with @TestFactory.
+
+A @TestFactory method is not itself a test case but rather a factory for test cases
+
+A @TestFactory method must return a single DynamicNode or a Stream, Collection, Iterable, Iterator, or array of DynamicNode instances.
+
+@TestFactory methods must not be private or static
+
+Let’s try to understand the above concept using a demo project
+
+package com.kkjavatutorials;
+
+public class MyUtils {
+
+	/**
+	 * Method perform addition of two numbers
+	 * @param n1 first input number
+	 * @param n2 second input number
+	 * @return addition of two numbers
+	 */
+	public int add(int n1, int n2) {
+		return n1+n2;
+	}
+	
+	 /**
+     * Method to check whether input String is Palindrome or not
+     * @param inputText 
+     * @return return true if input is Palindrome else false
+     */
+    public static boolean isPalindrome(String inputText) {
+		return new StringBuffer(inputText).reverse().toString().equals(inputText);
+    }
+
+    /**
+     * Method perform multiplication of two numbers
+     * @param n1 first input number
+     * @param n2 second input number
+     * @return multiplication of two numbers
+     */
+	public static Integer multiply(int n1, int n2) {
+		return n1*n2;
+	}
+}
+
+
+
+package com.kkjavatutorials;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.DynamicContainer.dynamicContainer;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.DynamicNode;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
+
+/**
+ * Dynamic Tests JUnit Examples
+ * @author KK JavaTutorials
+ */
+class DynamicTestsDemo {
+
+	/**
+	 * This will result in a JUnitException at Runtime because
+	 * TestFactory has invalid return type
+	 * @return
+	 */
+    @TestFactory
+    List<String> dynamicTestsWithInvalidReturnType() {
+        return Arrays.asList("KK JavaTurials");
+    }
+    
+    /**
+     * Dynamic Tests to check Stream of strings are Palindrome or not
+     * @return
+     */
+    
+    @TestFactory
+    Stream<DynamicTest> dynamicTestsForPalindromes(){
+    	
+    	return Stream.of("pop","radar","mom","dad","madam").map(inputText->dynamicTest(inputText, 
+    			()->assertTrue(MyUtils.isPalindrome(inputText))));
+    }
+
+    /**
+     * Dynamic Tests for Collection
+     * @return
+     */
+    @TestFactory
+    Collection<DynamicTest> dynamicTestsFromCollection() {
+        return Arrays.asList(
+            dynamicTest("1st dynamic test", () -> assertTrue(MyUtils.isPalindrome("radar"))),
+            dynamicTest("2nd dynamic test", () -> assertEquals(81, MyUtils.multiply(9, 9)))
+        );
+    }
+
+    /**
+     * Dynamic Tests for Iterable
+     * @return
+     */
+    @TestFactory
+    Iterable<DynamicTest> dynamicTestsFromIterable() {
+        return Arrays.asList(
+            dynamicTest("3rd dynamic test", () -> assertTrue(MyUtils.isPalindrome("dad"))),
+            dynamicTest("4th dynamic test", () -> assertEquals(9, MyUtils.multiply(3, 3)))
+        );
+    }
+
+    /**
+     * Dynamic Tests for Iterator
+     * @return
+     */
+    @TestFactory
+    Iterator<DynamicTest> dynamicTestsFromIterator() {
+        return Arrays.asList(
+            dynamicTest("5th dynamic test", () -> assertTrue(MyUtils.isPalindrome("madam"))),
+            dynamicTest("6th dynamic test", () -> assertEquals(25, MyUtils.multiply(5, 5)))
+        ).iterator();
+    }
+
+    /**
+     * Dynamic Tests for Array
+     * @return
+     */
+    @TestFactory
+    DynamicTest[] dynamicTestsFromArray() {
+        return new DynamicTest[] {
+            dynamicTest("7th dynamic test", () -> assertTrue(MyUtils.isPalindrome("dad"))),
+            dynamicTest("8th dynamic test", () -> assertEquals(16, MyUtils.multiply(4, 4)))
+        };
+    }
+
+    /**
+     * Dynamic Tests for Stream.
+     * Generates tests for the first 5 even integers.
+     * @return
+     */
+    @TestFactory
+    Stream<DynamicTest> dynamicTestsFromIntStream() {
+        return IntStream.iterate(0, number -> number + 2).limit(5)
+            .mapToObj(number -> dynamicTest("test" + number, () -> assertTrue(number % 2 == 0)));
+    }
+
+    /**
+     * Dynamic Tests for Stream.
+     * @return
+     */
+    @TestFactory
+    Stream<DynamicNode> dynamicTestsWithContainers() {
+        return Stream.of("A", "B", "C")
+            .map(inputText -> dynamicContainer("Container " + inputText, Stream.of(
+                dynamicTest("not null", () -> assertNotNull(inputText)),
+                dynamicContainer("properties", Stream.of(
+                    dynamicTest("length > 0", () -> assertTrue(inputText.length() > 0)),
+                    dynamicTest("not empty", () -> assertFalse(inputText.isEmpty()))
+                ))
+            )));
+    }
+
+    @TestFactory
+    DynamicNode dynamicTestFromSingleDynamicNode() {
+        return dynamicTest("'mom' is a palindrome", () -> assertTrue(MyUtils.isPalindrome("mom")));
+    }
+
+    /**
+     * Dynamic Tests which returns Single DynamicNode
+     * @return
+     */
+    @TestFactory
+    DynamicNode dynamicTestFromSingleNodeContainer() {
+        return dynamicContainer("palindromes",
+            Stream.of("pop", "radar", "mom", "dad")
+                .map(inputText -> dynamicTest(inputText, () -> assertTrue(MyUtils.isPalindrome(inputText)))
+        ));
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Junit 5 Parameterized Tests with examples
+
+Using Parameterized tests make it possible to run a test multiple times with different arguments. They are declared just like regular @Test methods but use the @ParameterizedTest annotation instead.
+
+Additionally, we must declare at least one source that will provide the arguments for each invocation and then consume the arguments in the test method.
+
+The following example demonstrates a parameterized test that uses the @ValueSource annotation to specify a String array as the source of arguments.
+
+        @ParameterizedTest
+	@ValueSource(strings = {"madam", "radar", "dad"})
+	void palindromesTest(String inputText) {
+ Sources of Arguments in Parameterized Tests
+
+
+
+1.@ValueSource
+
+@ValueSource is one of the simplest possible sources. We can use this annotation to specify a single array of literal values and can only be used for providing a single argument per parameterized test invocation.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+2.Null and Empty Sources
+
+@NullSource
+
+It provides a single null argument to the annotated @ParameterizedTest method. @NullSource cannot be used for a parameter that has a primitive type.
+
+@EmptySource
+
+It provides a single empty argument to the annotated @ParameterizedTest method for parameters of the following types: java.lang.String, java.util.List, java.util.Set, java.util.Map, primitive arrays (e.g., int[], char[][], etc.), object arrays (e.g.,String[], Integer[][], etc.).
+
+                Subtypes of the supported types are not supported.
+
+@NullAndEmptySource
+
+It is composed of annotation that combines the functionality of @NullSource and @EmptySource.
+
+  If you need to supply multiple  blank strings to a parameterized test,you can achieve that using @ValueSource — for example, @ValueSource(strings = {” “, ”   “, “\t”, “\n”}).
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+3.@EnumSource
+
+@EnumSource provides a convenient way to use Enum constants.
+
+@ParameterizedTest
+@EnumSource(ChronoUnit.class)
+void testWithEnumSource(TemporalUnit unit) {
+ 
+    assertNotNull(unit);
+}
+
+The annotation’s value attribute is optional. When it is omitted then the declared type of the first method parameter is used. The test will be failed if it does not reference an enum type. so, the value attribute is required in the above example because the method parameter is declared as TemporalUnit. To change the method parameter type to ChronoUnit allows you to omit the explicit enum type from the annotation as follows.
+
+
+@ParameterizedTest
+@EnumSource
+void testWithEnumSourceWithAutoDetection(ChronoUnit unit) {
+ 
+    assertNotNull(unit);
+}
+he annotation provides an optional names attribute that lets you specify which constants shall be used, like in the following example. If omitted, all constants will be used.
+
+@ParameterizedTest
+@EnumSource(names = { "DAYS", "HOURS" })
+void testWithEnumSourceInclude(ChronoUnit unit) {
+ 
+    assertTrue(EnumSet.of(ChronoUnit.DAYS, ChronoUnit.HOURS).contains(unit));
+}
+The @EnumSource annotation also provides an optional mode attribute that enables fine-grained control over which constants are passed to the test method. For example, We can exclude names from the enum constant pool or specify regular expressions as in the following examples.
+
+@ParameterizedTest
+	@EnumSource(mode = Mode.EXCLUDE, names = { "ERAS", "FOREVER" })
+	void testWithEnumSourceExclude(ChronoUnit unit) {
+		assertFalse(EnumSet.of(ChronoUnit.ERAS, ChronoUnit.FOREVER).contains(unit));
+	}
+ 
+ @ParameterizedTest@EnumSource(mode = Mode.MATCH_ALL, names = "^.*DAYS$")
+void testWithEnumSourceRegex(ChronoUnit unit) { 
+ 
+   assertTrue(unit.name().endsWith("DAYS"));
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+4.@MethodSource
+
+@MethodSource allows you to refer to one or more factory methods of the test
+
+Factory methods within the test class must be static unless the test class is annotated with @TestInstance(Lifecycle.PER_CLASS); whereas, factory methods in external classes must always be static. Additionally, such factory methods should not accept any arguments. class or external classes.
+
+@ParameterizedTest
+@MethodSource("stringProvider")
+void testWithExplicitLocalMethodSource(String argument) {
+    assertNotNull(argument);
+}
+ 
+static Stream<String> stringProvider() {
+    return Stream.of("apple", "banana");
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+5.@CsvSource
+@CsvSource allows you to express argument lists as comma-separated values (i.e., String literals).
+@ParameterizedTest
+@CsvSource({
+    "apple,         1",
+    "banana,        2",
+    "'lemon, lime', 0xF1"
+})
+void testWithCsvSource(String fruit, int rank) {
+    assertNotNull(fruit);
+    assertNotEquals(0, rank);
+}
+The default delimiter is a comma (,), but you can use another character by setting the delimiter attribute. Alternatively, the delimiter string attribute allows us to use a String delimiter instead of a single character. However, both delimiter attributes cannot be set simultaneously.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+6.@CsvFileSource
+@CsvFileSource lets you use CSV files from the classpath. Here each line from a CSV file results in one invocation of the parameterized test.
+@ParameterizedTest
+@CsvFileSource(resources = "/two-column.csv", numLinesToSkip = 1)
+void testWithCsvFileSource(String country, int reference) {
+    assertNotNull(country);
+    assertNotEquals(0, reference);
+}
+
+two-column.csv
+Country, reference
+Sweden, 1
+Poland, 2
+"United States of America", 3
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+7.@ArgumentsSource
+@ArgumentsSource can be used to specify a custom, reusable ArgumentsProvider. You should note that an implementation of ArgumentsProvider interface must be declared as either a top-level class or as a static nested class.
+
+@ParameterizedTest
+@ArgumentsSource(MyArgumentsProvider.class)
+void testWithArgumentsSource(String argument) {
+    assertNotNull(argument);
+}
+public class MyArgumentsProvider implements ArgumentsProvider {
+ 
+    @Override
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
+        return Stream.of("apple", "banana").map(Arguments::of);
+    }
+}
+Let’s try to understand the above concept using a demo project
+
+
+
+
+

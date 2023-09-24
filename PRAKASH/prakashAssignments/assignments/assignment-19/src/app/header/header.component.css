@@ -1,0 +1,238 @@
+.oMain {
+    height: 100vh;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .oMain .oNavbar {
+    flex: 0 0 auto;
+  }
+  .oScrollBody {
+    flex: 1 1 auto;
+    flex-direction: column;
+    display: flex;
+  }
+  .oScrollBodyInner {
+    flex: 1 1 auto;
+    flex-direction: row;
+    display: flex;
+    height: 100%;
+    flex-wrap: nowrap;
+  }
+  .oLeftBar {
+    width: 250px;
+    height: 100%;
+    overflow: hidden auto;
+  }
+  .oMiddleBar {
+    height: 100%;
+    overflow: hidden auto;
+  }
+  .oLinks {
+    display: grid;
+    gap: 5px;
+    padding: 10px 0px;
+  }
+  .oLinks  a {
+    font-size: 14px;
+  }
+  .oLinks  a.active {
+    font-weight: 500;
+  } 
+  .s85 img {
+    height: 30px;
+  }
+  .dg85 {
+      font-size: 14px;
+      font-weight: 500;
+      color: #4d4d4d;
+  }
+  .dg85 span {
+    font-size: 20px;
+  }
+  .programBtn {
+    background: #00c104;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 11px;
+    display: inline-block;
+    border-radius: 6px;
+  }
+  .programBtn:hover {
+    background: #007602;
+  } 
+  .btn2 {
+    background: #00c104;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 11px;
+    display: inline-block;
+    width: 138px;
+    text-align: center;
+  }
+  .btn2:hover {
+    background: #007602;
+  }
+  .btn3 {
+    background: #fff;
+    border: 1px solid #b6b6b6;
+    color: black;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 11px;
+    display: inline-block;
+    width: 138px;
+    text-align: center;
+  }
+  .btn3:hover {
+    background: #d6d6d6;
+  }
+  .btn4 {
+    background: linear-gradient(359deg, #dadada, white, white);
+    border: 1px solid #adadad;
+    color: black;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px 11px;
+    display: inline-block;
+    width: 160px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .btn4:hover {
+    background: linear-gradient(359deg, #bebebe, white, white);
+  }
+  .btn5 {
+    background: linear-gradient(359deg, #dadada, white, white);
+    border: 1px solid #adadad;
+    color: black;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 1px 11px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 1px;
+  }
+  .btn5:hover {
+    background: linear-gradient(359deg, #bebebe, white, white);
+  }
+  
+  .btnss {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .btnss:nth-child(odd) {
+    background-color: #f7f7f7;
+  }
+   
+  .subT2 {
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .availableBox {
+    height: 356px;
+    overflow: auto;
+  }
+  .availableBox a {
+    background: #0c8199;
+  }
+  .availableBox a:hover {
+    background: #056679;
+  }
+  .selectedBox {
+    height: 356px;
+    overflow: auto;
+  }
+  .selectedBox a {
+    background: #00c104;
+  }
+  .selectedBox a:hover {
+    background: #028905;
+  }
+  
+  .navbar {
+    min-height: auto;
+  } 
+  .navbar .navbar-collapse .navbar-nav .nav-item .nav-link {
+    color: #D1D1CF;
+    font-weight: 700; 
+  }
+  .navbar .navbar-collapse .navbar-nav .nav-item .nav-link.active, .navbar .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+    color: #333;
+  } 
+  .navbar .navbar-collapse .forms select {
+    appearance: auto;
+  }
+  
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+  }
+  
+  
+  /* header */
+  
+  .navbar-nav > li > a {
+    padding: 20px 15px 15px; 
+    position: relative;
+    display: block;
+    line-height: 20px;
+  } 
+  .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    color: #262626;
+    text-decoration: none;
+    background-color: #f5f5f5;
+  }
+  .nav-user-menu a:hover {
+    background-color: FFF !important;
+    color: 33BC59 !important;
+  }
+  .dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    white-space: nowrap;
+  }
+  .dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+  }
+  .selectToggle{
+    position: relative;
+    width: 250px;
+    background-color: white;
+  }
+  .selectToggle::after {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
+  .selectToggle select{
+    width: 100%
+  }
+  .cntInput{
+    width: 40px;
+    height: 25px;
+    border: 1px solid #d1d1d1;
+    background: transparent;
+  }
