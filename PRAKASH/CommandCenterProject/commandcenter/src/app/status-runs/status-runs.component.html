@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container class="rowheight" matColumnDef="id">
+    <th mat-header-cell class="bg-dark text-white" *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container class="rowheight" matColumnDef="workflowName">
+    <th mat-header-cell class="bg-dark text-white" *matHeaderCellDef> Work Flow Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.workflowName}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container class="rowheight" matColumnDef="botName">
+    <th mat-header-cell class="bg-dark text-white" *matHeaderCellDef> Bot Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.botName}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container class="rowheight" matColumnDef="createdDate">
+    <th mat-header-cell class="bg-dark text-white" *matHeaderCellDef> Created Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+  </ng-container>
+
+  <ng-container class="rowheight" matColumnDef="lastUpdatedDate">
+    <th mat-header-cell class="bg-dark text-white" *matHeaderCellDef> Last Updated Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.lastUpdatedDate}} </td>
+  </ng-container>
+
+  <ng-container class="rowheight" matColumnDef="description">
+    <th mat-header-cell class="bg-dark text-white" *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
