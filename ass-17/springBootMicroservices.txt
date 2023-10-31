@@ -1,0 +1,647 @@
+@Value("#{}") spel  performs field injection
+@Value("${}")
+@ConfigurationProperties	performs setter injection
+
+spring boot can have 	1.simple properties
+			2.array type properties     
+		   	3.collection type of properties
+			4.HAS-A type of properties   we can use for map and has-a class properties
+
+10-10-23
+--------
+
+@Profile("test") placed on top of method and class if not works for all profiles and we have to mention on properties as spring.profiles.active=dev
+and
+application-<profile-name>.properties
+
+step 1:keep the miniproject ready to bean aliasing and @Qualifier
+
+step 2:remove the code related to bean aliasing and @Qualifier
+	->remove the spring bean cfg file
+	->remove the alias name from properties file
+	->remove @Qualifier(-) in service impl class
+	->remove @ImportResource in main class
+
+step 3:Empty application.properties for time being
+
+step 4:add multiple application-<profile-name>.properties readily
+
+@Bean(name="c3PoDs")
+@Profile("test")
+public DataSource createC3PoDs(){
+	ComboPooledDataSource c3PoDs=new ComboPooledDataSource();
+	c3PoDs.setDriverClass(from environment variables);
+	c3PoDs.setJdbcUrl(from environment variables)
+	c3PoDs.setUser(from environment variables)
+	c3PoDs.setPassword(from environment variables)
+	c3PoDs.setInitialPoolSize(from environment variables)
+	c3PoDs.setMaxPoolSize(from environment variables)
+	return c3PoDs
+}
+
+
+2 types of runner in spring boot application commandline runner and application runner
+
+
+static blocks does not support exception propagation
+
+Order priorities of commandLine and application runner accordingly are:
+-------------------------------------------------------------------
+
+first priority to order interface getOrder() and then 
+second prioroty to @order annotation
+third priority to a-z alphabetic order
+
+
+
+Driver manager datasource to hikari data source
+
+13/10/23
+--------
+1.In spring jpa save method internally uses hibernate persist and merge methods.
+
+2.To check the library ctrl+shift+t --> Type the class name ----> open source code.
+
+3.ctrl+o to see the list of methods in a class.
+
+how to comment ctrl+shift+/ 
+
+fully update directly by except id repo.save
+partial update is except id update findbyid and save together
+
+
+PaginationAndSorting having two methods
+1.Sort sort=Sort.by(ascOrder?Direction.ASC:Direction.DSC)
+2.Pagable pageable=PageRequest.of(Pageno,pagesize)
+custRepo.findAll(sort) or
+custRepo.findAll(pageable)
+
+
+14/10/2023
+-----------
+@Lookup
+will be applied in abstract class to abstract method 
+ex: @Lookup
+	public abstract CricketBat getCricketBat();
+
+gives Cricket bat object without writing the logic
+
+
+=>By Seeing @Lookup annotation in the main /target spring bean
+class on certain abstract method/normal method delcaration, One
+InMemory Proxy class will be gnerated having dependency lookup
+code in the impl of abstract method. the IOC container creates
+object for this InMemory class (sub class of target class) and keeps
+in the internal cache of IOC container having target class bean id
+
+
+
+method replacer
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmIns="http://www.springframework.org/schema/beans"'
+xmins:xsi= http://www.w3.org/2001/XMLSchema-instance''
+xmIns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+<!-- target spring bean class cfg -
+<bean id="bank" class="com.nt.sbeans.BankService">
+<replaced-method name="calculateintrestAmount" replacer="irr">
+<arg-type>double</arg-type>
+<arg-type>double</arg-type>
+<arg-type>double</arg-type>
+</replaced-method>
+</bean>
+<!- cfg the Replacer class as spring bean
+<bean id="irr" class="com.nt.replacer.IntrestRateReplacer"/>
+
+
+
+Important key points
+=> For every b.method, it is recomanded to take seperate Method Replacer class
+=> while working with Method Replacer concept, we can not take
+a Target class as final class ( final classes can not have sub classes)
+b) target method/b.method as final mehtod or static method
+(final, static methods of supper class can not be overridden in the sub classes)
+c) The target spring bean must be always be configured using mi cfgs, not annotations even
+in the mi+ annotation driven cfgs, 100% code driven cfgs and in spring boot approach
+d) cannot make it static method because inmemory proxy doesnt override
+
+note:: By seeing <replaced-method>tag under <bean tag the IOC container does not perform
+target spring bean class obj creation ‚rather it generates the InMemory Proxy class
+as the sub class of target class, In that class b.method is overridden whose name is specified
+in «replaced-mehtod> tag .. In that b.mehtod overriding the reimplement(-,;-) of MethodReplacer
+will be called to execute the new logics..
+
+
+15/10/2023
+-----------
+
+
+What is difference between JEE JPA and spring data jpa?
+Ans) JEE JPA is software specification providing rules and guidelines to create the ORM frameworks
+like hibernate ‚iBatis and etc..
+spring data jpa is module of spring /spring boot framework which internally uses and provides the abstraction
+on hibernate framework to simplify the or mapping persistence logic development.
+
+Limitations of finder methods in spring data jpa:
+-------------------------------------------------
+a) Only select operations are possible i.e non-select operations are not possible
+b) Aggragate operations are not possible (count(*) ,max-),min(-) and etc...)
+c) GroupBy operations are not possible
+d) Working with scalar operations/Projections is bit complex
+e) While selecting data by using multiple properites and multiple conditions the method names becoming really very lengthy
+) Method names must be taken by following some conventions.. That process kills the readability...
+g) we can not call PL/SQL procecedure and functions..
+notel:: To overcome all the above problems .. take the support of @Query methods using JPQL/HQL or native SQL queries
+note2:: Use finder methods to perform single property/col condition based select operations.
+
+
+@Query method advantages (HQL) (EJB)
+===================================
+=>Support both select and non-select operations ( except insert operation)
+=>Can work with either HQL/JPQL or Native SQL queries
+=> Method names and signatures can be taken having flexibility
+=> Can be used to call PL/SQL Procedures and functions
+=> Supports aggregate
+select operations
+=> supports group by, order by clauses
+=> supports to work with joins (To get data from Two b tables having
+implicit conditions)
+and etc...
+
+Why @Query methods do not support INSERT Queries?
+Ans) HQL /JPQL INSERT Query can not work with generators configured in the Id Proeprty of Entity class but
+in spring data jpa the id value must be generated using one or another generator.. So use
+repo.save(-) or repo.saveXxx-) methods for insert operation which can internally work with generators.
+
+
+FROM CoronaVaccine WHERE price>=?1 AND price<=?2 // valid
+FROM CoronaVaccine WHERE price>=?1 AND price<=?3 // invalid (gap odrinal positional params)
+FROM Corona Vaccine WHERE price>=?0 AND price<=?1 // invalid (ordinal positional param index must start with 1)
+FROM CoronaVaccine WHERE price>=?2 AND price‹=?1 // valid java method arg values goes to query params in reverse order
+FROM Corona Vaccine WHERE price>=71 AND price<=:max // invalid (we can not mixup both postional params and named params)
+FROM CoronaVaccine WHERE price›=:min AND price<=?1 // invalid (we can not mixup both postional params and named params)
+FROM CoronaVaccine WHERE price>=? AND price<=? // invalid (jdbc style plain positional params are not allowed)
+FROM 31 WHERE price>=?2 AND price<=?3 //invalid (we can not take HQL keywords, entity class name, property names as the params)
+FROM CoronaVaccine WHERE price>=?1 AND price<=21 // technically valid ,but writing this kind query is meaning leass
+FROM CoronaVaccine ?1 price>=?2 AND price<=?3 // invalid (we can not take HQL keywords, entity class name, property names as the params)
+FROM CoronaVaccine WHERE :prop>=:min AND :prop<=:max // invalid (we can not take HQL keywords, entity class name, property names as the
+
+
+
+Calling PL/SQL procedure and functions using spring data JPA
+=====================================================
+=> Instead of writing same persistence logic or b.logic in every module of the Project..
+It is recomaned to write them as PL/SQL procedure or function (stored procedures or function)
+only for 1 time in Db sw and call them in mutiple modules of the Project.
+=> In order to avoid important logics fo authentication and authorization from developers
+of the project.. they will be develope as PL/SQL procedures or functions.. only their singture details
+will be exposed to the developers..
+Pullup for
+usecase1:: Authentication , Authorization logics will be devleoped as PL/SQL procedure or function and will be called
+from multiple models
+usecase2:: Attendence calculation logics will be devleoped as PL/SQL procedure or function and will be called
+from multiple modules
+usecase3:: Billing logics , settling claim amount logics, calculating student gpa,sgpa logics,
+some kind of batch processing operations and etc.. logics will be developed
+Activate Windows 1:0
+
+A typical java project contains
+60 to 70% persistence logics using JPQL/HQL + native SQL +o-r mapping logics
+30% to 40% persistence logics using PL/SQL procedures or functions..
+=>PL/SQL programming is specific to each Db s/w becoz we use SQL queries in PL/SQL programming
+=>PL/SQL procedure does not return a value..but we can get multiple results/outputs using OUT params
+=PL/SQL function return a value..but we can get multiple results/outputs using return value + OUT params.
+5 results from PL/SQL procedure ›take 5 OUT params
+5 results from PL/SQL function -take 4 OUT params and 1 return value.
+
+@Override
+public List<Doctor> showDoctorsBylncomeRange(double start, double end) {
+//create StoredProcedureQuery object pointing PL/SQL procedure
+StoredProcedureQuery query=manager.createStoredProcedureQuery P_GET_DOCTORS_BY_INCOME_RANGE",Doctor.class);
+// register both IN ,OUT params by specifying their mode
+query.registerStoredProcedureParameter (1, Double.class, ParameterMode.IN);
+query.registerStoredProcedureParameter(2, Double.class, ParameterMode.IN);
+query.registerStoredProcedureParameter(3, Object.class, ParameterMode. REF_CURSOR);
+//set values to IN params
+query.setParameter (1,start);
+query.setParameter (2, end);
+//call PL/SQL procedure
+List<Doctor> list=query.getResultList);
+return list;
+}
+
+
+Versioning and TimeStamping Features
+Versioning :: It keeps track of how many times the entity object is loaded and modified using
+===========
+hibernate logics directly or indirectly
+=>For this we need to add @Version annotation on the top of numberic property which
+internally creates one numberic col in Db table whose value will be incremented by 1
+for every update operation on the object.
+usecases :: a) keeping caller tune change count b) keeping track DOB change count in aadhar and etc..
+TimeStamping :: Keeps track of when the Object is saved and when the object lastly updated .. it will maintain
+============
+both data and time values of when the object is saved and when the object is lastly updated.
+For this we need to use @CreationTimestamp and @UpdateTimestamp on
+java.time. LocalDateTime type properties of an Entity class.
+
+usecases :: useful to keep track of when Bank account is opended and lastly operated
+useful to keep track of when when flipkart/gmail/.. account opened and lastly operated
+
+
+
+16/10/2023
+-----------
+=>All most all major DB s/w are supporting Large Object by giving different data types (i.e we can insert and retrieve LOBs(files) in DB table cols
+=>oracle gives BLOB, CLOB Data types
+=>mysql gives BLOB, tinyText, medium Text, larget text data types.. (NO CLOB data type)
+=>Only in standalone Apps, the Large objects files) will be saved directly in Db table cols
+= in web applications, instructed Apis that oa. hres til PSive a Ind erver machine file System
+and their address paths will be written to DB table cols as String values.
+(To avoid perforence issue with Db s/w)
+eg:: matrimony web applications, job portal App, social networking app and etc..
+
+=> In ORM f/ws (like hibernate) we take entity class as Serializable class for two reasons
+(a) Now a days, we are making entity class itself as the Model class(Java Bean) to carry data across
+the multiple layers like (contoller-serivce - repo /DAO class) ..Some times we need to send
+same data over the network from current project to another project.. So it needto take
+Entity class as Serialziable class (Flipkart sending Card Details to PayPall over the network)
+(b) The ORM f/w like hibernate supports Disk caching in second level caching i.e it uses hard disk memory
+through serialization while performing second Level caching..For This Entity classes should be taken
+as Serializable.
+
+
+Disk Caching is nothing but using files of file stem to maintain
+: Entity class objects in cache/buffer .. For this we need Serialization becoz
+only Serializable objects data can be written to a file or can be send over the network
+
+=>In association mapping cascading means.. the non-select persistence operations perfomed on the main obj
+will be propagated/cascadded to the associated objs... possible values
+cascade=CascadeType.ALL, (Best)
+cascade=CascadeType.PERSIST,
+cascade=CascadeType.REMOVE,
+cascade=CascadeType.MERGE,
+cascade=CascadeType.DETACH,
+cascade=CascadeType.REFRESH
+
+-›In One To Many Association and
+In Many to Many Association we take
+the collection type properties as the special properties
+-›In Many To One Association and
+In One To One Association we take
+the HAS-A type properties as the special properties
+
+
+TO
+=>In One to Many association we need specify
+mappedBy at One Side (parent class)
+=>In Many to Many and One To One association we can specify
+mappedBy any
+Side (parent class or child class)
+
+
+
+Select /Load Operations in OneToMany Association
+=> Here all parent obects will be loaded using single SELECT SQL Query and generates multiple
+select SQL Queries to get the childs of all the parent objs by submiting the parent obj id as the criteria/condition value.
+
+
+conclusion:: In Association mapping, Lazy Loading means, main objects will be loaded normally, but the associated objs will be loaded lazily on demand basis
+In Association mapping, Eager Loading means, the associated objects will be loaded along with main objects
+Default Fetch Type in @OneToMany Association is LAZY
+Default Fetch Type in @OManToOne Association is EAGER
+
+
+What is Lazy Loading and how to perform lazy loading in spring data jpa applications?
+Ans) While dealing single entity object (with out association) loading the record from b table
+lately until its utilization is not initiated is called lazy loading .. Lazy loading delay/avoid
+the process of hitting the Db /w until the need is there. For this we need to use
+getOne() or getByld() or getReferenceByld(-) methods of JPA Repository by adding
+sepecial
+"spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true" 
+
+Delete Operation in One TO Many Association
+=> if we try to delete main objs (parent objs) by loading them, the associated objs(chils objs) that are loaded with parent objs
+will be deleted automatically, if we cascade=CascadeType.ALL
+
+
+Association Mapping (Many To Many )
+===============
+= Here every parent record/object points to one or more child objects and every child record/object
+points to one or more parent objs
+= Many To Many Association is like OneToMany from parent and OneToMany From Child
+OneToMany from Parent + OneToMany From Child = Many To Many
+
+=> To build this relation ship we need two Entity classes having two collection type special HAS- properties
+=> Parent Entity class having collection to hold 0 or more child objects
+=> Child Entity class having collection to hold 0 or more Parent objects
+=>To build this Association ,we need total 3 db tables
+a) table1 to hold parent records
+b) table2 to hold child records
+c) table3 or join table to build the association
+
+Annotations required in Many To Many Association building
+@ManyToMany > to specify target entity and cascading, fetching options
+@JoinColumn -› To specify primary key column
+@JoinTable - To specify 3rd table and its FK columns
+
+
+
+Interacting with multiple DB s/Ws from spring App using spring data jpa
+boot
+creating multiple DataSources from spring App using Spring data Jpa
+=>To interact with multiple db s/ws or to interact with different Logical DBs of same Db s/w
+we need to use this concept.. Here we can not enjoy DataSource object that comes
+through AutoConfiuration. The AutoConfiguration based DataSource object always
+pointSingle DB s/w or single logical DB.. But we need pointing multiple Db s/ws or multiple
+Logical Ds of same Db s/w... So we need to go for manual Configuration of spring beans
+including DataSources using 100%code driven cfgs or Java Config cfgs in spring boot Application.
+(Indicates that we need to go for lots of manual cfgs in spring boot App)
+usecases:: a) Transffering bank accounts details from one bank to another bank
+if one bank aquires another bank
+
+
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.nt.repository.prod"
+entityManagerFactoryRef="oraEMF",
+transactionManagerRef = "oraT×Mgmr")
+public class OracleDBConfig {
+
+
+@Bean
+@ConfigurationProperties(prefix=" mysql. datasource")
+public DataSoruce createMySQLDs()
+return DataSourceBuilder .create().build(); .
+}
+- Gives JDBC DataSource object pointing to
+JDBC con pool for mysq
+
+
+
+// LocalContainerEntityMAnagerFactoryBean that gives EntityManagerFactory object
+@Bean("oraEMF")
+public LocalContainerEntityManagerFactoryBeancreateLCEMBForOracleEntityManagerFactoryBuilderemBuilder){
+//prepare HB properites
+Map<String, Object> map=new HashMap<String, Object>();
+map.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
+map.put("hibernate.hbm2ddl.auto", "update");
+map.put("hibernate.show_sql", "true");
+map.put("hibernate.fomat_sql", "true");
+//create LocalContainerEntityManagerFactoryBean class obj using EntityManagerFactoryBuilder object
+return emBuilder.dataSource(createOraDs())-packages("com.nt.entity.prod").properties(map).build();}
+
+
+@Bean("oraT×Mgmr")
+public JpaTransactionManager createTxMgmrForOracle@Qualifier"oraEMF") Entity/ManagerFactory factory) {
+return new JpaTransactionManager(factory);
+}
+}
+
+queries of mongo db repository
+-------------------------------
+@Query(value = "(eadd:?0,ename:?1)") //where eadd=? and ename=?
+public List<Employee> getEmpAllDataByAddrsAndName(String addrs,String name);
+//@Query(value = "{salary:(Sgte: ?0,SIte:?1}}")
+@Query(value = "{salary:(Sgte:?0),salary:(SIte:?1}}") //where salary>=? and salary<=?
+public List‹Employee> getEmpAllDataBySalaryRanage(doubie startSalary,double endSalary);
+@Query(value = "{Sor:[{eadd:?0},{eadd:?1}]}") //where eadd=? or eadd=?
+public List<Employee> getEmpAllDataAddresses(String addrs1,String addrs2);
+//@Query(value="{ename:('Sregex' : ?0, 'Soptions': T)]") //'T for case - insensitvity is applied
+@Query(value=" ename:('Sregex': 70,") /where ename like (%% is applied)
+public List<Employee> getEmpAllDataByEnamelnitialChars(String initialChars);
+
+@Query (fields=" {id =0, eno:1, ename:1, eadd:1, salary:1}", value = "{salary:{$gte:20}, salary:{Site:71}}")
+public List<Employee> getEmpsDataBySalary(double start,double end);
+
+17/10/2023
+-----------
+spring data MongoDB can be used
+in two ways
+a) Using MongoRepository
+b) Using MongoTemplate
+
+
+
+18/10/2023
+----------
+=>gmail is having its own mail server running incoming and outgoing server on
+different port numbers...
+smtp
+outgoing server port no :: 587
+server
+outoging server host name :: smtp.gmail.com
+Imap
+_ incoming server port no :: 993
+incoming| incoming server host name :: imap.gmail.com
+server
+
+
+=>In POP3 Incoming mail server
+once the mail client reads the
+mail messages they will be shifted mail clients ... there onwords
+managing the mail messages is the responsibility of mail client
+=>In IMAP Incoming mail server
+once the mail client reads the
+mail messages they still be maintained by mail server
+
+application.properties
+# java mail propertoies
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=jauharisumit0@gmail.com
+spring.mail.password=Sumit123@
+spring.mail.properties.mail.smtp.starttis.enable=true
+spring.mail.properties.mail.smtp.starttis.required=true
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.connectiontimeout=5000
+spring.mail.properties.mail.smtp.timeout=10000
+spring.mail.properties.mail.smtp.writetimeout=5000
+
+
+19/10/2023
+----------
+
+(1) Programmer deploys the spring MVC/spring Boot MVC web application in web server or applicationm server
+(2) Becoz the of < load-on-startup> enabled on DispatcherServlet (DS), the DS will be pre-instantiated and initialized..
+As part of DS Initialization the IOC Container will be created of type ApplicationContext.. This IOC container
+performs pre-instantation of singleton scope spring beans like HandlerMAppings, Handler classes, service, DAO classes,
+View Resolvers and etc.. also completes the necessary dependency Injections and keeps the spring beans
+in the ineternal cache of IOC container.
+(3) Browser gives the request to spring MVC /spring boot MVC web aplication.
+(4) As front controller DS traps and takes the request and applies the common system services
+(5) DS hand  overs the trapped request to handler mapping comp
+(6?) HandlerMapping comp seraches in all @Controller classes for the handler method whose request path
+matches with the path of currently trapped request ( uses reflectiona api for this)
+(7) HandlerMapping comp gives that matched handler Method sinnature and Controller class bean id to
+DS
+(8) DS submits the recieved bean id to DS mangaged IOC container and gets Controller class obj and calls
+the recived signature based handler method on controller object.
+(9) The handler method of handler/controller class either directly process the request or delegates the request to service, DAO
+classes for request processing and also keeps the recieved results in Model attributes (mostly in request scope)
+(10) The handler method of Handler class returns LVN (Logical View name) to DS
+(11) DS gives LVN to ViewResolver
+(12) ViewResolver resolves/indentifies the physcial view comp based on the recieved LVN
+back to DS
+(13) DS forwards /communicates with physical View comp where results are gathered from 1
+presentation logics
+(14) DS gets the formatted results from the physical View comp
+(15) DS sends the formatted results to browser as response
+(16) browser displays the recieved response as dynamic web page
+
+Different ways of registering Sevlet comp With Serviet Container
+1.Declarative Approach (Using web.xml's <servlet>,‹servlet-mapping> tags)
+[Suitable for pre-defined servlet comps where xml driven cfgs are allowed
+eg: DispatcherServlet registration in spring mvc app with xml cfgs]
+2. Annotation Approach (Using @ WebServlet annotation)
+[Suitable for user-defined servlet comp registration]
+eg: placing @WebServlet on user-defined servlet comp
+3. Programatic Approach/Dynamic Appräch (Using sc.addServlet(--) method)
+[Suitable for pre-defined servlet comp registration where xml ofgs are not allowed
+eg: DispatcherServlet cfg/registration in Spring boot MVC application]
+
+
+ViewResolver
+===========
+=>This comp takes LVN (Logical view name) given by Controller throug DS maps/link
+name and location and also returns  the View object (View Interface impl class ob]) having that
+and location ..
+= ViewResolver does not execute View comp .. ViewResolver indentifies the name and
+view comp and gives those details to DispatcherServlet comp.
+=> All ViewResolver comps are the classes implementing org.springframework.web.si
+or indirectly..
+= Most of the times we work with ready made ViewResolvers i.e there is no need of di
+ViewResolvers..
+=>InternalResourceViewResolver (default in spring boot mvc application.properties)
+=>UriBasedViewResolver
+=>ResouceBundle ViewResolver
+=>XmIViewResolver
+=>TilesviewResolver
+=>BeanNameViewResolver
+
+
+Handler mappings
+================
+=> All HandlerMapping classes are ready made classes implementing org.springframework.web.servlet.HandlerMapping(I)
+directly or indirectly..
+=> spring MVC api gives lots of pre-defined HandlerMapping classes for different situations.. Mostly there will not be
+any need of developing custom Handler Mapping classes.
+
+=>BeanNameUr|HandlerMapping
+=>ControllerClassNameHandlerMapping
+=>SimpleUriHandlerMapping
+=>useful in xml driven cfgs
+of spring mvc apps
+=>DefaultAnnotationHandlerMapping (Defult in annotation driven cfg upto 4.x)
+=>RequestMappingHandlerMapping (Default in annotation driven cfgs from spring 5.x)
+
+=> In Spring boot MVC application, the RequestManningHandlerManning class comes automatically
+through autoconfiguration., and will be pre-instantiation automatically by using the DispatcherServlet
+created IOC container…
+
+
+binding model map objects
+
+v © Object
+v ©* AbstractMap<K, Vs
+~ © HashMap<K, V>
+v © LinkedHashMap<K, V>
+© ModelMep
+~ © ExtendedModelMap
+• BindingAwareModelMap
+
+@RequestMapping("/pass")
+public ModelAndView passData() {
+//create ModelAndView object
+ModelAndView mav=new ModelAndView();
+mav.addObject("attr1", "vall");
+mav.addObject("attr2", new Date());
+//return LVN (Logical view Name)
+return mav;
+}
+
+@RequestMapping("/process").
+Here the LVN is request path ( process)
+public Model process(){
+Model model=new BindingAwareModelMap(): // manually creted shared Memory
+//add model attributes to shared Memory
+model.addAttribute("attr1", "val1");
+model.addAttribute("sysDt", LocalDateTime.now());
+return model;}
+
+/*@RequestMapping("/")
+public String renderHome(ModelMap map) {
+System.out.printin("map object class name ::"+map.getClass)):
+// add the model attributes
+map.put("attr1", "vall");
+map.put("attr2", new Date());
+//return LVN (Logical view Name)
+return "welcome";
+}*/
+
+
+@RequestMapping("/")
+public String renderHome(Model model){
+System.out.printin("map object class name ::"+model.getClass());
+/ add the model attributes
+model.addAttribute("attr1", "val]");
+model.addAttribute("attr2",new Date());
+//return LVN (Logical view Name)
+return "welcome";}
+
+
+@RequestMapping("/")
+public String renderHome(Map<String,Object> may
+System.out.printin(" map object class name ::"+m
+// add the model attributes
+map.put("attr1", "vall");
+map.put("attr2", new Date()):|
+//return LVN (Logical view Name)
+return "welcome";
+}
+
+
+Limitations of taking Model ,Map<String, Object> ,HashMap and etc. as the return type of Handler method:
+
+a) We need to create and return SharedMemory having model attributes manually in the handler method
+b) No control on the LVN i.e it takes request path of handler method itself as the logical view name
+c) The DS created default SharedMemory (BindingAwareModelMap obj) will be wasted completely
+note: if the return of handler method is ModelAndView.. all the above problems are there except (b) problem
+
+
+Advantages of taking Map<String,Object> ,Model and etc.. as the parameter types of handler method:
+
+a) we need not to create the sharedMemory manually to place the model attributes
+b) we can use the DS created SharedMemory to place the Model attributes i.e the DS created
+SharedMemory(BindingAwareModelMap obj) will not be wasted
+c) By taking the returnt type as java.lang.String , we can get control on the LVN.
+
+20/10/2023
+----------
+Limitations with HTML tags based Form Designing in Spring MVC/spring Boot MVC Apps
+=> The form designed using traditional html tags support only one way data binding i.e only form
+submission data goes to Model class object, But Model class obj data does not go to form comps as
+initial values of form comps on the launch of form page.
+Problem
+The reason is the traditional HTML tags can not be linked with
+Java objects and javaj data.
+
+
+21/10/2023
+----------
+=>BindingAwareSharedMemory obj data is specific to each request
+=>RedirectAttributes sharedMemory obj data is specific to one
+Redirection activity
+
+
+
+
+
+
+
+
+
+
+
+

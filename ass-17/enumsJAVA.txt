@@ -1,0 +1,25 @@
+1.introduced in 1.5 version enum is implicitly converted to class
+2.group of named constants (enumerated data types)
+3.ex:  public final static Beer RC=new Beer() => RC(100)=new Beer(100) Every constant represents enum object
+4.KF,RC; semicolon is optional
+5.inside enum toString() is implement to return name of the constants directly
+6.we can declare enum outside the class or inside the class but not inside the method
+7.if we declare enum outside the class then applicable modifiers are public static strictfp
+  if it is inside the class then applicable modifiers are public,<Default>,strictfp,private,protected,static
+8.form 1.5 version switch statements are accepting enum as argument
+9.form 1.7 version switch statements arer accepting string as argument
+10.every enum class is direct child of java.lang.Enum(Abstract class) it implements serializable and comparable and child class of object class and always final class hence we cant extend any other enum
+11.but we can impliment any number of interfaces
+12.values(): enums contains values() implicitly to return all values present inside enum
+13.ordinal(): gives order of constants
+14.ordinal values are 0 based like array index
+15. in enum if no constants ; is mandatory to proceed with other variables methods and constructors
+16.we cant create enum object explicitly hence we cant call enum object
+17.inside enum we only can declare concrete methods but not abstract methods.
+18.ex: Beer.KF.equals(Beer.RC)
+   Beer.KF==Beer.RC
+   Beer.KF.hashCode()>Beer.RC.hashCode()
+   Beer.KF.ordinal()>Beer.RC.Ordinal()
+	
+
+

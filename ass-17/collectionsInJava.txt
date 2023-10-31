@@ -1,0 +1,180 @@
+Need Of Collections
+To overcome the above limitations of Arrays we should go for Collections.
+Collections are growbable in nature. i.e. Based on our requirement we can increase (or) Decrease the size.
+Collections can hold both homogeneous & Heterogeneous elements.
+Every Collection class is implemented based on some standard data structure. Hence readymade method support is
+available for every requirement. Being a programmer we have to use this method and we are not responsible to provide
+implementation.
+
+Difference between Arrays and Collections?
+Arrays	Collections
+1. Arrays are fixed in size.	1. Collections are growable in nature. I.e. based on our requirement we can increase or decrease the size.
+2. Wrt memory arrays are not recommended to use.	2. Wrt to memory collections are recommended to use.
+3. Wrt Performance Arrays are recommended to use.	3. Wrt Performance collections are not recommended to use.
+4. Array can hold only hot datatype elements	4. Collections can hold both and heterogeneous elements.
+5. There is no underlying data structures arrays and hence readymade support is not available	5. Every Collections class is implemented based on some standard data structure. Hence readymade method available for every requntment.
+6. Array can hold both primitives and object types.	6. Collections can hold only objects but 8: not primitives
+
+What is Collection Framework?
+It defines several classes and interfaces which can be used
+a group of objects as single entity.
+
+Java
+-----
+Collection
+Collection Framework
+
+C++
+----
+Container
+STL (Standard Template Library)
+
+
+9-Key Interfaces of Collection Framework
+
+i. Collection :
+* If we want to represent a group of individual objects as a
+single entity then we should go for Collection.
+* Collection interface defines the most common methods
+which are applicable for any Collection object.
+* In general collection interface is considered as root
+interface of Collection Framework.
+
+Note: there is no concrete class which implements co| Subtitles/close
+interface directily
+
+
+Difference between Collection & Collections
+* Collection is an interface which can be used to represent
+a group of individual objects as a single entity.
+* Collections is an utility class present in java.util.package
+to define several utility methods (like Sorting, Searching...)
+for Collection objects.
+
+
+9 key interfaces of Collection Framework
+ii. List :
+* List is child interface of Collection.
+* If we want to represent a group of individual objects as a
+single entity where duplicates are allowed and insertion order
+preserved then we should go for List.
+
+
+9 key interfaces of Collection Framework
+ії. Set:
+* It is the child interface of Collection.
+* If we want to represent a group of individual objects as a
+single entity where duplicates are not allowed and insertion
+order not preserved then we should go for Set.
+
+
+Difference between List & Set
+List
+* Duplicates are allowed
+* Insertion order preserved
+Set
+* Duplicates are not allowed
+* Insertion order not preserved
+
+
+9 key interfaces of Collection Framework
+v. NavigableSet:
+* It is the child interface of SortedSet if defines
+several methods for navigation purposes.
+
+
+
+9 key interfaces of Collection Framework
+Collection (1) (1.2 version)
+Set (1) (1.2 version)
+SortedSet () (1.2 version)
+NavigableSet (i) (1.6 version)
+TreeSet 112 versiont
+
+
+9 key interfaces of Collection Framework
+vi. Queue :
+* It is child interface of Collection.
+* If we want to represent a group of individual objects prior to
+processing then we should go for Queue.
+Ex: before sending a mail all mail id's we have to store somewhere
+in which order we saved in the same order mail's should be deliverou
+(First in First out) for this requirement Queue concent is the best choice.
+
+
+9 key interfaces of Collection Framework
+vi. Queue :
+Collection (1)
+(1.2 version)
+Queue (
+(1.5 version)
+^ Pulluptor
+Priority Queue
+(1.5 version)
+BlockingQueue
+(1.5 version)
+LinkedBlockingQu
+(1.5 vI
+PriorityBlockingQueue
+(1.5 versionI
+
+
+9 key interfaces of Collection Framework
+Note :
+* All the above interfaces
+(Collection, List, Set, SortedSet, NavigableSet and Queue)
+meant for representing a group of individual objects.
+* If we want to represent a group of objects as key value pairs
+then we should go for Map Interface.
+
+
+
+
+ix. NavigableMap:
+* It is the child interface of sorted map, it defines several
+utility methods for navigation purpose.
+Map
+(1.2 version)
+Sorted Map ( (1.2 version)
+NavigableMap(1.6 version)
+TreeMap (12 version)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

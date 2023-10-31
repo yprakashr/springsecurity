@@ -1,0 +1,16 @@
+kafka cli's
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties(running zookeper)
+.\bin\windows\kafka-server-start.bat .\config\server.properties(running kafka server)
+kafka-topics.bat --create --bootstrap-server localhost:9092 --topic test(created topic test)
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic test(started producer)
+kafka-console-consumer --topic test --bootstrap-server localhost:9092  --from-beginning(started consumer)
+
+
+kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic demo-sbms-topic(latest)
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic demo-sbms-topic(old)
+
+
+kafka-topics.bat --list --bootstrap-server localhost:9092(latest)
+kafka-topics.bat --list --zookeeper localhost:2181(old)

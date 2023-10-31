@@ -1,0 +1,5 @@
+create login (username, email, password) register logout API
+
+edit user details
+
+password change
