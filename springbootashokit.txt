@@ -1,0 +1,477 @@
+Hibernate: It is an ORM framework. Used to develop only persistence layer of our applicatipn
+Struts: It is a web framework. Used to develop only web layer of our application.
+Spring: It is an application development framework. Entire project can be developed by using
+this.
+(we can do application end to end development)
+
+Spring Modules
+1) Spring Core
+2) Spring Context
+3) Spring DAO / Spring JDBC
+5) Spring AOP
+6) Spring ORM
+7) Spring Web MVC
+8) Spring Security
+9) Spring REST
+10) Spring Data
+11) Spring Cloud
+12) Spring Batch etc..
+
+Note: Spring framework is loosely coupled. It will not force to use all modules.
+- Based on project requirement we can choose which modules we need to use from Spring.
+Note: Spring Core is the base module for all other modules in Spring. To work with any module
+in spring first we need to know Spring Core module.
+
+- Spring Core Module is base module in Spring Framework. It is providing IOC container &
+Dependency Injection.
+Note: IOC & DI are fundamental concepts of Spring Framework.
+-> Spring Context module will deal the configuration related stuff
+-> AOP stands for Aspect Oriented Programming. Spring AOP is used deal with Cross Cutting
+logics in application.
+Application = Business Logic + Cross Cutting Logic
+Note: We can seperate business logic and cross cutting lagic using AOP module.
+
+
+-> Spring JDBC / Spring DAO module used to develop Persistence Layer
+-> Spring ORM module is used to develop Persistence Layer with ORM features.
+Pullup for precise seeking
+-> Spring Web MVC Module is used to develop Web Applications.
+-› Spring Security module is used to implement Security Features in ol
+(Authentication & Authorization)
+-> Spring REST is used to develop RESTFul services (REST API)
+-› Spring Data is used to develop persistence layer. It provided pre-us...--
+simplify CRUD operations.
+
+Spring Advantages
+-> It is a free & open source framework
+-> Spring is very light weight framework
+-> Spring is versatile frmework
+
+(Spring can be integrated with any other java framework available in the market)
+-> Spring is non-invasive framework
+(spring framework will not force us to use framework related interfaces or classes)
+Ex: To create a servlet we need to implement Servlet Interface or we need to extend HttpServlet
+GenericServlet. That means servlet is forcing us to use Servlets specific interface or classes.
+
+
+-----------------------------------------------------------------------------------------------
+
+-> Spring Framework released in 2004 (First Production Released)
+-> The current version of Spring is 5. version (Released in 2017)
+Note: Reactive Programming support added in Spring Framwork 5. version
+Note: Spring Boot 1.x released in 2014
+-› The current version of Spring Boot is 3.0 version
+Note: Spring Boot is an extension for Spring Framework.
+
+------------------------------------------------------------------------------------------------
+
+Spring Core
+=› Spring Core is base module in Spring Framework
+=› All the other modules of Spring are developed on top of Spring Core only
+=› Spring Core providing fundamental concepts of Spring Framework
+(IOC Container & Dependency Injection)
+=> Spring Core is all about Managing dependencies among the classes
+
+
+-> If we want Spring Core Module to manage dependencies among the classes with loosely coupling then we
+have to develop our classes by following some best practises.
+-> Spring Core suggesting Developers to follow "Strategy Design Pattern" to develop classes so that
+"Spring Core" can easily manage dependencies among the classes with loosely coupling.
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+What is @Bean annotation
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+> @Bean is a method level annotation
+→ When we want to customize any object creation then we will use @Bean annotation for that
+@Configuration
+public class AppSecurity {
+public AppSecurity () {
+System.out.printin("AppSecurity :: Constructor");
+}
+@Bean
+public AppSecurity createinstance() {
+custom lose t so pour cuntionally
+return as;
+
+
+How to represent our java class as a spring bean
+**************************************************
+
+@Component
+@Service
+@Repository
+@Controller
+@RestController
+@Configuration
+@Bean
+
+
+
+
+- All the above annotations are class level annotations but @Bean is method level annotation
+- @Component is a general purpose annotation to represent java class as Spring Bean
+@Service annotation is a specialization of @Component annotation. This is also used to represent java c
+bean. It is allowing for implementation classes to be autodetected through classpath scanning.
+- @ Repository annotation is a specialization of @Component annotaton. This is also used to represent jar
+spring bean. It is having Data Access Exception translation
+Ex: For dao classes we will use @Repository
+Pullupfor
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+What is @Bean annotation
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+> @Bean is a method level annotation
+→ When we want to customize any object creation then we will use @Bean annotation for that
+@Configuration
+public class AppSecurity {
+public AppSecurity () {
+System.out.printin("AppSecurity :: Constructor");
+}
+@Bean
+public AppSecurity createinstance() {
+custom lose t so pour cuntionally
+return as;
+
+
+How to represent our java class as a spring bean
+**************************************************
+
+@Component
+@Service
+@Repository
+@Controller
+@RestController
+@Configuration
+@Bean
+
+
+- All the above annotations are class level annotations but @Bean is method level annotation
+- @Component is a general purpose annotation to represent java class as Spring Bean
+@Service annotation is a specialization of @Component annotation. This is also used to represent java c
+bean. It is allowing for implementation classes to be autodetected through classpath scanning.
+- @ Repository annotation is a specialization of @Component annotaton. This is also used to represent jar
+spring bean. It is having Data Access Exception translation
+Ex: For dao classes we will use @Repository
+
+
+-> In Web applications to represent java class as controller we will use @Controller annotation. It is used for C2B
+communication.  (Spring boot to UI)
+for
+- In Distributed application to represent java class as distributed component we will use @RestController ann. It is used
+B2B communication. (Spring boot to Spring boot)
+
+
+
+-> Autowiring is used to perform dependency injection
+The process of injecting one class object into another class object is called as dependency injection.
+> In Spring framework IOC container will perform dependency injection
+> We will provide instructions to IOC to perform DI in 2 ways
+1) Manual Wiring (using ref attribute in beans config xml file)
+2) Autowiring
+- Autowiring means IOC will identify dependent object and it will inject into target object
+
+→ Autowiring will use below modes to perform Dependency Injection
+------------------------------------------------------------------
+1) byName
+2) byType
+3) constructor (internally it will use by Type only)
+
+
+- To perform Autowiring we will use @Autowired annotation
+-----------------------------------------------------------
+> @Autowired annotation we can use at 3 places in the program
+1) variable level (Field injection - FI)
+2) setter method level (Setter Injection - SI)
+3) constructor (Constructor Injection - CI)
+
+@Autowired with Field Injection
++++++++++++++++++++++++
+-> IOC will use Reflection api to internally to perform Field Injection
+
+
+Note: Field Injection is not recommended because it is violation oops principles and it breaks Single Responsibilit
+Principles.
+
+
+
+
+if interface have multiple implementations to auto wiring we can go with 
+@Primary
+@Qualifier("asdfa")
+
+
+SI vs CI vs FI
++++++++++++++
+-> Setter Injection will be performed through setter method
+-> It is mandatory to specify @Autowired annoation at setter method
+- If we don't specify @Autowired annotation then DI will not happen (Partial Injection)
+> If DI not happend then if we call methods then we will get NullPointerException
+-> Target Bean will be created first then setter method will be called to inject dependent
+
+
+> Constructor injection will be performed through constructor
+-> If we have more than one constructor then we have to specify @Autowired at constructor level
+-> If we have only one parameterized constructor then @Autowired is optional
+-> In Cl, dependent bean will be created first then target bean will be created
+-> Partial Injection is not possible in CI
+
+
+-> Fieldinjection will be performed through Reflection API
+-> FI violating OOPS principles (private variable getting initialized from outside using Reflecion)
+> It is simple to use
+
+
+Bean Life Cycle
++++++++++++*+
+> The java class which represented as Spring Bean is called as Bean Class
+- The java class which is managed by IOC is called as Spring Bean
+- Spring Beans life cycle will be managed by lOC
+- For Spring Beans Obj creation and Obj destruction will be taken by IOC container
+- We can execute life cycle methods for Spring Bean
+
+- In Spring Boot, we can work with Bean Lifecycle methods in 2 ways
+1) By Implementing interfaces (IntializingBean & DisposableBean)
+2) By Using Annotations ( @PostConstruct & @PreDestory )
+
+
+**********************************************************************************************
+
+1) What is Framework ?
+2) Web Framework (Ex: Struts )
+3) ORM Frameworks (Ex: Hibernate )
+4) Application Development Framework (Ex : Spring)
+5) Spring Framework Advantages
+
+
+Spring Data JPA
++++++++++++++
+-> It is used to develop persistence logic in our application.
+- The logic which is responsible to communicate with database is called as Persistence Logic
+→> Already we have JDBC, Spring JDBC, Hibernate, Spring ORM to develop persistence logic
+-> If we use JDBC, or Spring JDBC or Hibernate or Spring ORM then we should common logics in all DAO classes to
+perform CURD Oper
+-> Data JPA simplified persistence logic development by providing pre-defined interfaces with methods
+-> Data JPA provided Repository methods to perform CURD operations
+Note: If we use Data JPA then we don't need to write logic to perform curd operations bcz Data JPA will take care of that
+- Data JPA provideed Repository interfaces to perform CURD operations
+1)CrudREpository
+2)JPARepository
+
+Hibernate Vs Data JPA
+++++++++++++++++++
+-> In Hibernate we should implement all methods to perform CRUD operations
+- Data JPA providing predefined methods to perform CRUD Operations
+-> In Hibernate we should boiler plate code (same code in multiple classes)
+- In Data JPA we don't need to write any method because JPA Repositories providing methods for us
+
+
+Environment Setup
+++++++++++++++++
+1) MySQL Database (Server s/w)
+2) MySQL Workbench (Client s/w)
+
+Entity Class
+++++++++++
+- The java class which is mapped with DB table is called as Entity class
+- To map java class with DB table we will use below annotations
+@Entity : It represents our class as Entity class. (It is mandatory annotation)
+@Table : It is used to map our class with DB Table name
+Note: @Table is optional if our class name and table is same. If we don't give @Table then it will consider class name as
+table name.
+@ld : It represents variable mapping with primary column in table (It is mandatory annotation)
+@Column : It is used to map our class variables with DB table column names
+Note: @Column is optional if class variable and DB table column names are same
+
+
+
++++++++++++++++++++++
+Datasource properties
++++++++++++++++++++
+- Datasource properties represents with which database we want connect
+- DB URL
+- DB Uname
+- DB Pwd
+- DB Driver Class
+
+- We will configure datasource properties in application.properties file or application.yml file
+spring.datasource.url=jdbc:mysql://localhost:3306/sbms
+spring.datasource.username=ashokit
+spring.datasource.password=AshokIT@123
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+
+Native SQL Vs HQL
+++++++++++++++++++
+-> Native SQL queries are DB dependent
+-> HQL Queries are DB in-dependent
+
+-> Native Queries will use table name and column names in the query directley
+-> HQL queris will use 'Entity Class Name' and 'Entity Class Variable Names' in the query
+
+-> Native SQL queries will execute in Database Directley
+-> HQL queries can't execute in DB directley (HQL queries will be converted to SQL query using Dialect class before execution)
+
+-> As SQL queries are executing directley, performance wise they are good. HQL queries should be converted before execution hence
+HQL queries will take more time than SQL queries.
+
+-> Performance wise SQL queries are good
+-> Maintenence wise HQL queies are good
+
++++++++++++++
+Sorting
+++++++++++++++
+→ Sorting is used to sort the records either in ascending or in descending order
+→> We can pass Sort object as parameter for findAll () method like below
+List<User> users = repository.findAll);
+List<User> users = repository.findAll(Sort.by("age").ascending());
+List<User> users = repository.findAll(Sort.by"username", "age").descending());
+users.forEach(user -> {
+System.out.printin(user);
+
+
+++++++++++
+Pagination
+++++++++++
+→ The process of dividing all the records into multiple pages is called as Pagination
+> If we retrieve all the records at once then performance issues we will get in the application
+→ When we have lot of data in table to display then we will divide those records into multiple pages and we will display in front-end
+Data will be displayed based on below 2 conditions
+=> PAGE NUMBER (User landed on which page)
+=> PAGE SIZE (How many records should be displayed in single page)
+
+int pageSize = 3;
+int pageNo = 0;
+PageRequest pageRequest = PageRequest.of(pageNo, pageSize);
+Page<User> pageData = repository.tindAIl(pagerequest);
+
+int totalPages = pageData.getTotalPages);
+System.out.printin("Total Pages :: "+ totalPages);
+
+List<User> users = pageData.getContent();
+users.forEach(user -> {
+System.out.printin(user);
+});
+
+
+++++++++++++++++++++++++++
+Query By Example (QBE)
++++++++++++++++++++++++++++
+- It is used to prepare the query dynamically
+» To implement Dynamic Search Option we can use QBE concept
+User entity = new User();
+entity.setCountry("India");
+entity.setAge(25);
+Example<User> example = Example.of(entity);
+List<User> users = repository.findAll(example);
+users.forEach(user → {
+System.out.printin(user);
+
+
+public class Product {
+@ld
+@Column(name = "PRODUCT_ID")
+private Integer pid;
+
+@Column(name = "PRODUCT_NAME")
+private String pname;
+
+@Column(name = "PRODUCT_PRICE")
+private Double price;
+
+@CreationTimestamp
+@Column(name = "CREATED_DATE", updatable = false)
+private LocalDateTime createdDate;
+
+@UpdateTimestamp
+@Column(name = "UPDATED_DATE", updatable = false)
+private LocalDateTime updatedDate;
+}
+
+
+++++++++++++
+Primary Keys
++++++++++++
+> Primary Key is a constraint (rule)
+-> Primary constraint is the combination of below 2 constraints
+1) UNIQUE
+2) NOT NULL
+-> When we use PRIMARY KEY constraint for a column then that column value shouldn't be null and it should be unique.
+- It is not recommended to set values for Primary Key columns manually
+-> We will use Generators to generate the value for primary key column
+
+
+- In MYSQL Database we will use auto_increment to generate value for primary key. To specify auto_increment we will
+use IDENTITY generator.
+@ld
+@Column(name = "PRODUCT_ID")
+@GeneratedValue(strategy=GenerationType.IDENTITY)
+private Integer pid;
+
+
+- In Oracle database we will use sequence concept to generate value for primary key column. For every primary key one
+sequence will be created in database
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
