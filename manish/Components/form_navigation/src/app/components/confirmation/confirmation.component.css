@@ -1,0 +1,45 @@
+.confirmation .container {
+  box-shadow: 0px 0px 5px rgb(110, 160, 110);
+  border-radius: 20px;
+  margin: 10px;
+  padding: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  transform: scale(1.1);
+}
+
+.confirmation {
+  transform: translateY(15vh);
+}
+
+.confirmation .heading {
+  color: green;
+}
+
+.confirmation form {
+  overflow-x: hidden;
+}
+
+.confirmation input:focus {
+  border: 1px solid green;
+  outline: none;
+  box-shadow: 0px 0px 5px green;
+}
+
+.confirmation .h6 {
+  color: green;
+  text-decoration: underline;
+}
+
+.confirmation .col {
+  border-right: 1px solid green;
+}
+
+.confirmation li {
+  width: max-content;
+}
+
+.confirmation .col:nth-child(4) {
+  border:none
+}

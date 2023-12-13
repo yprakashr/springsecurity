@@ -1,0 +1,62 @@
+<!-- <mat-form-field>
+	<mat-select placeholder="Basic">
+		<mat-select-filter [array]="variables" (filteredReturn)="filteredList1 =$event"></mat-select-filter>
+		<mat-option *ngFor="let item of filteredList1" [value]="item">
+			{{item}}
+		</mat-option>
+	</mat-select>
+</mat-form-field> -->
+<!-- <ng-template *ngFor="let item of fruits2"></ng-template> -->
+<!-- <ng-select [items]="fruits" appendTo="body" formControlName="fruitNames" placeholder="Select Fruits"></ng-select>
+
+<ng-select [items]="fruits2" appendTo="body" formControlName="fruitNames" placeholder="Select Fruits"></ng-select> -->
+<div class="wrapper1 row-cols-lg-auto">
+	<div [class.active]="isWrapperActive" class="select-wrapper col-md-6">
+		 <div class="select-btn" (click)="toggleWrapper('first')">
+		<div class="span">{{ selectedCountry ? selectedCountry : 'Select Country' }}</div>
+		<i class="bi bi-caret-down-fill"></i>	
+	  </div>
+
+	  <div class="content" #contentFirst>
+		<div class="search">
+		  <i class="uil uil-search"></i>
+		  <input spellcheck="false" type="text" placeholder="Search" #searchInputFirst (input)="searchCountry(searchInputFirst.value, 'first')">
+		</div>
+
+		<ul class="options">
+		  <li *ngFor="let country of searchCountry(searchInputFirst.value, 'first')"
+			  [class.selected]="country === selectedCountry"
+			  (click)="updateName(country, 'first')">
+			{{ country }}
+		  </li>
+		  <p *ngIf="searchCountry(searchInputFirst.value, 'first').length === 0" class="no-result">Oops! Country not found</p>
+		</ul>
+	  </div>
+	</div>
+  
+	<!-- Second Select Box -->
+	<div [class.active]="isWrapperActiveSecond" class="select-wrapper col-md-6">
+	  <div class="select-btn" (click)="toggleWrapper('second')">
+		<div class="span">{{ selectedCountrySecond ? selectedCountrySecond : 'Select Country' }}</div>
+		<i class="bi bi-caret-down-fill"></i>
+		  </div>
+	  <div class="content" #contentSecond>
+		<div class="search">
+		  <i class="uil uil-search"></i>
+		  <input class="searchInp" spellcheck="false" type="text" placeholder="Search" #searchInputSecond (input)="searchCountry(searchInputSecond.value, 'second')">
+		</div>
+		<ul class="options">
+		  <li *ngFor="let country of searchCountry(searchInputSecond.value, 'second')"
+			  [class.selected]="country === selectedCountrySecond"
+			  (click)="updateName(country, 'second')">
+			{{ country }}
+		  </li>
+		  <p *ngIf="searchCountry(searchInputSecond.value, 'second').length === 0" class="no-result">Oops! Country not found</p>
+		</ul>
+	  </div>
+	</div>
+  </div>
+  
+
+
+

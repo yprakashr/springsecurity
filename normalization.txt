@@ -1,0 +1,37 @@
+normalization:
+
+Process of minimizing redundancy
+removes Insertion
+	Updation
+	Deletion
+
+divides larger tables in to smaller tables and liks them using relationship
+
+1NF
+---
+1.single valued attributes
+2.unique attributes
+3.order doesnt matter
+4.attirbute domain should not change
+
+2NF
+---
+1.table should be 1nf
+2.no partial dependency
+
+3nf
+---
+1.table should be in 2nf
+2.no transitive dependency
+
+3.5NF
+-----
+1.should satisfy 3nf
+2.for every primary key there should be atleast one column should be dependent on that
+
+
+4nf
+---
+
+
+

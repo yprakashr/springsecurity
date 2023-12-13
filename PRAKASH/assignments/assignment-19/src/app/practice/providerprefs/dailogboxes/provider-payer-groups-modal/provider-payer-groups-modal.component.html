@@ -1,0 +1,80 @@
+
+
+<div class="">
+  <div class="modal-header p-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-8">
+          <h3 class="modal-title">
+            Payer Group &amp; Timing Preferences for
+            {{providerPreferences.name}}
+            </h3>
+        </div>
+        <div class="col-sm-12 col-md-4"><a class=" pull-right float-end" (click)="closeDialog()"><i
+              class="glyphicon glyphicon-remove"></i></a>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
+<div class="modal-body">
+  <div class="col-sm-12 text-center text-danger" *ngIf="editProviderPrefsErrorMsg">
+    {{editProviderPrefsErrorMsg}}
+  </div>
+   
+  <h3>Value Weights</h3>
+
+  <div class="model-body m-2">
+  <div class="row">
+    <div class="col-sm-3  col-md-2">Payer Group</div>
+    <div class="col-sm-9 col-md-10 text-center w-75 ">
+      <div class="conatainer">
+      <ngx-slider [(ngModel)]="isValueNaN(singleObject.payer_weight) ? 0 : singleObject.payer_weight"
+        [options]="valueWeightOptions"></ngx-slider>
+      </div>
+      </div>
+      </div>
+</div>
+
+  <div class="model-body m-2">
+  <div class="row">
+    <div class="col-sm-3 col-md-2">Reimbursement Timing</div>
+    <div class="col-sm-9 col-md-10 text-center w-75 ">
+      <div class="conatainer">
+      <ngx-slider [(ngModel)]="isValueNaN(singleObject.reImbTm_weight) ? 0 : singleObject.reImbTm_weight"
+        [options]="valueWeightOptions"></ngx-slider>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <hr>
+
+  <ng-container *ngIf="providerPayerPref">
+  <h3>Payer Groups</h3>
+  <div class="">
+    <div class="row" *ngFor="let payerPref of providerPayerPref">
+    <div class="col-sm-3 col-md-2 mt15 pl35">
+      {{payerPref.payer_name}}
+    </div>
+    <div class="col-sm-9 col-md-10 text-center w-75">
+      <div class="conatainer">
+        <ngx-slider [(value)]="payerPref.desirability" (valueChange)="updateProviderPayerPref(payerPref)"
+        [options]="payerGroupOptSett"></ngx-slider>
+    </div>
+    </div>
+  </div>
+</div>
+</ng-container>
+</div>
+
+<div class="modal-footer">
+  <a class="btn btn-default secondary-btn" type="button" (click)="closeDialog()">Close</a>
+</div>
+
+
+</div>
+
+

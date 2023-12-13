@@ -1,0 +1,37 @@
+<mat-drawer-container class="example-container">
+    <div *ngIf="btn1">
+        <button id="btn1" type="button" class="btn btn1 btn-success" mat-button (click)="drawer.toggle();toggleBtn1()">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+
+    </div>
+    <mat-drawer mode="side" opened #drawer>
+        <button type="button" id="btn" class="btn btn-success" mat-button (click)="drawer.toggle();toggleBtn1()">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+        <ol>
+            <li routerLinkActive="active" class="nav-item" class="nav-link" routerLink="personal-details">
+                <button disabled class="sidenav-btn"><small class="bi bi-person-fill"></small>&nbsp; Personal
+                    details</button> <i *ngIf="personalDetailsExists" class="bi bi-check-lg text-success"></i>
+            </li><br>
+            <li routerLinkActive="active" class="nav-item" class="nav-link" routerLink="address">
+                <button disabled class="sidenav-btn"><small class="bi bi-geo-alt-fill"></small>&nbsp; Address</button>
+                <i *ngIf="addressDetailsExists" class="bi bi-check-lg text-success"></i>
+            </li><br>
+            <li routerLinkActive="active" class="nav-item" class="nav-link" routerLink="education">
+                <button disabled class="sidenav-btn"><small class="bi bi-bookmark-fill"></small>&nbsp;
+                    Education</button> <i *ngIf="educationDetailsExists" class="bi bi-check-lg text-success"></i>
+            </li>
+            <br>
+            <li routerLinkActive="active" class="nav-item" class="nav-link" routerLink="career">
+                <button disabled class="sidenav-btn"><small class="bi bi-briefcase-fill"></small>&nbsp; Career</button>
+                <i *ngIf="careerDetailsExists" class="bi bi-check-lg text-success"></i>
+            </li><br>
+            <li routerLinkActive="active" class="nav-item" class="nav-link" routerLink="confirmation">
+                <button disabled class="sidenav-btn"><small class="bi bi-patch-check-fill"></small>&nbsp;
+                    Confirmation</button>
+            </li>
+        </ol>
+    </mat-drawer>
+    <router-outlet></router-outlet>
+</mat-drawer-container>

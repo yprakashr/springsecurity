@@ -1,0 +1,289 @@
+@charset "ISO-8859-1";
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.ROW {
+  border: 2px solid rgb(213, 213, 255);
+  border-radius: 20px;
+}
+
+.header #logo {
+  text-decoration: none;
+}
+
+.header #fst {
+  color: rgb(0, 85, 255);
+  border-top: 4px solid rgb(0, 240, 0);
+  border-left: 4px solid rgb(0, 240, 0);
+  border-bottom: 4px solid rgb(0, 240, 0);
+  border-radius: 10px 0px 0px 0px;
+}
+.header #snd {
+  color: rgb(0, 240, 0);
+  border-top: 4px solid rgb(0, 100, 250);
+  border-right: 4px solid rgb(0, 100, 250);
+  border-bottom: 4px solid rgb(0, 100, 250);
+  border-radius: 0px 0px 10px 0px;
+}
+
+.header #plus {
+  color: rgb(0, 228, 0);
+  text-shadow: 0px 0px 5px rgb(0, 228, 0);
+}
+
+#signinForm {
+  padding: 10px;
+}
+
+#signupForm {
+  display: none;
+}
+
+.left .signinInfo p {
+  margin-top: 20px;
+  font-size: 15px;
+  text-align: center;
+  color: rgb(33, 106, 252);
+}
+
+.left #signup-msg,
+.left #appointment-msg {
+  display: none;
+  text-align: center;
+}
+
+.left #appointment-msg p {
+  font-size: 15px;
+  color: blue;
+}
+
+.left #loginMsg p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+  color: rgb(255, 0, 0);
+}
+
+#signin-btn {
+  background-color: rgb(25, 191, 0);
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  border: none;
+  font-size: 15px;
+}
+
+#signin-btn:hover {
+  background-color: rgb(3, 153, 1);
+  box-shadow: 0px 0px 5px rgb(3, 153, 1);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(176, 202, 255);
+  text-align: center;
+}
+
+.fetch * {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fetch .header {
+  text-align: center;
+  color: green;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px;
+  box-shadow: 0px 0px 5px 0px rgb(88, 119, 255);
+  width: 100%;
+}
+
+.fetch .search-sort {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.fetch select {
+  border: 1px solid rgb(88, 119, 255);
+  text-align: center;
+}
+
+.fetch select:hover {
+  box-shadow: 0px 0px 5px rgb(88, 119, 255);
+}
+
+.fetch .sort {
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.fetch option {
+  padding: 15px;
+  text-align: center;
+}
+
+.fetch .show_edit {
+  text-align: center;
+  margin-left: 20px;
+}
+
+.fetch .show_edit button {
+  background-color: rgb(61, 96, 251);
+  border-radius: 5px;
+  border: none;
+  padding: 3px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.fetch .show_edit button:hover {
+  box-shadow: 0px 0px 5px blue;
+}
+
+.fetch .table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.fetch table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 5px rgb(88, 119, 255);
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.fetch th {
+  color: white;
+  background-color: rgb(88, 119, 255);
+}
+
+.fetch tr:nth-child(even) {
+  background-color: rgb(233, 237, 255);
+}
+
+.fetch td,
+.fetch th {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  vertical-align: middle;
+  border: none;
+}
+
+.fetch th:first-child {
+  border-top-left-radius: 20px;
+}
+
+.fetch th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.fetch tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+
+.fetch tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
+}
+
+.fetch h1 {
+  color: green;
+  padding: 10px;
+}
+
+.fetch hr {
+  border: 1px solid rgb(60, 148, 60);
+  margin-bottom: 15px;
+}
+
+.fetch #edit-btn,
+.fetch #update-btn,
+.fetch input[type="submit"] {
+  cursor: pointer;
+  background-color: rgb(53, 165, 53);
+  border: none;
+  border-radius: 5px;
+  color: rgb(186, 255, 186);
+  padding: 3px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.fetch #edit-btn:hover,
+.fetch #update-btn:hover,
+.fetch input[type="submit"]:hover {
+  box-shadow: 0px 0px 5px rgb(88, 119, 255);
+}
+
+.fetch #delete-btn,
+.fetch #logout-btn,
+.fetch #cancel-btn {
+  cursor: pointer;
+  background-color: rgb(250, 53, 53);
+  border: none;
+  border-radius: 5px;
+  padding: 3px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.fetch #delete-btn:hover,
+.fetch #logout-btn:hover,
+.fetch #cancel-btn:hover {
+  box-shadow: 0px 0px 5px rgb(250, 53, 53);
+}
+
+.fetch #search {
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid rgb(88, 119, 255);
+}
+
+.fetch #search:focus {
+  outline: none;
+  border: 2px solid green;
+}
+
+.fetch #search:hover {
+  box-shadow: 0px 0px 5px green;
+}
+
+.fetch #form1 {
+  display: none;
+}
+
+.fetch .edit-input {
+  width: 50px;
+  border-radius: 5px;
+  border: 1px solid rgb(194, 194, 194);
+  padding: 3px;
+}
+.fetch .edit-input:focus {
+  outline: none;
+  border: 1px solid rgb(0, 146, 0);
+}
+.fetch .edit-input:hover {
+  box-shadow: 0px 0px 5px rgb(0, 189, 0);
+}
+
+.fetch #acc-details {
+  margin-left: 10px;
+  border: 2px solid rgb(88, 119, 255);
+  border-radius: 5px;
+  padding: 7px;
+}

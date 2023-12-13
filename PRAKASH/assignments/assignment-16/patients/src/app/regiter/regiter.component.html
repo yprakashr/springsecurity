@@ -1,0 +1,208 @@
+<div>
+  <nav class="home-nav">
+    <div class="row">
+      <div class="col">
+        <a class="btnsy item1 nav nav-link text-white" (click)="toHome()"
+          >Home</a
+        >
+      </div>
+      <div class="col">
+        <a class="btnsy item2 nav nav-link text-white" (click)="toExisting()"
+          >Existing</a
+        >
+      </div>
+      <div class="col">
+        <a class="btnsy item3 nav nav-link text-white" (click)="toPatients()"
+          >Patients</a
+        >
+      </div>
+    </div>
+  </nav>
+
+  <br /><br /><br />
+  <div class="mx-auto mt-5 mb-3 b container" style="width: 400px">
+    <div class="text-left text-info h4"><b> Book your appointment</b></div>
+
+    <form
+      #signupForm="ngForm"
+      (ngSubmit)="onSubmit(signupForm.value)"
+      [formGroup]="regForm"
+      class="center p-3 container-fluid"
+    >
+      <div class="form-group col-md-2 col-sm-2 pb-2" style="width: 100%">
+        <label>Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="fullName"
+        />
+        <div
+          class="dan"
+          *ngIf="
+            regForm.get('fullName')?.touched &&
+            regForm.get('fullName')?.hasError('required')
+          "
+        >
+          Please enter you name
+        </div>
+        <div
+          class="dan"
+          *ngIf="
+            regForm.get('fullName')?.touched &&
+            regForm.get('fullName')?.hasError('pattern')
+          "
+        >
+        
+          Numbers and special characters are not allowed
+        </div>
+        <div
+          class="dan"
+          *ngIf="
+            regForm.get('fullName')?.touched &&
+            regForm.get('fullName')?.hasError('minLength')
+          "
+        >
+          Please enter min of 3 characters
+        </div>
+        <div
+          class="dan"
+          *ngIf="
+            regForm.get('fullName')?.touched &&
+            regForm.get('fullName')?.hasError('maxLength')
+          "
+        >
+          Only 20 characters are allowed Max!
+        </div>
+      </div>
+
+      <div class="form-group col-md-2 col-sm-2 pb-2" style="width: 100%">
+        <label>Age</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputAge"
+          formControlName="age"
+        />
+        <div class="dan" *ngIf="regForm.get('age')?.touched && regForm.get('age')?.hasError('required')">Please enter your Age</div>
+        <div class="dan" *ngIf="">Please enter your Age</div>
+      </div>
+
+      <div class="form-group col-md-2 col-sm-2 pb-2" style="width: 100%">
+        <label for="inputAddress2">Phone Number</label>
+        <input
+          type="text"
+          id="inputPhone"
+          class="form-control"
+          formControlName="phoneno"
+        />
+        <div
+          class="dan"
+          *ngIf="
+            regForm.get('phoneno')?.touched &&
+            regForm.get('phoneno')?.hasError('required')
+          ">
+          Please enter your Phone Number
+        </div>
+      </div>
+
+      <div class="form-group col-md-2 col-sm-2 mt-3 pb-2" style="width: 100%">
+        <label for="inputAddress2">Gender : </label>
+        <div class="ml-2">
+          <div class="form-check form-check-inline">
+            <label>Male 👨</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              value="Male"
+              name="gender"
+              formControlName="gender"
+            />
+          </div>
+
+          <div class="form-check form-check-inline pb-2">
+            <label>Female 👩</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              value="Female"
+              name="gender"
+              formControlName="gender"
+            />
+          </div>
+
+          <div class="form-check form-check-inline pb-2">
+            <label>Others ⚧️</label>
+            <input
+              class="form-check-input"
+              value="others"
+              type="radio"
+              name="gender"
+              formControlName="gender"
+            />
+          </div>
+          <div class="dan" *ngIf="gender?.touched && gender?.invalid">
+            Please select your Gender
+          </div>
+        </div>
+      </div>
+
+      <p class="h6 mt-1 pb-2">Schedule Your Appointment</p>
+      <div class="form-group col-md-2 col-sm-2" style="width: 100%">
+        <label for="inputAddress2">Date</label>
+        <input
+          type="date"
+          min="{{ myDate }}"
+          class="form-control"
+          id="inputPhoneNumber"
+          formControlName="date"
+        />
+        <div
+          class="dan"
+          *ngIf="
+            regForm.get('date')?.touched &&
+            regForm.get('date')?.hasError('required')
+          "
+        >
+          Please select your scheduling date
+        </div>
+      </div>
+
+      <div class="form-group col-md-2 col-sm-2 pb-2" style="width: 100%">
+        <label></label>
+        <select class="form-select" width="90%" formControlName="time">
+          <option selected value="">Select your timings</option>
+          <option value="09:00 AM">09:00</option>
+          <option value="12:00 PM">12:00</option>
+          <option value="03:00 PM">15:00</option>
+        </select>
+        <div
+          class="dan"
+          *ngIf="
+            regForm.get('time')?.touched &&
+            regForm.get('time')?.hasError('required')
+          "
+        >
+          Please select your scheduling timings
+        </div>
+      </div>
+
+      <div>
+        <div class="mt-3 register-btns">
+          <button
+            type="submit"
+            [disabled]="signupForm.invalid"
+            class="btn btn-primary"
+          >
+            Register
+          </button>
+          <a (click)="onclick()" class="nav style nav-link"
+            ><u>Already exist?</u></a
+          >
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+

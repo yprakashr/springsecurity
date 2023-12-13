@@ -1,0 +1,10 @@
+what is transaction?
+final,finally and finalize?
+difference between vector, arraylist 
+d/f b/w array list and liked list 
+
+
+
+
+types of component communication 
+what is angular js scope

@@ -1,0 +1,4 @@
+digraph "com.example:practice:jar:1.0-SNAPSHOT" { 
+	"com.example:practice:jar:1.0-SNAPSHOT" -> "com.mysql:mysql-connector-j:jar:8.0.31:compile" ; 
+	"com.mysql:mysql-connector-j:jar:8.0.31:compile" -> "com.google.protobuf:protobuf-java:jar:3.19.4:compile" ; 
+ } 

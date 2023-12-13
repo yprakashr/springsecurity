@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout 6</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      form {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        border-radius: 20px;
+        box-shadow: 1px 1px 10px red;
+        margin-top: 10px;
+        margin-left: 25px;
+      }
+      form .radio,
+      form .checkbox {
+        display: flex;
+        flex-direction: row;
+        padding-top: 20px;
+      }
+      input[type="radio"]:hover,
+      input[type="checkbox"]:hover {
+        filter: drop-shadow(1px 1px 5px red);
+        cursor: pointer;
+      }
+      form input,
+      form select {
+        border: 1px solid red;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      form input[type="text"]:hover,
+      form select:hover {
+        box-shadow: 1px 1px 10px rgb(255, 60, 60);
+        transition: 500ms;
+      }
+      form input[type="text"]:focus,
+      form select:focus {
+        outline: none;
+        border: 2px solid rgb(255, 24, 74);
+      }
+      table {
+        width: 100%;
+        text-align: center;
+        margin-top: 25px;
+        margin-left: 25px;
+        border: 1px solid red;
+        padding: 5px;
+        margin-bottom: 15px;
+        border-collapse: collapse;
+        box-shadow: 1px 1px 10px red;
+      }
+      td,
+      th {
+        padding: 5px;
+        border: 1px solid red;
+      }
+      th {
+        padding: 5px;
+        background-color: rgb(255, 79, 114);
+      }
+      #data:nth-child(3n + 1) {
+        background-color: rgb(255, 186, 186);
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        background-color: rgb(255, 82, 120);
+        width: 100%;
+        color: aliceblue;
+        margin: 0;
+        box-shadow: 1px 1px 5px black;
+      }
+      .header img {
+        display: block;
+        border-radius: 50px;
+        margin-left: 15px;
+        padding: 5px;
+      }
+      .header #title {
+        display: block;
+        border-radius: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 30px;
+      }
+      .footer {
+        display: flex;
+        align-items: center;
+        background-color: rgb(255, 82, 120);
+        width: 100%;
+        color: aliceblue;
+        margin: 0foot;
+        box-shadow: 1px -1px 5px black;
+      }
+      .footer img {
+        display: block;
+        border-radius: 50px;
+        margin-left: 15px;
+        padding: 5px;
+      }
+      .footer #title {
+        display: block;
+        border-radius: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 30px;
+      }
+      #submit {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 15px;
+        background-color: rgb(255, 75, 75);
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        color: white;
+      }
+      #submit:hover {
+        box-shadow: 1px 1px 10px red;
+        cursor: pointer;
+        transition: 500ms;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img
+        src="../../../../Images/css-bg-img.jpg"
+        alt=""
+        height="50px"
+        width="50px"
+      />
+      <b id="title">This is Header</b>
+    </div>
+    <div class="form">
+      <form action="">
+        <label for="name">Name</label>
+        <input type="text" /><br />
+        <label for="name">Mobile</label>
+        <input type="text" /><br />
+        <label for="state">State</label>
+        <select name="" id="">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <div class="radio">
+          <label for="gender">Gender:&nbsp; </label>
+          <input
+            type="radio"
+            name="gender"
+            id=""
+            value="male"
+          />&nbsp;Male&nbsp;
+          <input
+            type="radio"
+            name="gender"
+            id=""
+            value="female"
+          />&nbsp;Female&nbsp;
+        </div>
+        <div class="checkbox">
+          <label for="intersts">Interests:&nbsp; </label>
+          <input type="checkbox" name="" id="" />
+          <label for="java">&nbsp;Java&nbsp;</label>
+          <input type="checkbox" name="" id="" />
+          <label for="C++">&nbsp;C++&nbsp;</label>
+          <input type="checkbox" name="" id="" />
+          <label for="Python">&nbsp;Python&nbsp;</label>
+        </div>
+      </form>
+    </div>
+    <div>
+      <table class="table">
+        <tr>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+        <tr id="data">
+          <td>a</td>
+          <td>b</td>
+          <td>c</td>
+          <td>d</td>
+        </tr>
+      </table>
+      <button id="submit">Submit</button>
+    </div>
+    <div class="footer">
+      <img
+        src="../../../../Images/css-bg-img.jpg"
+        alt=""
+        height="50px"
+        width="50px"
+      />
+      <b id="title">This is Footer</b>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "test",
+      "request": "launch",
+      "mainClass": "com.assignment15.assignment15_backend.controllers.test",
+      "projectName": "assignment15_backend"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-Assignment15BackendApplication<assignment15_backend>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.assignment15.assignment15_backend.Assignment15BackendApplication",
+      "projectName": "assignment15_backend",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=51242 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=assignment15_backend"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between">
+<div class="d-inline h4 mt-3 mx-4">Repeat</div>
+<i (click)="close()" class="p-3 cursor-pointer fs-4 fw-bolder d-inline bi bi-x-circle"></i>
+</div>
+<div class="weekdays d-flex justify-content-center align-items-center">
+    <div class="d-block">
+    <strong class="d-inline">Repeat every</strong>
+
+    <input type="number" class="mx-4" min="1" max="99" [(ngModel)]="repeatInterval" value="1" style="width:50px;border:none;outline: none;">
+    <select class="d-inline outline-none mb-3" (change)="updateWeekUnitStatus()" [(ngModel)]="repeatUnit" id="numberDropdown" name="repeatingdays">
+        <option value="day">day</option>
+        <option value="week">week</option>
+        <option value="month">month</option>
+        <option value="year">year</option>
+        </select>
+
+    <br>
+
+    <div  [class]="isWeekUnitSelected?'d-block':'d-none'">
+    <button  *ngFor="let day of weekdays"
+            (click)="toggleButton(day)"
+            type="button"
+            [class.checkboxdesign]="!isDaySelected(day)"
+            [class.checkboxdesignactive]="isDaySelected(day)"
+            >
+            {{ day.charAt(0)}}
+    </button>
+
+    <div class="mt-4 text-wrap" *ngIf="selectedDays.size > 0">
+        <p>{{ generateMessage() }}</p>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class="d-flex justify-content-end mx-5 mb-3">
+<button (click)="logInputsToConsole()" class="CustomsaveBtn">Save</button>
+<button (click)="resetFields()" class="CustomdiscardBtn">Discard</button>
+</div>

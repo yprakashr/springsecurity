@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculator2</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #ecf0f3;
+      }
+      .container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ecf0f3;
+      }
+      .calc {
+        box-shadow: inset -6px -6px 13px rgba(0, 0, 0, 0.16),
+          inset 6px 6px 13px #fff;
+        border-radius: 28px;
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(4, 66px);
+      }
+      input {
+        grid-column: span 4;
+        height: 68px;
+        width: 258px;
+        box-shadow: inset -6px -6px 13px #fff,
+          inset 6px 6px 13px rgba(0, 0, 0, 0.16);
+        background-color: #ecf0f3;
+        border: none;
+        border-radius: 32px;
+        color: grey;
+        text-align: end;
+        margin: 40px 0px 30px 0px;
+        padding: 20px;
+        font-size: 40px;
+      }
+      button {
+        box-shadow: inset -6px -6px 13px rgba(0, 0, 0, 0.16),
+          inset 6px 6px 13px #fff;
+        background-color: #ecf0f3;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .equal {
+        width: 120px;
+        border-radius: 42px;
+        box-shadow: inset -6px -6px 13px rgba(0, 0, 0, 0.16),
+          inset 6px 6px 13px #fff;
+        background-color: #ecf0f3;
+      }
+    </style>
+<<<<<<< Updated upstream
+
+    <script>
+    //   let result = document.getElementById("inputext");
+      let calculate = (number) => {
+        document.getElementById("inputext").value += number;
+      };
+      let Result = () => {
+        try {
+          var output = eval(document.getElementById("inputext").value);
+          document.getElementById("inputext").value = output;
+        } catch (err) {
+          alert("enter the valid input");
+        }
+      };
+      let clr = () => {
+        document.getElementById("inputext").value = "";
+      };
+      let del = () => {
+        document.getElementById("inputext").value = document
+          .getElementById("inputext")
+          .value.slice(0, -1);
+      };
+    </script>
+  </head>
+  <body>
+=======
+ 
+ <script >
+       // let result=document.getElementById("inputext").value;
+       let calculate=(number)=>{
+        document.getElementById("inputext").value+= number;
+        }
+       let Result=()=>{
+       
+        try{
+        var output=eval(document.getElementById("inputext").value);
+        document.getElementById("inputext").value=output;   
+        }
+    catch(err){
+alert("enter the valid input");
+    }
+    }
+  let clr=()=>{
+    document.getElementById("inputext").value="";
+   }         
+    let del=()=>{
+        document.getElementById("inputext").value= document.getElementById("inputext").value.slice(0,-1);
+    }
+ </script>
+</head>
+<body>
+>>>>>>> Stashed changes
+    <div class="container">
+      <div class="calc">
+        <input type="text" id="inputext" placeholder="0" />
+        <button onclick="clr()">C</button>
+        <button onclick="del()">DEL</button>
+        <button onclick="calculate('%')">%</button>
+        <button onclick="calculate('/')">/</button>
+        <button onclick="calculate('7')">7</button>
+        <button onclick="calculate('8')">8</button>
+        <button onclick="calculate('9')">9</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('4')">4</button>
+        <button onclick="calculate('5')">5</button>
+        <button onclick="calculate('6')">6</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('1')">1</button>
+        <button onclick="calculate('2')">2</button>
+        <button onclick="calculate('3')">3</button>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('.')">.</button>
+        <button onclick="calculate('0')">0</button>
+        <button onclick="Result()" class="equal">=</button>
+      </div>
+    </div>
+  </body>
+</html>

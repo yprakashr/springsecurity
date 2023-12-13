@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <pre>
+    <code>
+        package com.hrms.utility;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Base_class {
+	
+public static WebDriver driver;
+public static By txtName=By.name("txtUserName");
+public static By txtpassword=By.name("txtPassword");
+public static By loginbutton=By.name("Submit");
+
+	public static void openapp(String un,String pw) {
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\Hello\\Desktop\\selenium jar files\\firefoxdriver.exe");
+		driver=new FirefoxDriver();
+		driver.navigate().to("http://183.82.103.245/nareshit/login.php");
+driver.findElement(txtName).sendKeys(un);
+driver.findElement(txtpassword).sendKeys(pw);
+driver.findElement(txtName).click();
+
+
+
+	}
+
+}
+    </code>
+    </pre>
+</body>
+</html>

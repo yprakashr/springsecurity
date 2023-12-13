@@ -1,0 +1,49 @@
+<body class="body mt-5 container">
+    <div class="justify-content-center  align-center main-block" >
+    <form #techi="ngForm" (ngSubmit)="tech(techi)" [formGroup]="regForm5">
+      <h1>Technical-info</h1>
+      <fieldset>
+  <label for=""></label>
+  <label for=""  class="text-danger text-start" *ngIf="errmessage">Please fill technical details...</label>
+  <div class="form-group pxx">
+    <div class="float-start w-50 ">
+    <label for="exampleInputPassword1" class="form-label w-75"><strong>Commets on technical-skills</strong> </label>
+  </div>
+  <div class="float-center w-100">
+    <textarea name="Job-Profile" formControlName="job" class="form-control-sm form-control w-75 mx-5 align-item-center "  id="exampleInputPassword1" cols="30" rows="5"></textarea>
+  </div>
+    <div *ngIf="job.invalid && job.touched" >
+      <small class="text-danger valid" *ngIf="job.errors?.['required']">text is required</small>
+      <small class="text-danger valid" *ngIf="job.errors?.['minlength']">Please enter minimum of 12characters</small>
+    </div>
+  </div>
+      </fieldset>
+
+
+        <div class="mt-2 d-flex justify-content-center align-center">
+          <button [disabled]="techi.invalid" class="w-50"  type="submit">Submit</button>
+        </div>
+
+
+    </form>
+    </div>
+  </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

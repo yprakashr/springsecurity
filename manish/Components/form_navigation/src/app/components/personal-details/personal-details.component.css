@@ -1,0 +1,37 @@
+.personal-details .container {
+  box-shadow: 0px 0px 5px rgb(110, 160, 110);
+  border-radius: 20px;
+  margin: 10px;
+  padding: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.personal-details {
+  transform: translateY(15vh);
+}
+
+.personal-details .heading {
+  color: green;
+}
+
+.personal-details form {
+  overflow-x: hidden;
+}
+
+.personal-details input:focus,.personal-details input:hover {
+  border: 1px solid green;
+  outline: none;
+  box-shadow: 0px 0px 5px green;
+  transition: 500ms;
+  transform: scale(1.05);
+}
+
+.personal-details .names,
+.personal-details .age-phone,
+.personal-details .aadhar-pan,
+.personal-details .gender {
+  margin-left: auto;
+  margin-right: auto;
+}

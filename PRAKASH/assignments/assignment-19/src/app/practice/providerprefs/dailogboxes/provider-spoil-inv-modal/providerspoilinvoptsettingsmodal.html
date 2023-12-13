@@ -1,0 +1,54 @@
+<form name="vm.editProvSpoilPerForm" autocomplete="off" ng-submit="vm.updateProviderSpoiledInvPrefs()" novalidate>
+<div class="modal-header">
+  <h3 class="modal-title">
+    Non Opargo Bookings for {{vm.provWeightsForm.provider_name}}
+    <a class="close-btn pull-right" ng-click="vm.closeModal()"><i class="glyphicon glyphicon-remove"></i></a>
+  </h3>
+</div>
+<div class="modal-body">
+  <div class="col-sm-12 text-center text-danger" ng-if="vm.editProviderPrefsErrorMsg">{{vm.editProviderPrefsErrorMsg}}</div>
+    <div class="row">
+      <div class="col-sm-4 text-center"><h4>Segment</h4></div>
+      <div class="col-sm-4 text-center"><h4>Pre Opargo Bookings</h4></div>
+      <div class="col-sm-4 text-center"><h4>Future Non Opargo Bookings</h4></div>
+    </div>
+    <div class="mt15 row" ng-repeat="setting in vm.practProviderSpoilInvPrefs | orderBy : 'segment_num'">
+      <div ng-form="spoilpercform">
+        <div class="col-sm-4 text-center"><h4>{{setting.segment_num}}</h4></div>
+        <div class="col-sm-4 text-center">
+          <div class="form-group" ng-class="{'has-error':spoilpercform.nonopargoPerc.$invalid}">
+            <input class="center-block form-control text-center w150" name="nonopargoPerc" type="number" min="0" ng-model="setting.nonopargo_bkng_per" ng-change="vm.calcSpoilTotals()" required>
+            <div ng-if="vm.editProvSpoilPerForm.$submitted || spoilpercform.nonopargoPerc.$dirty" ng-messages="spoilpercform.nonopargoPerc.$error">
+              <div class="text-danger" ng-message="required">A value is required</div>
+              <div class="text-danger" ng-message="min">Number must be greater than or equal to 0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 text-center">
+          <div class="form-group" ng-class="{'has-error':spoilpercform.opargoPerc.$invalid}">
+            <input class="center-block form-control text-center w150" name="opargoPerc" type="number" min="0" ng-model="setting.opargo_bkng_per" ng-change="vm.calcSpoilTotals()" required>
+            <div ng-if="vm.editProvSpoilPerForm.$submitted || spoilpercform.opargoPerc.$dirty" ng-messages="spoilpercform.opargoPerc.$error">
+              <div class="text-danger" ng-message="required">A value is required</div>
+              <div class="text-danger" ng-message="min">Number must be greater than or equal to 0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt15 row">
+      <div class="col-sm-4 text-center"><h4>Total</h4></div>
+      <div class="col-sm-4 text-center">{{vm.providerSpoilTotals.nonopargo_total}}%</div>
+      <div class="col-sm-4 text-center">{{vm.providerSpoilTotals.opargo_total}}%</div>
+    </div>
+    <div class="row" ng-if="vm.editProvSpoilPerForm.$submitted && vm.percentageError">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9 pt10 text-center text-danger">
+        Percentage totals must equal out to 100% for each type of allocation.<br>
+        Please check the percentages entered.</div>
+    </div>
+</div>
+<div class="modal-footer">
+  <button class="btn primary-btn" type="submit">Save</button>
+  <a class="btn btn-default secondary-btn" type="button" ng-click="vm.closeModal()">Close</a>
+</div>
+</form>

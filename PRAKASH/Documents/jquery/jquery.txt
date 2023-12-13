@@ -1,0 +1,179 @@
+usefull methods in jquery
+append()		] Add element into current 			parent element
+
+appendTo()		] Add element to specific 			parent
+
+.each()			] It is a iterator to read key 			and value from collection.
+
+attr(" "," ");
+
+jquery interactions
+-jquery is javascript libraty
+-it comprises of pre-defined funcitons to handle various interactions.
+-write less and Do more.
+-jquery is used in Ddom manipulations, CSS manipulation, effects and animations, Ajax, JSON parsion.
+-it reduces compatibility.
+
+
+introduced by John Resig in 2006
+-version 1.0 2006 August
+>npm install jquery
+
+Jquery installations:
+1.Download JQuery for your project:
+>npm install jquery
+
+2.link JQuery core file to your web page:
+<head>
+<script src="jquery.js"></script>
+</head>
+
+3.invoke jquery libraty by using Factry function:
+<script>
+$(function(){
+
+})
+</script>
+(or)
+<script>
+$(document).ready(fucntion(){
+
+})
+</script>
+
+innerHTML changing:
+$("h2").text("welcome to jquery");
+alert("hello !!");
+
+
+						JQuery Selectors
+
+
+		It refers to HTML tag name
+TagName
+$("p")
+$("h1")
+$("td")						
+
+
+		It refers to id of element
+ID
+$(#aldsfjk)
+
+
+		It refers to class of element 
+class()
+$(.alsjk)
+
+
+		
+Note: you can use all selectors
+$()
+
+
+						JQuery HTML and CSS funcitons
+ value changing
+$("#textname").val("jhon")
+Hello! Jhon 
+
+
+
+				JQuery Effects
+
+-Display Effects
+hide()
+show()
+toggle()
+
+-Fading 	
+fadeIn()
+fadeOut()
+fadeTo()
+
+-sliding Effects
+SlideDown()
+slideUp()
+slideToggle()
+
+-Miscelaneous
+animate() 
+delay() etc.,
+
+
+				JQuery Events
+				===============
+
+- Database			:MySql, SqIServer, 					Oracle, MongoDb
+- Server Side			:JSP, PHP, ASP.NET, 	
+				Node JS, Python
+- Middleware			:Jsx, Express
+- Client Side			:JavaScript, JQuery. 					Angular, React
+
+
+
+-Asynchronous javascirpt and XML
+-it allows partial post back.
+-without reloading complete page new details can be added to page.
+-you can work with data offline.
+
+
+$.ajax({})
+$.getJSON()
+$.post()
+ajaxComplete()
+ajaxStart()
+ajaxStop()
+ajaxSuccess()
+ajaxSend() etc..,
+
+
+			JqueryUI
+			=========
+ready made options:
+1.draggable
+2.resizable
+3.selectable
+4.sortable
+
+jquery
+---------
+1.detach
+2.remove
+3.empty()
+4.prop()
+5.removeprop()
+6.scrolltop()
+7.scrolldown()
+8.offset()
+9.bind()
+10.unbind()
+11.toggleClass()
+12.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

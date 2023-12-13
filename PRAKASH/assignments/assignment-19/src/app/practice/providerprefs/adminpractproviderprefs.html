@@ -1,0 +1,55 @@
+<div ng-init="vm.initialize()">
+  <button class="btn btn-default mt15 pull-right" type="button" ng-click="vm.openProviderPrefSummaryModal()">Value Weights Summary</button>
+  <h1><img class="mb10 mr5" src="../../../assets/img/icons/practice.png">Practice / <small> Provider Preferences</small>
+  </h1>
+  <div class="center-block text-center" ng-if="!vm.practProviders.length">No Providers.</div>
+  <div class="center-block text-center text-danger" ng-if="vm.editProviderPrefsErrorMsg">{{vm.editProviderPrefsErrorMsg}}</div>
+  <div ng-if="vm.practProviders.length">
+    <div class="table-view">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th class="text-center">Payer Groups</th>
+            <th class="text-center">Activity Types</th>
+            <th class="text-center">Preferred Provider</th>
+            <th class="text-center">Referring Providers</th>
+            <th class="text-center">Time &amp; Location</th>
+            <th class="text-center">Inventory Allocation</th>
+            <th class="text-center">Non Opargo Bookings</th>
+            <th class="text-center">New Patient</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="provider in vm.practProviders | orderBy : 'name'">
+            <td>{{provider.name}} ( {{provider.abbreviation}} )</td>
+            <td class="text-center">
+              <button class="btn btn-default" type="button" ng-click="vm.openProviderPayerGroupsModal(provider)">Manage</button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-default" type="button" ng-click="vm.openProviderApptsModal(provider)">Manage</button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-default" type="button" ng-click="vm.openProviderPrefProviderModal(provider)">Manage</button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-default" type="button" ng-click="vm.openProviderRefProvidersModal(provider)">Manage</button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-default" type="button" ng-click="vm.openProviderLocationTimesModal(provider)">Manage</button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-default" type="button" ng-click="vm.openProviderInvAllocationModal(provider)">Manage</button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-default" type="button" ng-click="vm.openProviderSpoilInvModal(provider)">Manage</button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-default" type="button" ng-click="vm.openProviderNewPatientModal(provider)">Manage</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

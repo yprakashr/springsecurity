@@ -1,0 +1,36 @@
+
+<mat-toolbar class="bg-white">
+    <div class="logo">
+    <a class="fusion-logo-link" href="https://solventek.com/">
+        <img src="https://solventek.com/assets/images/logo.png"
+            srcset="https://solventek.com/assets/images/logo.png 1x" width="240" height="60"
+            alt="solventek.com Logo" data-retina_logo_url="" class="fusion-standard-logo" />
+        </a></div>
+    <span class="example-spacer"></span>
+    <button class="btn btn-danger btn-sm" aria-label="Example icon-button with logout icon"
+        (click)="openConfirmationDialog()">Logout</button>
+  </mat-toolbar>
+<mat-sidenav-container class="sidenav-wrapper">
+
+    <mat-sidenav class="bg-light" opened="true" #nav mode="side">
+        <mat-nav-list>
+
+
+            <mat-list-item [routerLink]="['./keyUser']" routerLinkActive="active-link">
+                <span>Define Data Model (Data Dictionary)</span>
+            </mat-list-item>
+
+            <mat-list-item [routerLink]="['./anotate']" routerLinkActive="active-link">
+                <span>Annotate the documents</span>
+            </mat-list-item>
+
+            <mat-list-item [routerLink]="['./anotateddoc']" routerLinkActive="active-link">
+                <span>Annotated documents</span>
+            </mat-list-item>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

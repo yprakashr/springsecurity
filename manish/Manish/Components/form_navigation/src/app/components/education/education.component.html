@@ -1,0 +1,182 @@
+<div class="education">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="container-fluid col-sm-auto p-3">
+                <img src="../../assets/images/5836.jpg" class="img-fluid mx-auto d-block" width="400vw"
+                    style="vertical-align: middle;">
+            </div>
+
+            <div class="col">
+                <div class="heading h3 text-center">Education</div>
+
+                <!-- EDUCATION FORM -->
+                <form [formGroup]="educationForm" (ngSubmit)="submitForm()">
+
+                    <!-- SECONDARY -->
+                    <div class="row secondary">
+                        <label class="h6">Secondary</label>
+
+                        <!-- INSTITUTE -->
+                        <div class="col">
+                            <input type="text" formControlName="secondaryInstitute" id="secondaryInstitute" class="form-control"
+                                placeholder="Institute">
+
+                            <div class="text-center"
+                                *ngIf="educationForm.get('secondaryInstitute')?.invalid && 
+                            educationForm.get('secondaryInstitute')?.errors && 
+                            (educationForm.get('secondaryInstitute')?.dirty || educationForm.get('secondaryInstitute')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('secondaryInstitute')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('secondaryInstitute')?.hasError('pattern')">
+                                    institute cannot start with space
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- GPA -->
+                        <div class="col">
+                            <input type="number" formControlName="secondaryGPA" id="secondaryGPA" class="form-control" placeholder="CGPA" maxlength="3"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+                            <div class="text-center" *ngIf="educationForm.get('secondaryGPA')?.invalid && 
+                            educationForm.get('secondaryGPA')?.errors && 
+                            (educationForm.get('secondaryGPA')?.dirty || educationForm.get('secondaryGPA')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('secondaryGPA')?.hasError('required')">
+                                    this field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('secondaryGPA')?.hasError('pattern')">
+                                    please enter valid pattern eg: 9.2
+                                </small>
+                                <small class="text-danger" *ngIf="educationForm.get('secondaryGPA')?.hasError('min')">
+                                    minimum GPA is 0
+                                </small>
+                                <small class="text-danger" *ngIf="educationForm.get('secondaryGPA')?.hasError('max')">
+                                    maximum GPA is 10
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HIGH SCHOOL -->
+                    <div class="row highschool mt-3">
+                        <label class="h6">High school</label>
+
+                        <!-- INSTITUTE -->
+                        <div class="col">
+                            <input type="text" formControlName="highSchoolInstitute" id="highSchoolInstitute" class="form-control"
+                                placeholder="institute">
+
+                            <div class="text-center"
+                                *ngIf="educationForm.get('highSchoolInstitute')?.invalid && 
+                            educationForm.get('highSchoolInstitute')?.errors && 
+                            (educationForm.get('highSchoolInstitute')?.dirty || educationForm.get('highSchoolInstitute')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('highSchoolInstitute')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('highSchoolInstitute')?.hasError('pattern')">
+                                    institute cannot start with space
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- GPA -->
+                        <div class="col">
+                            <input type="number" formControlName="highSchoolGPA" id="highSchoolGPA" class="form-control"
+                                placeholder="CGPA" maxlength="2"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+                            <div class="text-center"
+                                *ngIf="educationForm.get('highSchoolGPA')?.invalid && 
+                            educationForm.get('highSchoolGPA')?.errors && 
+                            (educationForm.get('highSchoolGPA')?.dirty || educationForm.get('highSchoolGPA')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('highSchoolGPA')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('highSchoolGPA')?.hasError('pattern')">
+                                    institute can contain only alphabets
+                                </small>
+                                <small class="text-danger" *ngIf="educationForm.get('highSchoolGPA')?.hasError('min')">
+                                    minimum GPA is 0
+                                </small>
+                                <small class="text-danger" *ngIf="educationForm.get('highSchoolGPA')?.hasError('max')">
+                                    maximum GPA is 10
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GRADUATION -->
+                    <div class="row graduation mt-3">
+                        <label class="h6">Graduation</label>
+
+                        <!-- INSTITUTE -->
+                        <div class="col">
+                            <input type="text" formControlName="graduationInstitute" id="graduationInstitute" class="form-control"
+                                placeholder="institute">
+
+                            <div class="text-center"
+                                *ngIf="educationForm.get('graduationInstitute')?.invalid && 
+                            educationForm.get('graduationInstitute')?.errors && 
+                            (educationForm.get('graduationInstitute')?.dirty || educationForm.get('graduationInstitute')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('graduationInstitute')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('graduationInstitute')?.hasError('pattern')">
+                                    institute cannot start with space
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- GPA -->
+                        <div class="col">
+                            <input type="number" formControlName="graduationGPA" id="graduationGPA" class="form-control"
+                                placeholder="CGPA" maxlength="2"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+                            <div class="text-center"
+                                *ngIf="educationForm.get('graduationGPA')?.invalid && 
+                            educationForm.get('graduationGPA')?.errors && 
+                            (educationForm.get('graduationGPA')?.dirty || educationForm.get('graduationGPA')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('graduationGPA')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="educationForm.get('graduationGPA')?.hasError('pattern')">
+                                    institute can contain only alphabets
+                                </small>
+                                <small class="text-danger" *ngIf="educationForm.get('graduationGPA')?.hasError('min')">
+                                    minimum GPA is 0
+                                </small>
+                                <small class="text-danger" *ngIf="educationForm.get('graduationGPA')?.hasError('max')">
+                                    maximum GPA is 10
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT -->
+                    <div class="text-center">
+                        <button type="button" routerLink="/address" class="btn btn-primary">Address</button>
+
+                        <button type="submit" [disabled]="educationForm.invalid"
+                            class="m-4 btn btn-success">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

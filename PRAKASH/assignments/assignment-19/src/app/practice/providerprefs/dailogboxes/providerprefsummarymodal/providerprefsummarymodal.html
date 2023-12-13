@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    Value Weights Summary for {{vm.practiceName}}
+    <a class="close-btn pull-right" ng-click="vm.closeModal()"><i class="glyphicon glyphicon-remove"></i></a>
+  </h3>
+</div>
+<div class="modal-body">
+<div class="table-view">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><label class="pl35">Provider Name</label></th>
+        <th><label class="text-center">Payor Groups</label></th>
+        <th><label class="text-center">Reimbursement Timing</label></th>
+        <th><label class="text-center">Activity Types</label></th>
+        <th><label class="text-center">New Patient</label></th>
+        <th><label class="text-center">Referring Providers</label></th>
+        <th><label class="text-center">Location</label></th>
+        <th><label class="text-center">Time of Day<label></th>
+        <th><label class="text-center">Preferred Provider<label></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="provider in vm.practProvidersWeights">
+        <td class="pl35">{{provider.provider_name}}</td>
+        <td class="text-center">{{provider.payer_weight}}</td>
+        <td class="text-center">{{provider.reImbTm_weight}}</td>
+        <td class="text-center">{{provider.activity_weight}}</td>
+        <td class="text-center">{{provider.newPt_weight}}</td>
+        <td class="text-center">{{provider.refProv_weight}}</td>
+        <td class="text-center">{{provider.loc_weight}}</td>
+        <td class="text-center">{{provider.tofd_weight}}</td>
+        <td class="text-center">{{provider.prefProv_weight}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-default secondary-btn" type="button" ng-click="vm.closeModal()">Close</a>
+</div>

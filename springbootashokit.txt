@@ -237,9 +237,9 @@ SI vs CI vs FI
 -> FI violating OOPS principles (private variable getting initialized from outside using Reflecion)
 > It is simple to use
 
-
+++++++++++++++++
 Bean Life Cycle
-+++++++++++*+
+++++++++++++++++
 > The java class which represented as Spring Bean is called as Bean Class
 - The java class which is managed by IOC is called as Spring Bean
 - Spring Beans life cycle will be managed by lOC
@@ -274,16 +274,18 @@ Note: If we use Data JPA then we don't need to write logic to perform curd opera
 1)CrudREpository
 2)JPARepository
 
+++++++++++++++++++++++
 Hibernate Vs Data JPA
-++++++++++++++++++
+++++++++++++++++++++++
 -> In Hibernate we should implement all methods to perform CRUD operations
 - Data JPA providing predefined methods to perform CRUD Operations
 -> In Hibernate we should boiler plate code (same code in multiple classes)
 - In Data JPA we don't need to write any method because JPA Repositories providing methods for us
 
 
+++++++++++++++++++
 Environment Setup
-++++++++++++++++
+++++++++++++++++++
 1) MySQL Database (Server s/w)
 2) MySQL Workbench (Client s/w)
 
@@ -346,9 +348,9 @@ users.forEach(user -> {
 System.out.printin(user);
 
 
-++++++++++
++++++++++++
 Pagination
-++++++++++
++++++++++++
 → The process of dividing all the records into multiple pages is called as Pagination
 > If we retrieve all the records at once then performance issues we will get in the application
 → When we have lot of data in table to display then we will divide those records into multiple pages and we will display in front-end
@@ -381,7 +383,7 @@ entity.setAge(25);
 Example<User> example = Example.of(entity);
 List<User> users = repository.findAll(example);
 users.forEach(user → {
-System.out.printin(user);
+System.out.printin(user);}
 
 
 public class Product {
@@ -427,6 +429,441 @@ private Integer pid;
 
 - In Oracle database we will use sequence concept to generate value for primary key column. For every primary key one
 sequence will be created in database
+
+
+-> In MYSQL Database we will use auto increment to generate value for primary key. To specify auto _increment we will
+use IDENTITY generator.
+@Id
+@Column(name = "PRODUCT_ID")
+@GeneratedValue(strategy=Generation Type.IDENTITY)
+private Integer pid;
+
+-> In Oracle database we will use sequence concept to generate value for primary key column. For every primary key one
+sequence will be created in database
+
+
+@EmbeddedId
+class AccPk {
+accNumber;
+accld;
+accType;
+}
+@Entity
+@Table
+class Account {
+holderName;
+holderEmail;
+holderAadhar;
+@Embeddable
+AccountPk accPk;
+}
+
+++++++++++++++++++++++++++
+TX management in Data JPA
+++++++++++++++++++++++++++
+-> Unit amount of work is called as Transaction
+-> When we are performing non select operation we need to deal with Transactions
+- For select operations transaction is not required
+- In Data JPA it is care of transaction managment
+- If all operations are successful then we should commit transaction
+- If any operation is failed in the transaction then we need to rollback that transaction
+- When we are working with transactions we need to ACID properties
+A - Atomacity
+C - Consistency
+I - Isolation
+D - Durability
+
+User user = new User();
+user.setUserName("Suresh");
+user.setUserEmail("suresh@gmail.com");
+long size = Files.size(Paths.get(imagePath));
+byte[] arr = new byte[(int) size];
+FilelnputStream fis = new FilenputStream(new File(imagePath));
+fis.read(arr);
+fis.close();
+user.setUserlmage(arr);
+userRepo.save(user);
+I
+
+++++++++++++++++
+Spring Web MVC
+++++++++++++++++
+→> Spring Web MVC is one module available in the spring framework
+> Using Spring Web MVC module we can develop 2 types of applications
+1) Web Applications
+2) Distributed Application
+→> Web Applications will have user interface (UI)
+> Customers can access web applications directley using internet
+-> Web Applications meant for customer to business communication
+Ex: facebook, gmail, linkedin, naukri etc...
+
+
+- Distributed Applications are meant for Business to Business Communication
+- If one application is communicating with another application then we call them as Distributed apps
+→ Distributed Applications we can develop in 2 ways
+1) SOAP Webservices
+2) RESTFul Services
+Note: SOAP Webservices & RESTFul Services can be developed using Spring Web MVC
+→ Distributed applications we are developing to re-use logic of one application in another application.
+
+
+††++++++++++++++++++++
+Advantages of Spring Web MVC
+†+++++++++++++++++++++++
+1) Easily we can develop web & distributed applications
+2) It supports Multiple Presentation Technologies (JSP & Thymeleaf)
+3) | 18 N Support
+
+
+
+
+++++++++++++++++++++++++
+Spring Web MVC Architecture
+++++++++++++++++++++++++++
+1) Dispatcher Servlet (Front Controller)
+2) Handler Mapper
+3) Controller
+4) Model And View
+5) ViewResolver
+6) View
+
+
+→ DispatcherServlet is a pre-defined servlet class in Spring Web MVC
+-> Dispatcherserviet Is called Front Controller/Framework Servelet
+-> It is responsible to perform pre-processing and post-processing for every request
+
+
+- HandlerMapper is a pre-defined class in spring web mvc
+- HandlerMapper is used to identify Request Handler
+→ It will identify which request should be processed by which Controller class.
+
+- Model represents Data in Key-Value pair
+-> View represents presentation file name
+→ To display data in view file we will use ModelAndView object
+
+→ ViewResolver is used to identify where view files available in our project
+
+→ View component is used to render model data on view file to display that to end user
+
+
++++++++++++++++
+Spring Web MVC
++++++++++++++++
+> Spring Web MVC is one module available in the spring framework
+-> Using Spring Web MVC module we can develop 2 types of applications
+1) Web Applications I
+2) Distributed Application
+
+
+> Web Applications will have user interface (UI)
+-> Customers can access web applications directley using internet
+-> Web Applications meant for customer to business communication (C 2 B)
+Ex: facebook, gmail, linkedin, naukri etc...
+
+
+→ Distributed Applications are meant for Business to Business Communication (B 2 B)
+-> If one application is communicating with another application then we call them as Distributed apps
+
+
++++++++++++++++++++++++++++++++++++++++++++
+Building First Web Application using Spring Web MVC
++++++++++++++++++++++++++++++++++++++++++++
+1) Create Spring Starter application with below dependencies.
+a) spring-boot-starter-web
+b) tomcat-embed-jasper
+c) devtools
+2) Create Controller class and write Required methods.
+3) Create View Files with Presentation logic.
+4) Configure ViewResolver in application.properties file.
+5) Run the application and test it.
+ 
+Note-1: web-starter will provide the support to build web apps with MVC architecture and it provides To
+embedded container.
+
+Note-2: tomcat-embed-jasper will provide the support to work with JSP files in Spring Web MVC.
+
+Note-3 : devtools is used to re-start the server when changes happend in the code.
+
+Note-4 : Java class will be represented as a Spring Controller using @Controller annotation.
+
+Note-5 : Controller class methods should be binded to HTTP Protocol methods to handle HTTP Requests.
+
+++++++++++++++
+HTTP requests 
+++++++++++++++
+1.GET
+2.POST
+3.PUT
+4.DELETE
+
+
+
+> GET request is used to retrieve data from Server / Provider application.
+- GET request will not have body to send data in the request
+-> To send any data using GET request then we will use Path Params & Query Params
+Ex: https://www.youtube.com/watch?v=V0818de8sdk
+Note: Path Params & Query Params data will be displayed in the URL
+Note: It is not recommended to send sensitive / secret data using Path Params & Query Params
+-> GET request is Idempotent (means if you send same GET request for multiple times also nothing will change at server)
+
+
+-> POST request is used to create alnew record at server
+-> When consumer wants to send huge data/ sensitive data then Consumer will use POST request
+-> POST request contains request body
+-> POST request is Non-Idempotent
+
+
+-> PUT request is used to update a record at server
+- When consumer wants to update a record at then consumer will send PUT request to Provider
+> PUT request contains request body
+-> PUT request is Idempotent
+Note: In PUT request we can send data in URL and in Request Body
+Note: Request Body is the recommended approach to send sensitive data to server
+
+
+-> DELETE request is used to delete a record at server
+-> DELETE request contains request body
+-> DELETE request is Idempotent
+Note: In DELETE request we can send data in URL and in Request Body.
+
+#################
+HTTP Status Codes
+##################
+→ HTTP Status codes will represent the status of our request & response
+1xx (100 - 199) ---> INFO
+2xx (200 - 299) --> OK (success)
+3xx (300 - 399) ---> Redirect
+4xx (400 - 499) ---> Client Error
+5xx (500 - 599) -> Server Error
+
+#######################
+HTTP Request Structure
+#######################
+1) Intial Request Line (HTTP method + URL)
+2) Request Headers (key-value )
+3) Blank Line to seperate Header & Body
+4) Request Body (Request Pay load)
+
+
+#######################
+HTTP Response Structure
+#######################
+1) Initial Response line(Protocol Version + Status Code + Status msg)
+2) Response Headers (Key-value)
+3) Blank Line to seperate Header & Body
+4) Response Body (Response Pay load)
+
+
+What is Disributed Application
+What is Intereoperability
+What is HTTP Protocol
+HTTP Methods
+HTTP Status Codes
+HTTP Request Structure
+HTTP Response Structure
+Working with XML and JAX-B
+Working with JSON and Jackson
+
+
+++++++++++++++++++++++++
+How to develop REST API
+++++++++++++++++++++++++
+→ To develop RESFul Services/ REST APIs using java SUN Microsystem released 'JAX-RS' API
+→> JAX-RS api having 2 implementations
+                1) Jersey (Sun Microsystems)
+                2) REST Easy(JBOSS)
+Note: We can develop RESTFul Services using any one of the above implementation
+Subscribed
+
+-> Spring framework also provided support to develop RESTFul Services using Spring Web MVC module.
++++++++++++++++++++++++++
+RESTFul Services Architecture
++++++++++++++++++++++++++
+-> We will have 2 actors in RESTful services
+1) Provider / Resource
+2) Consumer / Client
+-> The application which is providing services to other applications is called as Provider or Resource application
+-> The application which is accessing services from other applications is called as Consumer or Client application
+
+
+- Client application and Resource application will exchange data in intereoperable format (like XML & JSON)
+                  request
+client app <----------------->resource app
+		response
+ 
+
+
+++++++++++++++++++++++++++
+Develop First REST API Using Spring Boot
++++++++++++++++++++++++++++++++++++
+
+1) Create Spring starter application with below dependencies
+a) web-starter
+b) devtools
+2) Create RestController with Required methods
+Note: To represent java class as Rest Controller we will use @RestController annotation
+Note: Every RestController method should be binded to HTTP Protocol method
+                 Ex: @GetMapping, @PostMapping, @PutMapping & @DeleteMapping
+3) Run the application and test it.
+Note: To test REST APIs we will use POSTMAN tool
+
+++++++++++++++
+Query Params
+++++++++++++++
+- Query Params are used to send data to server in URL directly
+> Query Params will represent data in key-value format
+-> Query Params will start with '?'
+- Query Parameters will be seperated by '&'
+-> Query Parameters should present only at the end of the URL
+Ex: www.ashokit.in/courses?name=SBMS&trainer=Ashok
+→ To read Query Parameters from the URL we will use @RequestParam annotation
+
+
++++++++++++++++++++++++++++++
+Path Parameter or URI variables
++++++++++++++++++++++++++++++
+- Path Parameters are also used to send data to server in URL
+- Path Params will represent data directley in URL (no keys)
+- Path Params can present anywhere in the URL
+-> Path Params will be seperated by / (slash)
+-> Path Params should be represented in Method URL pattern (Template Pattern)
+Ex: www.ashokit.in/courses/{cname}/{trainerAtname}
+
+++++++++++++++++++++++++++++
+Path Parameter or URI variables
+++++++++++++++++++++++++++
+> Path Parameters are also used to send data to server in URL
+-> Path Params will represent data directley in URL (no keys)
+- Path Params can present anywhere in the URL
+-> Path Params will be seperated by / (slash)
+-> Path Params should be represented in Method URL pattern (Template Pattern)
+Ex: www.ashokit.in/courses/{cname}/trainer/{tname}
+- To read Path Parameters we will use @PathVariable annotation
+
+
+################
+What is Produces
+#################
+→ "produces" is a media type
+> It represens the response formats supported by REST Controller Method
+-> One Rest Controller method can support multiple response formats (xml and json) I
+- Client should send a request with "Accept" http header
+-> Accept header represents in which format client expecting response
+- Based on Accept header Message Converter will convert the response and it will send to client as Http Response obj
+
+
+################################
+Working with HTTP POST Request
+################################
+> HTTP POST request is used to create new resource/record at server
+> POST request contains request body
+- Client can send data to server in Request Body
+→ To bind Rest Controller method to POST request we willl use @PostMapping
+- To read data from Requet body we will use @RequestBody annotation
+> "consumes" represents in which formats method can take input
+- "Content-Type" header represents in which format client sending data in request body.
+
+
+> produces vs consumes
+> Content-Type vs Accept
+> produces attribute represents in which formats Method can provide response data to clients
+> consumes attribute represents in which formats Method can take request data from clients
+- Accept header represents in which format client expecting response from REST API T
+> Content-Type header represents in which format client is sending request data to REST API
+
+
+Note: We can use both Consumes & Produces in single REST API method.
+
+
+
+What is RestController ?
+REST Controller Methods
+@GetMapping
+@PostMapping
+@PutMapping
+@DeleteMapping
+Query Params
+Request Body
+Response Body
+@RequestParam
+@Requesably
+produces
+consumes
+Accept
+Content-Type
+
+Q) Can we write the logic to update a record in POST request method ?
+Ans) Yes, we can do it but not recommended. We need to follow HTTP Protocol standards while developing REST API.
+
+@ImportResource -> To link the spring bean cfg file (xml) with
+@Configuration class
+@Import
+- To link the one @Configuration with other
+@Configuration class
+@PropertySource or @PropertySoruces -> To confugure one or
+multiple properites files to spring
+
+
+Using @Value
+==============================
+@Value"${hotel.name'")
+private String name;
+@Value("S(hotel.id)")
+private Integer id;
+@Value("$(hotel.location)")
+private String location;
+@Value("${customer.name)")
+private String customerName;
+@Value("#(menu.dosaPrice+ menu.idlyPrice+)
+private Float billAmount;
+private Float discount;
+private
+Float finalBillAmount;
+I/gets system property value
+private String osName;
+//get env.. variable value
+private String pathData;
+
+
+
+Using @ConfigurationProperties
+==============================
+Component"comp")
+pucondiaur companerties(prefix="org.nit")
+private String name;
+private String addrs;
+private long ince;
+
+=> To make Bean method generated spring bean belonging to certain profile.. we can add Profile on top of Bean method
+in @Configuration class
+@Bean(name="c3pODs")
+@Profile("test")
+public DataSource createC3PODs(){
+}
+@Profile is applicable either class level or method level
+note:: if no @Profile(- is placed on top stereotype annotations based spring bean or @Bean methods
+then that spring bean works for all profiles. generally we do this for service, controller lasses
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

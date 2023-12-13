@@ -1,0 +1,57 @@
+.checkboxdesignactive{
+    width: 40px;
+    height: 40px;
+    background-color: #1c86ff;
+    color:white;
+    margin: 0 5px;
+    border: none;
+  }
+  .checkboxdesign{
+    width:40px;
+    height: 40px;
+    background-color:rgb(226, 225, 225);
+    color:black;
+    margin: 0 5px;
+    border: none;
+  }
+  .checkboxdesign:active{
+    width:40px;
+    height: 40px;
+    background-color:#1c86ff;
+    color:black;
+    margin: 0 5px;
+    border: none;
+  }
+  .weekdays{
+    margin: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #numberDropdown{
+    border: none;
+    background-color: white;
+    display: block;
+    outline: none;
+  }
+  .text-wrap {
+    max-width: 300px; /* Adjust the max-width according to your requirement */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .CustomsaveBtn{
+    width: 100px;
+    height: 40px;
+    margin:5px;
+    border: none;
+    background-color: #1c86ff;
+    border-radius: 2px;
+  }
+  .CustomdiscardBtn{
+    width: 100px;
+    height: 40px;
+    margin:5px;
+    border: none;
+    background-color: rgb(226, 225, 225);
+    border-radius: 2px;
+  }

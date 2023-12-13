@@ -1,0 +1,83 @@
+<mat-sidenav-container *ngIf="dash==true" class="vh-100">
+  <mat-sidenav style=" width: 200px;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  padding: 16px;
+  text-align: center;" [opened]=openedNavBar #nav mode="side">
+
+    <img class="avatar mat-elevation-z8" src="../../assets/images/commandcenterlogo.png" />
+
+    <p class="my-3 h5 name fw-bolder">Command Center</p>
+    <!-- <p class="designation">Software Engineer</p> -->
+
+    <!-- <mat-divider></mat-divider> -->
+    <div class=" dropdown-center">
+      <div class="bg-dark">
+        <button class="dropdown-toggle w-100 justify-content-between list-group-item list-group-item-action  ripple "
+          aria-current="true" data-mdb-toggle="collapse" href="#collapseExample2" aria-expanded="true"
+          aria-controls="collapseExample2" (click)="collapsed = !this.collapsed" mat-button class="fw-normal text-white"
+          routerLink="/home">
+          
+          <i class=" bi bi-bezier"></i>
+          <span class="mx-1">Workflow</span><i style="font-size:xx-small; padding-left: 33px;"
+            class="sideicon bi bi-caret-right-fill"></i>
+        </button>
+      </div>
+      
+      <!-- Collapsed content -->
+      <ul [ngClass]="{ collapse: collapsed, 'navbar-collapse': false}" id="collapseExample2"
+        class="text-start collapse list-group list-group-flush">
+        <li routerLink="/schedule" class="backgroundColorOnHover px-3 w-100 py-1">
+          <i class="bi bi-calendar3"></i>
+          <span class="mx-1">Schedule</span>
+        </li>
+        <li routerLink="/statusrun" class="backgroundColorOnHover px-3 w-100 py-1">
+          <i class="bi bi-opencollective"></i>
+          <span class="mx-1">Status and Runs</span>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-dark my-2 dropdown-center">
+      <button mat-button class="fw-normal text-white" routerLink="/report">
+        <!-- <mat-icon>person</mat-icon> -->
+        <i class="bi bi-bezier2"></i>
+        <span class="mx-1">Report</span><i style="font-size:xx-small; padding-left: 33px;"
+          class="pl-5 bi bi-caret-right-fill"></i>
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <div class="heading col-11">
+      <div class="row  d-flex justify-content-center justify-content-xl-between justify-content-lg-between justify-content-md-between justify-content-xs-between justify-content-sm-between">
+        <div class="col-3 col-lg-4 col-md-5 col-sm-4 col-xs-12 justify-content-start">
+      <p class="h3  text-primary">{{routeHeading}}</p>   </div> 
+      <div class="col-0 col-xl-3 col-lg-5 col-md-6 col-sm-8 col-xs-12  justify-content-end">
+        <div class="dropdown row">
+          <div class="col mt-2  justify-content-end d-flex">
+        <span class="text-primary" style="font-size:small; font-weight: bold;">{{userName}}</span></div>
+        <div class="col justify-content-end">
+      <img role="button"
+      class="btn btn-success dropdown-toggle"
+      id="dropdown-menu-button1"
+      data-bs-toggle="dropdown"
+      aria-expanded="false" src="../../assets/images/emptypic.jpg" width="40" height="40" class="d-inline rounded-circle" alt="...">
+    <ul class="dropdown-menu font-weight-bolder" aria-labelledby="dropdown-menu-button1">
+      <li  class="text-danger text-center cursorPointer" routerLink="/login">Sign Out</li>
+  </ul> 
+</div>
+</div>
+   </div>
+  </div>
+</div>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<div *ngIf="dash==false">
+  <router-outlet></router-outlet>
+</div>

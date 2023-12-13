@@ -1,0 +1,63 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.header {
+  background-color: cornflowerblue;
+  padding: 5px;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 5px black;
+  box-shadow: 1px 1px 5px gray;
+}
+.container {
+  padding: 20px;
+}
+.form {
+  border: 2px solid cornflowerblue;
+  border-radius: 20px;
+  padding: 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+#addNote {
+  background-color: cornflowerblue;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 30px;
+  color: whitesmoke;margin-left: 30px;
+}
+#addNote:hover{
+  background-color: rgb(64, 123, 233);
+  box-shadow: 1px 1px 5px rgb(0, 68, 255);
+  cursor: pointer;
+}
+#input {
+  padding: 10px;
+  border-radius: 10px;
+  border: hidden;
+  font-size: 30px;
+}
+#input:hover {
+  box-shadow: 1px 1px 5px gray;
+}
+#input:focus {
+  outline: none;
+  border: 2px solid rgb(204, 204, 204);
+}
+#toDoList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: justify;
+  padding-top: 10px;
+  border-radius: 20px;
+}
+#done-btn:hover{
+  background-color: rgb(64, 123, 233);
+  box-shadow: 1px 1px 5px rgb(0, 68, 255);
+  cursor: pointer;
+}

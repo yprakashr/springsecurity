@@ -1,0 +1,39 @@
+.career .container {
+  box-shadow: 0px 0px 5px rgb(110, 160, 110);
+  border-radius: 20px;
+  margin: 10px;
+  padding: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.career {
+  transform: translateY(15vh);
+}
+
+.career .heading {
+  color: green;
+}
+
+.career form {
+  overflow-x: hidden;
+}
+
+.career input:focus,
+.career select:focus,
+.career input:hover,
+.career select:hover {
+  border: 1px solid green;
+  outline: none;
+  box-shadow: 0px 0px 5px green;
+  transition: 500ms;
+  transform: scale(1.05);
+}
+
+.career .career1,
+.career .career2,
+.career .career3 {
+  margin-left: auto;
+  margin-right: auto;
+}

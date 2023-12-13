@@ -1,0 +1,67 @@
+<div class="modal-header p-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <h3 class="modal-title">
+          Value Weights Summary for
+          Collaborative Health Group
+          </h3>
+          </div>
+      <div class="col-sm-12 col-md-4"> <a class=" pull-right float-end" (click)="closeDialog()"><i
+            class="glyphicon glyphicon-remove"></i></a>
+      </div>
+      </div>
+      </div>
+      </div>
+
+
+
+<div class="modal-body p-3">
+  <div class=" table-view table-responsive mat-elevation-z8 ">
+  <div class="d-flex flex-row-reverse">
+    <input type="text" class="my-3 outline-none" (keyup)="filter($event)" placeholder="Search Here" />
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort class="table-width w-100">
+
+    <!-- Define columns -->
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+        <ng-container *ngIf="column === 'provider_name'">Provider Name</ng-container>
+        <ng-container *ngIf="column === 'payer_weight'">Payor Groups</ng-container>
+        <ng-container *ngIf="column === 'reImbTm_weight'">Reimbursement Timing</ng-container>
+        <ng-container *ngIf="column === 'activity_weight'">Activity Types</ng-container>
+        <ng-container *ngIf="column === 'prefProv_weight'">New Patient</ng-container>
+        <ng-container *ngIf="column === 'refProv_weight'">Referring Providers</ng-container>
+        <ng-container *ngIf="column === 'loc_weight'">Location</ng-container>
+        <ng-container *ngIf="column === 'tofday_weight'">Time of Day</ng-container>
+        <ng-container *ngIf="column === 'newPt_weight'">Preferred Provider</ng-container>
+      </th>
+
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="column === 'provider_name'">{{element.provider_name}}</ng-container>
+        <ng-container *ngIf="column === 'payer_weight'">{{element.payer_weight}}</ng-container>
+        <ng-container *ngIf="column === 'reImbTm_weight'">{{element.reImbTm_weight}}</ng-container>
+        <ng-container *ngIf="column === 'activity_weight'">{{element.activity_weight}}</ng-container>
+        <ng-container *ngIf="column === 'prefProv_weight'">{{element.prefProv_weight}}</ng-container>
+        <ng-container *ngIf="column === 'refProv_weight'">{{element.refProv_weight}}</ng-container>
+        <ng-container *ngIf="column === 'loc_weight'">{{element.loc_weight}}</ng-container>
+        <ng-container *ngIf="column === 'tofday_weight'">{{element.tofd_weight}}</ng-container>
+        <ng-container *ngIf="column === 'newPt_weight'">{{element.newPt_weight}}</ng-container>
+        </td>
+        </ng-container>
+
+
+        <!-- Create rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10,50,100]">
+        </mat-paginator>
+        </div>
+        </div>
+
+        <div class="modal-footer p-3">
+          <a class="btn btn-default secondary-btn" type="button" (click)="closeDialog()">Close</a>
+        </div>
+

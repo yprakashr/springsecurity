@@ -1,0 +1,30 @@
+<!-- <div class="d-flex align-items-center vh-100 justify-content-center">  -->
+  <ng-container *ngIf="!saveYourChanges">
+      <div class="modalContent">
+<div class="modal-body py-3 d-flex justify-content-center">
+    <p>Changes will be lost</p>
+  </div>
+<div class=" modal-footer d-flex justify-content-center">
+    <button (click)="onNoClick('nodata')" class="btn btn-primary mx-1" >Cancel</button>
+    <button (click)="onNoClick('data')" class="btn btn-secondary mx-1">Ok</button>
+</div>
+ </div>
+</ng-container>
+<!--</div> -->
+
+
+<!-- <div class="d-flex align-items-center vh-100 justify-content-center"> 
+    <div class="modalContent w-25"> -->
+      <ng-container *ngIf="saveYourChanges">
+        <div class="modalContent">
+        <div class="modal-body py-3 d-flex justify-content-center">
+    <p>Save your changes</p>
+  </div>
+<div class=" modal-footer d-flex justify-content-center">
+    <button (click)="onNoClick('nodata')" class="btn btn-primary mx-1">Cancel</button>
+    <button (click)="saveChanges()" class="btn btn-secondary mx-1">Ok</button>
+</div>
+</div>
+</ng-container>
+<!-- </div>
+</div> -->

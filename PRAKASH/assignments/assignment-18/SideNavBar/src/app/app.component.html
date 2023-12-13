@@ -1,0 +1,51 @@
+<nav id="main-navbar" class="navbar navbar-expand-lg  bg-warnin  fixed-top">
+
+  <div (click)="showMe = !showMe" class="Navbar__Link Navbar__Link-toggle">
+    <i class="bi bi-list"></i>
+  </div>
+
+  <a class="mx-5 navbar-brand" href="#">
+    <img src="../assets/images/mdb.png" height="25" alt="MDB Logo" loading="lazy" />
+  </a>
+</nav>
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-3" *ngIf="showMe">
+      <nav id="sidebarMenu" class="collapse d-lg-block sidebar  collapse bg-white Navbar__Items">
+        <div class="position-sticky">
+          <div class="list-group list-group-flush mx-3 mt-4">
+            <button   routerLinkActive="active"  routerLink='personal' id="personal"
+              class="list-group-item list-group-item-action py-2 ripple " disabled><i
+                class="fas fa-chart-area fa-fw me-3"></i>Personal</button>
+            <button  routerLinkActive="active" routerLink="job" id="job"
+              class="list-group-item list-group-item-action py-2 ripple  " disabled><i
+                class="fas fa-chart-area fa-fw me-3"></i>Job-Profile</button>
+            <button  routerLinkActive="active" routerLink="qualify" id="qualification"
+              class="list-group-item list-group-item-action py-2 ripple" disabled><i
+                class="fas fa-chart-area fa-fw me-3"></i>Qualification</button>
+            <button  routerLinkActive="active" routerLink="skill" id="skillset"
+              class="list-group-item list-group-item-action py-2 ripple" disabled><i
+                class="fas fa-chart-area fa-fw me-3"></i>Skillset</button>
+            <button  routerLinkActive="active" routerLink="tech" id="technical"
+              class="list-group-item list-group-item-action py-2 ripple" disabled><i
+                class="fas fa-chart-area fa-fw me-3"></i>Technical-info</button>
+
+          </div>
+        </div>
+      </nav>
+    </div>
+
+
+
+
+    <div class="col-9 py-5 px-5 float-center">
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+

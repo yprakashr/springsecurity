@@ -1,0 +1,6 @@
+<app-ass15-header></app-ass15-header>
+<app-ass15-navbar></app-ass15-navbar>
+<main role="main" [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''">
+    <router-outlet #outlet="outlet"></router-outlet>
+</main>
+<app-my-loader></app-my-loader>

@@ -1,0 +1,16 @@
+html,
+body {
+  height: 100%;
+}
+
+button:hover{
+    box-shadow: 0px 0px 10px green;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.btn-primary:hover{
+  box-shadow: 0px 0px 10px blue;
+}

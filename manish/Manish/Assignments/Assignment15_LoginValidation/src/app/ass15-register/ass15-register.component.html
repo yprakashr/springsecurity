@@ -1,0 +1,208 @@
+<div class="register" *ngIf="!session">
+
+    <div class="section-1">
+        <div class="container mt-5 p-5">
+
+            <div class="row">
+
+                <div class="container-fluid col-sm-auto p-3">
+                    <img src="../../assets/images/register.jpg" class="img-fluid mx-auto d-block" width="550vw"
+                        style="vertical-align: middle;">
+                </div>
+
+                <div class="col form-col">
+
+                    <div class="h3 text-center mt-4 form-label">Signup for Manish hub</div>
+                    <div class=" text-center text-danger">See your growth and get consulting support</div>
+
+                    <form [formGroup]="RegisterForm" id="registration-form" class="form-inline"
+                        (ngSubmit)="saveUser(RegisterForm)" #regForm="ngForm">
+
+                        <!-- fullname -->
+                        <div class="mt-3">
+                            <input type="text" class="form-control" placeholder="fullname" id="fullname"
+                                formControlName="fullname" (focus)="respStatus=0">
+
+                            <div class="text-center" *ngIf="RegisterForm.get('fullname')?.invalid && 
+                            RegisterForm.get('fullname')?.errors && 
+                            (RegisterForm.get('fullname')?.dirty || RegisterForm.get('fullname')?.touched)">
+                                <small class="text-danger" *ngIf="RegisterForm.get('fullname')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('fullname')?.hasError('minlength')">
+                                    Minimum 1 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('fullname')?.hasError('maxlength')">
+                                    Maximum 100 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('fullname')?.hasError('pattern')">
+                                    Fullname can contain only alphabets
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- email -->
+                        <div class="mt-3">
+                            <input type="text" class="form-control" placeholder="email" id="email"
+                                formControlName="email" (focus)="respStatus=0">
+
+                            <div class="text-center" *ngIf="RegisterForm.get('email')?.invalid && 
+                            RegisterForm.get('email')?.errors && 
+                            (RegisterForm.get('email')?.dirty || RegisterForm.get('email')?.touched)">
+
+                                <small class="text-danger" *ngIf="RegisterForm.get('email')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('email')?.hasError('pattern')">
+                                    Enter valid email.
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- username -->
+                        <div class="mt-3">
+                            <input type="text" class="form-control" placeholder="username" formControlName="username">
+
+                            <div class="text-center" *ngIf="RegisterForm.get('username')?.invalid && 
+                            RegisterForm.get('username')?.errors && 
+                            (RegisterForm.get('username')?.dirty || RegisterForm.get('username')?.touched)">
+                                <small class="text-danger" *ngIf="RegisterForm.get('username')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('username')?.hasError('minlength')">
+                                    Minimum 8 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('username')?.hasError('maxlength')">
+                                    Maximum 20 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('username')?.hasError('pattern')">
+                                    Username cannot contain spaces.
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- password -->
+                        <div class="mt-3">
+
+                            <div class="input-group">
+                                <input type="password" id="password" class="form-control" placeholder="password"
+                                    formControlName="password" (focus)="isPasswordMatch=false">
+                                <button type="button" id="show-pass-btn" class="btn btn-outline-primary"
+                                    (click)="togglePassword()"><i class="bi bi-eye"></i></button>
+                            </div>
+
+                            <div class="text-center" *ngIf="RegisterForm.get('password')?.invalid && 
+                            RegisterForm.get('password')?.errors && 
+                            (RegisterForm.get('password')?.dirty || RegisterForm.get('password')?.touched)">
+                                <small class="text-danger" *ngIf="RegisterForm.get('password')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('password')?.hasError('maxlength')">
+                                    Maximum 30 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('password')?.hasError('minlength')">
+                                    Minimum 8 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('password')?.hasError('pattern')">
+                                    At least one uppercase letter,
+                                    <p>one lowercase letter, one
+                                        number and one special character @$!#%*_?&</p>
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- confirm password -->
+                        <div class="mt-3">
+                            <input type="password" class="form-control" placeholder="confirm password"
+                                formControlName="conf_password" (focus)="isPasswordMatch=false">
+
+                            <div class="text-center" *ngIf="RegisterForm.get('conf_password')?.invalid && 
+                            RegisterForm.get('conf_password')?.errors && 
+                            (RegisterForm.get('conf_password')?.dirty || RegisterForm.get('conf_password')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="RegisterForm.get('conf_password')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="RegisterForm.get('conf_password')?.hasError('maxlength')">
+                                    Maximum 30 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="RegisterForm.get('conf_password')?.hasError('minlength')">
+                                    Minimum 8 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="RegisterForm.get('conf_password')?.hasError('pattern')">
+                                    At least one uppercase letter,
+                                    <p>one lowercase letter, one
+                                        number and one special character @$!#%*_?&</p>
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- phonenumber -->
+                        <div class="mt-3">
+                            <input type="number" class="form-control" placeholder="phonenumber"
+                                formControlName="phonenumber" id="phonenumber">
+
+                            <div class="text-center" *ngIf="RegisterForm.get('phonenumber')?.invalid && 
+                            RegisterForm.get('phonenumber')?.errors && 
+                            (RegisterForm.get('phonenumber')?.dirty || RegisterForm.get('phonenumber')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="RegisterForm.get('phonenumber')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('phonenumber')?.hasError('min')">
+                                    Phonenumber cannot be less than 10 digits
+                                </small>
+                                <small class="text-danger" *ngIf="RegisterForm.get('phonenumber')?.hasError('max')">
+                                    Phonenumber cannot exceed 10 digits
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- gender -->
+                        <div class="mt-3 gender">
+                            <label class="form-check-label m-2" for="gender"><b>Gender:</b></label>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio1"
+                                    value="Male" />
+                                &nbsp;<label class="form-check-label" for="inlineRadio1">Male 👦🏻</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio2"
+                                    value="Female" />
+                                &nbsp;<label class="form-check-label" for="inlineRadio2">Female 👧🏻</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio3"
+                                    value="Others" />
+                                &nbsp;<label class="form-check-label" for="inlineRadio3">Others ⚧️</label>
+                            </div>
+
+                            <div class="text-center" *ngIf="RegisterForm.get('gender')?.invalid && 
+                                RegisterForm.get('gender')?.errors && 
+                                (RegisterForm.get('gender')?.dirty || RegisterForm.get('gender')?.touched)">
+                                <small class="text-danger" *ngIf="RegisterForm.get('gender')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" [disabled]="!regForm.valid" class="btn btn-primary">Register</button>
+                            <p class="m-2">Already have an account ? <a routerLink="/login">Login</a></p>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <app-ass15-footer></app-ass15-footer>
+</div>

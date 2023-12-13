@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout 7</title>
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+      }
+      .items {
+        border: 1px solid green;
+        text-align: justify;
+      }
+      #item1 {
+        background-image: url(../../../../Images/whatsapp-logo-png-2259.png);
+        background-size: contain;
+        filter: drop-shadow(1px 1px 5px gray);
+      }
+      form {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        margin-top: 10px;
+      }
+      form .radio,
+      form .checkbox {
+        display: flex;
+        flex-direction: row;
+        padding-top: 20px;
+      }
+      input[type="radio"]:hover,
+      input[type="checkbox"]:hover {
+        cursor: pointer;
+        filter: drop-shadow(1px 1px 5px green);
+      }
+      form input,
+      form select {
+        border: 1px solid green;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      form input[type="text"]:hover,
+      form select:hover {
+        box-shadow: 1px 1px 10px darkgreen;
+        transition: 500ms;
+      }
+      form input[type="text"]:focus,
+      form select:focus {
+        outline: none;
+        border: 2px solid green;
+      }
+      #item3 {
+        padding: 10px;
+      }
+      table {
+        border: 1px solid green;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        text-align: center;
+        border-collapse: collapse;
+        margin-bottom: 15px;
+        box-shadow: 1px 1px 10px green;
+      }
+      td,
+      th {
+        border: 1px solid green;
+        padding: 5px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        background-color: rgb(0, 112, 0);
+        width: 100%;
+        color: aliceblue;
+        margin: 0;
+        box-shadow: 1px 1px 10px black;
+      }
+      .header img {
+        display: block;
+        border-radius: 50px;
+        margin-left: 15px;
+        padding: 5px;
+      }
+      .header #title {
+        display: block;
+        border-radius: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        font-size: 25px;
+      }
+      .footer {
+        display: flex;
+        align-items: center;
+        background-color: rgb(0, 112, 0);
+        width: 100%;
+        /* position: sticky; */
+        /* bottom: 0; */
+        color: aliceblue;
+        margin: 0;
+      }
+      .footer img {
+        display: block;
+        border-radius: 50px;
+        margin-left: 15px;
+        padding: 5px;
+      }
+      .footer #title {
+        display: block;
+        border-radius: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 25px;
+        color: black;
+      }
+      #data:nth-child(3n + 1) {
+        background-color: rgb(147, 255, 165);
+      }
+      th {
+        background-color: rgb(0, 158, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img
+        src="../../../../Images/css-bg-img.jpg"
+        alt=""
+        height="50px"
+        width="50px"
+      />
+      <b id="title">This is Header</b>
+    </div>
+    <div class="container">
+      <div class="items" id="item1"></div>
+      <div class="items" id="item2">
+        <form action="">
+          <label for="name">Name</label>
+          <input type="text" /><br />
+          <label for="name">Mobile</label>
+          <input type="text" /><br />
+          <label for="state">State</label>
+          <select name="" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <div class="radio">
+            <label for="gender">Gender:&nbsp; </label>
+            <input
+              type="radio"
+              name="gender"
+              id=""
+              value="male"
+            />&nbsp;Male&nbsp;
+            <input
+              type="radio"
+              name="gender"
+              id=""
+              value="female"
+            />&nbsp;Female&nbsp;
+          </div>
+          <div class="checkbox">
+            <label for="intersts">Interests:&nbsp; </label>
+            <input type="checkbox" name="" id="" />
+            <label for="java">&nbsp;Java&nbsp;</label>
+            <input type="checkbox" name="" id="" />
+            <label for="C++">&nbsp;C++&nbsp;</label>
+            <input type="checkbox" name="" id="" />
+            <label for="Python">&nbsp;Python&nbsp;</label>
+          </div>
+        </form>
+      </div>
+      <div class="items" id="item3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium,
+        architecto ut rem veritatis tempore modi. Sit mollitia provident
+        quibusdam quaerat sequi quod. Temporibus, repellat magnam sit explicabo
+        aliquid ab sed aperiam itaque, ullam molestiae ad deserunt nulla sequi
+        provident distinctio atque ex quam expedita ducimus nihil voluptate
+        quisquam repellendus recusandae pariatur! Cum pariatur reprehenderit
+        beatae dolores eligendi magnam cumque nesciunt fuga commodi vitae.
+        Possimus magni sunt exercitationem veniam repudiandae asperiores
+        quibusdam praesentium ipsa mollitia ad sapiente fuga reiciendis quas
+        aliquid, ea id optio quasi sed temporibus laudantium nihil voluptatum
+        nesciunt consequuntur. Praesentium earum vel corrupti suscipit quae.
+        Saepe, repellat vel?Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Laboriosam, ducimus.
+      </div>
+    </div>
+    <table>
+      <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td rowspan="2">d</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td rowspan="2">c</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td rowspan="2">d</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td rowspan="2">d</td>
+      </tr>
+      <tr id="data">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+    </table>
+    <div class="footer">
+      <img
+        src="../../../../Images/css-bg-img.jpg"
+        alt=""
+        height="50px"
+        width="50px"
+      />
+      <b id="title">This is Footer</b>
+    </div>
+  </body>
+</html>

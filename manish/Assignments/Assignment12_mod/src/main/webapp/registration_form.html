@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="scripts/register.js" defer></script>
+    <script src="scripts/logIn.js" defer></script>
+    <script src="scripts/onFocus.js" defer></script>
+    <script src="scripts/signIn.js" defer></script>
+    <script src="scripts/fetch_address.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+</head>
+
+<div class="header text-center h2 p-3 border border-primary">
+    <a href="homepage" id="logo"><span id="fst">&nbsp;Medi</span><span id="snd">care&nbsp;</span><span
+            id="plus"><sup>+</sup></span></a>
+</div>
+
+<body>
+    <div class="container p-5">
+
+
+        <!-- row 1 -->
+        <div class="row ROW">
+
+            <!-- col 1 -->
+            <div class="col-sm p-5 left d-block">
+
+                <div class="h2 pb-3">
+                    Register your appointment
+                </div>
+
+                <form id="registration-form" class="form-inline" onsubmit="return submitForm()">
+
+                    <!-- Names -->
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" name="firstname" id="firstname"
+                                placeholder="First name" onfocus="hideBookedStatus()" />
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="lastname" id="lastname"
+                                placeholder="Last name" />
+                        </div>
+                    </div>
+
+                    <!-- Age phone -->
+                    <div class="row pt-3">
+                        <div class="col">
+                            <input type="number" class="form-control" name="age" id="age" placeholder="Age" />
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control" name="phonenumber" id="phonenumber"
+                                placeholder="Phone" />
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group pt-3">
+                        <label class="form-check-label m-2" for="gender">Gender:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male" />
+                            <label class="form-check-label" for="inlineRadio1">Male 👦🏻</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+                                value="female" />
+                            <label class="form-check-label" for="inlineRadio2">Female 👧🏻</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio3"
+                                value="others" />
+                            <label class="form-check-label" for="inlineRadio3">Others ⚧️</label>
+                        </div>
+                    </div>
+
+                    <!-- date time -->
+                    <div class="row pt-3">
+                        <div class="col">
+                            <input class="form-control" type="text" name="date" id="date" placeholder="Date"
+                                onfocus="(this.type='date')" />
+                        </div>
+                        <div class="col">
+                            <input class="form-control" type="text" name="time" id="time" placeholder="Time"
+                                onfocus="(this.type='time')" />
+                        </div>
+                    </div>
+
+                    <!-- address -->
+                    <div class="row pt-3">
+                        <div class="col">
+                            <select class="form-select" aria-label="City" name="city" id="city">
+                                <option selected>- city -</option>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <select class="form-select" aria-label="Area" name="area" id="area">
+                                <option selected>- area -</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- vaccination -->
+                    <div class="form-group pt-3">
+                        <label class="form-check-label m-2" for="inlineRadio1">COVID Vaccinated</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="vaccinated" id="inlineRadio1"
+                                value="yes" />
+                            <label class="form-check-label" for="inlineRadio1">yes ✔️</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="vaccinated" id="inlineRadio2"
+                                value="no" />
+                            <label class="form-check-label" for="inlineRadio2">no ❌</label>
+                        </div>
+                    </div>
+
+                    <!-- symptoms -->
+                    <div class="form-group pt-3">
+                        <label class="form-check-label m-2" for="inlineRadio1">Symptoms:</label>
+
+                        <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" name="symptoms" value="fever" />
+                            <label for="symptoms" class="form-check-label">Fever</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" name="symptoms" value="caugh" />
+                            <label for="symptoms" class="form-check-label">Caugh</label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" name="symptoms" value="nausea" />
+                            <label for="symptoms" class="form-check-label">Nausea</label>
+                        </div>
+                    </div>
+
+                    <!-- add info -->
+                    <div class="form-group pt-3">
+                        <textarea class="form-control" name="add_info" id="add_info"></textarea>
+                    </div>
+
+                    <!-- submit-btn -->
+                    <div class="form-group pt-3 text-center">
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </div>
+
+                    <div id="appointment-msg" class="mt-2">
+                        <p>Appointment booked</p>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- col 2 -->
+            <div class="container-fluid col-sm-auto p-5">
+
+                <img id="rightImg" class="img-fluid mx-auto d-block pt-5" src="images/healthcare-europe-1080x675.jpg"
+                    alt="Medical Image" width="450vw" height="auto" />
+
+                <div class="row p-4 text-center text-success h4">
+                    <p>One Appointment, Your health is ours.</p>
+                </div>
+
+                <div class="appointment-a text-center ">
+                    <button id="signin-btn" onclick="signin_click()">Sign in</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+<div class="footer">
+    Medicare Healthcare© 2022, LLC and/or its affiliates. All rights reserved.
+</div>
+
+</html>

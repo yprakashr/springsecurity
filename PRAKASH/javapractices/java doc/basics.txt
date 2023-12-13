@@ -1,0 +1,380 @@
+Multitasking:
+1) Multitasking is a process of executing multiple tasks simultaneous ly .
+2) We use multitasking to utilize the CPU. Multitasking can be achieved in
+
+TwO ways
+*)Process -based Multitasking (Multiprocessing)
+*) Thread- based Multitasking (Multithreading)
+
+ 1) Process - based Multitasking (Multiprocessing):
+===========================================
+ i) Each process has an address in memory. In other words, each process
+allocates a separate memory area.
+ii) A process is heavyweight.
+iii) Cost of communication between the process is high.
+iv) Switching from one process to another requires some time for si Full scre
+ and loading registers, memory maps, updating 1ists, etc.
+
+2) Thread based Multitasking (Multithreading):
+======================================
+1) Threads share the same address space.
+2) A thread is lightweight.
+3) Cost of communication between the thread is low.
+
+Multithreading in Java
+===================
+1) Multithreading in java is a process of executing multiple threads
+simultaneously .
+2) A thread is a lightweight sub process, the smallest unit of processing.
+3) It is a separate path of execution.
+
+Life cycle of a Thread (Thread States)
+===============================
+1) The 1ife cycle of the thread in java is controlled by JVM.
+The java thread states are as follows
+*)New: 
+  -------
+The thread is in new state if you create an instance of
+Thread class but before the invocation of start() method .
+
+*)Runnable: 
+  ---------------
+The thread is in runnable state after invocation of
+start () method, but the thread scheduler has not selected
+
+*)Running:
+--------------
+ The thread is in running state if the thread scheduler
+has selected it.
+
+*)Non -Runnable (BLocked):
+---------------------------------------
+ This is the state when the thread is still
+live, but is currently not eligible to run.
+
+*)Terminated:
+----------------------
+ A thread is in terminated or dead state when its run()
+method exits.
+
+
+Achieve multithreading in java
+==========================
+1) In java language multithreading can be achieve in two different ways.
+-->Using thread class
+-->Using Runnable interface
+
+1.Using thread class (extending Thread class):
+------------------------------------------------------------------
+1) Create any user defined class and make that one as a derived class
+of thread class
+2) Override run() method of Thread class
+(It contains the logic of perform any operation)
+3) Create an object for user defined thread class and attached that
+object to predefined thread class object.
+4) Call start () method of thread class to execute run() method.
+
+EX:
+class MultiDemo extends thread{
+public void run(){
+system.out.println("this method is running");
+}
+public statie void main (String args [0){
+MultiDemo mi = new MultiDemoO:
+Thread t1 = new Thread (m1)R
+ti.star();
+}
+
+2.Using thread class (implements Runnable interface):
+---------------------------------------------------------------------------------
+1) Create any user defined class and make that one as a derived class
+of Runnable interface.
+2) Override run() method of Thread class
+(It contains the logic of perform any operation)
+3) Create an object for user defined thread class and attached that
+object to predefined thread class object.
+4) Call start () method of thread class to execute run() method.
+
+Ex:
+class MultiDemo implements Runnablel
+public void run(){
+system.out.println("this thread is running");
+}
+public statie void main (String args [0){
+MultiDemo mi = new MultiDemo();
+Thread t1 = new Thread (m1)R
+ti.startO
+}
+
+Thread scheduler:
+preemptive scheduling------------------>highst prty(t1.join() )
+time slicing	----------------->predefined slice time (Thread.sleep(3000));
+
+join:
+-------
+Java Thread join method can be used to pause the current thread execution untill the specified thread is dead.
+
+07/11/2022
+
+Demon thread:
+main method by default it cannot be a deamon thread 
+if we set main method as demon thread as demon thread it shows compile time error
+Thread.currentThread.setDeamon(true)//compile time error. 
+if we to  set any method as deamon thread set it before we call a method
+eX:t1.setDaemon(true)
+
+
+
+
+
+ class MultiDemo implements Runnable{
+
+public void run() {
+System.out.println( "Welcome to DAEMON Thread") ;
+}
+public static void main(String args[1){
+MultiDemo m1 = new MultiDemo();
+Thread t1 = new Thread(m1);
+t1.setDemon(true)
+t1.start();
+system.out.println(Thread.curentThread().isDaemon());
+}}
+
+
+Synchronized method :(wait())
+public synchronized void withdraw(int amount){
+system.out.println("going to withdraw");
+if(this.amount<amount)[
+syso("less balance waiting to deposit");
+wait();
+try{
+wait();
+}
+catch(  )
+}
+}
+
+08/11/2022
+
+Collections:
+-----------
+ColLections in Java :
+=============
+1) The Collection in Java is a framework that provides an architecture to store
+and manipulate the group of objects.
+2) Java Collections can achieve all the operations that you perform on a data
+such as searching, sorting, insertion, manipulation, and deletion.
+3) Java Collection framework provides many
+ interfaces (Set, List, Queue, Deque)
+and
+ classes (ArrayList, Vector, LinkedList, PriorityQueue, Hashset,
+LinkedHashSet, TreeSet).
+
+4) The Collection interface (Java.utiL.collection) and Map interfaces
+(java.util.Map) are the twO main "root" interfaces of Java
+classes.
+Iterator is an iterface that iterates the elements. It is used to
+	traverse the list and modify the elements. Iterator interface has
+	three methods : hasNext(), next(), remove()
+
+
+Collection :	Root interface with basic methods 1ike add(), remove (),
+contains (), isEmpty (), addAll(), ... etc.
+
+List
+Can contain duplicates and elements are ordered. You ca
+element from it's index. List is more like array with d
+Example implementations are LinkedList and ArrayList . L
+provides useful methods to add an element at specific i
+remove/replace element based on index and to get a sub-list usig index.
+
+Set
+Doesn't allow duplicates. Example implementations of Set Tneate are
+HashSet, TreeSet and LinkedHashSet. Set interface doesn't allow 
+random access to an element in the ColLection. You can use iterator or
+foreach loop to traverse the elements of a set.
+
+ Queue :
+ Typically order elements in FIFO order except exceptions
+like PriorityQueue. In a FIFO queue, all new elements are inserted at
+the tail of the queue.
+
+Deque: 
+Elements can be inserted and removed at both ends. ALLows
+both LIFO and FIFO. The name deque is short for "double ended queue"
+and is usually pronounced "deck".
+
+overview:
+
+1) List (duplicate, ordered) Linked List and ArrayList random aceess.
+2) Set (Unique) HashSet, TreeSet and LinkedHashSet dont random access.
+3) Queue (FIFO) PriorityQueue Last.
+4) Deque (FIF0, LIFO).
+
+The List Interface:
+ List Interface is the subinterface of ColLection . It contains index based
+ methods to insert and delete elements. It is a factory of ListIterator
+ interface.
+*)void add ( int index, E element)
+element at the specified position in a list.
+*)boolean add(E e) It is used to append the specified element at the end
+of a list.
+*)boolean addAl1 (Collection<? extends E> c)
+the elements in the specified collection to the end of a list.
+*)boolean addAll (int index, Collection<? extends E> c) It is used to append
+all the elements in the specified collection, starting at the specified
+position of the list.
+*)void clear () It is used to remove all of the elements from this list.
+*)boolean equals (Object o) It is used to compare the specified object with
+the elements of a list.
+It is used to insert the specified
+It is used to append all of
+position of the list.
+*)boolean isEmpty () It returns true if the list is empty, otherwise false.
+*) int lastIndex0f (Object o) It is used to return-the index in this list
+of the last occurrence of the specified element, or-1-if the list doees
+It is used to fetch the element from the particular
+not contain this element.
+*)Object[] toArray () It is used to return an array containing all of the
+elements in this list in the correct order.
+*) boolean contains (Object o) It returns true if the list contains the
+specified element
+*)int indexof (Object o) It is used to return the index in this list of
+the first occurrence of the specified element, or -1 if the List does
+not contain this element.
+It is used to return the index in this list of
+)E remove (int index) 
+)boolean remove (Object o)  first occurance of specified element
+)boolean removeAll (Collection<?> c)
+
+
+Iterators:
+---------
+Iterator<String> itr =al.iterator ()
+itr.forEachRemaining (a->{
+system.out.println (a);
+
+
+for(String s:all)
+system.out.println (s);
+
+
+Iterator it =11.iterator (); //Linked list
+while (it.hasNext ()) {
+System.out.println (it.next ())
+
+
+Iterator it ts.descendingIterator ();
+while (it.hasNext ())
+System.out.println (it.next ());
+
+TreeSet ts1 = (TreeSet) ts.headSet (10) ; //print less than headset
+System.out.println(ts1) ;
+
+
+TreeSet ts1 = (TreeSet) ts.tailSet (10) ; //print greater than headset
+System.out.println(ts1) ;
+
+TreeSet ts1 = (TreeSet) ts.subSet (5,15) ; //print b/w than headset
+System.out.println(ts1) ;
+
+Iterator it = s.iterator ();
+while(it.hasNext())
+Object obj=it.next();
+String str=(String) obj;
+System.out.println(str+":"+hm.get(str));
+
+Linked List methods
+add ()
+add (2, 45)
+addFirst)
+addLast 0
+clear()
+get()
+getFirst ()
+getLast(O
+remove(O
+removeFirst ()
+removeLast()
+size()
+
+
+
+
+Vector v=new Vector()
+v.capacity=10 //increases 100%
+
+Vector v=new Vector(5,2)
+v.capacity=7 //5+2 
+
+
+Stack s=new Stack()
+push()
+pop()
+peek() //reads top element
+empty() //is empty
+search(value) //based on  value
+
+SET
+----
+HashSet duplicate values no
+	insertion order no
+LinkedHashSet dup no
+	insertion order  yes
+TreeSet dup no
+	sorting (ascending  order)
+
+Hashset<String> h=new Hashset(); //
+initial capacity=16
+doubles its capacity
+
+LinkedHashSet ls=new LinkedHashSet();
+
+ 			HashSet/HashMap		LinkedHashSet/LinkedHashmap		TreeSet/TreeMap       hashtable
+order		unordered			order							sort									unordered
+duplicates 		no				no								no						yes
+synchrozed		no/yes			no/yes							yes						yes
+datastr			hashtable		hashtable+			
+								doublylinkedlist				balancedtree			hashtree
+capacity		16					16							----					---- 
+
+
+Map:
+key and value pairs
+HashMap<String,Integer>
+random,16
+LinkedHashmap
+ordered,16
+Treemap
+increment order,---
+put();
+keySet(); 
+
+
+key		-Unique
+value	-duplicate
+
+Collections.sort(al);
+Collections.reverse(al);
+Collections.swap(al,3,1);
+Collections.min(al);
+Collections.max(al);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

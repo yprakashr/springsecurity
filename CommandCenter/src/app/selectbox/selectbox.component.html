@@ -1,0 +1,17 @@
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Search" [formControl]="myControl1" [matAutocomplete]="auto1">
+  <mat-autocomplete #auto1="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option">
+      {{ option.workflowName }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Search" [formControl]="myControl2" [matAutocomplete]="auto2">
+  <mat-autocomplete #auto2="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions2 | async" [value]="option">
+      {{ option.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

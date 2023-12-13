@@ -1,0 +1,153 @@
+<div class="career">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="container-fluid col-sm-auto p-3">
+                <img src="../../assets/images/9812.jpg" class="img-fluid mx-auto d-block" width="400vw"
+                    style="vertical-align: middle;">
+            </div>
+
+            <div class="col">
+                <div class="heading h3 text-center">Career</div>
+
+                <form [formGroup]="careerForm" (ngSubmit)="submitForm()">
+
+                    <!-- POSITION 1 -->
+                    <div class="row career1">
+                        <label class="h6">Position 1</label>
+
+                        <!-- ORGANIZATION -->
+                        <div class="col">
+                            <input formControlName="org1" id="org1" type="text" class="form-control" placeholder="organisation">
+
+                            <div class="text-center" *ngIf="careerForm.get('org1')?.invalid && 
+                            careerForm.get('org1')?.errors && 
+                            (careerForm.get('org1')?.dirty || careerForm.get('org1')?.touched)">
+                                <small class="text-danger" *ngIf="careerForm.get('org1')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="careerForm.get('org1')?.hasError('pattern')">
+                                    organization cannot start with space
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- ROLE -->
+                        <div class="col">
+                            <select formControlName="role1" class="form-select">
+                                <option value="" selected>select</option>
+                                <option value="frontend">frontend developer</option>
+                                <option value="backend">backend developer</option>
+                                <option value="fullstack">fullstack developer</option>
+                            </select>
+
+                            <div class="text-center" *ngIf="careerForm.get('role1')?.invalid && 
+                            careerForm.get('role1')?.errors && 
+                            (careerForm.get('role1')?.dirty || careerForm.get('role1')?.touched)">
+                                <small class="text-danger" *ngIf="careerForm.get('role1')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="careerForm.get('role1')?.hasError('pattern')">
+                                    role cannot start with space
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POSITION 2 -->
+                    <div class="row career2 mt-3">
+                        <label class="h6">Position 2</label>
+
+                        <!-- ORGANISATION -->
+                        <div class="col">
+                            <input formControlName="org2" id="org2" type="text" class="form-control" placeholder="organisation">
+
+                            <div class="text-center" *ngIf="careerForm.get('org2')?.invalid && 
+                            careerForm.get('org2')?.errors && 
+                            (careerForm.get('org2')?.dirty || careerForm.get('org2')?.touched)">
+                                <small class="text-danger" *ngIf="careerForm.get('org2')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="careerForm.get('org2')?.hasError('pattern')">
+                                    organization cannot start with space
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- ROLE -->
+                        <div class="col">
+                            <select formControlName="role2" class="form-select">
+                                <option value="" selected>select</option>
+                                <option value="frontend">frontend developer</option>
+                                <option value="backend">backend developer</option>
+                                <option value="fullstack">fullstack developer</option>
+                            </select>
+
+                            <div class="text-center" *ngIf="careerForm.get('role2')?.invalid && 
+                            careerForm.get('role2')?.errors && 
+                            (careerForm.get('role2')?.dirty || careerForm.get('role2')?.touched)">
+                                <small class="text-danger" *ngIf="careerForm.get('role2')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="careerForm.get('role2')?.hasError('pattern')">
+                                    role cannot start with space
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POSITION 3 -->
+                    <div class="row career3 mt-3">
+                        <label class="h6">Position 3</label>
+
+                        <!-- ORGANISATION -->
+                        <div class="col">
+                            <input formControlName="org3" id="org3" type="text" class="form-control" placeholder="organisation">
+
+                            <div class="text-center" *ngIf="careerForm.get('org3')?.invalid && 
+                            careerForm.get('org3')?.errors && 
+                            (careerForm.get('org3')?.dirty || careerForm.get('org3')?.touched)">
+                                <small class="text-danger" *ngIf="careerForm.get('org3')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="careerForm.get('org3')?.hasError('pattern')">
+                                    organization cannot start with space
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- ROLE -->
+                        <div class="col">
+                            <select formControlName="role3" class="form-select">
+                                <option value="">select</option>
+                                <option value="frontend">frontend developer</option>
+                                <option value="backend">backend developer</option>
+                                <option value="fullstack">fullstack developer</option>
+                            </select>
+
+                            <div class="text-center" *ngIf="careerForm.get('role3')?.invalid && 
+                            careerForm.get('role3')?.errors && 
+                            (careerForm.get('role3')?.dirty || careerForm.get('role3')?.touched)">
+                                <small class="text-danger" *ngIf="careerForm.get('role3')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="careerForm.get('role3')?.hasError('pattern')">
+                                    role cannot start with space
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT -->
+                    <div class="text-center">
+                        <button type="button" routerLink="/education" class="btn btn-primary">Education</button>
+
+                        <button [disabled]="careerForm.invalid" type="submit"
+                            class="m-4 btn btn-success">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

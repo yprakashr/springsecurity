@@ -1,0 +1,80 @@
+<div class="">
+<form name="editProvSpoilPerForm" (submit)="updateProviderSpoiledInvPrefs()" novalidate>
+<div class="modal-header p-3">
+  <h3 class="modal-title">Non Opargo Bookings for {{providerPreferences.name}}</h3>
+    <a class="float-end" (click)="closeDialog()"><i class="glyphicon glyphicon-remove"></i></a>
+  </div>
+
+
+
+  <div class="modal-body">
+    <div class="col-sm-12 text-center text-danger" *ngIf="editProviderPrefsErrorMsg">
+      {{editProviderPrefsErrorMsg}}
+    </div>
+
+<div class="">
+    <div class="row">
+      <div class="col-sm-4 text-center"><h4>Segment</h4></div>
+      <div class="col-sm-4 text-center"><h4>Pre Opargo Bookings</h4></div>
+      <div class="col-sm-4 text-center"><h4>Future Non Opargo Bookings</h4></div>
+    </div>
+</div>
+
+
+<div class="">
+      <div class="mt15 row" *ngFor="let setting of practProviderSpoilInvPrefs">
+        <div class="col-sm-4 text-center"><h4>{{setting.segment_num}}</h4></div>
+        <div class="col-sm-4 text-center">
+          <div class="form-group" >
+            <input class="center-block form-control text-center w150" name="nonopargoPerc" type="number" min="0"
+               [(ngModel)]="setting.nonopargo_bkng_per" (change)="calcSpoilTotals()" required>
+            <div *ngIf="editProvSpoilPerForm.submitted || editProvSpoilPerForm.invalid">
+              <div class="text-danger" *ngIf="nonopargoPerc.errors?.['required']">A value is required</div>
+              <div class="text-danger" *ngIf="nonopargoPerc.errors?.['min']">Number must be greater than or equal to 0</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-4 text-center">
+          <div class="form-group" ng-class="{'has-error':spoilpercform.opargoPerc.$invalid}">
+            <input class="center-block form-control text-center w150" name="opargoPerc" type="number" min="0"
+            [(ngModel)]="setting.opargo_bkng_per" (change)="calcSpoilTotals()" required>
+            <div *ngIf="editProvSpoilPerForm.submitted || editProvSpoilPerForm.invalid">
+              <div class="text-danger" *ngIf="opargoPerc.errors?.['required']">A value is required</div>
+              <div class="text-danger" *ngIf="opargoPerc.errors?.['min']">Number must be greater than or equal to 0</div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="">
+    <div class="mt15 row">
+      <div class="col-sm-4 text-center">
+        <h4>Total</h4>
+      </div>
+      <div class="col-sm-4 text-center">{{providerSpoilTotals.nonopargo_total}}%</div>
+      <div class="col-sm-4 text-center">{{providerSpoilTotals.opargo_total}}%</div>
+    </div>
+    </div>
+
+
+    <div class="">
+    <div class="row" *ngIf="percentageError">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9 pt10 text-center text-danger">
+        Percentage totals must equal out to 100% for each type of allocation.<br>
+        Please check the percentages entered.</div>
+    </div>
+</div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn primary-btn" type="submit">Save</button>
+    <a class="btn btn-default secondary-btn" type="button" (click)="closeDialog()">Close</a>
+  </div>
+</form>
+</div>

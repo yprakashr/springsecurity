@@ -1,0 +1,1369 @@
+1.variables
+2.Data Types
+3.Operators
+4.Statements
+5.Functions
+
+
+Note:Type script files are saved with extension ".ts" 
+
+how to declare variables:
+1.var
+2.let
+3.const
+
+var vs let vs const
+hoisting:
+var can declar before and after 
+but let and const can declare only before 
+ex:
+var x=10;//
+document.write(x)
+var x=10;
+
+wrong
+document.write(x)
+Let x=10;
+
+
+wrong
+document.write(x)
+const x=10;
+
+
+shadowing;
+var x=10
+var x=20;
+
+wrong
+let x=10
+let x=20;
+
+wrong
+const x=10
+const x=20;
+
+
+
+var supporting 
+1.blockscope
+2.allows declaration(var x),assigning(x=10),initialization(var y=20)
+3.allows hoisting
+4.allows shadowing
+
+let supporting;
+1.it only supports only in block scope
+2.allows declaration(Let x),assigning(x=10),initialization(Let y=20).
+3.Not  allows hoisting and shadowing;
+4.not allows re-declaration
+
+const
+1.it only supports only in block scope.
+2.it allows only initialization(const y=20).
+3.Not  allows hoisting and shadowing;
+4.not allows re-declaration
+
+
+stongly typed:
+---------------------
+
+java script is not strongly typed
+typescript is strongly typed
+
+ex:var x=10;(Java script)
+   var x:Number=10(type script)
+
+
+primitive types of data types;
+1.number
+2.string
+3.boolean
+4.null
+5.undefined:
+1.difference b/w undefined and null
+no value at compile time and 
+no value at run time
+
+2.difference b/w undefined and not-defined
+undefined means value is not provided 
+no defined means reference is not available
+
+
+non-premitive types of data types;
+1.array
+2.object
+3.map
+
+ex:
+1.goto src folder
+2.Add a new file
+Let UserName="jhon"
+
+Type script
+it can handle union data types 
+multiple datatypes
+ex:String|null
+
+-Union of Types
+Arrays in TypeScript
+TypeScript array is same as in javascript
+but you can configure with similar types or varioustypes
+Syntax:
+let categories:string[]=[ ]
+let categories:string[]=new Array();
+
+
+Array() is a constructor it can initialize but it cannot assign a values
+
+syntax:
+let categories:any[]=[](ok)
+let categories:string[]=new Array();//takes first declared data type
+ex:
+let value:any[]=new Array("A",10);//we cannot initialuize run time error
+But
+let categories:any[]=new Array();
+categories[0]="A";//we can assignment
+categories[1]=22;//we can assignment
+//allowed
+
+Reading array methods
+array maipulation methods are 
+toString();
+join();
+Slice()
+find()
+filter()
+map()
+
+inserting:
+push();
+unshift();
+splice();
+
+Removing;
+pop();
+shift();
+splice();
+
+index:
+indexOf()
+lastIndexOf()
+
+		Java scriptObject[JSON]
+purpose of object to keep all related data and logic together
+to reuse it
+
+var product={
+"name":"TV"
+"price":45000.44;
+"stock":true;
+"qty":2,
+"Total":function(){
+return this.Qty*
+}
+}
+
+typescript uses any as a data type of object
+syntax;
+let product:any={"Key":vlaue};
+
+ex:
+let product:any={
+"Name":"jhon",
+"age":
+
+
+				TypeScript Map Type
+				--------------------
+-Map is same like object with key and value collection.
+-map can have various types of keys.
+-map is faster than object.
+-It provides implicit itereators to read all keys,vlaues and entries
+
+
+
+
+
+generally we read object is (in java script):
+----------------------------
+let product={
+"name":"Samsung",
+"cost":4000.00,
+"qty":2,
+"stock":true}
+for (var property in product)
+console(`${property} : ${product[property]`);
+
+
+map in example:
+
+-map provides iterators like
+	keys();
+	values();
+	entries();
+Syntax:
+let obj=new Map();
+obj.set(key,value);
+
+obj.get(key);
+obj.keys();
+obj.values();
+obj.entries();
+obj.delete(key)
+obj.size[count of keys]
+obj.has() verify and search for key
+
+FAQ:How to delete project from object?
+Ans:By Using "delete" operator.
+
+Syntax:-
+Ans:By using "in" operator  //true or false
+
+
+ex:let obj=new Map();
+obj.set(1,"HTML is a markup language");
+obj.set("js","javaScript is a client side language");
+
+console.log(obj.get(1));
+obj.delete("js");
+obj.entries();
+
+node index.js
+HTML is a markup language
+
+console.log(obj.get(1));
+
+FAQ:What  is type inference?
+Ans:it is a technique used in typescript to define data type for reference based on the vlaue initialized.
+
+let price;
+price="A";
+price=true;
+
+let x;
+let x=0;
+let x="";
+let x=false;
+
+
+
+How To Store Date value?
+Ans: let Mfd=new Date("yyyy-mm-dd 10:20"); //stores current date
+  
+
+-Date is stored by using "Date()" constructor.
+-Date() will load current date into memory.
+-You can load specific date and time by using 
+
+To get date and time in java scirpt methods are 
+getHours();
+getminutes();
+getSeconds();
+getDay();
+getMonth();
+getFullyear();
+getMilliseconds();
+toLocaleDateString();
+toLocaleTimeString();
+
+setHours();
+setMinutes();
+setMilliseconds();
+setDate();
+setMonth();
+
+let Mfd:any=new Date();
+let weekdays:string[]=["Sun","Mon","Wed","Thu","Fri","Sat"]
+console.log(weekdays[Mfd.getDay()]);
+
+
+ 							TypeScript Regular Expression
+
+-It uses a pattern to verify the input value.
+-Pattern are built by using meta characters and quantifiers.
+-Patterns are written in "/your pattern/".
+-Pattern is verified by using "match()" method.
+
+Sytax:
+ let regEx:any =/[A-Z]{4,10}/;
+
+							Typescript OOP:
+
+TypeScript Language Basics
+1.Variables
+2.Data Types
+3.Operators
+-Arithmetic 
+-Comparision
+-logical
+-Assignment
+-Bitwise
+-Special
+ternary[?:],delete,typeOf,instanceof,in of,new ,void 
+4.Statements
+-Selection statements:
+ 	if,else,switch,case,default
+-Iteration Statements
+	for..in,for..of
+-Looping Statements
+	for,while,do while
+-Jump Statements
+	break,continue,return
+-Exception Handling
+	try,catch,throw,finally
+5.Functions
+	-funciton parameters
+	-rest parameters
+	-function closure
+	-function recursion
+	-function promise
+	-arrow functions
+
+						TypeScript OOPS
+						---------------
+-Real world application development uses vrious programming systems
+1.POPS[Process Oriented Programming System]
+C,Pascal COBOL
+2.OBPS[Object Based Programmming System]
+VB [Visual Basic]
+3.OOP[Object Oriented Programming System]
+c++,java,.NET Language,TypeScript
+
+
+						Contracts
+						----------
+
+interface ProductContract
+{
+Name:string;
+price:number;
+Stock:boolean;
+Qty:number;
+}
+let product:productContract={
+Name:"Samsung TV",
+price:56000.44,
+Stock;false,
+Qty:2,
+}
+interface Name
+{
+price:number=5000;
+}
+-A contract can contain
+
+interface HDFC_Version2 extends HDFC_Version1
+{
+Loans:string;
+}
+interface HDFC_Version3 extends HDFC_Version2{
+AGRI 
+
+
+								Rules for Methods
+								------------------
+-Method defines a functionality.
+-Rules for method must contain only declaration of method.
+-Method must define return type or void .
+Syntax:{
+Total():Number		
+print():void
+}
+Total:fucntion(){
+return number;
+},
+print:function(){
+}}
+-You can define optional method.
+
+12july angular -15 july
+*******************
+1.Contract
+-interface
+-rules(for properties and methods)
+-objective
+-goal
+-optional rules[?]
+-readonly rules [readonly]
+-extending contracts[inheritance]
+	a)single
+	b)multi level
+	c)multiple
+	
+
+						interfaces
+						***********					
+
+								Multilevel								----------				
+1.if interface is extended with another interface
+
+								Multiple							--------
+1.interfac HDFC extends HDFC_version1,HDFC_version2,HDFC_version3
+
+
+								Rules for methods	`					-----------------
+-method defines a functionality.
+-rules for mehtod must contain only declaration of method.   
+-method must define return type or void.
+
+types:optional  print?():void //optional
+		Total():number;{} //wrong
+
+methods are implemented by using function 
+syntax:
+{
+Total:function(){ //it should return only void type
+return number;
+},
+
+Print:function(){
+}}
+
+-you can define optional methods
+print?():void;
+total?():number;
+let product:PrductContract ={
+Name:"Samsung TV",
+Price:45000.44,
+Qty:2,
+Total:fucntion(){
+
+
+
+
+
+
+
+
+
+summary:
+1.What is a contract?
+2.How to define contract?
+3.Interface?
+4.Why we need contract?
+5.How to define optional Rules?
+6.How to define readonly Rules?
+7.How to define rules for properties and methods?
+8.How to extend contracts?
+
+							Class in OOP
+							--------------
+-Class is aprogramm template.
+-Template provides sample data and logic, which your can customize and implement according to your requirements.
+-Class have the behaviour of 
+a)Entity
+b)Model
+c)Blue Print
+-TypeScript classes are same as a javascript class.
+-TypeScript class provides few new features
+a)it comprises of static members.
+b)it comprises of access modifiers.
+-In JavaScript or in TypeScript class comprises of 
+	a)Property
+	b)Method
+	c)Accessors
+	d)Constructor
+FAQ: Can we define a variable 
+Ans: No. class stores data in property
+
+FAQ:Why we cannnot define variable in class?
+ANS: Variables are immutable. and class can have only mutable members.
+
+FAQ:Where data is stored in class?
+Ans:In Property
+
+class Name
+{
+Property=data;
+}
+FAQ: What is difference between variable and property?
+Ans: Variable is immutable and property mutable.
+
+FAQ: Can we define a function in class?
+Ans:No.
+
+FAQ:Why function is not allowed in class?
+Ans: It is immutable
+
+FAQ:How functionality is defined in class?
+Ans: it is defined by using method
+
+-TypeScript classs can have static members, defined by using "static" keyword.
+
+Static 
+-It refers to continous memory
+-It uses more memory
+-Not safe
+-Static members are defined using "static" keyword.
+-They are accessed within or outside class using class name.
+
+
+
+Non-Static:
+-It refers to discret memory
+-It is disconnected in access.
+-Less memory.
+-Safe
+
+
+
+
+
+Public:
+-It is accessible from any object and from any location.
+
+Private:
+-It is accessible only within the class
+
+Protected:
+-It is accessible within the class
+-It is accessible outside the class only in derived class and only by using derived class object.
+
+Class can be defined in 2 ways
+a)class declaration (class product{})
+b)class expression (var product=class{})
+
+
+class Product 
+{
+
+}
+var category=class {
+categoryName:string="";
+}
+let obj=new category
+
+
+
+
+TypeScript Class
+Class members are:
+
+	a)Property
+	b)Method
+	c)Accessors
+	d)Constructor
+
+						Property
+						----------
+-property is used to store data
+-property is mutable.
+-Within the class we can use property by using "this" and 
+-Outside class by using instance of class(object).
+-If property is static then it is accessed within class and outside class using class name
+
+												
+-you can control the property behaviour by using accessors.
+
+readonly Name:string
+
+						accessors
+						---------
+-accessors is used in oop ot provide a fine grained control over porperty.
+-accessors can control the beheaviour of property.
+-accessors are 2  types.
+a)get()   	getter which is used to read value from property.
+b)set()		setter, which is used to write value into property.
+
+Syntax:
+get AliasName()
+{
+return Propertyvalue;
+}
+
+set  AliasName(newvalue)
+{
+Property=newValue;
+}
+
+Requirement: How to design a property that can change its behaviour from read-only to read-write and vice-versa?
+Ans: By using accessors.
+
+
+
+Ex:
+var usernaem:string|null =prompt("Enter Name");
+var role:string|null = propmt("enter role")
+var productname:string|null = prompt("enter product name");
+class Product 
+{
+_pro
+}
+
+
+-you can use accessors to accesss multilevel hierarchy 
+			
+								Constructors								-------------
+-Constructor is a software design pattern.
+-Constructor comes under creational pattern.
+-It is used to create an instance for class.
+-Typescript constructor is anonymous type.
+-It will not have a name.
+-In other programming languages constructor can overload but in 	typescript it cannot.
+-In other programming languages constructor can be 	public,private,protected but in typescript it cannot.
+
+
+
+
+Syntax:
+class product{
+constructor (){
+
+}
+}
+-Every class have a default constructor.
+-constructor is a special type of subroutine that is used to define actions to perform at the time of instantiation.
+
+
+
+
+single ton we can create only one object
+
+
+14july---	
+**********				
+purposes
+
+property
+method 
+accessor
+constructor
+
+							
+						
+								Reusability and Extensibility
+-------------------------------
+-reusability is the technique of accessing the members of one class and using in another class.
+-you can handle reusability by using 2 techniques 
+	a)Aggregation
+	b)inheritance
+
+Aggregation:
+-It is the process of accessing members of one class in another class without configuring any relation between classes.
+-you can access by using an object of existing class.
+-it is often called as "Has-A-Relation".
+
+class super{
+print(){
+console.log("here are the super class print method");
+}
+class derived extends sper{
+constructor(){
+super();
+}
+print(){
+super.Print();
+console.log("Derived class print method");
+}}
+let obj=new Derived();
+obj.Print();
+
+-You can access the super class constructor in derived class by using "super()".
+-Classes will not support multiple inheritance.
+
+
+FAQ:Why multiple inheritance is not supported for classes?
+Ans:Constructor Deadlock.
+
+								Polymorphism
+								-------------
+Pager 						Digital Organizer				Camera					Phone
+
+
+-poly means Many
+-Morphos means Forms
+-Configuring a component to work for different situations is poly morph
+
+
+								Abstract
+								--------
+- Abstract classes are used to design templates
+-interfaces are used to create contracts.
+-classes are used to design components(model).
+
+
+
+
+15july 
+********
+
+							Till now we discussed about  
+								. Constructors
+								. Inheritance
+								. Polymorphism
+								. Templates
+
+1. A Template comprises of sample data and logic, which you can customize and implement.
+2. Templates are used to "Rollout" and for building library for client requirements.
+
+
+
+16/nov/2022
+===========
+				
+Generic operators
+...........................
+
+let john = new DataService():
+john.GetData<IEmployee>(FirstName:"D", LastName:"John", Designation:"Manager");
+Note: Generic type will not support few operators, you have to use
+functions. (for of.)
+map()
+filter()
+find)
+join()
+toString(
+ 
+Enum
+******
+enum accepts only number,string and expression
+
+enum weekday{
+sun=0,
+mon,tue,wed,thu,fri,sat,sun;
+
+}
+
+*************basics are completed/***************************************
+-Angular is a developers platform.
+-Angular is not just a frame work.
+-it provides all tools that requires 
+
+
+18/july
+
+
+						Angular
+
+Angular is a developers platform.
+A developers platform provides end to end solution for developer, it
+provides a complete tool-chain for developer.
+a) Building
+b) Debug
+c) Testing
+d) Deploying
+Google introduced Angular and maintained by Google and a large
+community of developers and organizations.
+- Google started "Angular JS" with JavaScript in early 2010.
+
+.What are the issues with Angular JS?
+Angular JS is not designed for what you are using.
+- Hence lot of GAP's.
+- It uses JavaScript as language.
+- Not strictly typed
+- Not strongly typed
+- Will not support complete 0OP
+
+
+- Google started an alternative technology in 2014 by name "Angular"
+"Angular-2"
+Latest Angular version 14.
+-Versions upto Angular 11 Not longer supported
+- Version 12, 13 LTS
+- Active Version is 14
+
+
+Features of Angular:
+
+- Angular is modular
+application specific library.
+- Light weight
+- Faster [Angular is 10x faster than Angular JS]
+- Async library
+-It uses AOT [Ahead-of-Time]
+-Compiler [Babel]
+-It is component based
+-Easy to reuse and build
+-Component is rich in design, styles and functionality.
+-It is completely decoupled from DOM manipulations.
+-It internally uses frameworks like MVC, MVWM
+-It is known as "Angular because it can manage everything within the
+"<>"
+
+
+Setup Environment for Angular
+------------------------------------------------
+1. Install Node JS
+2. Install TypeScript
+3. Install Visual Studio Code
+
+4.Install Angular CLI
+CLI is a command line tool used to create and manage angular
+projects.
+- Open command prompt
+C:\>
+- Run the following command
+C:>npm install -g @angular/cli
+-verify version installed
+C:\>ng version
+
+How to update from older version to current version?
+1.Uninstall existion version.
+
+c:\npm uninstall -g @angular/cli 
+
+2.clear all temporary files
+c:\npm cache verify
+
+3.install new version
+c:/npm install -g@angular/cli
+
+				Creating Angular Workspace
+
+-Angular workspace comprises of a set of projects 
+-You can share libraty between projects.
+
+1.Open any location on your PC in command prompt, where you want to create workspace
+
+Workspace Folder Structure
+File/folder                                Description
+----------------------------------------------------------------------
+pakage.json		Project meta data
+package.lock.json		It contains dependencies meta data
+tsconfig.json		It comprises of rules for typescript.
+Readme.md		It is help document
+angular.json		It comprises project related configuration.
+gitignore			It specifies the file to ignore in publishing.
+editorconfig		Editor configuration rules
+node_modules		Comprises of all library files.
+
+
+2. Run the following command
+>ng generate application shopping
+(or)
+ng g application shopping
+? Would you like to add Angular routing? (y/N) N
+? Which stylesheet format would you like to use? css
+
+3. This will add "projects" folder into workspace with your project folder
+"shopping
+Workspace-angular
+	|_projects
+	 |_shopping
+
+
+		Project Folder Structure
+		-------------------------------------
+File/folder			Description
+-----------------------------------------------------------------------------------------------------
+tsconfig.json			It is typescirpt configuration for current project
+tsconfig.spec.json			[spec is test file]It is used for testing.
+Karma.conf.js			It is a testing configuration file.
+.browserlistrc			It is browser configuration file
+
+
+ 
+			Project "Src" folder structure
+			------------------------------------------------
+
+
+File/ Folder			Description
+-------------------------------------------------------------------------------------
+app				It comprises of angular application resources
+				- components
+				- services
+				- modulees
+				-pipe etc.
+
+assets				It comprises of static resources
+				- images, text, pdf, audio, video etc..
+
+evironments			It contains configuration of all environments
+				a)Development
+				b)Quality
+				c)Production
+
+favicon.ico			favicon for web page.
+
+index.html			It is the startup page.
+
+main.ts				It is the entry point for angular app.
+
+pollyfills.ts			It configures differential loading
+
+styles.csS			It contains global CSS.
+
+test.ts				It is test entry point.
+
+Run Project
+>ng serve -project=shopping
+
+Open Browser
+http://localhost:4200
+
+Make Changes in
+"app.component.htm" [src/app]
+
+
+20juLy
+
+				Angular Components
+				----------------------------------
+
+- Component is template
+It comprises or
+a) Presentation
+b) Styless
+c) Logic
+
+-Presentation is designed in HTML
+-Styles are defined using CSS.
+-Logic is defined using TypeScript.
+-Component is technically a "TypeScript class".
+
+export class HomeComponent{
+
+}
+- Every component class uses a decorator "Component()" [directive]
+
+@Component()
+export class HomeComponent
+{
+
+}
+
+Component decorator is defined in "@angular/core" library
+
+import ( Component} from '@angular/core';
+@Component()
+export class HomeComponent
+{
+
+}
+- Every component must have markup, which you can define in the
+component.
+
+@Component({
+selector:'',
+template:
+templateUrl: '",
+styles: ' 1.
+styleUrls: [ ]
+})
+
+
+selector		:It defines the name used to access component.
+		Every selector must have prefix "app
+
+selector : 	"app-home"
+
+template		It defines the markup to render
+		template: "<h2></h2>"
+
+templateUrl 	It defines the page name that contains markup
+		templateUrl: "home.component.htm"
+styles		It defines set of style attributes and values
+
+styles: 		["h2{ color:red }","p{ }"];
+
+styleURL		:It defines the name used to access component
+		Every selector must have prefix "app"
+
+
+Syntax:		
+
+Step-1: Add a component file in "app" folder
+
+home.component.ts
+
+import{ Component } from "@angular/core";
+
+@Component({
+selector: "app-home",
+template: "<h2>{{title}}</h2>"
+})
+
+export class HomeComponent
+{
+public title:string = "Home";
+}
+
+Step-2: Register your component in "app.module.ts" 
+ 
+declaration: [
+	HomeComponent
+]
+
+Step-3: Configure your component as startup component
+bootstrap: [
+HomeComponent
+]
+
+Step-4: Set your component in index page "index.html"
+<body
+app-home> s/app-home>
+</body>
+
+
+Note: You can design any component in angular using 2 techniques
+  
+        a)Inline documentation
+        B)Code behind  documentation
+
+Inline Documentation comprises presentation, logic, and styles all in
+one file.
+Code Behind allows to design component in 3 files
+.html
+.CSS
+.ts
+
+Ex: Inline Technique
+1. Go to "app" folder and add a sub folder "components"
+
+2. Add a new TypeScript file into components
+
+"home.component.ts"
+
+import { Component } from '@angular/core;
+
+@Component({
+selector: 'app-home',
+template:'<h2>{{title}</h2><p>Welcome to Angulars/p>
+
+styles:['h2{color:red; text-align:center,P{color:blue}']
+})
+export class HomeComponent
+{
+public title:string = "Home Page";
+}
+3. Go to "app.module.ts"
+declarations: [
+Homecomponent
+]
+bootstrap:[
+HomeComponent
+]
+
+4.Goto "index.html"
+
+<body>
+<app-home><app-home>
+
+
+Code Behind Technique
+--------------------------
+1. Add a new folder into components
+Ogin
+"login"
+2. Add following files into login folder
+login.component.ts
+ogin.component.html
+login.component.css
+kogn.component.ntml- workap..
+3. login.component.ts
+
+import{Component}from'@angular/core';
+@Component({
+    selector:'app-login',
+    templateUrl:'./login.component.html',
+    styleUrls:['./login.component.css']
+})
+
+export class LoginComponent
+{
+    public title:string='User Login';
+}
+
+4.login.component.html
+<div class="container">
+<form action="">
+    <h2>User Login</h2>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" name="" id=""></dd>
+        <dt>Password</dt>
+        <dd><input type="password" name="" id=""></dd>
+    </dl>
+    <button>Login</button>
+</form>
+</div>
+
+5.login.component.css
+.container{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height:400px;
+}
+form{
+    border:2px solid darkcyan;
+    padding: 20px;
+    box-shadow:2px 2px 2px black;
+    
+}
+
+
+				Setup Bootstrap for Angular
+				-------------------------------------------
+
+1. Install b0otstrap and icons for project
+workspace> npm install bootstrap -save
+	 > npm install bootstrap-icons --save
+
+
+2.Goto the styles.css 
+
+<div class="container-fluid">
+    <h2>Netflix</h2>
+<div class="bg-dark p-4">
+    <p class="text-center">Ready to watch? Enter your email to create or restart your membership.</p>
+
+   <div class="input-group input-group-lg">
+    <input type="email" class="form-control" name="" id="">
+    <button class="btn btn-danger">
+        Get Started 
+        <span class="bi bi-chevron-right"></span>
+    </button>
+   </div>
+</div>
+</div>
+
+
+18/july/2022
+****************
+
+Adding Components
+-inline
+-code Behind
+-Enable Bootstrap
+
+
+Adding components using CLI commands
+1.you have to open the location in terminal, where you want to add component.
+
+D:....\>ng generate component name
+         >ng g c name(generate component files readily)
+
+
+2.You can use the following "flags" for command
+
+
+--inline-style=true		will not generate css file
+
+--inline-template=true 	will not generate html file
+--skip-tests=true		will not generate test file
+
+--dry-run			will not execute command and effect your app,
+			it will just show preview.
+
+>ng  g  c home --skip-tests  --inline-style --inline-template
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+<div class="contact-us">
+    <div class="section-1">
+
+        <div class="container mt-5 p-5">
+
+            <div class="row">
+
+                <div class="col form-col mt-5">
+                    <div class="h2 text-center mt-4 form-label" id="heading">Contact us</div>
+                    <div class="h6 text-center text-danger" id="heading">We will get back to you</div>
+
+                    <form [formGroup]="ContactForm" (ngSubmit)="contact(ContactForm)" #contactForm="ngForm">
+                        <div class="mt-3"><input class="form-control" type="text" formControlName="fullname"
+                                placeholder="fullname">
+
+                            <div class="text-center" *ngIf="ContactForm.get('fullname')?.invalid && 
+                            ContactForm.get('fullname')?.errors && 
+                            (ContactForm.get('fullname')?.dirty || ContactForm.get('fullname')?.touched)">
+                                <small class="text-danger" *ngIf="ContactForm.get('fullname')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="ContactForm.get('fullname')?.hasError('minlength')">
+                                    Minimum 1 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="ContactForm.get('fullname')?.hasError('maxlength')">
+                                    Maximum 50 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="ContactForm.get('fullname')?.hasError('pattern')">
+                                    Fullname can contain only alphabets
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="mt-3"><input class="form-control" type="number" formControlName="phone"
+                                placeholder="phone">
+
+                            <div class="text-center" *ngIf="ContactForm.get('phone')?.invalid && 
+                            ContactForm.get('phone')?.errors && 
+                            (ContactForm.get('phone')?.dirty || ContactForm.get('phone')?.touched)">
+                                <small class="text-danger" *ngIf="ContactForm.get('phone')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="ContactForm.get('phone')?.hasError('min')">
+                                    phone cannot be less than 10 digits
+                                </small>
+                                <small class="text-danger" *ngIf="ContactForm.get('phone')?.hasError('max')">
+                                    phone cannot exceed 10 digits
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="mt-3"><textarea class="form-control" type="text" formControlName="message"
+                                placeholder="message"></textarea>
+
+                            <div class="text-center" *ngIf="ContactForm.get('message')?.invalid && 
+                                ContactForm.get('message')?.errors && 
+                                (ContactForm.get('message')?.dirty || ContactForm.get('message')?.touched)">
+
+                                <small class="text-danger" *ngIf="ContactForm.get('message')?.hasError('max')">
+                                    phone cannot exceed 10 digits
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <input type="file" accept=".pdf" class="form-control"
+                                formControlName="document" placeholder="resume" (change)="selectFile($event)">
+
+                            <div class="text-center" *ngIf="ContactForm.get('document')?.invalid && 
+                                ContactForm.get('document')?.errors && 
+                                (ContactForm.get('document')?.dirty || ContactForm.get('document')?.touched)">
+
+                                <small class="text-danger" *ngIf="ContactForm.get('document')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" [disabled]="!contactForm.valid"
+                                class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="container-fluid col-sm-auto p-3">
+                    <img src="../../assets/images/register1.png" class="img-fluid d-block" width="550vw">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <app-ass15-footer></app-ass15-footer>
+</div>

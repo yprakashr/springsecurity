@@ -1,0 +1,232 @@
+
+/* @import "@coreui/coreui/scss/coreui"; */
+
+:root {
+  --primary-clr: #b38add;
+}
+
+
+.body1 {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+  /* background-color: #e2e1dc; */
+}
+.container1 {
+  position: relative;
+  width: 1200px;
+  min-height: 850px;
+  margin: 0 auto;
+  padding: 5px;
+  color: #fff;
+  display: flex;
+  border-radius: 10px;
+  background-color: #373c4f;
+}
+.left {
+  width: 60%;
+  padding: 20px;
+}
+
+
+/* ****************************** side nav bar ********************************* */
+
+mat-toolbar {
+  background: #004a9f;
+  color: white;
+}
+
+mat-sidenav {
+  /* margin: 16px; */
+  width: 200px;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  /* border-radius: 10px; */
+  padding: 16px;
+  text-align: center;
+}
+
+.heading {
+  width: 90%;
+  border-bottom: 2px solid #1582ff;
+  margin-left: 100px;
+  padding-bottom: 5px;
+  padding-top: 20px;
+}
+
+.content {
+  height: calc(100vh - 100px);
+  border-radius: 10px;
+  margin: 12px;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 16px;
+  overflow: auto;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 75px);
+  /* justify-content: center; */
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+.menu-button > mat-icon {
+  margin-right: 8px;
+}
+
+.avatar {
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 8px;
+  font-weight: normal;
+}
+
+.designation {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.cursorPointer:hover {
+  cursor: pointer;
+  /* background-color: grey; */
+}
+#backgroundHeader{
+  background-color:#004798;
+  color:white;
+}
+
+
+
+
+
+/* login page */
+
+.backgroundColor {
+  background: linear-gradient(
+    to right,
+    rgb(224, 229, 255) 0%,
+    rgb(224, 229, 255) 50%,
+    #00096b 50%,
+    #00096b 100%
+  );
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text-color {
+  color: #00096b;
+}
+.btn-primary {
+  background: #00096b;
+}
+.commandcenterlogo {
+  position: absolute;
+  z-index: 10;
+  border-radius: 50%;
+  left: 46%;
+  top: 6%;
+}
+
+.gradient-custom-2 {
+  background: #fccb90;
+  background: -webkit-linear-gradient(
+    to right,
+    #ee7724,
+    #d8363a,
+    #dd3675,
+    #b44593
+  );
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+.greyGradiant {
+  background: rgb(147, 148, 156);
+}
+
+@media (max-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+  .backgroundColor {
+    background: linear-gradient(
+      to right,
+      rgb(224, 229, 255) 0%,
+      rgb(224, 229, 255) 50%,
+      #00096b 50%,
+      #00096b 100%
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+  .commandcenterlogo {
+    z-index: 10;
+    border-radius: 50%;
+    left: 38%;
+    top: 2%;
+  }
+
+  .commandcenterlogo {
+    z-index: 10;
+    border-radius: 50%;
+    left: 38%;
+    top: 2%;
+  }
+  .backgroundColor {
+    background: linear-gradient(
+      to right,
+      rgb(224, 229, 255) 0%,
+      rgb(224, 229, 255) 50%,
+      #00096b 50%,
+      #00096b 100%
+    );
+    height: 100vh;
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=9.0" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <script src="scripts/fetch_address.js" defer></script>
+  <script src="scripts/register.js" defer></script>
+  <script src="scripts/logIn.js" defer></script>
+  <script src="scripts/signIn.js" defer></script>
+  <script src="scripts/onFocus.js" defer></script>
+  <title>Registration</title>
+</head>
+
+<body class="ass12">
+  <div class="header">
+    <span id="fst">&nbsp;Medi</span><span id="snd">care&nbsp;</span><span id="plus"><sup>+</sup></span>
+  </div>
+
+  <div class="container" id="container">
+    <div class="left" id="left">
+      <form id="registration-form" onsubmit="return submitForm()">
+        <div class="logo">
+          <img src="images/healthcare-hospital-clinic-doctor-logo-image-free-vector.webp" width="100px" alt="" />
+        </div>
+
+        <h1 id="form-heading">Register for your appointment</h1>
+        <br />
+
+        <div class="names">
+          <input type="text" name="firstname" id="firstname" placeholder="First name" onfocus="hideBookedStatus()"/>
+          <input type="text" name="lastname" id="lastname" placeholder="Last name" />
+        </div>
+
+        <div class="age-phone">
+          <input type="number" name="age" id="age" placeholder="Age" />
+          <input type="number" name="phonenumber" id="phonenumber" placeholder="Phone" />
+        </div>
+
+        <div class="gender">
+          <label for="gender">Gender</label>
+          <input type="radio" name="gender" value="male" />&nbsp;Male 👦🏻
+          <input type="radio" name="gender" value="female" />&nbsp;Female 👧🏻
+          <input type="radio" name="gender" value="others" />&nbsp;Others ⚧️
+        </div>
+
+        <div class="date-time">
+          <label for="date-time">Date & time</label>
+          <input type="date" name="date" id="date" placeholder="Date" />
+          <input type="time" name="time" id="time" placeholder="Time" />
+        </div>
+
+        <div class="area">
+          <label for="address">🏠 Address</label>
+          <select name="city" id="city">
+            <option value="">- City -</option>
+          </select>
+          <select name="area" id="area">
+            <option value="">- Area -</option>
+          </select>
+        </div>
+
+        <div class="vaccination">
+          <label for="vaccinated">COVID vaccinated</label>
+          <input type="radio" name="vaccinated" value="yes" />&nbsp; yes ✔️
+          <input type="radio" name="vaccinated" value="no" />&nbsp; no ❌
+        </div>
+
+        <div class="symptoms">
+          <label for="symptoms">Symptoms</label>
+          <input type="checkbox" name="symptoms" value="fever" />&nbsp;Fever
+          <input type="checkbox" name="symptoms" value="caugh" />&nbsp;Cough
+          <input type="checkbox" name="symptoms" value="nausea" />&nbsp;Nausea
+        </div>
+
+        <div class="add_info">
+          <textarea name="add_info" id="add_info" cols="45" rows="2" placeholder="Additional info"></textarea>
+        </div>
+
+        <div class="submit">
+          <input type="submit" value="schedule" />
+        </div>
+
+        <div id="appointment-msg">
+          <p>Appointment booked</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Right block -->
+    <div class="right">
+      <img id="rightImg" src="images/healthcare-europe-1080x675.jpg" width="90%" alt="Medical Image" />
+      <br />
+      <p>One appointment. Your health is ours.</p>
+      <br />
+
+      <!-- Login form -->
+      <form action="" id="signinForm" onsubmit="return loginAction()">
+        <div class="uname-pass">
+          <input type="text" placeholder="username" id="uname" onfocus="hideValidateStatus()"/>
+          <input type="password" placeholder="password" id="pass" onfocus="hideValidateStatus()"/>
+        </div>
+        <div class="login-btn">
+          <input type="submit" value="Login" id="login-btn" />
+          <input type="button" value="signUp ?" id="signup-btn" />
+        </div>
+
+        <div id="loginMsg">
+          <p>Incorrect credentials</p>
+        </div>
+
+        <div class="signinInfo">
+          <p>Sign in to view and edit the booked appointments</p>
+          <img id="signinImg" src="images/healthcare-europe-1080x675.jpg" width="300px" alt="Medical Image" />
+        </div>
+      </form>
+
+      <!-- Signup form -->
+      <form action="" id="signupForm" onsubmit="return signUpAction()">
+        <div class="name-phone">
+          <input type="text" placeholder="fullname" id="fullname" onfocus="hideSignupStatus()"/>
+          <input type="number" placeholder="phonenumber" id="phonenumberx" />
+        </div>
+        <br />
+        <div class="uname-pass">
+          <input type="text" placeholder="username" id="username" />
+          <input type="password" placeholder="password" id="password" />
+        </div>
+        <div class="login-btn">
+          <input type="submit" value="signUp" id="signupAction-btn" />
+          <input type="button" value="Login" id="login-sign-btn" />
+        </div>
+
+        <div id="signup-msg">
+          <p>Sign-up successful</p>
+        </div>
+
+        <div class="signinInfo">
+          <p>Sign in to view and edit the booked appointments</p>
+          <img id="signinImg" src="images/healthcare-europe-1080x675.jpg" width="300px" alt="Medical Image" />
+        </div>
+      </form>
+
+      <div class="appointment-a">
+        <input type="button" value="Sign in" id="signin-btn" />
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Medicare Healthcare© 2022, LLC and/or its affiliates. All rights reserved.
+  </div>
+</body>
+
+</html>

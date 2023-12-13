@@ -1,0 +1,456 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<style>
+.header{
+    top:0;
+    width: 100%;
+    background-color: blueviolet;
+    height: 100px;
+}
+.footer{
+    bottom: 0;
+    width: 100%;
+    background-color: blueviolet;
+    height: 100px;
+    color: rgba(222,222,152,.6);
+}
+    *{
+  margin: 0;
+  padding:0;
+}
+.btnsy{
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+  background-color: rgb(255, 0, 128);
+  transition:0.5s;
+text-align: center;
+}
+.style:hover{
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgb(182, 182, 255), 0 4px 8px rgb(182, 182, 255);
+  transition: 500ms;
+  cursor: pointer;
+}
+.home-nav{
+display: flex;
+justify-content: flex-end;
+height:fit-content;
+padding:30px;
+}
+.item1 {
+    width: 174px;
+    left: -54px;
+    position: relative;
+}
+.item2 {
+    position: absolute;
+    left: 1052px;
+    width: 174px;
+}
+.item3 {
+width: 166px;
+left: 1043px;
+
+} 
+</style>
+
+</head>
+<body> -->
+<!-- <header class="header">
+    <span></span>
+<span>| ELearning</span>
+</header>
+<nav>
+
+</nav>
+
+    <footer class="footer">
+        <span></span>
+
+    </footer> -->
+    <!-- <div class="container-fluid bg-info">
+    <nav class="home-nav" style="right: 0;">
+        <div class="row">
+          <div class="col item1">
+          <a class="btnsy  nav nav-link  text-white" (click)="toHome()">Home</a>
+          </div>
+          <div class="col item2">
+            <a class="btnsy  nav nav-link  text-white" (click)="toRegister()">Register</a>
+            </div>
+            <div class="col item3">
+              <a class="btnsy nav nav-link  text-white" (click)="toExisting()">Existing</a>
+              </div>
+          </div>
+        </nav>
+ 
+</div>
+</body>
+</html> -->
+
+<!-- ******************************************************************************************************************** -->
+<!-- Headers -->
+<!-- ******************************************************************************************************************** -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle Header</title>
+    <style>
+    *,
+    *:before,
+    *:after{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    header{
+        width: 100vw;
+    height:50vh;
+background: 
+linear-gradient(
+    to right,
+    rgba(255,0,204,.6),
+    rgba(51,51,153,.6),
+);
+background: 
+url(../Desktop/IMAGES/skyblue.jfif);
+background-size: cover;
+background-position: center center;
+background-attachment: fixed;
+clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 80%,
+    50% 100%,
+    0% 80%
+);
+position:relative;
+    }
+   header .text-container{
+    display: block;
+    width:100%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top:50%;
+    left:50%;
+    text-align: center;
+    color:aliceblue;
+    text-shadow: 0 0 10px,rgba(0, 0, 0, .6);
+   }
+   div div {
+  padding:10px;
+  /*overflow:scroll;*/
+}
+
+.left {
+  height:100%;
+  width:35%;
+  float:left;
+}
+
+.right {
+  height:200px;
+  width:35%;
+  float:right;
+}
+
+.top { 
+  width:100%;
+  height: 200px; 
+  clip-path: polygon(0% 0%, 0% 82.5%, 1.69492% 84.3293%, 3.38983% 86.1385%, 5.08475% 87.9078%, 6.77966% 89.6179%, 8.47458% 91.25%, 10.1695% 92.7862%, 11.8644% 94.2098%, 13.5593% 95.505%, 15.2542% 96.6578%, 16.9492% 97.6555%, 18.6441% 98.487%, 20.339% 99.1435%, 22.0339% 99.6176%, 23.7288% 99.9041%, 25.4237% 100%, 27.1186% 99.9041%, 28.8136% 99.6176%, 30.5085% 99.1435%, 32.2034% 98.487%, 33.8983% 97.6555%, 35.5932% 96.6578%, 37.2881% 95.505%, 38.9831% 94.2098%, 40.678% 92.7862%, 42.3729% 91.25%, 44.0678% 89.6179%, 45.7627% 87.9078%, 47.4576% 86.1385%, 49.1525% 84.3293%, 50.8475% 82.5%, 52.5424% 80.6708%, 54.2373% 78.8616%, 55.9322% 77.0922%, 57.6271% 75.3821%, 59.322% 73.75%, 61.017% 72.2138%, 62.7119% 70.7902%, 64.4068% 69.495%, 66.1017% 68.3422%, 67.7966% 67.3446%, 69.4915% 66.513%, 71.1864% 65.8565%, 72.8814% 65.3824%, 74.5763% 65.0959%, 76.2712% 65%, 77.9661% 65.0959%, 79.661% 65.3824%, 81.3559% 65.8565%, 83.0509% 66.513%, 84.7458% 67.3446%, 86.4407% 68.3422%, 88.1356% 69.495%, 89.8305% 70.7902%, 91.5254% 72.2138%, 93.2203% 73.75%, 94.9153% 75.3821%, 96.6102% 77.0922%, 98.3051% 78.8616%, 100% 80.6708%, 100% 0%);shape-outside: polygon(0% 0%, 0% 82.5%, 1.69492% 84.3293%, 3.38983% 86.1385%, 5.08475% 87.9078%, 6.77966% 89.6179%, 8.47458% 91.25%, 10.1695% 92.7862%, 11.8644% 94.2098%, 13.5593% 95.505%, 15.2542% 96.6578%, 16.9492% 97.6555%, 18.6441% 98.487%, 20.339% 99.1435%, 22.0339% 99.6176%, 23.7288% 99.9041%, 25.4237% 100%, 27.1186% 99.9041%, 28.8136% 99.6176%, 30.5085% 99.1435%, 32.2034% 98.487%, 33.8983% 97.6555%, 35.5932% 96.6578%, 37.2881% 95.505%, 38.9831% 94.2098%, 40.678% 92.7862%, 42.3729% 91.25%, 44.0678% 89.6179%, 45.7627% 87.9078%, 47.4576% 86.1385%, 49.1525% 84.3293%, 50.8475% 82.5%, 52.5424% 80.6708%, 54.2373% 78.8616%, 55.9322% 77.0922%, 57.6271% 75.3821%, 59.322% 73.75%, 61.017% 72.2138%, 62.7119% 70.7902%, 64.4068% 69.495%, 66.1017% 68.3422%, 67.7966% 67.3446%, 69.4915% 66.513%, 71.1864% 65.8565%, 72.8814% 65.3824%, 74.5763% 65.0959%, 76.2712% 65%, 77.9661% 65.0959%, 79.661% 65.3824%, 81.3559% 65.8565%, 83.0509% 66.513%, 84.7458% 67.3446%, 86.4407% 68.3422%, 88.1356% 69.495%, 89.8305% 70.7902%, 91.5254% 72.2138%, 93.2203% 73.75%, 94.9153% 75.3821%, 96.6102% 77.0922%, 98.3051% 78.8616%, 100% 80.6708%, 100% 0%); 
+}
+
+.bottom {
+  width:100%;
+  height:200px;
+}
+
+.red {
+  background:linear-gradient(to bottom, #ff0055 0%,#ff0051 17%,#f8004f 33%,#ff0051 67%,#ff0000 83%,#ff0051 100%); 
+} 
+
+.mainContainer {
+  width:100%;
+  float:left;
+}
+
+#polygon {
+  padding-left:20px;
+  margin-left:20px;
+  width:100%;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="text-container">
+            <h1>Triangle Shaped Header</h1>
+            <span>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available</span>
+        </div>
+    </header>
+    <section>
+       <p>You can directly hit the ALT + Z Key, and we will get the Toggle Word Wrap output, the same as the before method. Like this, By using the Toggle Word Wrap feature of Visual Studio Code, we can format long lines of code in multiple lines based on the editor view area.
+        You can directly hit the ALT + Z Key, and we will get the Toggle Word Wrap output, the same as the before method. Like this, By using the Toggle Word Wrap feature of Visual Studio Code, we can format long lines of code in multiple lines based on the editor view area.
+        You can directly hit the ALT + Z Key, and we will get the Toggle Word Wrap output, the same as the before method. Like this, By using the Toggle Word Wrap feature of Visual Studio Code, we can format long lines of code in multiple lines based on the editor view area.
+        You can directly hit the ALT + Z Key, and we will get the Toggle Word Wrap output, the same as the before method. Like this, By using the Toggle Word Wrap feature of Visual Studio Code, we can format long lines of code in multiple lines based on the editor view area.
+        You can directly hit the ALT + Z Key, and we will get the Toggle Word Wrap output, the same as the before method. Like this, By using the Toggle Word Wrap feature of Visual Studio Code, we can format long lines of code in multiple lines based on the editor view area.
+        You can directly hit the ALT + Z Key, and we will get the Toggle Word Wrap output, the same as the before method. Like this, By using the Toggle Word Wrap feature of Visual Studio Code, we can format long lines of code in multiple lines based on the editor view area.
+
+        You can directly hit the ALT + Z Key, and we will get the Toggle Word Wrap output, the same as the before method. Like this, By using the Toggle Word Wrap feature of Visual Studio Code, we can format long lines of code in multiple lines based on the editor view area.
+       </p>
+    </section>
+    <nav>
+        <a href="">Page</a><a href="">Link</a><a href="">Page</a><a href="">Link</a><a href="">Page</a><a href="">Link</a>
+    </nav>
+
+
+
+    <div class="mainContainer">
+
+        <div class="wave top red" style="">
+        </div> -->
+        
+        <!--div class="wave left green">
+        </div-->
+        <!--div class="wave right green">
+        </div-->  
+        <!--div class="wave bottom green"></div-->  
+      <!-- </div>
+</body>
+</html> -->
+
+
+<!-- ******************************************************************************************************************* -->
+
+<!-- borders -->
+
+<!-- ******************************************************************************************************************* -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation bars</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+ *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+    transition: all .3s ease-out;
+ }
+ #menu-btn{
+    position: fixed;
+    top:20px; right:30px;
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    font-size: 30px;
+    cursor: pointer;
+    background: yellow;
+    color:#000;
+    text-align: center;
+    z-index: 1000;
+ }
+.navbar{
+    position: fixed;
+    top:0;left: 0;
+    z-index:999;
+    height: 100%;
+    width: 100%;
+    background: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    padding-bottom: 50px;
+    /* clip-path: circle(10% at 95.3% 8.5%); */
+ }
+.navbar{
+    font-size: 30px;
+    padding-bottom:30px;
+    color:#000;
+ }
+.navbar a::before{
+    content:attr(data-text);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    font-size: 5em;
+    color:#000;
+    pointer-events: none;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: .4em;
+    opacity:0;    
+    z-index: -1;
+}
+.navbar a:hover::before{
+    letter-spacing: 0em;
+    opacity: .1;
+    transition: .3s ease-out;
+}
+#menu-btn.fa-times{
+    transform: rotate(180deg);
+    background:#f9f906 ;
+    color:#000;
+}
+.navbar.active{
+    clip-path:circle(140% at 95.3% 8.5%);
+}
+</style>
+
+</head>
+<body>
+    <header>
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    <nav class="navbar">
+    <a data-text="home">home</a>
+    <a data-text="about">about</a>
+    <a data-text="gallery">gallery</a>
+    <a data-text="portfolio">portfolio</a>
+    <a data-text="blogs">blogs</a>
+    <a data-text="contact">contact</a>
+    </nav>
+    </div>
+    </header>
+
+<script>
+    document.querySelector('#menu-btn').onclick=()=>{
+        document.querySelector('#menu-btn').classList.toggle('fa-times');
+document.querySelector('.navbar').classList.toggle('active');
+
+    }
+</script>
+
+
+</body>
+</html> -->
+
+<!-- ****************footer section******************************** -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<body>
+    <footer class="main-footer">
+        <hr>
+        <div class="row">
+            <div class="col-sm">
+                <p class="text-center bg-dark text-light">&copy; 2021 SM Infohub | All rights are reserved | Terms of service | Privacy</p>
+            </div>
+        </div>
+        </footer>
+</body>
+</html> -->
+
+
+<!-- ***************************************** -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <style>
+        footer a{color:#fff;}
+        footer a:hover{color:#fff;}
+        footer{
+            
+            bottom:0;
+
+        }
+    </style>
+</head>
+<body>
+  <footer class="bg-primary text-white">
+    <div class="container py-3 ">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 pb-2">
+                <h4>About Us</h4>
+                <p>You can directly hit the ALT + Z Key, and we will get the Toggle Word Wrap output, the same as the before method. Like this, By using the  </p>
+            </div>
+            <div class=" col-lg-3 col-sm-6 pb-2">
+                <h4>Usefull links</h4>
+                <ul class="list-unstyled">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Services</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </div>
+            <div class=" col-lg-3 col-sm-6 pb-2">
+                <h4>Contact Us</h4>
+                <p>
+                    <address>SCO 3456, New Delhi - 160066</address>
+                    <strong>Phone:</strong>+91-0098562325
+                <strong>Email:</strong>
+                </p>
+            </div>
+            <div class=" col-lg-3 col-sm-6 pb-2">
+                <h4>NewsLetters</h4>
+                <p>Enter your email address below</p>
+                <form action="">
+                <div class="input-group">
+                    <input type="email" class="form-control">
+                    <button class="btn btn-secondary">Subscribe</button>
+                </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+    <div class="container-fluid text-center bg-secondary py-2">
+            &copy; 2023. All rights are reserved.
+    </div>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

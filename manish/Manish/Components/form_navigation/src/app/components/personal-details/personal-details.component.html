@@ -1,0 +1,226 @@
+<div class="personal-details">
+    <div class="container">
+
+        <div class="row">
+            <div class="container-fluid col-sm-auto p-3">
+                <img src="../../assets/images/3675761.jpg" class="img-fluid mx-auto d-block" width="350vw"
+                    style="vertical-align: middle;">
+            </div>
+
+            <div class="col">
+                <div class="heading h3 text-center">Personal details</div>
+
+                <form [formGroup]="personalDetailsForm" (ngSubmit)="submitForm()">
+
+                    <!-- NAMES -->
+                    <div class="row names">
+                        <label class="h6">Full name</label>
+
+                        <!-- FNAME -->
+                        <div class="col">
+                            <input type="text" formControlName="firstname" id="firstname" class="form-control"
+                                placeholder="First name">
+
+                            <div class="text-center"
+                                *ngIf="personalDetailsForm.get('firstname')?.invalid && 
+                            personalDetailsForm.get('firstname')?.errors && 
+                            (personalDetailsForm.get('firstname')?.dirty || personalDetailsForm.get('firstname')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('firstname')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('firstname')?.hasError('minlength')">
+                                    Minimum 1 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('firstname')?.hasError('maxlength')">
+                                    Maximum 50 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('firstname')?.hasError('pattern')">
+                                    firstname can contain only alphabets
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- LNAME -->
+                        <div class="col">
+                            <input type="text" formControlName="lastname" id="lastname" class="form-control"
+                                placeholder="Last name">
+
+                            <div class="text-center"
+                                *ngIf="personalDetailsForm.get('lastname')?.invalid && 
+                            personalDetailsForm.get('lastname')?.errors && 
+                            (personalDetailsForm.get('lastname')?.dirty || personalDetailsForm.get('lastname')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('lastname')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('lastname')?.hasError('minlength')">
+                                    Minimum 1 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('lastname')?.hasError('maxlength')">
+                                    Maximum 50 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('lastname')?.hasError('pattern')">
+                                    lastname can contain only alphabets
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AGE, PHONE -->
+                    <div class="row age-phone mt-3">
+                        <label class="h6">Age & phone</label>
+
+                        <!-- AGE -->
+                        <div class="col">
+                            <input formControlName="age" id="age" type="number" class="form-control" placeholder="Age"
+                                maxlength="3"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+                            <div class="text-center" *ngIf="personalDetailsForm.get('age')?.invalid && 
+                            personalDetailsForm.get('age')?.errors && 
+                            (personalDetailsForm.get('age')?.dirty || personalDetailsForm.get('age')?.touched)">
+                                <small class="text-danger" *ngIf="personalDetailsForm.get('age')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="personalDetailsForm.get('age')?.hasError('min')">
+                                    Minimum 1
+                                </small>
+                                <small class="text-danger" *ngIf="personalDetailsForm.get('age')?.hasError('max')">
+                                    Maximum 100
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- PHONE -->
+                        <div class="col">
+                            <input formControlName="phone" id="phone" type="number" class="form-control"
+                                placeholder="Phone" maxlength="10"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+                            <div class="text-center" *ngIf="personalDetailsForm.get('phone')?.invalid && 
+                            personalDetailsForm.get('phone')?.errors && 
+                            (personalDetailsForm.get('phone')?.dirty || personalDetailsForm.get('phone')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('phone')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger" *ngIf="personalDetailsForm.get('phone')?.hasError('max')">
+                                    phonenumber cannot exceed 10 digits
+                                </small>
+                                <small class="text-danger" *ngIf="personalDetailsForm.get('phone')?.hasError('min')">
+                                    phonenumber must be 10 digits
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('phone')?.hasError('pattern')">
+                                    phonenumber must be 10 digits
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UID, PAN -->
+                    <div class="row aadhar-pan mt-3">
+                        <label class="h6">National ID</label>
+
+                        <!-- UID -->
+                        <div class="col">
+                            <input type="number" formControlName="aadhar" id="aadhar" class="form-control"
+                                placeholder="Aadhar No" maxlength="12"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+
+                            <div class="text-center" *ngIf="personalDetailsForm.get('aadhar')?.invalid && 
+                            personalDetailsForm.get('aadhar')?.errors && 
+                            (personalDetailsForm.get('aadhar')?.dirty || personalDetailsForm.get('aadhar')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('aadhar')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('aadhar')?.hasError('pattern')">
+                                    aadhar number must be 12 digits
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- PAN -->
+                        <div class="col">
+                            <input type="text" formControlName="pan" id="pan" class="form-control" placeholder="PAN No"
+                                maxlength="10" oninput="this.value = this.value.toUpperCase()">
+
+                            <div class="text-center" *ngIf="personalDetailsForm.get('pan')?.invalid && 
+                            personalDetailsForm.get('pan')?.errors && 
+                            (personalDetailsForm.get('pan')?.dirty || personalDetailsForm.get('pan')?.touched)">
+                                <small class="text-danger" *ngIf="personalDetailsForm.get('pan')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('pan')?.hasError('minlength')">
+                                    PAN cannot be less than 10 characters.
+                                </small>
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('pan')?.hasError('maxlength')">
+                                    PAN cannot exceed 10 characters.
+                                </small>
+                                <small class="text-danger" *ngIf="personalDetailsForm.get('pan')?.hasError('pattern')">
+                                    Enter valid PAN number.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GENDER -->
+                    <div class="row gender mt-3">
+                        <label class="h6">Gender <sup *ngIf="genderChecked" class="text-danger"
+                                style="font-size: 10px;">*Required</sup></label>
+
+                        <!-- MALE -->
+                        <div class="options">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="gender" class="form-check-input" type="radio" name="gender"
+                                    id="inlineRadio1" value="male" (change)="genderCheck()">
+                                <label class="form-check-label" for="inlineRadio1">Male 👦🏻</label>
+                            </div>
+
+                            <!-- FEMALE -->
+                            <div class="form-check form-check-inline">
+                                <input formControlName="gender" class="form-check-input" type="radio" name="gender"
+                                    id="inlineRadio2" value="female" (change)="genderCheck()">
+                                <label class="form-check-label" for="inlineRadio2">Female 👧🏻</label>
+                            </div>
+
+                            <!-- OTHERS -->
+                            <div class="form-check form-check-inline" (change)="genderCheck()">
+                                <input formControlName="gender" class="form-check-input" type="radio" name="gender"
+                                    id="inlineRadio3" value="others">
+                                <label class="form-check-label" for="inlineRadio3">Others ⚧️</label>
+                            </div>
+
+                            <div class="text-center"
+                                *ngIf="personalDetailsForm.get('gender')?.invalid && 
+                                personalDetailsForm.get('gender')?.errors && 
+                                (personalDetailsForm.get('gender')?.dirty || personalDetailsForm.get('gender')?.touched)">
+                                <small class="text-danger"
+                                    *ngIf="personalDetailsForm.get('gender')?.hasError('required')">
+                                    This field is required.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT -->
+                    <div class="text-center mt-3">
+                        <button type="submit" [disabled]="personalDetailsForm.invalid"
+                            class="btn btn-success">Continue</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

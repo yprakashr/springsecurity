@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery part-2</title>
+
+    <!-- How to iterate the key and value pairs -->
+    <script src="jquerylibrary.js"></script>
+<script defer>
+    $(function(){
+        $(function(){
+            $("#pic").attr("src","shirt.jpeg")
+        })
+       var data=[{Name:'TV',Price:45000.55,Photo:'shirt.jpeg'},{Name:'Mobile',Price:23000.50,Photo:'speaker.jpeg'}];
+        var categories = ['Electronics','Footwear','Fashion'];
+$.each(categories,function(key,value){
+$("#olcategories").append(`<li>${value}</li>`);
+}) 
+$.each(categories,function(key,value){
+    $(`<option>${value}</option>`).appendTo("#cat");
+})
+$.each(data,function(key,value){
+    $(`<tr><td>${value.Name}</td><td>${value.Price}</td><td><img src="${value.Photo}" width="50" height="50"> </td></tr>`).appendTo("#tbody");
+})
+    })
+</script>
+</head>
+<body>
+    <img  id="pic" alt="image">
+    <h2>Append to OL</h2>
+ <ol id="olcategories">
+
+ </ol>
+ <h2>Append to DropDown</h2>
+ <select name="" id="cat">
+
+ </select>
+ <h2>Append to Table</h2>
+ <table border="1" width="300">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Photo</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+ </table>
+</body>
+</html>

@@ -1,0 +1,53 @@
+.table {
+    width:84%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    height: 90%;
+    margin-bottom: 150px;
+}
+.Search{
+    width: 20%;
+    text-align: right;
+ 
+}
+.btn {
+    padding: 10px;
+    text-align: center;
+    font-size:18px;
+    border-radius: 10px;
+    }
+
+    .btn2{
+        margin-left: 10px;
+    }
+
+    .btn3{
+        margin-left: 10px;
+    }
+    .btn1:hover{
+        background-color: #25d366;
+        border: none;
+    }
+    .btn2:hover{
+        background-color: #25d366;
+        border: none;
+    }
+    .btn3:hover{
+        background-color: #25d366;
+        border: none;
+    }
+   
+    .programer{
+        margin-top: 50px;
+        margin-left:112px;
+        background-color: #25d366;
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px black;
+    }
+
+    .programer:hover{
+        background-color:#dd4b39;
+    }
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+    <script src="jquerylibrary.js"></script>
+    <script defer>
+// $(function(){
+//     // $('#btnSubmit').click(function(){
+//     //     $("#lblname").html($('#txtname').val());
+//     //     $("#lblname").html($('#txtname').val());
+//     // })
+// // $("h2").text("welcome to jquery");
+// // $("#msg").text("this is displayed using paragrph");
+// // $(".effects").text("this is displayed using div");
+// })
+// $(function(){
+//     var username=prompt("enter name");
+//     if(username==null){
+//         $("#msg").text(`you cancelled`)
+//     }else if(username==""){
+//         $("#msg").text(`name can't be empty`);
+//     }else
+//     $("#msg").html(`hello ! <b><i>${username}</b></i>`)
+// })
+// $(function(){
+//     $("#jquery").val("jhon");
+//     var username = $("#jquery").val();
+//     $("$lblname").html(username);
+// })
+// $(function(){
+//     $("#btnSubmit").click(function(){
+// $("#lblName").html($("#jquery").val());
+//     })
+// })
+$(function(){
+    $("h2").css({'background-color':'darkcyan','color':'white','text-align':'center'})
+    $("#btnSubmit").click(function(){
+$("#lblName").html($("#txtName").val());
+$("#lblCity").html($("#lblcities").val());
+    })
+})
+
+    </script>
+</head>
+<body>
+    <h2></h2>
+    <p id="msg"></p>
+    <div class="effects"></div>
+    <input type="text" name="jquery" id="jquery">
+    
+  <br>
+
+<!-- <button id="btnSubmit">Submit</button> -->
+<!-- Hello ! <span id="lblName"></span><br><br> -->
+<h2>Register</h2>
+<dl>
+    <dt>Name</dt>
+    <dd><input type="text" id="txtName"></dd>
+    <dt>City</dt>
+    <dd>
+        <select name="" id="lblcities">
+            <option value="Delhi">Delhi</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="mumbai">Mumbai</option>
+        </select>  
+    </dd>
+</dl>
+<button id="btnSubmit">Submit</button>
+<div>
+    <h2>Details</h2>
+    <dl>
+        <dt>Name</dt>
+        <dd id="lblName"></dd>
+        <dt>City</dt>
+        <dd id="lblCity"></dd>
+    </dl>
+</div>
+</body>
+</html>
+
+

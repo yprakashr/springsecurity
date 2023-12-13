@@ -1,0 +1,84 @@
+<body class="body mt-5">
+  <p class="h5 text-center">{{err}}</p>
+  <div class="d-flex justify-content-center align-center main-block w-100" >
+
+
+  <form #personal="ngForm" (ngSubmit)="loginDetails(regForm)" [formGroup]="regForm">
+    <h1>Personal-Info</h1>
+    <fieldset>
+      <label for=""></label>
+<label for=""  class="text-danger text-start" *ngIf="errmessage">Please fill the all form fields...</label>
+
+<!-- name -->
+
+<div class="row  mb-2 g-2">
+  <label for="email_id" class="col-md-2 col-form-label col-form-label-sm">Name</label>
+  <div class="col-md-10">
+      <input type="text" name="name" class="w-100" formControlName="name" id="email_id" >
+      <div *ngIf="name.invalid && name.touched" >
+        <small class="text-danger valid" *ngIf="name.errors?.['required']">Name is required</small>
+        <small class="text-danger valid" *ngIf="name.errors?.['pattern']">Numbers are not allowed...</small>
+      </div>
+  </div>
+</div>
+
+<!-- username -->
+<div class="row mb-2 g-2">
+  <label for="user_name" class="col-md-2 col-form-label col-form-label-sm">Username</label>
+  <div class="col-md-10">
+      <input type="text" name="username" formControlName="username" class="w-100" id="user_name" >
+      <div *ngIf="username.invalid && username.touched" >
+        <small class="text-danger valid" *ngIf="username.errors?.['required']">Username is required</small>
+        <small class="text-danger valid" *ngIf="username.errors?.['pattern']">spaces are not allowed in username...</small>
+      </div>
+  </div>
+</div>
+
+<!-- email -->
+<div class="row  mb-2 g-2">
+  <label for="email_id" class="col-md-2 col-form-label col-form-label-sm">Email ID*</label>
+  <div class="col-md-10">
+      <input type="text" name="email" class="w-100" formControlName="email" id="email_id" >
+      <div *ngIf="email.invalid && email.touched" >
+        <small class="text-danger valid" *ngIf="email.errors?.['required']">Email is required</small>
+        <small class="text-danger valid" *ngIf="email.errors?.['pattern']">Email is not valid</small>
+      </div>
+  </div>
+</div>
+
+<!-- mobile -->
+  <div class="row mb-2 g-2">
+    <label for="password" class="col-md-2 col-form-label col-form-label-sm">Mobile</label>
+  <div class="col-md-10">
+      <input type="number" name="mobile" formControlName="mobile" class="w-100" id="password1" >
+      <div *ngIf="mobile.invalid && mobile.touched" >
+        <small class="text-danger valid" *ngIf="mobile.errors?.['required']">Mobile is required</small>
+        <small class="text-danger valid" *ngIf="mobile.errors?.['maxlength']">Mobile is too long...</small>
+      </div>
+    </div>
+</div>
+<!-- <div class="row mb-2">
+  <div class="col-md-10 offset-md-2">
+      <input type="submit" class="btn btn-sm btn-success" value="Sign-up to Continue">
+  </div>
+</div> -->
+    </fieldset>
+
+    <div class="container">
+      <div class="row">
+        <div class="col px" >
+        <button [disabled]="regForm.invalid" class="w-50"  type="submit">Next</button>
+      </div>
+    </div>
+  </div>
+
+  </form>
+  </div>
+</body>
+
+
+
+
+
+
+

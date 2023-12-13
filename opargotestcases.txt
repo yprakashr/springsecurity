@@ -1,0 +1,34 @@
+@Test
+    public void testGetChangeCancelSettingssuccess() throws Exception {
+        HttpServletRequest mockHttpRequest = createMock(HttpServletRequest.class);
+        
+        expect(mockHttpRequest.getHeader(OpargoConstants.PRACTICE_ID)).andReturn("26").anyTimes();
+        
+        List<Object[]> arrayList = new ArrayList<>();
+        Object[] changeCancelSettings = { "2", "true", "27-11-2023", "false", "resulset", "present" };
+        arrayList.add(changeCancelSettings);
+        
+        expect(changeCancelDao.getChangeCancelSettings(anyInt())).andReturn((ResponseEntity<Object>) arrayList);
+        
+        ResponseEntity<Object> responseEntity = impl.getChangeCancelSettings(mockHttpRequest);
+//        System.out.println(arrayList);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+    }
+	
+	
+	@Test
+    public void testGetChangeCancelSettingserror() throws Exception {
+        HttpServletRequest mockHttpRequest = createMock(HttpServletRequest.class);
+        
+        expect(mockHttpRequest.getHeader(OpargoConstants.PRACTICE_ID)).andAnswer(() -> null).anyTimes();
+        
+        expect(changeCancelDao.getChangeCancelSettings(anyInt()))
+                .andThrow(new RuntimeException("PRACTICE_ID header is missing or invalid"));
+        
+        replay(mockHttpRequest, changeCancelDao);
+
+        ResponseEntity<Object> responseEntity = impl.getChangeCancelSettings(mockHttpRequest);
+
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        assertNotNull(responseEntity.getBody());
+    }

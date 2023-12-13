@@ -1,0 +1,27 @@
+#donut{
+display: flex;
+justify-content: center;
+align-items: center;
+width: 370px;
+height: 220px;
+margin-bottom: 39px;
+}
+#donutchart{
+  width: 350px;
+  height: 200px;
+  border: 2px solid rgb(255, 196, 196);
+
+}
+.calBanner{
+  /* background-image: url(../../assets/images/background-vintage-yellow-watch-old-260nw-1562161666.webp); */
+  /* background-size: cover; */
+  /* width: 100%; */
+  height:fit-content;
+  background-image: linear-gradient(rgb(249, 249, 249), rgb(207, 207, 207));
+}
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 6</title>
+    <link rel="stylesheet" href="../../Styles/style.css" />
+    <script src="assignment6.js" defer></script>
+  </head>
+
+  <body class="ass6">
+    <h1>Assignment 6</h1>
+    <form action="Thankyou.html" id="form" onsubmit="return submitForm()">
+      <label for="name">Name: </label>
+      <input type="text" id="name" maxlength="30" />
+
+      <label for="phone">Phone: </label>
+      <input type="number" id="phone" />
+
+      <label for="email">Email: </label>
+      <input type="text" id="email" />
+
+      <label for="state">State: </label>
+      <select name="state" id="state">
+        <option value="select">- select -</option>
+        <option value="AP">AP</option>
+        <option value="TS">TS</option>
+        <option value="DL">DL</option>
+        <option value="KA">KA</option>
+        <option value="TN">TN</option>
+      </select>
+      <div class="radios">
+        <label for="gender">Gender: </label>&nbsp;
+
+        <input type="radio" name="gender" value="male" required />&nbsp; Male
+
+        <input type="radio" name="gender" value="female" />&nbsp; Female
+
+        <input type="radio" name="gender" value="others" />&nbsp; Others
+      </div>
+
+      <div class="checks">
+        <label for="skills">Skills: </label>&nbsp;
+
+        <input type="checkbox" name="skills" value="java" />&nbsp;Java
+
+        <input type="checkbox" name="skills" value="pega" />&nbsp;Pega
+
+        <input
+          type="checkbox"
+          name="skills"
+          value="salesforce"
+        />&nbsp;Salesforce
+
+        <input type="checkbox" name="skills" value="android" />&nbsp;Android
+      </div>
+      <label for="comments">Comments: </label>
+      <textarea name="" id="comment" cols="30" rows="10"></textarea>
+
+      <div class="submit">
+        <input type="submit" id="submit-btn" value="Submit" />
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  background-color: red;
+  font-size: 25px;
+  text-align: center;
+}
+
+.leftmenu {
+  width: 33.33%;
+  height: 200px;
+  background-color: green;
+  float: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+}
+
+.middlemenu {
+  width: 33.33%;
+  height: 200px;
+  background-color: blue;
+  float: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+  text-align: justify;
+}
+
+.rightmenu {
+  width: 33.33%;
+  height: 200px;
+  background-color: yellow;
+  float: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+  text-align: right;
+
+}
+
+.footer {
+  background-color: orange;
+}

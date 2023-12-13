@@ -1,0 +1,284 @@
+<html>
+<body>
+
+
+<nav class="home-nav">
+  <div class="row">
+    <div class="col">
+      <a class="btnsy item1 style nav nav-link text-white" (click)="toHome()"
+        >Home</a
+      >
+    </div>
+    <div class="col">
+      <a
+        class="btnsy item2 style nav nav-link text-white"
+        (click)="toRegister()"
+        >Register</a
+      >
+    </div>
+    <div class="col">
+      <a
+        class="btnsy item3 style nav nav-link text-white"
+        (click)="toExisting()"
+        >Existing</a
+      >
+    </div>
+  </div>
+</nav>
+
+<br/><br/><br/>
+
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col">
+      <div class="ass10-div2-search">
+        <div class="ass10-div-search">
+          <mat-form-field>
+            <input
+              type="text"
+              class="mr-5 ml-5"
+              matInput
+              (keyup)="filter($event)"
+              placeholder="Search Here"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <table
+        mat-table
+        [dataSource]="patientDetials"
+        matSort
+        class="table-sm mat-elevation-z8"
+      >
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneno">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Phone No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.phoneno }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>age</th>
+          <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Gender</th>
+          <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="time">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Time</th>
+          <td mat-cell *matCellDef="let element">{{ element.time }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Edit</th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="OpenForm(element)" class="btn btn-floating">
+              Edit
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Delete</th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="deleteData(element.id)" class="btn btn-secondary">
+              Delete
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div>
+  <mat-paginator
+    showFirstLastButtons
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>
+
+
+
+<!-- *********************************************** Edit form ******************************************************** -->
+
+<div class="form-wrapper mb-5" *ngIf="showForm">
+  <div class="mobile-form">
+    <h2 class="text-center text-info">Edit Form</h2>
+
+    <!-- ************************************************ Name *************************************************** -->
+    <form>
+      <div class="group">
+        <label for="">Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Please Enter Your Full Name"
+          [(ngModel)]="fullName"
+          name="fullName"
+        />
+      </div>
+
+      <!-- **************************************** Phone ************************************************************** -->
+
+      <div class="group">
+        <label for="">Phone:</label>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Please Enter Your Phone No"
+          [(ngModel)]="phoneno"
+          name="phoneno"
+        />
+      </div>
+
+      <!-- *************************************************** Age ************************************* -->
+      <div class="group">
+        <label for="">Age:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Please Enter Your Age"
+          [(ngModel)]="age"
+          name="age"
+        />
+      </div>
+
+      <!-- ************************************************** gender *********************************************************** -->
+
+      <div class="form-group col-md-2 col-sm-2 mt-3 pb-2" style="width: 100%">
+        <label>Gender : </label>
+        <div class="ml-2">
+          <div class="form-check form-check-inline">
+            <label>Male 👨</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              value="male"
+              [checked]="gender == 'male' ? true : false"
+              name="gender"
+              formControlName="gender"
+            />
+          </div>
+
+          <div class="form-check form-check-inline pb-2">
+            <label>Female 👩</label>
+            <input
+              class="form-check-input"
+              type="radio"
+              value="female"
+              [checked]="gender == 'female' ? true : false"
+              name="gender"
+              formControlName="gender"
+            />
+          </div>
+
+          <div class="form-check form-check-inline pb-2">
+            <label>Others ⚧️</label>
+            <input
+              class="form-check-input"
+              value="others"
+              type="radio"
+              [checked]="gender == 'others' ? true : false"
+              name="gender"
+              formControlName="gender"
+            />
+          </div>
+          <div class="dan" *ngIf="gender?.touched && gender?.invalid">
+            Please select your Gender
+          </div>
+        </div>
+      </div>
+
+      <!-- ****************************************************** date *************************************************** -->
+
+      <p class="h6 mt-1 pb-2">Schedule Your Appointment</p>
+      <div class="group form-group col-md-2 col-sm-2" style="width: 100%">
+        <label for="inputAddress2">Date : </label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="date"
+          name="date"
+          placeholder="Date"
+          onfocus="this.type='date'"
+        />{{date}}
+        </div>
+
+      <!-- ************************************************ time ******************************************************** -->
+      <div class="group form-group col-md-2 col-sm-2 pb-2" style="width: 100%">
+        <label for="inputAddress2">Time : </label>
+        <select
+          class="form-control"
+          [(ngModel)]="time"
+          name="time"
+          aria-placeholder="Select your timings"
+          formControlName="time"
+          >
+          <option selected="time==''?true:false" value="">
+            Select your timings
+          </option>
+          <option selected="time=='09:00 AM'?true:false" value="09:00 AM">
+            09:00
+          </option>
+          <option selected="time=='12:00 AM'?true:false" value="12:00 PM">
+            12:00
+          </option>
+          <option selected="time=='03:00 AM'?true:false" value="03:00 PM">
+            15:00
+          </option>
+        </select>
+      </div>
+
+      <div class="action">
+        <button class="btn btn-primary save" type="submit" (click)="saveData()">
+          Save changes
+        </button>
+        <button class="btn btn-danger cancel" (click)="closeform()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ***************************************** Pop up dailog ************************************************** -->
+
+<div class="form-wrapper mb-5 text-center" *ngIf="popup">
+  <div class="mobile-form">
+    <p class="h-5 mr-3">Oops!😵 Are you sure do you want to delete?</p>
+    <div class="buttons">
+      <button class="btn btn-primary" (click)="popUpopen()">YES</button>
+      <button class="btn btn-danger" (click)="popUpclose()">NO</button>
+    </div>
+  </div>
+</div>
+<!-- ****************************************** app-footer ************************************************************ -->
+
+<!-- <app-footer class="mt-5"></app-footer> -->
+</body>
+</html>
+
+
+
+
+

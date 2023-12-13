@@ -1,0 +1,53 @@
+<h1>multiple mat-table in same component angular</h1>
+<mat-card>
+  For the complete tutorial please go through
+  <a
+    href="https://www.angularjswiki.com/angular/multiple-mat-tables-in-same-component-with-mat-sort-mat-paginator"
+    >https://www.angularjswiki.com/angular/multiple-mat-tables-in-same-component-with-mat-sort-mat-paginator</a
+  >
+</mat-card>
+<h2>mat-table first table</h2>
+
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+  matSort
+  #empTbSort="matSort"
+>
+  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
+    <td mat-cell *matCellDef="let emp">{{ emp[column] }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
+</table>
+<mat-paginator
+  #paginatorFirst
+  [pageSizeOptions]="[2, 4, 6]"
+  showFirstLastButtons
+></mat-paginator>
+
+<h2>mat-table second table</h2>
+
+<table
+  mat-table
+  [dataSource]="dataSourceWithObjectColumn"
+  class="mat-elevation-z8"
+  matSort
+  #empTbSortWithObject="matSort"
+>
+<ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
+  <td mat-cell *matCellDef="let emp">{{ emp[column] }}</td>
+</ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsWithObject"></tr>
+  <tr mat-row *matRowDef="let emprow; columns: displayedColumnsWithObject"></tr>
+</table>
+<mat-paginator
+  #paginatorSecond
+  [pageSizeOptions]="[2, 4, 6]"
+  showFirstLastButtons
+></mat-paginator>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery consumption</title>
+    <script src="jquerylibrary.js"></script>
+    <script>
+        $(function(){
+            var apiurl="product.json";
+            $.getJSON(apiurl,function(data){
+                $.each(data,function(key,value){
+                    $(`<tr><td>${value.name}
+                        </td><td>${value.price}
+                        </td></tr>`).appendTo("tbody")
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <table border="1" width="400">
+<thead>
+    <tr>
+        <td>Name</td>
+        <td>Price</td>
+    </tr>
+</thead>
+<tbody id="yel">
+
+</tbody>
+    </table>
+</body>
+</html>

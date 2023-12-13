@@ -1,0 +1,317 @@
+oop based based on 4 major principles
+1.Encapsulation
+2.Interfaces
+3.Abstract methods
+4.Polymorphism
+
+
+Enpsulation (Or) setter (or) getter (or) setter and getter method:
+=================================================================
+1.binding the data and data members together
+2.hiding the sensitive data
+3.providing security
+4.variables should be a private variables
+
+///////////////////////////// There is no security in this method //////////////////////////
+
+class encapsulationDemo{
+String name="prakash";
+
+}
+class encaplsulationDemo{
+public static void main(String[] args){
+encapsulationDemo ed=new encapsulationDemo();
+System.out.println(ed.name);
+}
+}
+
+///////////////////////////////////////this is with security in this method////////////////////////////////////////////////////////////////
+
+class encapsulationDemo{
+private String name="prakash";
+
+}
+   class encaplsulationDemo{
+public static void main(String[] args){
+encapsulationDemo ed=new encapsulationDemo();
+System.out.println(ed.name);	//error
+}
+}
+
+
+/////////////////////////////////////////accesssing without missing security//////////////////////////////////////////////////////////////////
+
+
+
+class encapsulationDemo{
+private String name="prakash";
+
+public String getName(){
+return name;
+}
+
+
+}
+   class encaplsulationDemo{
+public static void main(String[] args){
+encapsulationDemo ed=new encapsulationDemo();
+
+System.out.println(ed.getName());
+}
+}
+
+/////////////////////////////////////changing value without missing security/////////////////////////////////////
+
+class encapsulationDemo{
+private String name="prakash";
+
+public String getName(){
+return name;
+}
+public void setName(String name){ //to change the value with  
+syso("some one is changed your name");
+this.name=name
+}
+
+}
+   class encaplsulationDemo{
+public static void main(String[] args){
+encapsulationDemo ed=new encapsulationDemo();
+ed.setName("abhishek");
+System.out.println(ed.getName());
+}
+}
+
+//////////////////////////////auto generating setter and getter/////////////////////////////////////////
+
+
+class Encapsulation{
+private String name;
+private int id;
+private double amount;
+
+}
+right click>source>generate getters and setters >select your variables
+
+
+
+							Interface:
+							=========
+1) An interface is a collection of Abstract Methods .
+2) An interface can contain both variables and methods.
+3) An interface can not be instantiated .(we cannot create object)
+4) In order to access the members of interface we need to inherit
+the interface into a class using implements keyword.
+5) In the sub class we have to override all the abstract methods.
+6) If the sub class is overriding all the methods of an interface
+then it is called as Implementation Class.
+7) A class can implement any number of interfaces.
+8)we can acheive 100% abstraction.
+9)we can acheive multiple inheritance.
+
+example:
+
+interface MyInterface{
+public static final int x=15; //final variable cannot be called by child class
+public abstract void m1();
+}
+interface MyInterface1{
+public static final int y=15;
+public abstract void m2();
+}
+// abstract method
+class InterfaceDemo implements MyInterface
+{
+public void m1()
+{
+system.out.println( "Welcome");
+}
+public void m2()
+{
+system.out.println( "Welcome");
+}
+public static void main(string areslD
+MyInterface id = new InterfaceDemo ();
+id.m1()
+System.out.println (x) ;
+}}
+
+
+Abstraction:
+============
+1) Abstraction is a process of hiding the implementat ion details
+from the user. only the functionality will be provided to the
+user. a
+2) In Java, abstraction is achieved using abstract classes
+and interfaces.
+
+
+class ---------->class -----> extends (single class)
+class ---------->interface ---> implements (any number)
+interface ------>interface ---> extends (anynum)
+
+In java version 8
+we can create default method in interface
+if in child class default method is dint overrided the it will be printed by default.
+
+In java version 9
+1.we can add static method in interface
+2.we can call static method only by using interface name.
+   
+
+
+					Abstract class
+					--------------
+
+concrete method: if a method has defination and declaration is known as concrete method
+concrete class:if a class has concrete methods is called concrete class
+
+
+
+
+
+Abstract Class in Java:
+=======================
+1) A class that is declared using "abstract" keyword is known
+as abstract class.
+2) It can have abstract methods (methods without body) as well
+as concrete methods (regular methods with body).
+3) An abstract class can not be instantiated, which means you
+are not allowed to create an object of it.
+4) A class derived from the abstract class must implement al1
+those methods that are declared as abstract in the parent class.
+
+
+Abstract method in Java:
+========================
+1) Abstract method has no body(only declaration no definition).
+2) ALways end the declaration with a semicolon (;).
+3) It must be overridden. An abstract class must be extended and
+
+
+Importan t Points:
+=================
+1) An abstract class may also have concrete (complete) methods.
+2) For design purpose, a class can be declared abstract even if
+it does not contain any abstract methods.
+3) Reference of an abstract class can point to objects of its
+sub-classes thereby achieving run-time polymorphism.
+class must be compulsorily labeled abstract, if it has
+one or more abstract methods.
+5) It can have constructors and static methods also.
+
+
+
+						Polymorphism
+						=============
+
+POLYMORPHISM:
+==============
+1) If a single entity shows multiple forms or multiple behaviors, then it is called as polymorphism.|O
+2) Polymorphism is classified into 2 types
+
+i) Compiler Time Polymorphism:
+*) If the polymorphic nature of an entity is decided by the
+compiler during the compilation time then as compiler time polymorphism.
+*) We will use method overloading to achieve CTP.
+
+ii) Run Time Polymorphism
+*) If the polymorphic nature of an entity is decided by the
+JVM during run time then it is called as run time
+polymorphism.
+it is called
+Pull up forp
+*)We will use method overriding to achieve RTP.
+
+
+Method Overloading:
+=================
+The process of specifying multiple methods, having different
+signature with same method name is called as method overloading.
+
+Method signature:
+--------------------------
+The signature include 3 parts
+i) Number of ParameterS
+ii) Type of Parameters
+iii) order of Parameters
+---->Compiler will decide -----> CompiLer Time Polymorphism
+
+Auto-play
+It is called as Static Binding/ Early Binding
+
+
+We can apply this overloading to these 4 types of members in a class:
+.........................................................................................................
+1) Instance method
+2) Static method
+3) main method
+4) constructor
+
+overriding
+***********
+ 
+(overloading) method name same but diff sign return type diff
+(overriding) method name same sign also same return type same
+
+overriding is applicable only to instance method.
+
+overriding method must be extended into childclass. 
+
+1) Declaring a method in, sub class which is already present in
+parent cLass is knon as method overriding.
+2) Overriding means to override the functionality of an existing
+method.
+3) Method Overriding is an example of runtime polymorphism.
+4) static and final methods cannot be overridden as they
+are local to the class.
+5) overriding - - - ---y Dynamic binding- --- -> late binding
+6) In the runtime, JVM figures out the object type and
+Would run the method that belongs to that particular object.
+
+
+
+
+OVERHIDING in java:
+=================
+parent child relationship is a
+same methodname
+same returntype
+same signature
+static methods
+(instance overriding) -------------> execute (object referece exec overriding)
+
+
+class Overhiding1{
+static void m1(){
+System.out.println ("Hello from Parent");
+class Overhiding extends Overhiding1{
+static void m1(){
+
+System.out.println ("Hello from Child");}
+
+public static void main(String[] args){
+Overhiding o1 new Overhiding () ;
+o1.m1()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

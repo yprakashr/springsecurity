@@ -1,0 +1,13 @@
+.main-content {
+
+ align-items: center;
+    height: 90vh;
+    overflow-y: auto;
+    z-index: 100;
+  }
+  .header{
+    z-index: -1;
+  }
+  .footer{
+    z-index: -1;
+  }

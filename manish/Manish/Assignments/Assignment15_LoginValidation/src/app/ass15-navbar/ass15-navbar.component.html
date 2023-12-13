@@ -1,0 +1,50 @@
+<div class="NAVBAR">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                (click)="collapsed = !this.collapsed">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div [ngClass]="{ collapse: collapsed, 'navbar-collapse': true}" class="justify-content-end">
+                <ul class="navbar-nav">
+
+
+                    <li li routerLinkActive="active" class="nav-item" *ngIf="session==null">
+                        <a class="nav-link" routerLink="register" (click)="collapsed=!collapsed">Register</a>
+                    </li>
+                    <li li routerLinkActive="active" class="nav-item" *ngIf="session==null">
+                        <a class="nav-link" routerLink="login" (click)="collapsed=!collapsed">Login</a>
+                    </li>
+                    <li li routerLinkActive="active" class="nav-item" *ngIf="session!=null">
+                        <a class="nav-link" routerLink="users" (click)="collapsed=!collapsed">Users</a>
+                    </li>
+                    <li routerLinkActive="active" class="nav-item" *ngIf="session==null">
+                        <a class="nav-link" routerLink="contact" (click)="collapsed=!collapsed">Contact us</a>
+                    </li>
+                    <li routerLinkActive="active" class="nav-item" *ngIf="session!=null">
+                        <div class="dropdown">
+                            <button (click)="collapsed_1 = !collapsed_1"
+                                class="btn btn-outline-dark btn-sm m-1 dropdown-toggle" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                {{session}}
+                            </button>
+                            <div class="dropdown-menu" [class.show]="collapsed_1" aria-labelledby="dropdownMenuButton"
+                                style="width: 0px;">
+                                <a *ngIf="session!=null" (click)="collapsed_1 = !collapsed_1"
+                                    class="dropdown-item logout" (click)="logOut()">Logout</a>
+                                <a routerLink="myaccount" (click)="collapsed_1 = !collapsed_1"
+                                    class="dropdown-item">Account</a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</div>

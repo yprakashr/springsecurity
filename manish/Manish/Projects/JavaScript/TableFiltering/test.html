@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../Styles/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body class="ass9">
+    <center>
+      <h1>Table Filtering</h1>
+      <label for="Search Table">Search Table: </label>
+      <input id="search" type="text" placeholder="Search here" />
+      <br />
+      <br />
+      <table id="myTab">
+        <tr>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Fee</th>
+          <th>Type</th>
+          <th>Age</th>
+        </tr>
+        <tbody id="myTable">
+          <tr>
+            <td>Manish</td>
+            <td>DSA Foundation</td>
+            <td>7999</td>
+            <td>Regular Classes</td>
+            <td>50</td>
+          </tr>
+          <tr>
+            <td>Ashish</td>
+            <td>C++ STL</td>
+            <td>1499</td>
+            <td>Online Classes</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Rama</td>
+            <td>XML Classes</td>
+            <td>9999</td>
+            <td>Online Classes</td>
+            <td>15</td>
+          </tr>
+          <tr>
+            <td>Sita</td>
+            <td>Python Classes</td>
+            <td>2500</td>
+            <td>Weekend Classes</td>
+            <td>52</td>
+          </tr>
+          <tr>
+            <td>Johnny</td>
+            <td>AI ML Classes</td>
+            <td>5463</td>
+            <td>Weekend Classes</td>
+            <td>34</td>
+          </tr>
+          <tr>
+            <td>Stacey</td>
+            <td>C# Classes</td>
+            <td>8952</td>
+            <td>Regular Classes</td>
+            <td>27</td>
+          </tr>
+          <tr>
+            <td>Priya</td>
+            <td>C# Classes</td>
+            <td>8952</td>
+            <td>Regular Classes</td>
+            <td>36</td>
+          </tr>
+          <tr>
+            <td>Abdul</td>
+            <td>AI ML Classes</td>
+            <td>5463</td>
+            <td>Online Classes</td>
+            <td>59</td>
+          </tr>
+          <tr>
+            <td>Kiran</td>
+            <td>Python Classes</td>
+            <td>2500</td>
+            <td>Online Classes</td>
+            <td>18</td>
+          </tr>
+          <tr>
+            <td>Shiva</td>
+            <td>HTML / CSS</td>
+            <td>10799</td>
+            <td>Weekend Classes</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>Krishna</td>
+            <td>DSA Foundation</td>
+            <td>7999</td>
+            <td>Weekend Classes</td>
+            <td>32</td>
+          </tr>
+          <tr>
+            <td>Manideep</td>
+            <td>C++ STL</td>
+            <td>10799</td>
+            <td>Online Classes</td>
+            <td>19</td>
+          </tr>
+          <tr>
+            <td>Jayanth</td>
+            <td>C++ STL</td>
+            <td>10799</td>
+            <td>Weekend Classes</td>
+            <td>55</td>
+          </tr>
+          <tr>
+            <td>Smarty</td>
+            <td>DSA Foundation</td>
+            <td>7999</td>
+            <td>Regular Classes</td>
+            <td>22</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <button onclick="sortTable(0)">Sort by Name</button>
+      <button onclick="sortTable(1)">Sort by course</button>
+      <button onclick="sortTableNum(2)">Sort by fee</button>
+      <button onclick="sortTable(3)">Sort by type</button>
+      <button onclick="sortTableNum(4)">Sort by age</button>
+    </center>
+  </body>
+</html>

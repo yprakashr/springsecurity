@@ -1,0 +1,38 @@
+<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            (click)="collapsed = !this.collapsed">
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div id="navbar-desc" class="mt-2 mb-2" [ngClass]="{ collapse: collapsed, 'navbar-collapse': true}">
+            The world’s health rely on Medicare to make better life and habitat.
+        </div>
+
+        <div [ngClass]="{ collapse: collapsed, 'navbar-collapse': true}" class="justify-content-end">
+
+            <!-- navbar menus -->
+            <ul class="navbar-nav ml-auto">
+                <li routerLinkActive="active" class="nav-item">
+                    <a routerLink="/existing" class="nav-link"> Existing </a>
+                </li>
+                <li routerLinkActive="active" class="nav-item">
+                    <a routerLink="/new" class="nav-link"> New </a>
+                </li>
+                <li routerLinkActive="active" class="nav-item">
+                    <a routerLink="/patients" class="nav-link"> Patients </a>
+                </li>
+                <li routerLinkActive="active" class="nav-item" *ngIf="session==null||session=='null'||session==''">
+                    <a routerLink="/login" class="nav-link"> Login </a>
+                </li>
+                <li *ngIf="session!=null" class="nav-item">
+                    <a class="nav-link logout" (click)="logOut()">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

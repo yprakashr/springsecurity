@@ -1,0 +1,14 @@
+.slider-width {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.btn-default.focus, .btn-default {
+  background-color: #FFF;
+  border-color: #CCC;
+}
+
+.float-end {
+  font-size: 30px;
+  padding-right: 20px;
+}/*# sourceMappingURL=provider-payer-groups-modal.component.css.map */

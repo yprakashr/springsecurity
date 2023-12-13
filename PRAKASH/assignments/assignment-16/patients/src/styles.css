@@ -1,0 +1,273 @@
+/* ****************************** Existing functionality ************************************ */
+
+.btn-secondary {
+  background-color: rgb(255, 16, 16);
+}
+.btn-floating {
+  color: aliceblue;
+  background-color: rgb(0, 0, 24);
+}
+.mobile-form {
+  background-color: aliceblue;
+  width: 500px;
+  padding: 20px 50px;
+  border-radius: 5px;
+}
+.form-control {
+  width: 90%;
+}
+.group {
+  display: flex;
+  margin: 15px 0;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0, 0.1);
+  z-index: 100;
+}
+.group label {
+  width: 70px;
+  line-height: 40px;
+  height: 40px;
+}
+.action {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* ******************************** whole body ********************************* */
+
+input.ng-touched.ng-invalid{
+  border: 2px solid red;
+}
+input.ng-touched.ng.invalid:hover{
+  box-shadow: 5px 5px 5px red,-5px 5px 5px red;
+}
+
+.b{
+  box-shadow: 5px 5px 5px rgb(0, 64, 34,.6);
+}
+.responsive {
+  max-width: 100%;
+  max-height: auto;
+}
+
+
+
+*{
+  margin: 0;
+  /* bottom:0; */
+  padding:0;
+box-sizing: border-box  ;
+}
+
+/* ****************** home component ********************** */
+.home-nav{
+  position:sticky;
+
+}
+
+.rea{
+  height: 400px;
+
+  }
+  .btnsys{
+    color:aliceblue;
+    border: 1px solid grey;
+    background-color: rgb(1, 167, 1);
+  width: 300px;
+  padding:5px;
+  height: 40px;
+  border-radius: 5px;
+  margin-top:5px;
+  }
+  .btnsys:hover{
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgb(182, 182, 255), 0 4px 8px rgb(182, 182, 255);
+    transition: 500ms;
+    cursor: pointer;
+  }
+
+  .ele{
+    font-weight:1500;
+    font-size: 40px;
+    }
+
+  /* ****************************** register component ******************************   */
+
+
+
+
+  .dan{
+    color:red;
+  }
+  .register-btns{
+    display: flex;
+  justify-content: space-between;
+  }
+
+/* *************************** navigation component **************************** */
+
+.btnsy{
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+  background-color: rgb(255, 0, 128);
+  transition:0.5s;
+text-align: center;
+position: absolute;
+}
+.home-nav{
+  position:relative;
+
+  }
+
+  .style:hover{
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgb(182, 182, 255), 0 4px 8px rgb(182, 182, 255);
+    transition: 500ms;
+    cursor: pointer;
+  }
+
+  .item1 {
+    width: 174px;
+    right: 284px;
+    position: absolute;
+  }
+  .item2 {
+    position: absolute;
+      right: 152px;
+      width: 174px;
+  }
+  .item3 {
+    width: 174px;
+  position: absolute;
+  right: 20px;
+  }
+
+
+
+/* *************************** table-info component **************************** */
+
+
+  .ass10-div2-search{
+    margin-left: 20px;
+  }
+
+/* ********************************* header component *********************************** */
+
+.content-h{
+  color:aliceblue;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.imgh{
+  justify-content: center;
+  height: 75px;
+}
+
+.bg-h{
+  background-color: rgb(33, 151, 255);
+  max-height: 100px;
+  width: auto;
+}
+
+
+
+
+
+.link-verify{
+  top: 200px;
+  left: 100px;
+}
+
+.header{
+  display: flex;
+justify-content: space-between;
+height:75px;
+}
+.navsys{
+background-color: rgb(255, 255, 255);
+/* border: 1px solid grey; */
+border-radius: 10px;
+width: auto;
+height: atuo;
+margin-left: 90px;
+padding:25px;
+}
+.marginr{
+  width: 80%;
+  margin-right: 50px;
+  align-items: center;
+  justify-content: center;
+}
+.b{
+  border: 2px solid rgb(126, 124, 124);
+  border-radius: 5px;
+}
+
+.ass10-icon{
+  position: absolute;
+  margin-left: 190px;
+  font-size: 25px;
+  color:tomato;
+  top: 135px;
+    left: 169px;
+}
+
+.color{
+  color:brown;
+}
+
+
+/* ***************** existing nav bar ***************************************** */
+
+
+
+.item1-existing {
+  width: 174px;
+  left: 926px;
+  position: absolute;
+}
+.item2-existing {
+  position: absolute;
+  left: 1059px;
+  width: 174px;
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* *************************************** footer styles ************************************************ */
+
+.bg-color {
+  background-color: grey;
+}
+.bg-p {
+  margin-bottom: 0;
+  bottom: 0;
+  background-color: rgb(255, 193, 78);
+  max-width: 100%;
+}

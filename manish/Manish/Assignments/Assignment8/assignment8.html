@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 8</title>
+    <link rel="stylesheet" href="../../Styles/style.css" />
+    <script src="assignment8.js" defer></script>
+  </head>
+  <body class="ass8">
+    <div class="header"><marquee scrollamount="20">Assignment 8</marquee></div>
+
+    <div class="container1">
+      <div class="top items">
+        <form id="form" action="">
+          <label for="name">Name: </label>
+          <input type="text" id="name" onkeyup="nameVal()" />
+          <div id="namealert">Only alphabets A-Z</div>
+
+          <label for="minage">Min Age: </label>
+          <input type="text" id="minage" onkeyup="ageVal()" maxlength="3" />
+          <div id="minagealert"></div>
+
+          <label for="maxage">Max Age: </label>
+          <input type="text" id="maxage" onkeyup="ageVal()" maxlength="3" />
+
+          <label for="location">Location: </label>
+          <select name="location" id="location" onclick="locSel()">
+            <option value="TS">TS</option>
+            <option value="AP">AP</option>
+            <option value="MH">MH</option>
+            <option value="KA">KA</option>
+            <option value="KL">KL</option>
+          </select>
+        </form>
+      </div>
+      <div class="bottom items">
+        <div class="container2">
+          <div id="Img">
+            <img src="" alt="" id="selectimg" />
+          </div>
+          <div class="items" id="data">
+            <label for="name" id="name1">Name: </label>
+
+            <label for="totalage" id="totalage">Total Age: </label>
+            <label for="location1" id="location1">Location: </label>
+          </div>
+          <div class="items">
+            <img src="../../Images/html-tutorial.png" alt="" id="threeimg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

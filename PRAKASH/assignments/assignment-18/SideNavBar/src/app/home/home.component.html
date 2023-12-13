@@ -1,0 +1,184 @@
+
+<div class="container mt-5">
+    <div class="">
+        <div class="">
+            <p><form >
+                <h1>Personal-Info</h1>
+                <fieldset >
+            <label for=""></label>
+<!-- <div class="justify-content-left"> -->
+            <!-- name -->
+
+            <div class="row  mb-2 g-2 text-justify">
+              <label for="email_id" class="col-md-2 col-form-label col-form-label-sm">Name: </label>
+              <div class="col-md-10  text-truncate">
+                <p><strong>{{name}}</strong></p>
+                </div>
+            </div>
+
+            <!-- username -->
+
+            <div class="row mb-2 g-2 ">
+             <label for="user_name" class="col-md-2 col-form-label col-form-label-sm  ">Username: </label>
+              <div class="col-md-10  text-truncate">
+                <p><strong>{{username}}</strong></p>
+                </div>
+            </div>
+
+            <!-- email -->
+
+            <div class="row  mb-2 g-2">
+              <label for="email_id" class="col-md-2 col-form-label col-form-label-sm">Email ID*: </label>
+              <div class="col-md-10">
+                  <p><strong>{{email}}</strong></p>
+              </div>
+            </div>
+
+            <!-- mobile -->
+
+              <div class="row mb-2 g-2">
+                <label for="password" class="col-md-2 col-form-label col-form-label-sm">Mobile: </label>
+              <div class="col-md-10">
+                <p><strong>{{mobile}}</strong></p>
+                </div>
+            </div>
+          <!-- </div> -->
+                </fieldset>
+
+
+
+              </form>
+            </div>
+
+
+              <div class="">
+           <form>
+    <h1>Job Profile</h1>
+    <fieldset>
+      <label for=""></label>
+
+      <div class="form-group pxx">
+        <div class="float-start w-50 ">
+        <label for="exampleInputPassword1" class="form-label"><strong>Job-Profile</strong> </label>
+      </div>
+      <div class="float-center w-100">
+        <p><strong>{{job}}</strong></p>
+      </div>
+        <div *ngIf="job.invalid && job.touched" >
+          <small class="text-danger valid" *ngIf="job.errors?.['required']">text is required</small>
+          <small class="text-danger valid" *ngIf="job.errors?.['minlength']">Please enter minimum of 12characters</small>
+        </div>
+      </div>
+
+      </fieldset>
+
+<div class="container">
+  <div class="row"><div class="col px">
+
+  </div>
+<!-- <div class="col">
+  <button routerLink="/personal" type="submit">Previous</button>
+</div> -->
+</div>
+</div>
+
+  </form>
+        </div>
+
+</div>
+
+<div class="container mt-5">
+    <div class="">
+        <div class="">
+          <form>
+            <h1>Qualification-Details</h1>
+            <fieldset>
+        <label for=""></label>
+              <!-- username -->
+      <div class="row mb-2 g-2">
+        <label for="user_name" class="col-md-3 col-form-label col-form-label-sm">Instructor's Name*</label>
+        <div class="col-md-9">
+          <p><strong>{{instructor}}</strong></p>
+        </div>
+      </div>
+
+      <!-- email -->
+      <div class="row  mb-2 g-2">
+        <label for="email_id" class="col-md-3 col-form-label col-form-label-sm">Course Description*</label>
+        <div class="col-md-9">
+          <p><strong>{{coursed}}</strong></p>
+        </div>
+      </div>
+
+      <!-- mobile -->
+        <div class="row mb-2 g-2">
+          <label for="password" class="col-md-3 col-form-label col-form-label-sm">Course Number</label>
+        <div class="col-md-9">
+          <p><strong>{{coursen}}</strong></p>
+          </div>
+      </div>
+
+      <!-- mobile -->
+      <div class="row mb-2 g-2">
+        <label for="password1" class="col-md-3 col-form-label col-form-label-sm">Joining Date*</label>
+      <div class="col-md-9">
+        <p><strong>{{joiningdate}}</strong></p>
+        </div>
+      </div>
+
+            </fieldset>
+          </form>
+        </div>
+
+
+
+        <div class="">
+
+            <form #personal="ngForm" >
+              <h1>Skill-sets</h1>
+              <fieldset>
+                <label for=""></label>
+
+
+                      <label class="   row" for="flexCheckChecked">
+                        <p class="col">Skills-selected :</p>
+                       <strong class="col">{{selected}}</strong>
+                      </label>
+
+
+        </fieldset>
+        </form>
+        </div>
+
+
+        <div class="">
+        <form>
+          <h1>Technical-info</h1>
+          <fieldset>
+      <label for=""></label>
+
+      <div class="form-group pxx">
+        <div class="float-start w-50 ">
+        <label for="exampleInputPassword1" class="form-label w-75">Commets on technical-skills: </label>
+      </div>
+      <div class="float-center w-100">
+        <strong> {{tech}}</strong>
+      </div>
+
+      </div>
+          </fieldset>
+
+
+
+
+
+        </form>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+

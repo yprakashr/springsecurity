@@ -1,0 +1,32 @@
+  
+  .logo {
+    margin-left:15px;
+  }
+
+  .extra button{
+    margin-left:1000px;
+  }
+  
+  @media (max-width: 991.98px) {
+  .sidebar {
+  width: 100%;
+  }
+  }
+  .sidebar .active {
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  }
+  
+  
+  .active-link span{
+    color: blue;
+  }
+
+    mat-sidenav-container {
+      height: calc(87vh - 48px);
+    }
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+  
+  

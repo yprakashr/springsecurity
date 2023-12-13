@@ -1,0 +1,90 @@
+  <!-- <div class="mt alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Success !</strong> Your data has been.
+    <button data-dismiss="alet" aria-label="Close" class="close" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+  <!-- <div class="container bgimg">
+    <div class="row">
+      <div class="col-12"> -->
+
+        
+
+<div class="limiter bgimg">
+  
+    <div class="container-login100">
+      <!-- <div *ngIf="message" class="mt alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-${type} alert-dismissible" role="alert">
+          <div>afas</div>
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">asdf</button>
+          </div>
+      </div> -->
+      <div class="wrap-login100">
+        <form [formGroup]="LoginForm" class="login100-form validate-form p-l-35 p-r-35 p-t-85" (ngSubmit)="LoginAction()" >
+          <span class="login100-form-title">
+            Sign In
+          </span>   
+         
+
+          <div class="form-group text-center m-b-16">
+            <div class="wrap-input100  validate-input" data-validate="Please enter email">
+              <input class="input100" type="email" name="email" id="email" placeholder="Email" 
+                  formControlName="username">
+            </div>
+            <div *ngIf="LoginForm.get('username')?.invalid && 
+            LoginForm.get('username')?.errors && 
+            (LoginForm.get('username')?.dirty || LoginForm.get('username')?.touched)">
+            <span class="text-danger" *ngIf="LoginForm.get('username')?.hasError('required')" >Error : Email is required. !</span>
+          </div>
+        </div>
+
+
+          <div class="form-group text-center">
+            <div class="wrap-input100 validate-input m-t-3" data-validate="Please enter password">
+              <input class="input100" type="password" name="password" placeholder="Password" id="password"
+                 formControlName="password">
+                <!-- <button type="button" id="show-pass-btn" class="btn-eye"
+                (click)="togglePassword()"><i class="bi bi-eye"></i></button> -->
+            </div>
+            <div *ngIf="LoginForm.get('password')?.invalid && 
+            LoginForm.get('password')?.errors && 
+            (LoginForm.get('password')?.dirty || LoginForm.get('password')?.touched)">
+            <span class="text-danger" *ngIf="LoginForm.get('password')?.hasError('required')">Error : Password is required. !</span>
+          </div>
+        </div>
+
+
+          <div class="text-right p-t-13 p-b-13">
+            <span class="txt1">
+              Forgot
+            </span>
+  
+            <a (click)="forgotPassword()" href="#" class="txt2">
+              Password?
+            </a>
+          </div>
+  
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" [disabled]="LoginForm.invalid" type="submit">
+              Sign in
+            </button>
+          </div>
+          <div class="error text-center" *ngIf="message">Sorry! invalid credentials.</div>
+
+
+          <div class="flex-col-c p-t-20 p-b-20">
+            <span class="txt1 p-b-9">
+              Don’t have an account?
+            </span>
+            <a  routerLink="/reg" class="txt3">
+              Sign Up now
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- </div>
+</div>
+</div> -->

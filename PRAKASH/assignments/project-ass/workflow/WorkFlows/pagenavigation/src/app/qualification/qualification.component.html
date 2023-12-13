@@ -1,0 +1,128 @@
+<div class="container h-100">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-12 col-lg-9 col-xl-7">
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <div class="card-body p-md-5 ">
+
+          <h1 class="mb-5 pb-2 pb-md-0 text-center text-primary">Qualification Details</h1>
+
+          <form [formGroup]="QualForm" #qualForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-8 mb-4">
+                <div class="form-outline">
+                  <label class="form-label">Secondary :</label>
+                  <input type="text" id="ssccollegename" placeholder="Enter your school name" class="form-control"
+                    formControlName="ssccollegename" />
+                  <div class="text" *ngIf="QualForm.get('ssccollegename')?.invalid && QualForm.get('ssccollegename')?.errors && 
+                     (QualForm.get('ssccollegename')?.dirty || QualForm.get('ssccollegename')?.touched)">
+                    <small class="text-danger" *ngIf="QualForm.get('ssccollegename')?.hasError('required')">This field
+                      is required.</small>
+                    <small class="text-danger" *ngIf="QualForm.get('ssccollegename')?.hasError('pattern')"> name can
+                      contain only alphabets </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <label class="form-label">10th Percent</label>
+                  <input type="number" id="sscpercentage" placeholder="percentage" class="form-control"
+                    formControlName="sscpercentage" />
+                  <div class="text" *ngIf="QualForm.get('sscpercentage')?.invalid && QualForm.get('sscpercentage')?.errors && 
+                    (QualForm.get('sscpercentage')?.dirty || QualForm.get('sscpercentage')?.touched)">
+                    <small class="text-danger" *ngIf="QualForm.get('sscpercentage')?.hasError('required')">This field is
+                      required.</small>
+                    <small class="text-danger" *ngIf="QualForm.get('sscpercentage')?.hasError('pattern')">enter valid
+                      pattern eg: 45.67</small>
+                    <small class="text-danger" *ngIf="QualForm.get('sscpercentage')?.hasError('min')">minimum
+                      35.00%</small>
+                    <small class="text-danger" *ngIf="QualForm.get('sscpercentage')?.hasError('max')">maximum
+                      100%</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-8 mb-4">
+                <div class="form-outline">
+                  <label class="form-label">Higher Secondary :</label>
+                  <input type="text" id="hsccollegename" placeholder="Enter your college name" class="form-control"
+                    formControlName="hsccollegename" />
+                  <div class="text" *ngIf="QualForm.get('hsccollegename')?.invalid && QualForm.get('hsccollegename')?.errors && 
+                       (QualForm.get('hsccollegename')?.dirty || QualForm.get('hsccollegename')?.touched)">
+                    <small class="text-danger" *ngIf="QualForm.get('hsccollegename')?.hasError('required')">This field
+                      is required.</small>
+                    <small class="text-danger" *ngIf="QualForm.get('hsccollegename')?.hasError('pattern')"> name can
+                      contain only alphabets </small>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <label class="form-label" for="hscpercentage">12th percent</label>
+                  <input type="number" id="hscpercentage" placeholder="percentage" class="form-control"
+                    formControlName="hscpercentage" />
+                  <div class="text" *ngIf="QualForm.get('hscpercentage')?.invalid && QualForm.get('hscpercentage')?.errors && 
+                      (QualForm.get('hscpercentage')?.dirty || QualForm.get('hscpercentage')?.touched)">
+                    <small class="text-danger" *ngIf="QualForm.get('hscpercentage')?.hasError('required')">This field is
+                      required.</small>
+                    <small class="text-danger" *ngIf="QualForm.get('hscpercentage')?.hasError('pattern')">enter valid
+                      pattern eg: 45.67</small>
+                    <small class="text-danger" *ngIf="QualForm.get('hscpercentage')?.hasError('min')">minimum
+                      35.00%</small>
+                    <small class="text-danger" *ngIf="QualForm.get('hscpercentage')?.hasError('max')">maximum
+                      100%</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-8 mb-4">
+                <div class="form-outline">
+                  <label class="form-label" for="ugpgcollegename">UG/PG College Name :</label>
+                  <input type="text" id="ugpgcollegename" placeholder="Enter your college name" class="form-control"
+                    formControlName="ugpgcollegename" />
+                  <div class="text" *ngIf="QualForm.get('ugpgcollegename')?.invalid && QualForm.get('ugpgcollegename')?.errors && 
+                       (QualForm.get('ugpgcollegename')?.dirty || QualForm.get('ugpgcollegename')?.touched)">
+                    <small class="text-danger" *ngIf="QualForm.get('ugpgcollegename')?.hasError('required')">This field
+                      is required.</small>
+                    <small class="text-danger" *ngIf="QualForm.get('ugpgcollegename')?.hasError('pattern')"> name can
+                      contain only alphabets </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                <div class="form-outline">
+                  <label class="form-label">UG/PG CGPA :</label>
+                  <input type="number" id="ugpgpercentage" placeholder="cgpa" class="form-control"
+                    formControlName="ugpgpercentage" />
+                  <div class="text" *ngIf="QualForm.get('ugpgpercentage')?.invalid && QualForm.get('ugpgpercentage')?.errors && 
+                      (QualForm.get('ugpgpercentage')?.dirty || QualForm.get('ugpgpercentage')?.touched)">
+                    <small class="text-danger" *ngIf="QualForm.get('ugpgpercentage')?.hasError('required')">This field
+                      is required.</small>
+                    <small class="text-danger" *ngIf="QualForm.get('ugpgpercentage')?.hasError('pattern')">enter valid
+                      pattern eg: 45.67</small>
+                    <small class="text-danger" *ngIf="QualForm.get('ugpgpercentage')?.hasError('min')">minimum
+                      35.00%</small>
+                    <small class="text-danger" *ngIf="QualForm.get('ugpgpercentage')?.hasError('max')">maximum
+                      100%</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-2 text-center">
+              <button type="submit" [disabled]="QualForm.invalid" class="btn btn-success">continue</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

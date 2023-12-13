@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation2</title>
+<link rel="stylesheet" href="../../styles/stylesheet.css">   
+
+</head> 
+<body class="body-formb">
+
+    
+    <!-- **************************** main div **************************************** -->
+    
+    <div  id="formb-logo" class="body-formb-f">
+        <h1 class="form-h1">Registration-form</h1>
+      <hr>
+    <form action="welcome.html" name="f2" onsubmit="return formbvalidate();" class="formb-js2">
+        <fieldset>
+
+<!-- *************************** logo ****************************************************************** -->
+
+        <div id="formb-logo-font">
+        <label for="#" class="formb-font" >
+           Logo 
+        </label>
+    </div>
+
+<!-- ************************************************** image *************************************************** -->
+
+<div class="upload formb-input">
+    <input type="file" class="upload-none"  accept="image/.png" name="upload-png" id="pngfile">
+</div>
+
+
+<!-- ********************************* radio buttons ******************************************************************** -->
+<!-- <input type="hidden" name="user-icon" data-accepted=".upload-png"> -->
+<div id="intrests">
+    <label for="#" class="formb-font" >INTERESTS</label>
+    <div class="formb-radio" oninput="formb()">
+    <label for="#" class="formb-f">Java</label><input  type="radio"  value="JAVA" name="inte" >&nbsp;&nbsp;&nbsp;
+    <label for="#" class="formb-f">Html</label><input  type="radio"  value="HTML" name="inte" >&nbsp;&nbsp;&nbsp;
+    <label for="#" class="formb-f">Css</label><input  type="radio"  value="CSS"  name="inte"  >  
+</div>
+</div>
+
+<!-- ************************************* java dropdown ********************************************************************************* -->
+
+<div id="formb-java" class="formb" >
+    <label for="language" class="formb-f" id="java-technology">JAVA TECHNOLOGY</label>
+    <select name="JAVA" class="hide formb-input" id="javaselect" onchange="formhide()">
+        <option value="">Select</option>
+        <option  value="Spring">Spring</option>
+        <option  value="Hibernate">Hibernate</option>
+        <option  value="Selenium">Selenium</option>
+    </select>
+</div>
+
+<!-- ****************************************************** html dropdown ****************************************************************************** -->
+
+   <div id="formb-html" class="formb"> 
+    <label for="language" class="formb-f" id="html-technology">HTML TECHNOLOGY</label>
+    <select name="HTML" class="hide formb-input" id="htmlselect" onchange="formhide()">
+        <option  value="" >Select</option>
+        <option  value="Html forms">Html forms</option>
+        <option  value="Html links">Html links</option>
+        <option  value="Html tables">Html tables</option>
+    </select>
+</div>
+
+<!-- ******************************************************** css dropdown ***************************************************************************** -->
+
+    <div id="formb-css" class="formb">
+        <label for="language" class="formb-f" id="css-technology">CSS TECHNOLOGY</label>
+    <select name="CSS" class="hide formb-input" id="cssselect" onchange="formhide()">
+        <option value="">Select</option>
+        <option  value="Sass">Sass</option>
+        <option  value="Layouts">Layouts</option>
+        <option  value="Colors">Colors</option>
+    </select>
+
+</div><br><br>
+
+<!-- ************************************************* sub-form ************************************************************************************ -->
+
+
+<div id="formb-jsdata">
+    <!-- <form action="#" onsubmit="return formbvalidate();" id="fromb"> -->
+        <fieldset>
+        <label for="css" class="formb-font" id="css-technology">Name</label>
+    <input type="text"  class="formb-input" id="formb-name">
+    <label for="css" class="formb-font" id="css-technology">Phone no</label>
+    <input type="number" class="formb-input" name="phone" id="phone-no" >
+    <label for="css" class="formb-font" id="css-technology">Password</label>
+    <input type="password" class="formb-input" name="password" id="pwd">
+    <label for="css" class="formb-font" id="css-technology">Confirm Password</label>
+    <input type="password" class="formb-input" name="password" id="cpwd">
+    <label for="css" class="formb-font" id="css-technology">Email</label>
+    <input type="text" class="formb-input" name="gmail" id="email">
+    <label for="css" class="formb-font" id="css-technology">Select your language</label>
+    <select name="language" class="formb-input" id="formblang">
+    <option value="-1">Select</option>
+    <option value="Telugu">Telugu</option>
+    <option value="Hindi">Hindi</option>
+    <option value="English">English</option>
+    </select><br><br>
+    <label for="#"  class="formb-font">Gender</label>
+    <label for="#" class="formb-f">Male</label><input  type="radio"  value="Male" name="gen" >&nbsp;&nbsp;&nbsp;
+    <label for="#" class="formb-f">Female</label><input  type="radio"  value="Female" name="gen" >&nbsp;&nbsp;&nbsp;
+    <label for="#" class="formb-f">Others</label><input  type="radio"  value="Others"  name="gen"  ><br><br>
+    <label for="css" class="formb-font" id="css-technology">Hobbies</label>
+    <label for="css" class="formb-f"  id="css-technology">Cricket</label>
+    <input type="checkbox" id="Cricket" value="Cricket" name="hobby">
+    <label for="css" class="formb-f"  id="css-technology" >Tennis</label>
+    <input type="checkbox" name="hobby" value="Tennis" id="Tennis">
+    <label for="css" class="formb-f"  id="css-technology" >Carrom</label>
+    <input type="checkbox" name="hobby" value="Carrom" id="Carrom"><br><br>
+   <label for="css" class="formb-font" id="css-technology"> Comments</label>
+    <textarea name="live" id="leave" class="formb-input" cols="30" rows="10"></textarea>
+</fieldset>
+<!-- </form> -->
+</div>
+
+<div >
+<input class="btn-formb" type="submit" value="Submit">
+</div>
+</fieldset>
+</form>
+</div>
+
+
+<!-- <script>
+
+var alu=[1,2,3,45,5,6];
+</script> -->
+<!-- <script src="hideandseekform.js"></script> -->
+<!-- <script src="hidden.js"></script>    -->
+<script src="../../java script/formvalid.js" ></script>
+</body>
+</html>
+
+
+<!-- // var javal=document.getElementById("java-technology");
+// var htmll= document.getElementById("html-technology");
+// var cssl= document.getElementById("css-technology"); -->
+
+<!-- if(x==0){
+    java.className="show";
+    javal.className="show";
+    html.className="hide";
+    css.className='hide';
+    htmll.className="hide";
+    cssl.className='hide';
+}else
+if(x==1){
+html.className="show";
+htmll.className="show";
+java.className='hide';
+css.className='hide';
+javal.className='hide';
+cssl.className='hide';
+}else
+if(x==2){
+css.className="show";
+cssl.className="show";
+html.className="hide";
+java.className='hide';
+htmll.className="hide";
+javal.className='hide';
+} -->

@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@600&display=swap");
+
+a {
+  font-family: "Dancing Script", cursive;
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, green);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}

@@ -1,0 +1,273 @@
+  
+  
+  
+  <div class="container-fluid g-3">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header style="height: 40px; background-color: #004798 ;">
+        <mat-panel-title style="color:white;font-size: 16px;">
+          Details
+        </mat-panel-title>
+        <mat-panel-description>
+          <div></div>
+          <i class="text-white bi bi-caret-down-fill"></i>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="container-fluid">
+        <div class="row justify-content-start">
+          <div class="col-md-12">
+            <form class="row row-cols-lg-auto  align-items-center justify-content-start">
+              <div class="col-12 margin-left-input1 my-2">
+                <label class="ml-5" for=" inline-username">WorkFlow</label>
+                <div class="input-group input-group-sm">
+                  <input type="text" value="{{workflowName}}"  class="form-control1" id="inline-username" placeholder="WorkFlow">
+                </div>
+              </div>
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="preference">Bot Name</label>
+                <div class="input-group input-group-sm">
+                  <input type="text" value="{{botName}}" class="form-control1" id="inline-username" placeholder="Bot Name">
+                </div>
+              </div>
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="preference">Created Date</label>
+                <div class="input-group input-group-sm">
+                  <input type="text" value="{{createdDate}}" class="form-control1" id="inline-username" placeholder="Username">
+                </div>
+              </div>
+              <div class="col-12  margin-left-input1 my-2">
+                <label for="preference">Last Updated Date</label>
+                <div class="input-group input-group-sm">
+                  <input type="text" value="{{lastUpdatedDate}}" class="form-control1" id="inline-username" placeholder="Username">
+                </div>
+              </div>
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="preference">Description</label>
+                <div class="input-group input-group-sm">
+                  <input type="text" value="{{description}}" class="form-control2" id="inline-username" placeholder="description">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+
+
+<div class="container-fluid">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header style="height: 40px; background-color: #004798 ;">
+        <mat-panel-title style="color:white;font-size: 16px;">
+          View
+        </mat-panel-title>
+        <mat-panel-description>
+          <div></div>
+          <i class="text-white bi bi-caret-down-fill"></i>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container d-flex justify-content-center">
+        <img src="{{imageURL}}" class="image-fluid" alt="">
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+
+<div class="container-fluid">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header style="height: 40px; background-color: #004798 ;">
+        <mat-panel-title style="color:white;font-size: 16px;">
+          Past Executions
+        </mat-panel-title>
+        <mat-panel-description>
+          <div></div>
+          <i class="text-white bi bi-caret-down-fill"></i>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="container-fluid mt-3">
+        <div class="row justify-content-start">
+          <div class="col-md-12">
+            <form  [formGroup]="pastExecution" class="row row-cols-lg-auto  align-items-center justify-content-start">
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="preference">Show Date From</label>
+                <div class="input-group input-group-sm">
+                  <select (change)="showDatepreference()" formControlName="ShowdateFrom" id="preference" class="form-control3 form-select-sm">
+                    <option selected>Date Range</option>
+                    <option value="day">1 Day</option>
+                    <option value="week">1 Week</option>
+                    <option value="month">1 Month</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="inline-username">Start Date</label>
+                <div class="input-group input-group-sm">
+                  <input type="date" (change)="previousDatesDifference()" formControlName="StartDate" class="form-control3" id="inline-username" placeholder="Username">
+                </div>
+              </div>
+
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="inline-username">End Date</label>
+                <div class="input-group input-group-sm">
+                  <input type="date"  min="{{PastminDate}}" (change)="previousDatesDifference()" formControlName="EndDate" [disabled]="isDisabled" class="form-control3" id="inline-username" placeholder="Username">
+                </div>
+              </div>
+
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="inline-username">Status</label>
+                <div class="input-group input-group-sm">
+                  <select (change)="statusCompare()" formControlName="Status" id="preference" class="form-control3 form-select-sm">
+                    <option selected>Status</option>
+                    <option value="Complete">Complete</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Running">Running</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div>
+        <table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+  matSort
+  #empTbSort="matSort"
+>
+  <ng-container  matColumnDef="startDate">
+    <th id="backgroundHeader" mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+    <td mat-cell *matCellDef="let emp">{{ emp.startDate }}</td>
+  </ng-container>
+  <ng-container  matColumnDef="endDate">
+    <th id="backgroundHeader" mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
+    <td mat-cell *matCellDef="let emp">{{ emp.endDate }}</td>
+  </ng-container>
+  <ng-container  matColumnDef="duration">
+    <th id="backgroundHeader" mat-header-cell *matHeaderCellDef mat-sort-header>Duration</th>
+    <td mat-cell *matCellDef="let emp">{{ emp.duration }}</td>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <th id="backgroundHeader" mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+    <td mat-cell *matCellDef="let emp">{{ emp.status }}</td>
+  </ng-container>
+  <ng-container matColumnDef="logs">
+    <th id="backgroundHeader" mat-header-cell *matHeaderCellDef mat-sort-header>Logs</th>
+    <td mat-cell *matCellDef="let emp">{{ emp.logs }}</td>
+  </ng-container>
+
+  <tr style="height: 30px;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr style="height: 30px;" mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
+</table>
+<mat-paginator #paginator1 [pageSizeOptions]="[5, 10, 20]"
+showFirstLastButtons aria-label="Select page">
+</mat-paginator> 
+     </div>
+    
+
+
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header style="height: 40px; background-color: #004798 ;">
+        <mat-panel-title style="color:white;font-size: 16px;">
+          Future Schedule
+        </mat-panel-title>
+        <mat-panel-description>
+          <div></div>
+          <i class="text-white bi bi-caret-down-fill"></i>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      
+      <div class="container-fluid mt-3">
+        <div class="row justify-content-start">
+          <div class="col-md-8">
+            <form [formGroup]="futureSchedule" class="row row-cols-lg-auto  align-items-center justify-content-start">
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="preference">Show Date From</label>
+                <div class="input-group input-group-sm">
+
+                  <select (change)="showDatepreference()" formControlName="showdateFrom" id="preference" class="form-control3 form-select-sm">
+                    <option selected>Date Range</option>
+                    <option value="day1">1 Day</option>
+                    <option value="week1">1 Week</option>
+                    <option value="month1">1 Month</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="inline-username">Start Date</label>
+                <div class="input-group input-group-sm">
+                  <input min="{{currentDate}}" (change)="futureDatesDifference()" formControlName="startDate" type="date" class="form-control3" id="inline-username">
+                </div>
+              </div>
+
+              <div class="col-12 margin-left-input1 my-2">
+                <label for="inline-username">End Date</label>
+                <div class="input-group input-group-sm">
+                  <input (change)="futureDatesDifference()" min="{{FutureminDate}}" type="date" formControlName="endDate" class="form-control3" id="inline-username">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <table
+        mat-table
+        [dataSource]="dataSourceWithObjectColumn"
+        class="mat-elevation-z8"
+        matSort
+        #empTbSortWithObject="matSort"
+      >
+      <ng-container  matColumnDef="startDate">
+        <th id="backgroundHeader" mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+        <td mat-cell *matCellDef="let emp">{{ emp.startDate }}</td>
+      </ng-container>
+      <ng-container  matColumnDef="endDate">
+        <th id="backgroundHeader" mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
+        <td mat-cell *matCellDef="let emp">{{ emp.endDate }}</td>
+      </ng-container>
+      <ng-container  matColumnDef="duration">
+        <th id="backgroundHeader" mat-header-cell *matHeaderCellDef mat-sort-header>Duration</th>
+        <td mat-cell *matCellDef="let emp">{{ emp.duration }}</td>
+      </ng-container>
+      
+        <tr style="height: 30px;" mat-header-row *matHeaderRowDef="displayedColumnsWithObject"></tr>
+        <tr style="height: 30px;" mat-row *matRowDef="let emprow; columns: displayedColumnsWithObject"></tr>
+      </table>
+      
+      <mat-paginator #paginator2
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page1">
+      </mat-paginator> 
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

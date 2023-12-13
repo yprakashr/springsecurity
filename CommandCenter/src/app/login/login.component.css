@@ -1,0 +1,81 @@
+.backgroundColor {
+  background: linear-gradient(
+    to right,
+    rgb(224, 229, 255) 0%,
+    rgb(224, 229, 255) 50%,
+    #00096b 50%,
+    #00096b 100%
+  );
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text-color {
+  color: #00096b;
+}
+.btn-primary {
+  background: #00096b;
+}
+.commandcenterlogo {
+  position: absolute;
+  z-index: 10;
+  border-radius: 50%;
+  left: 46%;
+  top: 10%;
+}
+
+.greyGradiant {
+  background: rgb(147, 148, 156);
+  /* width: 50%; */
+}
+
+@media (max-width: 768px) {
+  .gradient-form {
+    height: 100vh !important;
+  }
+  .backgroundColor {
+    background: linear-gradient(
+      to right,
+      rgb(224, 229, 255) 0%,
+      rgb(224, 229, 255) 50%,
+      #00096b 50%,
+      #00096b 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+  }
+  .commandcenterlogo {
+    z-index: 10;
+    border-radius: 50%;
+    left: 38%;
+    top: 2%;
+  }
+
+  .commandcenterlogo {
+    z-index: 10;
+    border-radius: 50%;
+    left: 38%;
+    top: 2%;
+  }
+  .backgroundColor {
+    background: linear-gradient(
+      to right,
+      rgb(224, 229, 255) 0%,
+      rgb(224, 229, 255) 50%,
+      #00096b 50%,
+      #00096b 100%
+    );
+    height: 100vh;
+    width: 100%;
+  }
+}

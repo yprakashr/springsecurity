@@ -1,0 +1,360 @@
+<div class="patients">
+    <div *ngIf="sessionValid == '' || sessionValid == 'null' || sessionValid == null; then sessionBAD else sessionOK">
+    </div>
+
+    <ng-template #sessionBAD>
+        <div @myInsertRemoveTrigger class="container" id="sessionBAD">
+
+            <div class="row">
+                <div class="text-center text-danger h4 col-sm col1">
+                    Please login to continue <button type="button" routerLink="/login"
+                        class="btn btn-primary">Login</button>
+                </div>
+                <div class="container-fluid col-sm-auto">
+                    <img class="img-fluid mx-auto d-block" src="assets/images/login.jpg" width="500vw">
+                </div>
+            </div>
+
+        </div>
+    </ng-template>
+
+    <ng-template #sessionOK>
+        <div *ngIf="edit; then Patients else editForm"></div>
+    </ng-template>
+
+    <ng-template #Patients>
+
+        <div @myInsertRemoveTrigger>
+
+            <div class="h3 text-center mt-3" id="heading">
+                Patients Data
+            </div>
+
+            <div class="text-center container mt-3">
+                <input id="search" matInput [(ngModel)]="search" (keyup)="applyFilter()" placeholder="Filter">
+            </div>
+            <div class="table table-responsive mat-elevation-z8 mt-3 mb-5" id="Appts-table">
+
+                <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
+                            ID
+                        </th>
+                        <td mat-cell *matCellDef="let patient"> {{patient.id}} </td>
+                    </ng-container>
+
+                    <!-- firstname Column -->
+                    <ng-container matColumnDef="firstname">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by firstname">
+                            Firstname
+                        </th>
+                        <td mat-cell id="fname{{patient.id}}" *matCellDef="let patient"> {{patient.firstname}} </td>
+                    </ng-container>
+
+                    <!-- lastname Column -->
+                    <ng-container matColumnDef="lastname">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by lastname">
+                            Lastname
+                        </th>
+                        <td mat-cell id="lname{{patient.id}}" *matCellDef="let patient"> {{patient.lastname}} </td>
+                    </ng-container>
+
+                    <!-- age Column -->
+                    <ng-container matColumnDef="age">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by age">
+                            Age
+                        </th>
+                        <td mat-cell id="age{{patient.id}}" *matCellDef="let patient"> {{patient.age}} </td>
+                    </ng-container>
+
+                    <!-- gender Column -->
+                    <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gender">
+                            Gender
+                        </th>
+                        <td mat-cell id="gender{{patient.id}}" *matCellDef="let patient"> {{patient.gender}} </td>
+                    </ng-container>
+
+                    <!-- date Column -->
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date">
+                            Date
+                        </th>
+                        <td mat-cell id="date{{patient.id}}" *matCellDef="let patient"> {{patient.date}} </td>
+                    </ng-container>
+
+                    <!-- time Column -->
+                    <ng-container matColumnDef="time">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by time">
+                            Time
+                        </th>
+                        <td mat-cell id="time{{patient.id}}" *matCellDef="let patient"> {{patient.time}} </td>
+                    </ng-container>
+
+                    <!-- phone Column -->
+                    <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phone">
+                            Phone
+                        </th>
+                        <td mat-cell id="phone{{patient.id}}" *matCellDef="let patient"> {{patient.phone}} </td>
+                    </ng-container>
+
+                    <!-- edit Column -->
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phone">
+                            Edit
+                        </th>
+                        <td mat-cell *matCellDef="let patient"> <button (click)="editData(patient.id)"
+                                class="edit-btn">Edit</button> </td>
+                    </ng-container>
+
+                    <!-- delete Column -->
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phone">
+                            Delete
+                        </th>
+                        <td mat-cell *matCellDef="let patient"> <button (click)="deleteData(patient.id)"
+                                class="delete-btn">Delete</button> </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                    <tr id="r{{row.id}}" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+
+            </div>
+
+
+            <div class="pagesection wf-section text-center pt-5">
+                <div class="pagecontainer">
+                    <h4 class="oneliner mb-5">The world’s health rely on Medicare to make better life and habitat.</h4>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+    <ng-template #editForm>
+        <div class="new" @myInsertRemoveTrigger>
+
+            <div class="container p-5 mt-3 mb-3">
+
+                <!-- row 1 -->
+                <div class="row ROW">
+
+                    <!-- col 1 -->
+                    <div class="col-sm p-5 left d-block">
+
+                        <div class="h2 pb-3 text-center" id="form-name">
+                            Update patient data
+
+                        </div>
+
+                        <form [formGroup]="EditForm" id="registration-form" class="form-inline"
+                            (ngSubmit)="updateData(updateID,EditForm)" #patientEditForm="ngForm">
+
+                            <!-- Names -->
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" [(ngModel)]="firstname" class="form-control" name="firstname"
+                                        id="firstname" placeholder="First name" formControlName="firstname"
+                                        (focus)="respStatus=0" />
+                                    <div class="text-center" *ngIf="EditForm.get('firstname')?.invalid && 
+                                EditForm.get('firstname')?.errors && 
+                                (EditForm.get('firstname')?.dirty || EditForm.get('firstname')?.touched)">
+                                        <small class="text-danger"
+                                            *ngIf="EditForm.get('firstname')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="EditForm.get('firstname')?.hasError('minlength')">
+                                            Minimum 3 characters.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="EditForm.get('firstname')?.hasError('maxlength')">
+                                            Maximum 20 characters.
+                                        </small>
+                                    </div>
+                                </div>
+
+
+                                <div class="col">
+                                    <input type="text" [(ngModel)]="lastname" class="form-control" name="lastname"
+                                        id="lastname" placeholder="Last name" formControlName="lastname" />
+                                    <div class="text-center" *ngIf="EditForm.get('lastname')?.invalid && 
+                                EditForm.get('lastname')?.errors && 
+                                (EditForm.get('lastname')?.dirty || EditForm.get('lastname')?.touched)">
+                                        <small class="text-danger"
+                                            *ngIf="EditForm.get('lastname')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="EditForm.get('lastname')?.hasError('minlength')">
+                                            Minimum 3 characters.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="EditForm.get('lastname')?.hasError('maxlength')">
+                                            Maximum 20 characters.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Age phone -->
+                            <div class="row pt-3">
+                                <div class="col">
+                                    <input type="number" [(ngModel)]="age" class="form-control" name="age" id="age"
+                                        placeholder="Age" formControlName="age" />
+                                    <div class="text-center" *ngIf="EditForm.get('age')?.invalid && 
+                                    EditForm.get('age')?.errors && 
+                                    (EditForm.get('age')?.dirty || EditForm.get('age')?.touched)">
+                                        <small class="text-danger" *ngIf="EditForm.get('age')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                        <small class="text-danger" *ngIf="EditForm.get('age')?.hasError('min')">
+                                            Minimum 1.
+                                        </small>
+                                        <small class="text-danger" *ngIf="EditForm.get('age')?.hasError('max')">
+                                            Maximum 100.
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <input type="number" [(ngModel)]="phone" class="form-control" name="phonenumber"
+                                        id="phonenumber" placeholder="Phone" formControlName="phone" />
+                                    <div class="text-center" *ngIf="EditForm.get('phone')?.invalid && 
+                                    EditForm.get('phone')?.errors && 
+                                    (EditForm.get('phone')?.dirty || EditForm.get('phone')?.touched)">
+                                        <small class="text-danger" *ngIf="EditForm.get('phone')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                        <small class="text-danger" *ngIf="EditForm.get('phone')?.hasError('min')">
+                                            Enter valid phonenumber.
+                                        </small>
+                                        <small class="text-danger" *ngIf="EditForm.get('phone')?.hasError('max')">
+                                            phone is more than 10 characters
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group pt-3">
+                                <label class="form-check-label m-2" for="gender">Gender:</label>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="gender" [(ngModel)]="gender" [checked]="gender=='male'"
+                                        class="form-check-input" type="radio" value="male" name="gender"
+                                        id="inlineRadio1" />
+                                    <label class="form-check-label" for="inlineRadio1">Male 👦🏻</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="gender" [(ngModel)]="gender" [checked]="gender=='female'"
+                                        class="form-check-input" type="radio" value="female" name="gender"
+                                        id="inlineRadio2" />
+                                    <label class="form-check-label" for="inlineRadio2">Female 👧🏻</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="gender" [(ngModel)]="gender" [checked]="gender=='others'"
+                                        class="form-check-input" type="radio" value="others" name="gender"
+                                        id="inlineRadio3" />
+                                    <label class="form-check-label" for="inlineRadio3">Others ⚧️</label>
+                                </div>
+
+                                <div class="text-center" *ngIf="EditForm.get('gender')?.invalid && 
+                                    EditForm.get('gender')?.errors && 
+                                    (EditForm.get('gender')?.dirty || EditForm.get('gender')?.touched)">
+                                    <small class="text-danger" *ngIf="EditForm.get('gender')?.hasError('required')">
+                                        This field is required.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <!-- date time -->
+                            <div class="row pt-3">
+                                <div class="col">
+                                    <input class="form-control" [(ngModel)]="date" type="text" name="date" id="date"
+                                        placeholder="Date" formControlName="date" onfocus="this.type='date'" />
+                                    <div class="text-center" *ngIf="EditForm.get('date')?.invalid && 
+                                    EditForm.get('date')?.errors && 
+                                    (EditForm.get('date')?.dirty || EditForm.get('date')?.touched)">
+                                        <small class="text-danger" *ngIf="EditForm.get('date')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" [(ngModel)]="time" type="text" name="time" id="time"
+                                        placeholder="Time" formControlName="time" onfocus="this.type='time'" />
+                                    <div class="text-center" *ngIf="EditForm.get('time')?.invalid && 
+                                    EditForm.get('time')?.errors && 
+                                    (EditForm.get('time')?.dirty || EditForm.get('time')?.touched)">
+                                        <small class="text-danger" *ngIf="EditForm.get('time')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- submit-btn -->
+                            <div class="form-group pt-3 text-center">
+
+                                <button [disabled]="!patientEditForm.form.valid" type="submit"
+                                    class="btn btn-primary">Update</button>
+
+                                <button type="button" class="btn btn-success m-3"
+                                    (click)="edit=true;gender='';loadData();respStatus=0">Patient
+                                    list</button>
+
+                            </div>
+
+                            <div id="appointment-msg" class="mt-2" *ngIf="respStatus==200">
+                                <p>Data updated successfully</p>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                    <!-- col 2 -->
+                    <div class="container-fluid col-sm-auto p-5">
+
+                        <img id="rightImg" class="img-fluid mx-auto d-block mt-3" src="../../assets/images/new.png"
+                            alt="Medical Image" width="450vw" height="auto" />
+
+                        <div class="row p-4 text-center text-primary h4">
+                            <p>One Appointment, Your health is ours.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="pagesection wf-section text-center pt-5">
+
+                <div class="pagecontainer">
+
+                    <h4 class="oneliner mb-5">The world’s health rely on Medicare to make better life and habitat.</h4>
+
+                </div>
+
+            </div>
+
+        </div>
+    </ng-template>
+
+</div>
+
+<app-ass14-footer class="footer"></app-ass14-footer>

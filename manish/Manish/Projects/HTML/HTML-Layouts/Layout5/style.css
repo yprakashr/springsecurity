@@ -1,0 +1,44 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.l1 {
+  box-sizing: border-box;
+  margin: 0;
+  float: left;
+  background-color: green;
+  width: 50%;
+  height: 33.33%;
+  padding: 15px;
+}
+.l2 {
+  box-sizing: border-box;
+  margin: 0;
+  float: left;
+  background-color: red;
+  width: 50%;
+  height: 33.33%;
+  padding: 15px;
+  clear: both;
+}
+
+.l3 {
+  box-sizing: border-box;
+  margin: 0;
+  float: left;
+  background-color: yellow;
+  width: 50%;
+  height: 33.33%;
+  padding: 15px;
+  clear: both;
+}
+.r2 {
+  box-sizing: border-box;
+  margin: 0;
+  float: right;
+  background-color: orange;
+  width: 50%;
+  height: 33.33%;
+  padding: 15px;
+}

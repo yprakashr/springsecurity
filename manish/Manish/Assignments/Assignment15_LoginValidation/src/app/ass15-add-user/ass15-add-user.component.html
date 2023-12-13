@@ -1,0 +1,182 @@
+<div class="edit-overlay">
+
+    <div class="modal-header">
+        <div class="modal-title text-center h3">Add user</div>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="EditForm" id="registration-form" class="form-inline" #editForm="ngForm">
+
+            <!-- fullname -->
+            <div class="mt-3">
+                <label class="h6">Fullname</label>
+                <input type="text" id="fullname" class="form-control" placeholder="Full name"
+                    formControlName="fullname">
+
+                <div class="text-center" *ngIf="EditForm.get('fullname')?.invalid && 
+                                    EditForm.get('fullname')?.errors && 
+                                    (EditForm.get('fullname')?.dirty || EditForm.get('fullname')?.touched)">
+                    <small class="text-danger" *ngIf="EditForm.get('fullname')?.hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('fullname')?.hasError('minlength')">
+                        Minimum 1 characters.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('fullname')?.hasError('maxlength')">
+                        Maximum 100 characters.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('fullname')?.hasError('pattern')">
+                        fullname can contain only alphabets
+                    </small>
+                </div>
+            </div>
+
+            <!-- email -->
+            <div class="mt-3">
+                <label class="h6">Email</label>
+                <input type="text" class="form-control" placeholder="email" id="email" formControlName="email">
+
+                <div class="text-center" *ngIf="EditForm.get('email')?.invalid && 
+                EditForm.get('email')?.errors && 
+                (EditForm.get('email')?.dirty || EditForm.get('email')?.touched)">
+
+                    <small class="text-danger" *ngIf="EditForm.get('email')?.hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('email')?.hasError('pattern')">
+                        Enter valid email.
+                    </small>
+                </div>
+            </div>
+
+
+            <!-- username -->
+            <div class="mt-3">
+                <label class="h6">Username</label>
+                <input type="text" id="username" class="form-control" placeholder="username" formControlName="username">
+
+                <div class="text-center" *ngIf="EditForm.get('username')?.invalid && 
+                                    EditForm.get('username')?.errors && 
+                                    (EditForm.get('username')?.dirty || EditForm.get('username')?.touched)">
+                    <small class="text-danger" *ngIf="EditForm.get('username')?.hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('username')?.hasError('minlength')">
+                        Minimum 8 characters.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('username')?.hasError('maxlength')">
+                        Maximum 20 characters.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('username')?.hasError('pattern')">
+                        Username cannot contain spaces.
+                    </small>
+                </div>
+            </div>
+
+
+            <!-- password -->
+            <div class="mt-3">
+                <label class="h6">Password</label>
+                <div class="input-group">
+                    <input type="password" id="password" class="form-control" placeholder="password"
+                        formControlName="password">
+                    <button type="button" id="show-pass-btn" class="btn btn-outline-primary"
+                        (click)="togglePassword()"><i class="bi bi-eye"></i></button>
+                </div>
+
+                <div class="text-center" *ngIf="EditForm.get('password')?.invalid && 
+                                    EditForm.get('password')?.errors && 
+                                    (EditForm.get('password')?.dirty || EditForm.get('password')?.touched)">
+                    <small class="text-danger" *ngIf="EditForm.get('password')?.hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('password')?.hasError('maxlength')">
+                        Maximum 30 characters.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('password')?.hasError('minlength')">
+                        Minimum 8 characters.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('password')?.hasError('pattern')">
+                        At least one uppercase letter,
+                        <p>one lowercase letter, one
+                            number and one special character</p>
+                    </small>
+                </div>
+            </div>
+
+            <!-- role -->
+            <div class="mt-3">
+                <label class="h6">Role</label>
+                <select id="role" class="form-select" placeholder="role" formControlName="role">
+                    <option value="">- select -</option>
+                    <option value="ROLE_ADMIN">Admin</option>
+                    <option value="ROLE_USER">User</option>
+                </select>
+
+                <div class="text-center" *ngIf="EditForm.get('role')?.invalid && 
+                                    EditForm.get('role')?.errors && 
+                                    (EditForm.get('role')?.dirty || EditForm.get('role')?.touched)">
+                    <small class="text-danger" *ngIf="EditForm.get('role')?.hasError('required')">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <!-- phone -->
+            <div class="mt-3">
+                <label class="h6">Phone</label>
+                <input type="text" id="phonenumber" class="form-control" placeholder="phonenumber"
+                    formControlName="phonenumber">
+
+                <div class="text-center" *ngIf="EditForm.get('phonenumber')?.invalid && 
+                                    EditForm.get('phonenumber')?.errors && 
+                                    (EditForm.get('phonenumber')?.dirty || EditForm.get('phonenumber')?.touched)">
+                    <small class="text-danger" *ngIf="EditForm.get('phonenumber')?.hasError('required')">
+                        This field is required.
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('phonenumber')?.hasError('min')">
+                        Phonenumber cannot be less than 10 digits
+                    </small>
+                    <small class="text-danger" *ngIf="EditForm.get('phonenumber')?.hasError('max')">
+                        Phonenumber cannot exceed 10 digits
+                    </small>
+                </div>
+            </div>
+
+            <!-- gender -->
+            <div class="mt-3 gender">
+                <label class="h6" for="gender">Gender &nbsp;</label>
+                <div class="form-check form-check-inline">
+                    <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio1"
+                        value="Male" />
+                    <label class="form-check-label" for="inlineRadio1">Male 👦🏻</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio2"
+                        value="Female" />
+                    <label class="form-check-label" for="inlineRadio2">Female 👧🏻</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input formControlName="gender" class="form-check-input" type="radio" id="inlineRadio3"
+                        value="Others" />
+                    <label class="form-check-label" for="inlineRadio3">Others ⚧️</label>
+                </div>
+
+                <div class="text-center" *ngIf="EditForm.get('gender')?.invalid && 
+                                    EditForm.get('gender')?.errors && 
+                                    (EditForm.get('gender')?.dirty || EditForm.get('gender')?.touched)">
+                    <small class="text-danger" *ngIf="EditForm.get('gender')?.hasError('required')">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="decline()">{{ btnCancelText }}</button>
+        <button type="button" [disabled]="!editForm.valid" class="btn btn-primary" (click)="accept(EditForm)">{{
+            btnOkText }}</button>
+    </div>
+
+</div>

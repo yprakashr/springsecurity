@@ -1,0 +1,198 @@
+class 1&2:
+---------
+multitasking executing several tasks simultaneously is the concept of multi tasking.
+there are two types of multitasking
+1.process based multitasking 
+2.thread based multitasking
+
+
+illeagal thread state exception
+
+process based multitasking
+->executing several tasks simultaneously. where each task is a seperate independent programme. is called process based multitasking. 
+ex:while typing a java programme inthe editor. we can listen audio songs. from the same system. at the same time we can download a file
+from net all these tasks will be executed simultaneously. and independent of each other.
+hence it is process based multitasking.
+
+process based multitasking is best suitable at os level.
+
+thread based multitasking :
+----------------------------
+executing several tasks simultaneously where each task is seperate independent of a same programme is called thread based multitasking.
+and each independent part is called thread.
+ 
+is best suitable a programmatic level.
+the main important application area are   
+1.To develop multimedia graphics
+2.To develop animations
+3.To develop vedio games
+4.To develop 
+
+
+class-3:
+how many ways we can define a thread
+what is thread scheduler
+
+
+d/f b/w t.start() and t.run() ?
+ans: thread is not created 
+
+class -4&5
+1.Thread scheduler priorities are from 1 to 10 default priority of every thread is acquired  from main method thread 
+2.yield()=>thread.yield();
+gives chance to peer thread which have same or higher priorities
+3.join() =>gives chance to patricular thread to be completed based on mentioning 
+t1.join();
+4.Thread.sleep(long ms,nano ns);
+need requied time 
+
+t1.interupted();
+interupted call will be  not wasted until there is no sleep or wait method and raises interupted exeption which can be handled using exception methods.
+
+
+
+class 6&7
+synchronization
+
+method level and blocklevel
+method level :
+
+
+static syncroniztion
+& synchronization
+
+
+To decrease the waiting time of threads we need 
+block level synchronization:
+syncroniztion(this) current object level
+synchronization(d)particular object level
+synchronization(Display.class) class level
+
+thread can aquire multiple locks from different objects
+
+race condition: 
+synchronized statement:
+the statements present inside synchronized block or method
+
+
+inter thread communication:
+
+advantages & disadvantages
+
+
+adv:
+1. To overcome race condition and to allow single thread  to be operated at a time on a single block or method
+disadv:
+1. it increases waiting time of threads and creates performance problems
+
+every object in java has unique lock is object lock:
+to execute instant synchronized block thread wants to execure static synchronized block
+
+class level lock and when it is required:
+thread wants to execure static synchronized block
+
+
+Inter thread communications:
+---------------------------
+wait()
+notify()
+and notifyAll() 
+should be called only from synchronized area other wise illegal monitor exception;
+
+which of the following is valid.
+1.If a thread calls wait() method.
+2.immediately it will entered in to waiting state.
+3.without releasing any lock.
+4.if a thread calls wait() method it releases all locks. acquired by that thread. and immediately entered into waiting state.
+5.if a thread calls wait method on 
+
+public final native void notify()
+public final native void notifyAll()
+public final void wait()
+public final native void wait(long ms)
+public final void wait(long ms,int ns)
+
+public native void yeild()
+public final void join()
+public final void join(long ms)
+public final void join(long ms,int ns)
+public native void sleep(long ms)
+public void sleep(long ms,int ns)
+
+
+producer cosumer problem is the best example of inter thread communications
+d/f b/w notify and notifyAll
+
+1.we can use notify method to give the notification for only one waiting thread if multiple threads are waiting then only one thread will be notified and the remaining threads have to wait 
+for further notifications. Which thread will be notified we cant expect it depends on jvm.
+2.we can use notifyAll() to give notification for particular group. but the execution will happen one by one.
+
+
+Dead lock - waiting infinite
+
+starvation - waiting at a point of time
+
+
+deamon threads - GC, Attach Listeners,Signal Dispatchers
+
+public boolean isDeamon()
+public void setDeamon(boolean b) do set before starting of thread
+Thread.isDeamon()
+thread.setDeamon()
+deamon Priority by default is 1 
+
+deamon priority is inherited from parent to child priority also shared from parent 
+note: it is immpossible to change deamon nature of main thread because it is already started by jvm at beginning -> illeagalthreadstateexception
+
+ThreadGroup thread=new ThreadGroup(String name,);
+ThreadGroup thread=new ThreadGroup(child thread of threadgroup p,String name);
+
+enumerateGroup(ThreadGroup tg)
+enumerate(Thread t)
+activeCount();
+activeGroupCount();
+list();
+isDeamon()
+setDemon()
+setPriority()
+getPriority()
+
+
+
+
+java.util.concurrent package
+
+If a thread releases lock then wich waiting thread will get that lock
+the synchronized compulsory we have to use either method level or with in the method
+and it is not possible to use across multiple methods
+ 	
+java.util.concurrent.ReentrantLock
+ReentrantLock r=new ReentrantLock();
+
+
+unlock();
+boolean tryLock();
+Lock();
+
+
+innheritablethreadlocal itl=new inheritablethreadlocal();
+
+ThreadLocal t=new ThreadLocal(){
+    public Object initialValue(){
+        return "abc";
+    }
+}
+object get();
+void setValue();
+void remove();
+
+
+
+
+
+
+
+
+
+
+

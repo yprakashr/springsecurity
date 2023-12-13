@@ -1,0 +1,53 @@
+<div class="">
+<div class="modal-header p-3">
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <h3 class="modal-title">
+          Activity Types Preferences for
+          {{providerPreferences.name}}
+          </h3>
+          </div>
+          <div class="col-sm-12 col-md-4"><a class="pull-right float-end" (click)="closeDialog()"><i class="glyphicon glyphicon-remove"></i></a>
+      </div>
+    </div>
+      </div>
+      </div>
+
+
+
+      <div class="modal-body ">
+        <div class="col-sm-12 text-center text-danger" *ngIf="editProviderPrefsErrorMsg">
+          {{editProviderPrefsErrorMsg}}
+        </div>
+        <div class=" w-100">
+    <div class="row">
+      <div class="col-sm-2 mt15 pl35">Value Weight</div>
+      <div class="col-sm-10 text-center">
+
+    <ngx-slider [(value)]="isValueNaN(singleObject.activity_weight) ? 0 : singleObject.activity_weight"
+      [options]="valueWeightOptions"></ngx-slider>
+</div>
+    </div>
+  </div>
+
+<hr>
+  <div class="">
+  <div class="row" *ngFor="let activityPref of providerActivityPref">
+    <div class="col-sm-2 mt15 pl35">
+      {{activityPref.activity_name}}
+    </div>
+    <div class="col-sm-10 text-center">
+      <ngx-slider [(value)]="activityPref.desirability" (valueChange)="updateProviderActivityPref(activityPref)"
+        [options]="valueWeightOptions"></ngx-slider>
+    </div>
+  </div>
+  </div>
+
+
+
+</div>
+<div class="modal-footer">
+  <a class="btn btn-default secondary-btn" type="button" (click)="closeDialog()">Close</a>
+</div>
+</div>

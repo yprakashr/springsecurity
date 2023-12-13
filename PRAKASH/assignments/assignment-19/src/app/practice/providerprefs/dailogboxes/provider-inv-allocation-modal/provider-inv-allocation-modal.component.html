@@ -1,0 +1,163 @@
+<div class="">
+<form #editProvSegWinForm="ngForm" (ngSubmit)="updateProviderSegmentWindowPrefs()" novalidate>
+
+  <div class="modal-header p-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-8">
+    <h3 class="modal-title">
+      Inventory Allocation for {{providerPreferences.name}}
+    </h3>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <a class="pull-right float-end" (click)="closeDialog()"><i class="glyphicon glyphicon-remove"></i></a>
+  </div>
+ </div>
+</div>
+</div>
+
+
+  <div class="modal-body">
+    <div class="col-sm-12 text-center text-danger" *ngIf="editProviderPrefsErrorMsg">
+      {{editProviderPrefsErrorMsg}}
+    </div>
+
+
+
+<div class="">
+    <div class="row">
+      <div class="col-sm-2 mt15 pl35">Location</div>
+      <div class="col-sm-6 text-center">
+        <div class="select-arrow" *ngFor="let option of providerOptLocation">
+          <select class="form-control" name="sel_location" (change)="changeProvPrefLocInvAllocation(option)"
+        [(ngModel)]="sel_location">
+  <option value="">Select</option>
+  <option [value]="option">{{option.location_name}}</option>
+
+</select>
+        </div>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div>
+      <div *ngIf="sel_location">
+        <div class="row">
+          <div class="col-sm-3 text-center">
+            <h4>Hour/Segment</h4>
+          </div>
+          <div class="col-sm-3 text-center">
+            <h4>Range 1</h4>
+          </div>
+          <div class="col-sm-3 text-center">
+            <h4>Range 2</h4>
+          </div>
+          <div class="col-sm-3 text-center">
+            <h4>Range 3</h4>
+          </div>
+        </div>
+        <div class="mt15 row">
+          <div class="col-sm-3 text-center"><b>Start Hour</b></div>
+          <div class="col-sm-3 text-center">Present</div>
+          <div class="col-sm-3 text-center">&#60; {{practProviderSegWinPrefs.window_1}}</div>
+          <div class="col-sm-3 text-center"> &#60; {{practProviderSegWinPrefs.window_2}} </div>
+        </div>
+        <div class="mt15 row">
+          <div class="col-sm-3 pt10 text-center"><b>End Hour</b></div>
+          <div class="col-sm-3 text-center">
+            <div class="form-group">
+              <input class="center-block form-control text-center w150" name="window_1" type="number" min="1"
+               [(ngModel)]="practProviderSegWinPrefs.window_1" required>
+
+              <div *ngIf="editProvSegWinForm.submitted || editProvSegWinForm.invalid">
+                <div class="text-danger" *ngIf="window_2.errors?.['required']">A range is required</div>
+                <div class="text-danger" *ngIf="window_2.errors?.['min']">Range must be greater than 0</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3 text-center">
+            <div class="form-group" >
+              <input class="center-block form-control text-center w150" name="window_2" type="number" min="1"
+                [(ngModel)]="practProviderSegWinPrefs.window_2" required>
+
+
+              <div *ngIf="editProvSegWinForm.submitted || editProvSegWinForm.invalid">
+                <div class="text-danger" *ngIf="window_2.errors?.['required']">A range is required</div>
+                <div class="text-danger" *ngIf="window_2.errors?.['min']">Range must be greater than 0</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-3 pt10 text-center">Future</div>
+        </div>
+        <hr>
+        <div class="mt15 row" *ngFor="let setting of practProviderInvAllocationPrefs">
+          <div>
+            <div class="col-sm-3 pt10 text-center"><b>
+              {{setting.segment_num}}
+            </b></div>
+
+            <div class="col-sm-3">
+              <input class="center-block form-control text-center w150" name="w1perc" type="number" min="0"
+                [(ngModel)]="practProviderInvAllocationPrefs.window_1" (change)="calcInventoryTotals()" required>
+              <div *ngIf="editProvSegWinForm.submitted || editProvSegWinForm.invalid">
+                <div class="text-danger text-center" *ngIf="w1perc.errors?.['required']">A number is required</div>
+                <div class="text-danger text-center" *ngIf="w1perc.errors?.['min']">Number must be greater than or equal to 0</div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <input class="center-block form-control text-center w150" name="w2perc" type="number" min="0"
+                [(ngModel)]="practProviderInvAllocationPrefs.window_2" (change)="calcInventoryTotals()" required>
+              <div *ngIf="editProvSegWinForm.submitted || editProvSegWinForm.invalid">
+                <div class="text-danger text-center" *ngIf="w2perc.errors?.['required']">A number is required</div>
+                <div class="text-danger text-center" *ngIf="w2perc.errors?.['min']">Number must be greater than or equal to 0</div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <input class="center-block form-control text-center w150" name="w3perc" type="number" min="0"
+                [(ngModel)]="practProviderInvAllocationPrefs.window_3" (change)="calcInventoryTotals()" required>
+              <div *ngIf="editProvSegWinForm.submitted || editProvSegWinForm.invalid">
+                <div class="text-danger text-center" *ngIf="w3perc.errors?.['required']">A number is required</div>
+                <div class="text-danger text-center" *ngIf="w3perc.errors?.['min']">Number must be greater than or equal to 0</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-sm-3 text-center"><b>Total</b></div>
+          <div class="col-sm-3 text-center">
+            {{providerInvTotals.window_1}}%
+          </div>
+
+          <div class="col-sm-3 text-center">
+            {{providerInvTotals.window_2}}%
+          </div>
+
+          <div class="col-sm-3 text-center">
+            {{providerInvTotals.window_3}}%
+          </div>
+        </div>
+
+        <div class="row" *ngIf="editProvSegWinForm.submit && percentageError">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-9 pt10 text-center text-danger">Percentage totals must equal out to 100% for each range.
+            Please check the percentages entered.</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn primary-btn" [disabled]="editProvSegWinForm.invalid" type="submit" *ngIf="sel_location">Save</button>
+    <a class="btn btn-default secondary-btn" type="button" (click)="closeDialog()">Close</a>
+  </div>
+</form>
+</div>
+

@@ -1,0 +1,129 @@
+<app-apploader *ngIf="appLoader"></app-apploader>
+
+<div  class="container " *ngIf="!appLoader">
+  <div class="row">
+  <div class="col-md-5 mt-5 col-lg-4 col-sm-6 col-xs-12 d-flex justify-content-center">
+    <form [formGroup]="scheduleForm" (ngSubmit)="onSubmitScheduleForm()">
+      <div class="row row-cols-lg-auto align-items-center">
+
+          <!-- <mat-form-field class="w-50 example-full-width" appearance="fill">
+            <indput matInput formControlName="name" placeholder="Work Flow Name"
+               [matAutocomplete]="auto1">
+            <mat-autocomplete #auto1="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option.workflowName">
+                {{ option.workflowName }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field class="w-50 example-full-width">
+            <input matInput placeholder="Bot Name" formControlName="botname" [matAutocomplete]="auto2">
+            <mat-autocomplete style="overflow:scroll;" #auto2="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions2 | async" [value]="option.name">
+                {{ option.name }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field> -->
+
+          <div class="wrapper1 mb-4 row-cols-lg-auto">
+            <div [class.active]="isWrapperActive" class="select-wrapper col-lg-6 col-md-3">
+               <div id="selectbackground" class="select-btn" (click)="toggleWrapper('first')">
+              <input  type="text" id="searchInputFirst"  placeholder="Work Flow Name" class="span w-75" [value]="selectedCountry">
+              <i class="bi bi-caret-down-fill"></i>	
+              </div>
+          
+              <div class="content" #contentFirst>
+              <div class="search">
+                <i class="bi bi-search"></i>
+                <input spellcheck="false" type="text" placeholder="   Search" #searchInputFirst (input)="searchCountry(searchInputFirst.value, 'first')">
+              </div>
+          
+              <ul class="options">
+                <li *ngFor="let country of searchCountry(searchInputFirst.value, 'first')"
+                  [class.selected]="country === selectedCountry"
+                  (click)="updateName(country, 'first')">
+                {{ country }}
+                </li>
+                <p *ngIf="searchCountry(searchInputFirst.value, 'first').length === 0" class="no-result">Oops! Work Flow Name not found</p>
+              </ul>
+              </div>
+            </div>
+            
+            <!-- Second Select Box -->
+            <div [class.active]="isWrapperActiveSecond" class="select-wrapper col-lg-6 col-md-3">
+              <div id="selectbackground" class="select-btn " (click)="toggleWrapper('second')">
+              <input  type="text" id="searchInputFirst" placeholder="Bot Name" class="span w-75" [value]="selectedCountrySecond">
+              <i class="bi bi-caret-down-fill"></i>
+                </div>
+              <div class="content" #contentSecond>
+              <div class="search">
+                <i class="bi bi-search"></i>
+                <input class="searchInp" spellcheck="false" type="text" placeholder="    Search" #searchInputSecond (input)="searchCountry(searchInputSecond.value, 'second')">
+              </div>
+              <ul class="options">
+                <li *ngFor="let country of searchCountry(searchInputSecond.value, 'second')"
+                  [class.selected]="country === selectedCountrySecond"
+                  (click)="updateName(country, 'second')">
+                {{ country }}
+                </li>
+                <p *ngIf="searchCountry(searchInputSecond.value, 'second').length === 0" class="no-result">Oops! Bot Name not found</p>
+              </ul>
+              </div>
+            </div>
+            </div>
+
+        <mat-form-field class="w-50 col-12 col-md-12  example-full-width">
+          <mat-label>Reoccurance</mat-label>
+          <mat-select formControlName="reoccurance">
+            <mat-option value="daily">Daily</mat-option>
+            <mat-option value="weekly">Weekly</mat-option>
+            <mat-option value="monthly">Monthly</mat-option>
+            <mat-option value="custom">Custom</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-50 col-12 col-md-12 ">
+          <mat-label>Start Date</mat-label>
+          <input min="{{currentDate}}" formControlName="starDate" matInput [matDatepicker]="picker">
+          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <strong>Start Time</strong>
+        <timepicker style="width: 100px;" formControlName="starTime" [showMeridian]="false"></timepicker>
+      </div>
+
+      <div>
+        <mat-form-field class="w-100 col-12 col-md-12">
+          <mat-label>End Date</mat-label>
+          <input min="{{minDate}}" formControlName="endDate" matInput [matDatepicker]="picker2">
+          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <mat-checkbox formControlName="noEndDate">No End Date</mat-checkbox>
+
+      <div class="mt-3 justify-content-start d-flex">
+        <button (ngModelclick)="formReset()" type="button" class="schedulebtn scheduleCancel mx-1">Cancel</button>
+        <button type="submit" class="schedulebtn scheduleSave mx-1">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-7 col-lg-8 col-sm-12 col-xs-12">
+    <p class="fs-6 w-100 fontColor">Assistance</p>
+    <div class='demo-app'>
+      <div class='demo-app-main'>
+        <full-calendar class="pl-1 calendardesign" *ngIf='calendarVisible()' [options]='calendarOptions'>
+          <ng-template #eventContent let-arg>
+            <!-- <b>{{ arg.timeText }}</b> -->
+            <i>{{ arg.event.title }}</i>
+          </ng-template>
+        </full-calendar>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,468 @@
+<div class="login">
+
+    <div class="container p-5 mt-3 mb-3">
+
+        <div class="row">
+
+            <div *ngIf="loginsignup; then login else signup"></div>
+
+            <ng-template #login>
+
+                <div *ngIf="forgot; then FORGOT else LOGIN"></div>
+
+                <!-- login template -->
+                <ng-template #LOGIN>
+                    <div @myInsertRemoveTrigger class="col-sm p-5 left d-block">
+
+                        <div class="h2 pb-3 text-center" id="form-name">
+                            Please login
+                        </div>
+
+                        <!-- login form -->
+                        <form [formGroup]="LoginForm" class="form-inline" #loginForm="ngForm"
+                            (ngSubmit)="loginAction(loginForm)">
+
+                            <!-- Username -->
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="username" id="username"
+                                        placeholder="username" formControlName="username" (focus)="loginStatus=0" />
+                                    <div class="text-center" *ngIf="LoginForm.get('username')?.invalid && 
+                                        LoginForm.get('username')?.errors && 
+                                        (LoginForm.get('username')?.dirty || LoginForm.get('username')?.touched)">
+                                        <small class="text-danger"
+                                            *ngIf="LoginForm.get('username')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="LoginForm.get('username')?.hasError('minlength')">
+                                            Minimum 3 characters.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="LoginForm.get('username')?.hasError('maxlength')">
+                                            Maximum 20 characters.
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <!-- password  -->
+                                <div class="col">
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="password" formControlName="password" />
+                                    <div class="text-center" *ngIf="LoginForm.get('password')?.invalid && 
+                                        LoginForm.get('password')?.errors && 
+                                        (LoginForm.get('password')?.dirty || LoginForm.get('password')?.touched)">
+                                        <small class="text-danger"
+                                            *ngIf="LoginForm.get('password')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="LoginForm.get('password')?.hasError('minlength')">
+                                            Minimum 3 characters.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="LoginForm.get('password')?.hasError('maxlength')">
+                                            Maximum 20 characters.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group pt-3 text-center">
+
+                                <!-- login-btn -->
+                                <button [disabled]="!loginForm.form.valid" type="submit"
+                                    class="btn btn-primary">Login</button>
+
+                                <!-- signup btn -->
+                                <button type="button" class="btn btn-success m-2"
+                                    (click)="loginsignup=false">Signup</button>
+
+                                <br><br>
+
+                                <!-- forgot password -->
+                                <span class="mt-3 text-primary" id="forgot-div" (click)="forgot=true">
+                                    forgot password ?
+                                </span>
+                            </div>
+
+                            <!-- login validation msg -->
+                            <div id="login-msg" class="mt-2" *ngIf="loginStatus==404">
+                                <p>Incorrect credentials</p>
+                            </div>
+
+                        </form>
+                    </div>
+                </ng-template>
+
+                <!-- account recovery template -->
+                <ng-template #FORGOT>
+
+                    <div *ngIf="accountVerified,then RECOVERY else VERIFY"></div>
+
+                    <!-- Account verification template -->
+                    <ng-template #VERIFY>
+                        <div @myInsertRemoveTrigger class="col-sm p-5">
+
+                            <div class="h2 pb-3 text-center" id="form-name">
+                                Verify Email
+                            </div>
+
+                            <!-- verify account form -->
+                            <form [formGroup]="OTPForm" class="form-inline" #otpForm="ngForm" (ngSubmit)="verifyOTP()">
+
+                                <div class="row text-center" *ngIf="OTP==0">
+
+                                    <!-- email  -->
+                                    <input type="email" [(ngModel)]="ver_email" class="form-control" name="email"
+                                        id="email" placeholder="email" formControlName="email"
+                                        (focus)="isEmailExists=true" />
+
+                                    <div class="text-center" *ngIf="OTPForm.get('email')?.invalid && 
+                                            OTPForm.get('email')?.errors && 
+                                            (OTPForm.get('email')?.dirty || OTPForm.get('email')?.touched)">
+
+                                        <small class="text-danger" *ngIf="OTPForm.get('email')?.hasError('required')">
+                                            This field is required.
+                                        </small>
+
+                                        <small class="text-danger" *ngIf="OTPForm.get('email')?.hasError('pattern')">
+                                            enter valid email.
+                                        </small>
+                                    </div>
+
+                                    <!-- send OTP btn -->
+                                    <button
+                                        [disabled]="OTPForm.get('email')?.hasError('pattern') || OTPForm.get('email')?.hasError('required')"
+                                        type="button" class="btn btn-primary mt-3" (click)="sendOTP()">Send
+                                        OTP</button>
+
+                                    <!-- email validation msg -->
+                                    <div class="mt-2 text-center text-danger" *ngIf="!isEmailExists">
+                                        <p>email {{ver_email}} does not exist </p>
+                                    </div>
+
+                                    <div class=" mt-5 text-primary">
+                                        Please enter the email linked to your Medicare account
+                                    </div>
+
+                                </div>
+
+                                <!-- OTP -->
+                                <div class="row" *ngIf="OTP != 0">
+
+                                    <!-- otp input -->
+                                    <input [(ngModel)]="OTPX" type="number" name="otp1" id="otp" class="form-control"
+                                        placeholder="OTP" formControlName="otpx">
+
+                                    <!-- submit-btn -->
+                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+                                    <!-- otp sent msg -->
+                                    <div class="text-center mt-3 text-primary">
+                                        An OTP has been sent to the registered email. Please verify
+                                    </div>
+
+                                </div>
+
+
+                                <!-- OTP error msg -->
+                                <div class="mt-3 text-center text-danger" *ngIf="isOTPMatch ">
+                                    <p>Wrong OTP. Please try again</p>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </ng-template>
+
+                    <!-- recovery form template -->
+                    <ng-template #RECOVERY>
+                        <div @myInsertRemoveTrigger class="col-sm p-5 left d-block">
+
+                            <div class="h2 pb-3 text-center" id="form-name">
+                                Account recovery
+                            </div>
+
+                            <!-- account recovery form -->
+                            <form [formGroup]="ForgotForm" class="form-inline" #forgotForm="ngForm"
+                                (ngSubmit)="accRecoverAction(forgotForm)">
+
+                                <div class="row">
+
+                                    <!-- Username -->
+                                    <div class="col">
+                                        <input [(ngModel)]="forgot_Username" type="text" class="form-control"
+                                            name="username" id="username" placeholder="username"
+                                            formControlName="username" (focus)="recoverStatus=0" />
+                                        <div class="text-center" *ngIf="ForgotForm.get('username')?.invalid && 
+                                    ForgotForm.get('username')?.errors && 
+                                    (ForgotForm.get('username')?.dirty || ForgotForm.get('username')?.touched)">
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('username')?.hasError('required')">
+                                                This field is required.
+                                            </small>
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('username')?.hasError('minlength')">
+                                                Minimum 8 characters.
+                                            </small>
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('username')?.hasError('maxlength')">
+                                                Maximum 20 characters.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <!-- email  -->
+                                    <div class="col">
+                                        <input [(ngModel)]="forgot_Email" type="email" class="form-control" name="email"
+                                            id="email" placeholder="email" formControlName="email"
+                                            (focus)="isEmailMatch=0" />
+                                        <div class="text-center" *ngIf="ForgotForm.get('email')?.invalid && 
+                                    ForgotForm.get('email')?.errors && 
+                                    (ForgotForm.get('email')?.dirty || ForgotForm.get('email')?.touched)">
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('email')?.hasError('required')">
+                                                This field is required.
+                                            </small>
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('email')?.hasError('pattern')">
+                                                enter valid email.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-3">
+
+                                    <!-- password  -->
+                                    <div class="col">
+                                        <input [(ngModel)]="forgot_Pass" type="password" class="form-control"
+                                            name="password" id="password" placeholder="password"
+                                            formControlName="password" (focus)="isPassMatch = 0" />
+                                        <div class="text-center" *ngIf="LoginForm.get('password')?.invalid && 
+                                    ForgotForm.get('password')?.errors && 
+                                    (ForgotForm.get('password')?.dirty || ForgotForm.get('password')?.touched)">
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('password')?.hasError('required')">
+                                                This field is required.
+                                            </small>
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('password')?.hasError('minlength')">
+                                                Minimum 8 characters.
+                                            </small>
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('password')?.hasError('maxlength')">
+                                                Maximum 30 characters.
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <!--confirm password  -->
+                                    <div class="col">
+                                        <input [(ngModel)]="forgot_ConfPass" type="password" class="form-control"
+                                            name="conf_password" id="conf_password" placeholder="conf-password"
+                                            formControlName="conf_password" (focus)="isPassMatch = 0" />
+                                        <div class="text-center"
+                                            *ngIf="LoginForm.get('conf_password')?.invalid && 
+                                    ForgotForm.get('conf_password')?.errors && 
+                                    (ForgotForm.get('conf_password')?.dirty || ForgotForm.get('conf_password')?.touched)">
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('conf_password')?.hasError('required')">
+                                                This field is required.
+                                            </small>
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('conf_password')?.hasError('minlength')">
+                                                Minimum 8 characters.
+                                            </small>
+                                            <small class="text-danger"
+                                                *ngIf="ForgotForm.get('conf_password')?.hasError('maxlength')">
+                                                Maximum 30 characters.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group pt-3 text-center">
+
+                                    <!-- recover-btn -->
+                                    <button [disabled]="!forgotForm.form.valid" type="submit"
+                                        class="btn btn-primary">recover</button>
+
+                                    <!-- login btn -->
+                                    <button type="button" class="btn btn-success m-2"
+                                        (click)="resetRecovery()">Login</button>
+
+
+                                </div>
+
+                                <!-- recovery msg -->
+                                <div class="mt-2 text-center h5 text-success" *ngIf="recoverStatus==200">
+                                    <p>Account successfully recovered</p>
+                                </div>
+
+                                <!-- password error msg -->
+                                <div class="mt-2 text-center text-danger" *ngIf="isPassMatch==1">
+                                    <p>Passwords won't match</p>
+                                </div>
+
+                                <!-- email validation msg -->
+                                <div class="mt-2 text-center text-danger" *ngIf="isEmailMatch==1">
+                                    <p>email does not match for {{forgot_Username}}</p>
+                                </div>
+
+                            </form>
+                        </div>
+                    </ng-template>
+                </ng-template>
+
+            </ng-template>
+
+            <!-- signup template -->
+            <ng-template #signup>
+                <div @myInsertRemoveTrigger class="col-sm p-5 left d-block">
+
+                    <div class="h2 pb-3 text-center" id="form-name">
+                        Please Signup
+                    </div>
+
+                    <!-- Signup form -->
+                    <form [formGroup]="SignUpForm" class="form-inline" #signupForm="ngForm"
+                        (ngSubmit)="signupAction(signupForm)">
+
+                        <div class="row">
+                            <!-- fullname -->
+                            <div class="col">
+                                <input type="text" class="form-control" name="fullname" id="fullname"
+                                    placeholder="fullname" formControlName="fullname" (focus)="signupStatus=0" />
+                                <div class="text-center" *ngIf="SignUpForm.get('fullname')?.invalid && 
+                                SignUpForm.get('fullname')?.errors && 
+                                (SignUpForm.get('fullname')?.dirty || SignUpForm.get('fullname')?.touched)">
+                                    <small class="text-danger" *ngIf="SignUpForm.get('fullname')?.hasError('required')">
+                                        This field is required.
+                                    </small>
+                                    <small class="text-danger"
+                                        *ngIf="SignUpForm.get('fullname')?.hasError('minlength')">
+                                        Minimum 2 characters.
+                                    </small>
+                                    <small class="text-danger"
+                                        *ngIf="SignUpForm.get('fullname')?.hasError('maxlength')">
+                                        Maximum 20 characters.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <!-- email  -->
+                            <div class="col">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="email"
+                                    formControlName="email" />
+                                <div class="text-center" *ngIf="SignUpForm.get('email')?.invalid && 
+                                SignUpForm.get('email')?.errors && 
+                                (SignUpForm.get('email')?.dirty || SignUpForm.get('email')?.touched)">
+                                    <small class="text-danger" *ngIf="SignUpForm.get('email')?.hasError('required')">
+                                        This field is required.
+                                    </small>
+                                    <small class="text-danger" *ngIf="SignUpForm.get('email')?.hasError('pattern')">
+                                        enter valid email.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row pt-3">
+                            <!-- Username -->
+                            <div class="col">
+                                <input type="text" class="form-control" name="username" id="username"
+                                    placeholder="username" formControlName="username" (focus)="signupStatus=0" />
+                                <div class="text-center" *ngIf="SignUpForm.get('username')?.invalid && 
+                                SignUpForm.get('username')?.errors && 
+                                (SignUpForm.get('username')?.dirty || SignUpForm.get('username')?.touched)">
+                                    <small class="text-danger" *ngIf="SignUpForm.get('username')?.hasError('required')">
+                                        This field is required.
+                                    </small>
+                                    <small class="text-danger"
+                                        *ngIf="SignUpForm.get('username')?.hasError('minlength')">
+                                        Minimum 8 characters.
+                                    </small>
+                                    <small class="text-danger"
+                                        *ngIf="SignUpForm.get('username')?.hasError('maxlength')">
+                                        Maximum 20 characters.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <!-- password  -->
+                            <div class="col">
+                                <input type="password" class="form-control" name="password" id="password"
+                                    placeholder="password" formControlName="password" />
+                                <div class="text-center" *ngIf="LoginForm.get('password')?.invalid && 
+                                SignUpForm.get('password')?.errors && 
+                                (SignUpForm.get('password')?.dirty || SignUpForm.get('password')?.touched)">
+                                    <small class="text-danger" *ngIf="SignUpForm.get('password')?.hasError('required')">
+                                        This field is required.
+                                    </small>
+                                    <small class="text-danger"
+                                        *ngIf="SignUpForm.get('password')?.hasError('minlength')">
+                                        Minimum 8 characters.
+                                    </small>
+                                    <small class="text-danger"
+                                        *ngIf="SignUpForm.get('password')?.hasError('maxlength')">
+                                        Maximum 30 characters.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group pt-3 text-center">
+
+                            <!-- signup-btn -->
+                            <button [disabled]="!signupForm.form.valid" type="submit"
+                                class="btn btn-primary">Signup</button>
+
+                            <!-- login btn -->
+                            <button type="button" class="btn btn-success m-2" (click)="loginsignup=true">Login</button>
+
+                        </div>
+
+                        <!-- signup msg -->
+                        <div class="mt-2 text-center h5 text-success" *ngIf="signupStatus==201">
+                            <p>Signup successful</p>
+                        </div>
+
+                    </form>
+
+                </div>
+            </ng-template>
+
+            <div class="container-fluid col-sm-auto p-5">
+
+                <img id="rightImg" class="img-fluid mx-auto d-block mt-3" src="../../assets/images/new.png"
+                    alt="Medical Image" width="450vw" height="auto" />
+
+                <div class="row p-4 text-center text-primary h4">
+                    <p>One Appointment, Your health is ours.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="pagesection wf-section text-center pt-5">
+
+        <div class="pagecontainer">
+
+            <h4 class="oneliner mb-5">The world’s health rely on Medicare to make better life and habitat.</h4>
+
+        </div>
+
+    </div>
+
+</div>
+
+<app-ass14-footer></app-ass14-footer>

@@ -1,0 +1,145 @@
+This key word in java
+========================
+1.This keyword refers to current instance of a class
+2.Using this keyword we can access instance members.
+3.Specifying this keyword is sometimes optional and sometimes mandatory.
+
+
+Mandatory:
+=========
+If there is a confusion between instance variable and local variable then specifying this keyword is mandatory. In such case we don't specify this keyword then the compiler will also not specify this keyword and instead access local variable. If we want to access instancevariable then the programmer has to specify this keyword.
+
+ex:
+instace variable = local variable(parameters)
+  
+class Student{
+int x=10; // instance variable
+void display () {
+int x=20; // local variable
+System.out.println( this .x);
+public static void main(String args[]){
+Student stu = new Student () ;
+stu.display();
+}
+
+Optional:
+==========
+If there is no confusion between instance variable and local variable then specifying this keyword is optional. In such case we don't specify this keyword then the compiler will specify this keyword automatically and access instance variables.
+
+example:
+*********
+Class Student{
+int x=10; // instance variable
+void display (){
+int y=20; // local variable
+System.out.println (x) ;
+public static void main(String args[]){
+Student stu = new Student ();
+stu.display ();
+}
+
+
+//////////////normally instance variables can be initialized using constructors/////////////////
+Class Student{
+int x;		 // instance variable
+Student (int x){ /l parameter
+this.x;
+void display (){
+system.out.println (x) ;
+public static void main(String args[]){
+Student stu = new Student (5);
+stu.display () ;
+}
+
+Super key word in java
+========================
+1) The super keyword is used for accessing parent cLass instance members (instance variable and instance methods) and constructors.
+2) The super keyword can be specified either in child class constructors or child class instance methods.
+3) The super keyword canot be specified in child class static methods.
+4)Super key word must stated on first line of method 
+
+
+calling parent class instance variables
+*********************************
+cLass prakash{
+int x=30; 						//parent class instance variables
+
+I/ instance variable
+class Abhishek extends Kotha{
+// instance variable
+
+
+int x=20; 						//child class instance variables
+void m1(){
+
+
+
+int x = 10;						 //local variables
+System.out.println (x) ;
+System.out.println (this .x);
+System.out.println(super.x)
+I/ /local variable
+public static void main(String[] args) {
+Abhishek a = new Abhishek ()
+a.m1();
+
+
+calling parent class instance methods by child class instance methods:
+*************************************************************
+
+class Kothat
+void m1()
+System.out.println ("Hello from parent") ;
+class Abhishek extends Kotha{
+void m1(){
+super.m1();
+System.out.println ( "Hello from child") ;
+public static void main(String[] args)
+Abhishek a1 = new Abhishek () ;
+a1.m1();
+}
+
+
+calling parent class instance methods by child class constructors:
+********************************************************
+cLass Kothat
+Kotha()
+System.out.println ("Parent ");
+cLass Abhishek extends Kotha{
+Abhishek (){
+super ();			//super key word must be in first line of the child class
+System.out.println (°child") ;
+public static void main(String [] args) {
+Abhishek a = new Abhishek();
+}
+
+
+Constructor:
+===========
+No, constructor does not have any return type in Java. Constructor looks like method but it is not. It does not have a return type and its name is same as the class name. Mostly it is used to instantiate the instance variables of a class.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

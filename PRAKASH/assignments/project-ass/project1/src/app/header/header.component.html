@@ -1,0 +1,139 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+            <div class="logo">Solventek<strong>CODE</strong></div>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </div>
+    </div>
+</nav> -->
+<!-- ---------------------------------------end--------------------------------------- -->
+
+<!-- <header class="bg text-center text-white fixed-top">
+  <div data-navigation="container" class="i-top-header">
+      <div class="wrapper top-section"> -->
+
+        <!-- --------------------------------------------practice----------------------------------- -->
+        <!-- <div class="hleft"><a class="logo selfLogo" ><img alt="logo"
+              src="../assets/images/logo.png"></a>
+        </div> -->
+        <!-- <div class="container">
+          <div class="row">
+          <div class="col"><img src="../../assets/images/download.png" alt="solventek" height="50" width="50"></div> -->
+          <!-- <div class="col"> -->
+             <!-- <p class="logo" >Solventek<strong class="code">CODE</strong></p> -->
+<!-- ----------------------------------------------end------------------------------------- -->
+
+            <!-- <div class="logo" ><img  class="imglogo" src="../../assets/images/solventeklogo.webp"  alt="solventek">
+             
+            </div> -->
+    
+        
+        
+        <!-- <div class="mnav_hb hide">
+          <div class="hamburger"><span class="line"></span><span class="line"></span><span class="line"></span></div>
+        </div>
+        <nav class="hright dnav">
+          <ul>
+      <li *ngIf="navigators!=true" routerLinkActive="active"><a routerLink="/home">Home</a></li> -->
+
+
+            <!-- <li *ngIf="login===true" routerLinkActive="active"><a routerLink="/reg">Sign Up</a></li>
+            <li *ngIf="reg===true" routerLinkActive="active"><a routerLink="/login">Sign In</a></li>  -->
+
+   <!-- ---------------------------------practice-----------------------------------------------------          -->
+            <!-- <li class="mt-2" *ngIf="dash===true" routerLinkActive="active"><span class="username"><i class="bi bi-circle-fill"></i>&nbsp;&nbsp;{{fullname}}</span></li>
+            <li  *ngIf="dash===true" routerLinkActive="active"><button type="button" (click)="Logout()" class="logout btn btn-danger">Logout</button></li> -->
+            <!-- <li routerLinkActive="active"><a routerLink="/dashboard">Dashboard</a></li>
+            <li routerLinkActive="active"><a routerLink="/logout">Logout</a></li> -->
+<!-- -------------------------------------------------end------------------------------------------------------ -->
+            
+          <!-- <li *ngIf="dash===true" routerLinkActive="active">
+            <div class="dropdown dropleft ">
+            <div class="btn dropdown-toggle" data-toggle="dropdown"  id="dropdownMenuButton"  aria-haspopup="true" aria-expanded="true">  
+            <img src="../../assets/images/emptypic.jpg" width="35" height="35" class="rounded-circle" alt="...">
+            </div>
+       
+            <div class="dropdown-menu">
+              <div class="btn btn-default w-25" href="#"><span class="username"><i class="bi bi-circle-fill"></i>&nbsp;&nbsp;{{fullname}}</span></div>
+              <div class="dropdown-divider"></div>
+              <div class="btn btn-default" href="#"><div class="menu-item"><div (click)="Logout()" class="logout">Logout</div></div></div>
+            </div>
+          </div>
+          </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header> -->
+
+
+
+
+
+
+  <mat-toolbar color="" class=" bg justify-content-between">    
+    <button mat-icon-button (click)="nav.toggle()"><mat-icon>menu</mat-icon></button>
+    <div class="logo"><img class="imglogo" src="../../assets/images/solventeklogo.webp"  alt="solventek"></div>
+    <nav class="hright dnav">
+      <ul>
+        <li  *ngIf="login===true" routerLinkActive="active"><a routerLink="/reg">Sign Up</a></li>
+        <li  *ngIf="reg===true" routerLinkActive="active"><a routerLink="/login">Sign In</a></li>
+        <li  *ngIf="dash===true" routerLinkActive="active">
+        <div class="dropdown dropleft">
+        <div class="btn dropdown-toggle" data-toggle="dropdown"  id="dropdownMenuButton"  aria-haspopup="true" aria-expanded="true">  
+        <img src="../../assets/images/emptypic.jpg" width="35" height="35" class="rounded-circle" alt="...">
+        </div>
+   
+        <div class="dropdown-menu">
+          <div class="btn btn-default w-25" href="#"><span class="username"><i class="bi bi-circle-fill"></i>&nbsp;&nbsp;fullname</span></div>
+          <div class="dropdown-divider"></div>
+          <div class="btn btn-default" href="#"><div class="menu-item"><div (click)="Logout()" class="logout">Logout</div></div></div>
+        </div>
+      </div>
+      </li>
+      </ul>
+    </nav>
+
+
+    <!-- <div class="extra">
+    <button mat-icon-button></button>
+    </div> -->
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav-wrapper">
+    <mat-sidenav opened="true" #nav mode="side">
+      <mat-list class="mt-5">
+        <mat-list-item routerLinkActive="active">
+          <button class="sidenav-btn" routerLink="workflow">
+            <mat-icon>adb</mat-icon>
+            Workflows
+          </button>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+          <button class="sidenav-btn" routerLink="executions">
+            <mat-icon>settings</mat-icon>
+            Executions
+          </button>
+        </mat-list-item>
+       
+        <mat-list-item routerLinkActive="active">
+          <button class="sidenav-btn" routerLink="jobprofile">
+            <mat-icon>description</mat-icon>
+            Reports
+          </button>
+        </mat-list-item>
+  
+        <mat-list-item routerLinkActive="active">
+          <button class="sidenav-btn" routerLink="schedule">
+            <mat-icon>edit</mat-icon>
+            Schedule
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+   

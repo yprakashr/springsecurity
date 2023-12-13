@@ -1,0 +1,970 @@
+/* *******************Assignment-List CSS**************************** */
+
+#ass-li {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+#ass-li .ass-list header {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  background-color: lightsteelblue;
+  color: black;
+  font-size: 25px;
+  text-align: center;
+  padding: 5px;
+}
+
+#ass-li .ass-list footer {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+#ass-li .ass-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#ass-li .ass-list th,
+#ass-li .ass-list td {
+  text-align: center;
+  border: 2px solid plum;
+  padding: 5px;
+}
+#ass-li .ass-list th {
+  background-color: salmon;
+}
+#ass-li .ass-list tr:nth-child(odd) {
+  background-color: bisque;
+}
+#ass-li .ass-list tr:nth-child(even) {
+  background-color: beige;
+}
+
+/* *******************Assignment-1 CSS**************************** */
+
+#ass-1 {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+}
+.ass1-header {
+  background-color: lightsteelblue;
+  padding: 15px;
+  font-size: 30px;
+  text-align: center;
+  position: sticky;
+  width: 100%;
+}
+
+.ass1-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+}
+
+.ass1-footer img {
+  padding: 10px;
+}
+.ass1-footer a {
+  text-decoration: none;
+  font-size: 20px;
+  padding-left: 30px;
+  color: blueviolet;
+}
+
+.ass1-main-body {
+  padding: 20px;
+}
+.ass1-main-body h1 {
+  text-align: left;
+}
+
+.ass1-main-body h2 {
+  text-align: center;
+}
+
+.ass1-main-body p {
+  font-size: 25px;
+}
+
+.ass1-main-body img {
+  border-radius: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 30px;
+}
+
+.ass1-main-body ul,
+h1 {
+  font-size: 30px;
+}
+
+/* *******************Assignment-2 CSS**************************** */
+
+#ass2-body {
+  padding: 25px;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ass2-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+
+.ass2-table th,
+.ass2-table td {
+  text-align: center;
+  border: 3px solid rgb(186, 175, 238);
+  padding: 5px;
+}
+
+.ass2-table tr:nth-child(odd) {
+  background-color: lightpink;
+}
+
+.ass2-table tr:nth-child(even) {
+  background-color: wheat;
+}
+.ass2-table #sal {
+  background-color: rgb(255, 204, 153);
+  color: saddlebrown;
+}
+.ass2-table #head {
+  background-color: rgb(255, 204, 153);
+}
+.ass2-table #data {
+  color: maroon;
+}
+
+/* *******************Assignment-3 CSS**************************** */
+
+#ass3-body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ass3-inputs {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.ass3-submit {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.ass3-submit:hover {
+  background-color: #45a049;
+}
+
+.ass3-form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 100%;
+}
+
+.ass3-header {
+  width: 100%;
+  background-color: lightsteelblue;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.ass3-page2 h1 {
+  text-align: center;
+}
+
+/* *******************Assignment-4 CSS**************************** */
+
+#ass4-body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: azure;
+  box-sizing: border-box;
+}
+
+#ass4-body #leftbox {
+  float: left;
+  background-color: azure;
+  width: 50%;
+  height: fit-content;
+  text-align: justify;
+  margin-top: 50px;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+#ass4-body #rightbox {
+  float: right;
+  background-color: lightgrey;
+  width: 50%;
+  height: fit-content;
+  text-align: justify;
+  margin-top: 50px;
+  box-sizing: border-box;
+}
+
+#ass4-body form {
+  margin: 25px;
+}
+
+#ass4-body header,
+#ass4-body footer {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+}
+
+#ass4-body header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 5px;
+  justify-content: space-between;
+}
+
+#ass4-body footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  font-size: 20px;
+  padding-top: 5px;
+  justify-content: space-between;
+}
+
+#ass4-body header img,
+#ass4-body footer img {
+  float: left;
+  padding: 5px;
+  padding: 5px;
+}
+
+#ass4-body header span,
+#ass4-body footer span {
+  margin: 0 45% 0 0;
+}
+#ass4-body form {
+  text-align: left;
+}
+
+#ass4-body input[type="text"],
+#ass4-body input[type="email"],
+#ass4-body textarea {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#ass4-body select {
+  width: 40%;
+  padding: 10px 20px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#ass4-body input[type="submit"] {
+  width: 15%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#ass4-body input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.ass4-page2 h1 {
+  text-align: center;
+}
+
+/* *******************Practical Test-1 CSS**************************** */
+
+.ass5 {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ass5-header,
+.ass5-footer {
+  background-color: black;
+  color: white;
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+}
+.ass5-header {
+  position: sticky;
+  top: 0;
+  padding: 5px;
+}
+.ass5-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+}
+.container1 {
+  padding: 15px;
+}
+.ass5 .item1,
+.ass5 .item2,
+.ass5 .item3 {
+  width: 50%;
+  box-shadow: 1px 1px 10px gray;
+}
+.ass5 .item1 {
+  border-radius: 5px;
+  border: 1px solid rgb(201, 201, 201);
+  padding: 5px;
+  background-color: whitesmoke;
+}
+.ass5 .item2 {
+  border-radius: 5px;
+  border: 1px solid rgb(201, 201, 201);
+  padding: 5px;
+  text-align: justify;
+  background-color: whitesmoke;
+}
+.ass5 .item2 #para1 {
+  color: blue;
+  margin-left: 150px;
+}
+.ass5 .item2 #para2 {
+  color: #45a049;
+}
+.ass5 .item2 img {
+  border-radius: 5px;
+}
+.ass5 .item3 {
+  border-radius: 5px;
+  border: 1px solid rgb(201, 201, 201);
+  padding: 10px;
+  text-align: justify;
+  background-color: whitesmoke;
+}
+.ass5-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+}
+.ass5-radio,
+.ass5-check {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+}
+.ass5-inputs {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.ass5-textarea {
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px gray;
+}
+
+.ass5 .container2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: green;
+}
+.ass5 .container2 textarea {
+  padding: 10px 10px;
+}
+.ass5 .submit-btn {
+  text-align: center;
+}
+#ass5-btn {
+  background-color: green;
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+#ass5-btn:hover {
+  box-shadow: 1px 1px 10px darkgreen;
+}
+#ass5-btn a {
+  text-decoration: none;
+  color: white;
+}
+.ass5 .form-heading {
+  text-align: center;
+}
+.ass5-page2-h1 {
+  text-align: center;
+}
+
+.ass5 input[type="radio"],
+.ass5 input[type="checkbox"] {
+  margin-left: 20px;
+}
+.ass5-page2 {
+  padding: 50px;
+}
+.ass5 .item2-img {
+  float: left;
+}
+.ass5 .item2-p2 {
+  float: left;
+}
+
+.ass5-page2 h1 {
+  text-align: center;
+  font-size: 200px;
+}
+
+.ass5 .container1 .item3 {
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
+
+.ass5 .container1 .item3 {
+  position: relative;
+  height: 200px;
+}
+
+.ass5 .container1 .sup {
+  display: block;
+  position: relative;
+  width: 50%;
+  float: left;
+  padding-bottom: 15%;
+  line-height: 100%;
+  text-align: justify;
+  z-index: 1;
+}
+
+.ass5 .container1 .inf {
+  display: block;
+  position: relative;
+  width: 50%;
+  float: left;
+  padding-top: 15%;
+  line-height: 100%;
+  text-align: justify;
+  z-index: 1;
+}
+
+.ass5 .container1 .item3::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(157, 255, 181);
+  background-size: cover;
+  clip-path: polygon(100% 0%, 0% 0%, 0% 100%);
+}
+
+/* ******************************** Assignment-6 CSS ********************************* */
+.ass6 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ass6 h1 {
+  text-align: center;
+  color: rgb(0, 2, 99);
+  text-shadow: 1px 1px 10px gray;
+}
+#thankyou {
+  background: linear-gradient(to right, #f32170, #ff6b08, #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.ass6 form {
+  border: 2px solid rgb(108, 108, 255);
+  border-radius: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 1px 1px 10px rgb(0, 0, 252);
+  background-image: linear-gradient(
+    rgb(0, 1, 63),
+    rgb(27, 0, 61),
+    rgb(0, 1, 63)
+  );
+  color: white;
+}
+
+.ass6 label {
+  padding-top: 10px;
+}
+.ass6 #submit-btn {
+  margin-top: 10px;
+  background-color: rgb(46, 46, 255);
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  width: 70px;
+  color: white;
+}
+.ass6 .submit {
+  text-align: center;
+}
+.ass6 #submit-btn:hover {
+  filter: drop-shadow(1px 1px 5px rgb(97, 0, 76));
+  cursor: pointer;
+}
+.ass6 form input,
+.ass6 form select {
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(199, 195, 255);
+}
+.ass6 form input[type="text"]:hover,
+.ass6 form input[type="number"]:hover,
+.ass6 form select:hover {
+  box-shadow: 1px 1px 5px rgb(255, 255, 255);
+}
+.ass6 form input[type="text"]:focus,
+.ass6 form input[type="number"]:focus,
+.ass6 form select:focus {
+  outline: none;
+  border: 2px solid rgb(106, 106, 255);
+}
+.ass6 form textarea {
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(199, 195, 255);
+}
+.ass6 form textarea:hover {
+  box-shadow: 1px 1px 5px rgb(255, 255, 255);
+}
+.ass6 form textarea:focus {
+  outline: none;
+  border: 2px solid rgb(106, 106, 255);
+}
+.ass6 .radios {
+  padding-top: 10px;
+}
+.ass6 .checks {
+  padding-top: 10px;
+}
+.ass6 input[type="radio"]:hover,
+.ass6 input[type="checkbox"]:hover {
+  filter: drop-shadow(1px 1px 5px wheat);
+  cursor: pointer;
+}
+#thankyou-heading {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ass6 #thankyou {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to right,
+      #f32170,
+      #ff6b08,
+      #cf23cf,
+      #eedd44,
+      green
+    )
+    30;
+  border-radius: 20px;
+}
+#ass6-thankyou-body {
+  background-color: azure;
+}
+
+/* ******************************** Assignment-7 CSS ********************************* */
+
+.ass7 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ass7 #heading {
+  text-align: center;
+  color: green;
+}
+.ass7 form {
+  border: 2px solid green;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 1px 1px 10px green;
+}
+.ass7 input,
+.ass7 select,
+.ass7 textarea {
+  border-radius: 10px;
+  padding: 5px;
+  border: 2px solid green;
+}
+.ass7 label {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.ass7 .radios,
+.ass7 .checkboxes {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.ass7 .submit {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.ass7 #submit-btn {
+  background-color: green;
+  color: white;
+}
+.ass7 #submit-btn:hover {
+  box-shadow: 1px 1px 5px black;
+  cursor: pointer;
+}
+.ass7 #java,
+.ass7 #html,
+.ass7 #css {
+  padding-top: 10px;
+  display: none;
+}
+.ass7 #form2 {
+  display: none;
+}
+
+#ass7-thankyou-body {
+  background-color: azure;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#ass7-thankyou-body #thankyou {
+  text-align: justify;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to right,
+      #f32170,
+      #ff6b08,
+      #cf23cf,
+      #eedd44,
+      green
+    )
+    1;
+  border-radius: 20px;
+  padding: 10px;
+}
+#ass7-thankyou-body #submit-again {
+  margin-top: 20px;
+}
+#submit-again a {
+  color: #001aff;
+  font-weight: bold;
+}
+.ass7 form input[type="text"]:hover,
+.ass7 form input[type="number"]:hover,
+.ass7 form select:hover {
+  box-shadow: 1px 1px 5px green;
+}
+.ass7 form input[type="text"]:focus,
+.ass7 form input[type="number"]:focus,
+.ass7 form select:focus {
+  outline: none;
+  border: 2px solid rgb(0, 255, 98);
+}
+.ass7 form textarea:hover {
+  box-shadow: 1px 1px 5px green;
+}
+.ass7 form textarea:focus {
+  outline: none;
+  border: 2px solid rgb(0, 255, 98);
+}
+.ass7 input[type="radio"]:hover,
+.ass7 input[type="checkbox"]:hover {
+  filter: drop-shadow(1px 1px 5px rgb(0, 112, 0));
+  cursor: pointer;
+}
+
+/* *******************Assignment-8 CSS**************************** */
+
+.ass8 * {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: gold;
+}
+.ass8 {
+  background-color: rgb(0, 0, 43);
+  background-size: auto;
+}
+.ass8 {
+  background: rgb(0, 1, 73);
+  background-size: auto;
+}
+.ass8 .header {
+  background-color: black;
+  font-size: 35px;
+  text-align: center;
+  color: gold;
+  padding: 10px;
+  box-shadow: 2px 1px 5px gold;
+  text-shadow: 2px 2px 15px gold;
+}
+.ass8 .container1 {
+  display: grid;
+  grid-template-rows: 50% auto;
+  width: 100%;
+  padding-top: 10px;
+  font-size: 20px;
+}
+.ass8 #top {
+  grid-row: 1/2;
+}
+.ass8 #bottom {
+  grid-row: 2/3;
+}
+.ass8 .items {
+  box-shadow: 0px 0px 5px gold;
+}
+.ass8 #form {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 20px;
+  border: 2px solid gold;
+  box-shadow: 0px 0px 30px gold;
+  border-radius: 20px;
+  margin-top: 50px;
+}
+.ass8 .container2 {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: auto auto;
+  border-top: none;
+}
+.ass8 #Img {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  padding: 10px;
+  border-top: none;
+  margin-top: 60px;
+}
+.ass8 #data {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: none;
+  border-top: none;
+  border-right: none;
+  font-size: 30px;
+}
+.ass8 #threeimg {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  padding: 20px;
+  text-align: justify;
+  border-bottom: none;
+  border-right: none;
+}
+.ass8 label {
+  padding-top: 20px;
+}
+.ass8 #namealert {
+  display: none;
+  color: red;
+  font-size: 20px;
+  text-align: center;
+}
+.ass8 #minagealert {
+  display: none;
+  text-align: center;
+  color: red;
+  font-size: 20px;
+}
+.ass8 #threeimg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  filter: drop-shadow(1px 1px 10px gold);
+}
+.ass8 #selectimg {
+  display: block;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  filter: drop-shadow(1px 1px 10px gold);
+}
+.ass8 input,
+.ass8 select,
+.ass8 option {
+  border-radius: 5px;
+  padding: 5px;
+  border: 2px solid gold;
+  color: black;
+}
+.ass8 #form input[type="text"]:hover,
+.ass8 #form input[type="number"]:hover,
+.ass8 #form select:hover {
+  box-shadow: 0px 0px 10px gold;
+}
+.ass8 #form input[type="text"]:focus,
+.ass8 #form input[type="number"]:focus,
+.ass8 #form select:focus {
+  outline: none;
+  border: 2px solid gold;
+}
+
+/* *******************Assignment-9 CSS**************************** */
+
+.ass9 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ass9 table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  box-shadow: 0px 0px 5px orange;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.ass9 td,
+.ass9 th {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  text-align: center;
+}
+.ass9 th {
+  color: orange;
+}
+.ass9 h1 {
+  color: Orange;
+}
+
+.ass9 #search {
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid orange;
+}
+
+.ass9 #search:focus {
+  outline: none;
+  border: 2px solid green;
+}
+
+.ass9 #search:hover {
+  box-shadow: 0px 0px 5px orange;
+}
+
+.ass9 button {
+  background-color: rgb(255, 211, 130);
+  border: 2px solid rgb(255, 180, 68);
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.ass9 tr:nth-child(even) {
+  background-color: beige;
+}
+
+.ass9 select {
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid orange;
+  cursor: pointer;
+}
+.ass9 select:focus {
+  outline: none;
+  border: 2px solid green;
+}
+.ass9 select:hover {
+  box-shadow: 0px 0px 5px orange;
+}
+
+.ass9 hr {
+  border: 1px solid orange;
+  margin-bottom: 15px;
+}
+
+.ass9 .options {
+  border: 2px solid orange;
+  border-radius: 10px;
+  background-color: red;
+}

@@ -1,0 +1,490 @@
+@charset "ISO-8859-1";
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+.ass12 * {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ass12 body {
+  padding: 10px;
+  padding-top: 0px;
+}
+
+.ass12 .header {
+  padding: 10px;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0px 1px 5px rgb(228, 228, 228);
+}
+
+.header #logo {
+  text-decoration: none;
+}
+
+.header #fst {
+  color: rgb(0, 85, 255);
+  border-top: 4px solid rgb(0, 240, 0);
+  border-left: 4px solid rgb(0, 240, 0);
+  border-bottom: 4px solid rgb(0, 240, 0);
+  border-radius: 10px 0px 0px 0px;
+}
+.header #snd {
+  color: rgb(0, 240, 0);
+  border-top: 4px solid rgb(0, 100, 250);
+  border-right: 4px solid rgb(0, 100, 250);
+  border-bottom: 4px solid rgb(0, 100, 250);
+  border-radius: 0px 0px 10px 0px;
+}
+
+.header #plus {
+  color: rgb(0, 228, 0);
+  text-shadow: 0px 0px 5px rgb(0, 228, 0);
+}
+
+.ass12 #container {
+  padding: 50px;
+  box-shadow: 0px 0px 5px rgb(197, 197, 197);
+  border-radius: 10px;
+  width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.ass12 #signinForm {
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+}
+
+.ass12 #signupForm {
+  display: none;
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+}
+
+.ass12 .login_sign_heading {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.ass12 .container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.ass12 .container .right img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 75px;
+}
+
+.ass12 .container .right p {
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  color: rgb(0, 163, 98);
+}
+
+.ass12 .container .right .appointment-a {
+  text-decoration: none;
+  text-align: center;
+  text-decoration: none;
+  color: rgb(33, 106, 252);
+}
+
+.ass12 .container .left .signinInfo p {
+  margin-top: 20px;
+  font-size: 15px;
+  text-align: center;
+  color: rgb(33, 106, 252);
+}
+
+.ass12 .container .left #signup-msg,
+.ass12 .container .left #appointment-msg {
+  display: none;
+  text-align: center;
+}
+
+.ass12 .container .left #appointment-msg p {
+  margin-top: 20px;
+  font-size: 15px;
+  color: blue;
+  margin-right: 80px;
+}
+
+.ass12 .container .left #signup-msg p {
+  margin-top: 20px;
+  font-size: 15px;
+  color: blue;
+}
+
+.ass12 .container .left #loginMsg p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+  color: rgb(255, 0, 0);
+}
+
+.ass12 .container .right .appointment-a a:hover {
+  color: rgb(0, 98, 255);
+  filter: drop-shadow(0px 0px 5px rgb(33, 106, 252));
+}
+
+.ass12 #form-heading {
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.ass12 ::placeholder {
+  color: gray;
+  opacity: 1;
+  font-weight: 700;
+}
+
+.ass12 input[type="text"],
+.ass12 input[type="number"],
+.ass12 input[type="date"],
+.ass12 input[type="time"],
+.ass12 input[type="password"],
+.ass12 select {
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.ass12 select {
+  margin-left: 10px;
+  width: 137px;
+}
+
+.ass12 input[type="date"],
+.ass12 input[type="time"] {
+  width: 137px;
+}
+
+.ass12 input[type="text"]:focus,
+.ass12 input[type="number"]:focus,
+.ass12 input[type="date"]:focus,
+.ass12 input[type="time"]:focus,
+.ass12 .add_info textarea:focus,
+.ass12 input[type="password"]:focus,
+.ass12 select:focus {
+  outline: none;
+  border: 1px solid rgb(55, 121, 255);
+}
+
+.ass12 input[type="text"]:hover,
+.ass12 input[type="number"]:hover,
+.ass12 input[type="date"]:hover,
+.ass12 input[type="time"]:hover,
+.ass12 .add_info textarea:hover,
+.ass12 input[type="password"]:hover,
+.ass12 select:hover {
+  box-shadow: 0px 0px 2px blue;
+}
+
+.ass12 input[type="radio"],
+.ass12 input[type="checkbox"] {
+  margin-left: 20px;
+}
+
+.ass12 input[type="radio"]:hover,
+.ass12 input[type="checkbox"]:hover {
+  filter: drop-shadow(0px 0px 2px blue);
+  cursor: pointer;
+}
+
+.ass12 .date-time input {
+  margin-left: 10px;
+}
+
+.ass12 label {
+  font-weight: 600;
+}
+
+.ass12 textarea {
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 5px;
+  padding: 5px;
+}
+.ass12 .gender,
+.ass12 .vaccination,
+.ass12 .date-time,
+.ass12 .age-phone,
+.ass12 .add_info,
+.ass12 .symptoms,
+.ass12 .area {
+  margin-top: 10px;
+}
+
+.ass12 .submit {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.ass12 .submit input {
+  background-color: rgb(33, 106, 252);
+  border-radius: 5px;
+  padding: 8px;
+  color: white;
+  border: none;
+  font-size: 15px;
+  margin-right: 80px;
+}
+
+.ass12 .submit input:hover {
+  background-color: rgb(0, 98, 255);
+  box-shadow: 0px 0px 5px rgb(33, 106, 252);
+}
+
+.ass12 #signup-btn,
+.ass12 #signin-btn,
+.ass12 #signupAction-btn,
+.ass12 .login-btn #login-btn,
+.ass12 #login-sign-btn {
+  background-color: rgb(25, 191, 0);
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  border: none;
+  font-size: 15px;
+}
+
+.ass12 .login-btn {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.ass12 #signin-btn:hover,
+.ass12 #login-btn:hover,
+.ass12 #signup-btn:hover,
+.ass12 .login-btn #signupAction-btn:hover,
+.ass12 #login-sign-btn:hover {
+  background-color: rgb(3, 153, 1);
+  box-shadow: 0px 0px 5px rgb(3, 153, 1);
+}
+
+.ass12 .footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(176, 202, 255);
+  text-align: center;
+}
+
+.fetch * {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fetch .header {
+  text-align: center;
+  color: green;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px;
+  box-shadow: 0px 0px 5px 0px rgb(88, 119, 255);
+  width: 100%;
+}
+
+.fetch .search-sort {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.fetch select {
+  border: 1px solid rgb(88, 119, 255);
+  text-align: center;
+}
+
+.fetch select:hover {
+  box-shadow: 0px 0px 5px rgb(88, 119, 255);
+}
+
+.fetch .sort {
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.fetch option {
+  padding: 15px;
+  text-align: center;
+}
+
+.fetch .show_edit {
+  text-align: center;
+  margin-left: 20px;
+}
+
+.fetch .show_edit button {
+  background-color: rgb(61, 96, 251);
+  border-radius: 5px;
+  border: none;
+  padding: 3px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.fetch .show_edit button:hover {
+  box-shadow: 0px 0px 5px blue;
+}
+
+.fetch .table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.fetch table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 5px rgb(88, 119, 255);
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.fetch th {
+  color: white;
+  background-color: rgb(88, 119, 255);
+}
+
+.fetch tr:nth-child(even) {
+  background-color: rgb(233, 237, 255);
+}
+
+.fetch td,
+.fetch th {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  vertical-align: middle;
+  border: none;
+}
+
+.fetch th:first-child {
+  border-top-left-radius: 20px;
+}
+
+.fetch th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.fetch tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+
+.fetch tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
+}
+
+.fetch h1 {
+  color: green;
+  padding: 10px;
+}
+
+.fetch hr {
+  border: 1px solid rgb(60, 148, 60);
+  margin-bottom: 15px;
+}
+
+.fetch #edit-btn,
+.fetch #update-btn,
+.fetch input[type="submit"] {
+  cursor: pointer;
+  background-color: rgb(53, 165, 53);
+  border: none;
+  border-radius: 5px;
+  color: rgb(186, 255, 186);
+  padding: 3px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.fetch #edit-btn:hover,
+.fetch #update-btn:hover,
+.fetch input[type="submit"]:hover {
+  box-shadow: 0px 0px 5px rgb(88, 119, 255);
+}
+
+.fetch #delete-btn,
+.fetch #logout-btn,
+.fetch #cancel-btn {
+  cursor: pointer;
+  background-color: rgb(250, 53, 53);
+  border: none;
+  border-radius: 5px;
+  padding: 3px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.fetch #delete-btn:hover,
+.fetch #logout-btn:hover,
+.fetch #cancel-btn:hover {
+  box-shadow: 0px 0px 5px rgb(250, 53, 53);
+}
+
+.fetch #search {
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid rgb(88, 119, 255);
+}
+
+.fetch #search:focus {
+  outline: none;
+  border: 2px solid green;
+}
+
+.fetch #search:hover {
+  box-shadow: 0px 0px 5px green;
+}
+
+.fetch #form1 {
+  display: none;
+}
+
+.fetch .edit-input {
+  width: 50px;
+  border-radius: 5px;
+  border: 1px solid rgb(194, 194, 194);
+  padding: 3px;
+}
+.fetch .edit-input:focus {
+  outline: none;
+  border: 1px solid rgb(0, 146, 0);
+}
+.fetch .edit-input:hover {
+  box-shadow: 0px 0px 5px rgb(0, 189, 0);
+}
+
+.fetch #acc-details {
+  margin-left: 10px;
+  border: 2px solid rgb(88, 119, 255);
+  border-radius: 5px;
+  padding: 7px;
+}

@@ -1,0 +1,186 @@
+<div *ngIf="appLoader" class="spinner-border" role="status" style="width: 150px; height: 150px;">
+  <span class="visually-hidden">Loading..</span>
+</div>
+
+<div *ngIf="!appLoader" class="container mt-3">
+  <form [formGroup]="scheduleForm" (ngSubmit)="onSubmitScheduleForm()">
+
+    <div class="row row-cols-lg-auto align-items-center">
+      <div class="col-12">
+        <div class="input-group input-group-sm input-bar d-inline">
+          <i class="bi bi-search position-absolute"></i>
+              <input class="border-0" matInput formControlName="name" placeholder="Work Flow Name"
+                 [matAutocomplete]="auto1">
+              <mat-autocomplete #auto1="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions1 | async" [value]="option.workflowName">
+                  {{ option.workflowName }}
+                </mat-option>
+              </mat-autocomplete>
+              <i class="bi bi-search position-absolute"></i>
+          
+          <!-- <select class="border-0" formControlName="name">
+            <option selected>
+              Work Flow Name
+            </option>
+            <option *ngFor="let option of workFlowName" [ngValue]="option.workflowName"> {{option.workflowName}}
+            </option>
+          </select> -->
+        </div>
+      </div>
+
+      <div class="col-12 col-md-12 py-2">
+        <div class="input-bar d-inline">
+          <input class="border-0" matInput placeholder="Bot Name" formControlName="botname" [matAutocomplete]="auto2">
+          <mat-autocomplete style="overflow:scroll;" #auto2="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions2 | async" [value]="option.name">
+              {{ option.name }}
+            </mat-option>
+          </mat-autocomplete>
+          <i class="bi bi-search position-absolute"></i>
+        </div>
+      </div>
+
+      <!-- <div class="col-12">
+        <input type="date" min={{minStartDate}} formControlName="starDate" placeholder="start Date" width="150" class="input-bar d-inline" name="starDate" id="">
+      </div> -->
+
+      <igx-date-picker class="dateandtimewidth col-12 " formControlName="starDate" [minValue]="minDate">
+        <label igxLabel>Start Date</label>
+      </igx-date-picker>
+
+      <!-- <div class="col-12">
+        <input type="time" formControlName="starTime" width="100" class="input-bar" name="" id="">
+      </div> -->
+
+      <igx-time-picker class="dateandtimewidth col-12" formControlName="starTime">
+        <label igxLabel>Time</label>
+      </igx-time-picker>
+    </div>
+
+
+    <div>
+      <div class="h6 fontColor">Reoccurance</div>
+      <div class="row w-75 row-cols-lg-auto align-items-center">
+
+        <!-- <div class="col-12 input-radio-div d-inline mx-2">
+          <input type="radio" value="hourly" formControlName="reoccurance" class="d-inline input-radio mx-2"
+            name="reoccurance" id="flexCheckDefault1">
+          <label for="flexCheckDefault1" class="font-radio d-inline">Hourly</label>
+        </div> -->
+
+        <div class="col-12 input-radio-div d-inline mx-2">
+          <input type="radio" value="daily" formControlName="reoccurance" class="d-inline input-radio mx-2"
+            name="reoccurance" id="flexCheckDefault2">
+          <label for="flexCheckDefault2" class="font-radio d-inline">Daily</label>
+        </div>
+
+        <div class="col-12 input-radio-div d-inline mx-2">
+          <input type="radio" value="weekly" formControlName="reoccurance" class="d-inline input-radio mx-2"
+            name="reoccurance" id="flexCheckDefault3">
+          <label for="flexCheckDefault3" class="font-radio d-inline">Weekly</label>
+        </div>
+
+        <div class="col-12 input-radio-div d-inline mx-2">
+          <input type="radio" value="monthly" formControlName="reoccurance" class="d-inline input-radio mx-2"
+            name="reoccurance" id="flexCheckDefault4">
+          <label for="flexCheckDefault4" class="font-radio d-inline">
+            Monthly
+          </label>
+        </div>
+
+        <div class="col-12 input-radio-div mx-2 mr-5">
+          <input type="radio" value="custom" formControlName="reoccurance" class="d-inline input-radio mx-2"
+            name="reoccurance" id="flexCheckDefault5">
+          <label for="flexCheckDefault5" class="font-radio d-inline">Custom</label>
+        </div>
+
+        <!-- <div class="col-12">
+          <input type="date" min={{minEndDate}} placeholder="End Date" formControlName="endDate" class="input-bar d-block" name="endDate" id="">
+        </div> -->
+
+        <div class="col-12 mx-3 input-radio-div1">
+          <input type="checkbox" value="noEndDate" formControlName="noEndDate" class=" d-inline input-radio mx-2"
+            name="noEndDate" id="flexCheckDefault6">
+          <label for="flexCheckDefault6" class="font-radio d-inline">No End Date</label>
+        </div>
+
+        <igx-date-picker class="dateandtimewidth col-12" formControlName="endDate" [minValue]="minDate1">
+          <label igxLabel>End Date</label>
+        </igx-date-picker>
+      </div>
+    </div>
+
+
+    <div class="h6 fontColor">Assistance</div>
+    <div class='demo-app'>
+
+      <!-- <div class='demo-app-sidebar'>
+    <div class='demo-app-sidebar-section'>
+      <h2>Instructions</h2>
+      <ul>
+        <li>Select dates and you will be prompted to create a new event</li>
+        <li>Drag, drop, and resize events</li>
+        <li>Click an event to delete it</li>
+      </ul>
+    </div>
+    <div class='demo-app-sidebar-section'>
+      <label>
+        <input
+          type='checkbox'
+          [checked]='calendarVisible'
+          (change)='handleCalendarToggle()'
+        />
+        toggle whole calendar
+      </label>
+    </div>
+    <div class='demo-app-sidebar-section'>
+      <label>
+        <input
+          type='checkbox'
+          [checked]='calendarOptions.weekends'
+          (change)='handleWeekendsToggle()'
+        />
+        toggle weekends
+      </label>
+    </div>
+    <div class='demo-app-sidebar-section'>
+      <h2>All Events ({{events.length}})</h2>
+      <ul>
+        <li *ngFor='let event of events'>
+          <b>{{event.date}}</b>
+          <i>{{event.title}}</i>
+        </li>
+      </ul>
+    </div>
+  </div> -->
+
+      <div class='demo-app-main'>
+        <full-calendar class="calendardesign" *ngIf='calendarVisible()' [options]='calendarOptions'>
+          <ng-template #eventContent let-arg>
+            <!-- <b>{{ arg.timeText }}</b> -->
+            <i>{{ arg.event.title }}</i>
+          </ng-template>
+        </full-calendar>
+      </div>
+    </div>
+
+
+    <div class="justify-content-end d-flex">
+      <button (click)="formReset()" type="button" class="schedulebtn scheduleCancel mx-1">Cancel</button>
+      <button type="submit" class="schedulebtn scheduleSave mx-1">Save</button>
+    </div>
+  </form>
+</div>
+
+
+
+<!-- <igx-time-picker class="w-25" #timePicker formControlName="time" [value]="date1"
+                     
+                    (valueChange)="datePicker.value = timePicker.value">
+                    <label igxLabel>Time</label>
+                </igx-time-picker>
+
+                <igx-date-picker  class="w-25" #datePicker formControlName="date" [value]="date1" [minValue]="minDate"
+                    [maxValue]="maxDate" (valueChange)="timePicker.value = datePicker.value">
+                    <label igxLabel>Date</label>
+                </igx-date-picker> -->

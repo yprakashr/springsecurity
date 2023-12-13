@@ -1,0 +1,495 @@
+/* ************** Header component ************** */
+.header #logo {
+  text-decoration: none;
+}
+
+.header #fst {
+  color: rgb(0, 85, 255);
+  border-top: 4px solid rgb(0, 240, 0);
+  border-left: 4px solid rgb(0, 240, 0);
+  border-bottom: 4px solid rgb(0, 240, 0);
+  border-radius: 10px 0px 0px 0px;
+}
+.header #snd {
+  color: rgb(0, 240, 0);
+  border-top: 4px solid rgb(0, 100, 250);
+  border-right: 4px solid rgb(0, 100, 250);
+  border-bottom: 4px solid rgb(0, 100, 250);
+  border-radius: 0px 0px 10px 0px;
+}
+
+.header #plus {
+  color: rgb(0, 228, 0);
+  text-shadow: 0px 0px 5px rgb(0, 228, 0);
+}
+
+/* ************** Navbar Component **************  */
+#mainNavbar {
+  position: sticky;
+  top: 0;
+  background-color: #b1deff;
+  width: 100%;
+  z-index: 1;
+}
+
+#mainNavbar .navbar-nav a {
+  color: rgb(44, 44, 255);
+}
+
+#mainNavbar .navbar-nav > .active > a {
+  display: none;
+}
+
+#mainNavbar .nav-link {
+  border-radius: 10px;
+  width: fit-content;
+  padding: 10px;
+}
+
+#mainNavbar .navbar-nav a:hover,
+#mainNavbar .nav-link:hover {
+  background-color: #006dbc;
+  color: white;
+  transition: 300ms;
+}
+
+#mainNavbar .navbar-nav .logout {
+  color: red;
+  font-weight: 500;
+}
+
+#mainNavbar .navbar-nav .logout:hover {
+  background-color: rgb(228, 0, 0);
+  color: white;
+  cursor: pointer;
+}
+
+#mainNavbar #navbar-desc {
+  color: rgb(0, 0, 180);
+}
+
+/* ************** Home component **************  */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
+
+.home .h1 {
+  font-family: "Poppins", sans-serif;
+  color: rgb(77, 77, 255);
+}
+
+.home .nav-card {
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 2px 0px 10px rgb(182, 182, 255);
+}
+
+.home .nav-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgb(182, 182, 255), 0 4px 8px rgb(182, 182, 255);
+  transition: 500ms;
+  cursor: pointer;
+}
+
+.home .nav-desc {
+  text-align: center;
+  color: rgb(2, 0, 104);
+}
+
+.home h4 {
+  color: rgb(0, 0, 180);
+  padding-bottom: 5px;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.home .text-right,
+.home .pt-4,
+.home .oneliner {
+  font-size: 20px;
+  color: rgb(0, 0, 173);
+  line-height: 30px;
+}
+
+.home .row1 {
+  background-image: linear-gradient(to left, rgb(200, 200, 252), white);
+  padding: 20px;
+  border-radius: 40px;
+}
+
+.home #content {
+  border-radius: 20px;
+}
+
+.home .right-ps,
+#left-ps p {
+  color: rgb(0, 0, 190);
+}
+
+/* ************** Existing component **************  */
+.existing #heading {
+  color: rgb(0, 0, 180);
+}
+
+.existing #Appts-table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+}
+
+.existing table {
+  border-radius: 20px;
+}
+
+.existing .table {
+  border-bottom: 0px solid transparent;
+}
+
+.existing .table table th {
+  text-shadow: 0px 0px 5px rgb(0, 0, 255);
+  background-color: rgb(88, 119, 255);
+  color: white;
+  text-align: center;
+}
+
+.existing tbody {
+  text-align: center;
+}
+
+.existing td {
+  text-align: center;
+}
+
+.existing .mat-sort-header-container {
+  justify-content: center;
+}
+
+.existing thead th:first-child {
+  border-top-left-radius: 20px;
+}
+.existing thead th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.existing tbody tr:nth-child(even) td {
+  background-color: rgb(231, 231, 255);
+}
+
+.existing tbody tr:last-child td:first-child {
+  border-bottom: none;
+}
+
+.existing tbody tr:last-child td:last-child {
+  border-bottom: none;
+}
+
+.existing tbody tr:last-child {
+  border-bottom: 1px solid rgb(199, 199, 255);
+}
+
+.existing thead tr th:hover {
+  background-color: rgb(38, 54, 122);
+  color: white;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.existing mat-paginator {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.existing .table > :not(caption) > * > * {
+  border-top: none;
+  border-bottom: none;
+}
+
+.existing #search-msg {
+  text-align: center;
+}
+
+.existing #search-msg p {
+  color: red;
+  font-size: 20px;
+}
+
+.existing input:hover {
+  box-shadow: 0px 0px 5px blue;
+  transition: 300ms;
+}
+
+.existing #content {
+  background-image: radial-gradient(rgb(209, 209, 255), white);
+  border-radius: 30px;
+}
+
+.existing .mat-sort-header-stem,
+.existing .mat-sort-header-indicator {
+  color: white;
+}
+
+.right-ps,
+#left-ps p,
+.pagecontainer {
+  color: rgb(0, 0, 190);
+}
+
+/* ************** patients component **************  */
+.patients #heading {
+  color: rgb(0, 0, 190);
+}
+
+.patients #logout-btn {
+  float: right;
+  margin-right: 20px;
+}
+
+.patients #Appts-table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+}
+
+.patients table {
+  border-radius: 20px;
+}
+
+.patients .table {
+  border-bottom: 0px solid transparent;
+}
+
+.patients .table table th {
+  text-shadow: 0px 0px 5px rgb(0, 0, 255);
+  background-color: rgb(88, 119, 255);
+  color: white;
+  text-align: center;
+}
+
+.patients tbody {
+  text-align: center;
+}
+
+.patients td {
+  text-align: center;
+}
+
+.patients .mat-sort-header-container {
+  justify-content: center;
+}
+
+.patients thead th:first-child {
+  border-top-left-radius: 20px;
+}
+.patients thead th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.patients tbody tr:nth-child(even) td {
+  background-color: rgb(231, 231, 255);
+}
+
+.patients tbody tr:last-child td:first-child {
+  border-bottom: none;
+}
+
+.patients tbody tr:last-child td:last-child {
+  border-bottom: none;
+}
+
+.patients tbody tr:last-child {
+  border-bottom: 1px solid rgb(199, 199, 255);
+}
+
+.patients thead tr th:hover {
+  background-color: rgb(38, 54, 122);
+  color: white;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.patients #search {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgb(172, 172, 172);
+  padding: 3px;
+  padding-left: 10px;
+}
+
+.patients #search:hover {
+  outline: none;
+  border-bottom: 2px solid rgb(87, 87, 255);
+  transition: 300ms;
+}
+.patients mat-paginator {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.patients .table > :not(caption) > * > * {
+  border-bottom: none;
+}
+
+.patients .mat-sort-header-stem,
+.patients .mat-sort-header-indicator {
+  color: white;
+}
+
+.patients .pagecontainer {
+  color: rgb(0, 0, 190);
+}
+
+.patients .edit-btn {
+  border: none;
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.patients .edit-btn:hover {
+  box-shadow: 0px 0px 5px rgb(0, 75, 0);
+}
+
+.patients .delete-btn {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.patients .delete-btn:hover {
+  box-shadow: 0px 0px 5px rgb(151, 0, 0);
+}
+
+.patients #sessionBAD .row .col1 {
+  padding-top: 20%;
+}
+
+/* ************** new component **************  */
+.new #form-name {
+  color: rgb(0, 0, 190);
+}
+
+.new #rightImg {
+  border-radius: 50px;
+}
+
+.new .left #appointment-msg {
+  text-align: center;
+}
+
+.new .left #appointment-msg p {
+  font-size: 15px;
+  color: blue;
+}
+
+.new input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.new input {
+  border: 1px solid;
+  border-color: rgb(206, 192, 255);
+}
+
+.new input:hover {
+  box-shadow: 0px 0px 5px blue;
+  border-color: rgb(150, 150, 255);
+  transition: 300ms;
+}
+
+.new .container {
+  box-shadow: 0px 0px 5px rgb(159, 159, 255);
+  border-radius: 30px;
+}
+
+.new input[type="radio"]:hover {
+  cursor: pointer;
+}
+
+.new .oneliner {
+  color: rgb(0, 0, 190);
+}
+
+/* ************** footer component **************  */
+footer #logo {
+  text-decoration: none;
+}
+
+footer #fst {
+  color: rgb(0, 85, 255);
+  border-top: 4px solid rgb(0, 240, 0);
+  border-left: 4px solid rgb(0, 240, 0);
+  border-bottom: 4px solid rgb(0, 240, 0);
+  border-radius: 10px 0px 0px 0px;
+}
+
+footer #snd {
+  color: rgb(0, 240, 0);
+  border-top: 4px solid rgb(0, 100, 250);
+  border-right: 4px solid rgb(0, 100, 250);
+  border-bottom: 4px solid rgb(0, 100, 250);
+  border-radius: 0px 0px 10px 0px;
+}
+
+footer #plus {
+  color: rgb(0, 228, 0);
+  text-shadow: 0px 0px 5px rgb(0, 228, 0);
+}
+
+footer {
+  background-color: #b1deff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+footer ul a {
+  color: blue;
+}
+
+footer ul a:hover {
+  text-decoration: underline;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* ************** login component **************  */
+
+.login #form-name {
+  color: rgb(0, 0, 190);
+}
+
+.login #rightImg {
+  border-radius: 50px;
+}
+
+.login .container {
+  box-shadow: 0px 0px 5px rgb(159, 159, 255);
+  border-radius: 30px;
+}
+
+.login .oneliner {
+  color: rgb(0, 0, 190);
+}
+
+.login .left #login-msg {
+  text-align: center;
+}
+
+.login .left #login-msg p {
+  font-size: 15px;
+  color: red;
+}
+
+.login #forgot-div:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

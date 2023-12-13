@@ -1,0 +1,819 @@
+Servlets:
+========
+Servlets is a specification.for developing web applications with Java
+programming language.
+
+Web Application
+==============
+A web application is a distributed application which runs on browser
+& server.
+
+Distributed Application:
+====================
+An application that is installed on one computer and runs on many
+computers is called as distributed application.
+
+Browser:
+=======
+A browser is a software that executes web pages containing text,
+image, graphics, animation, audio, video, .. etc., 
+
+Browser is called as web client Eecause it sends the request to a
+server to get the response.
+
+Servers:
+======
+A server is a software that receives request from the client, process
+the request, constructs the response & sends the response back to
+a client.
+ 
+Servers are two types:
+==================
+1.Web servers
+2.Application servers
+
+1.Web servers:
+============
+A web server is a server which contains only web container.
+
+List of web servers:
+================
+1) Tomcat web server
+2) iPlanet web server
+3) Pramathi web server
+4) Resin web server
+5) Java web server
+6) Personal web server
+7) Jetty web server, .. etc.
+
+2) Application Servers
+===================
+An application server is a server which contains both web container
+and EJB(Enterprise Java Beans) container.
+
+List of application senvers:
+=========================
+1) Web logic application server
+2) Web sphere application server
+3) JBoss application server(Wild Fly application server)
+4)Sun one application server
+5)Glass fish application server, ..etc.,
+
+Servlet program runs in web container.
+Web container is a pat of web server and application server.
+
+There are two types of web applications:
+==================================
+1) Static Web Applications
+2) Dynamic Web Applications
+
+1) Static Web Applications:
+======================
+A web application that is already prepared and placed in server is
+known as static web application.
+Static web applications are common to all users.
+Static web application resides in server and runs in browser.
+The server sends the program to a browser whenever request comes
+to a static web application.
+Static web applications can be developed by using HTML, CSS,
+Java Script, VB Script, Applets, ... etc.,
+HTML stands for Hyper Text Markup Language.
+CSS stands for Cascading Style Sheets.
+VB Script stands for Visual Basic Script.
+Applets are Java programs.
+
+2) Dynamic Web Applications:
+=========================
+A web application that is prepared dynamically whenever request
+comes to a server is known as dynamic web application.
+Dynamic web applications are specific to user.
+Dynamic web applications resides in server and runs in server only.
+The server executes the program and sends the output to a browser
+whenever request comes to a dynamic web application.
+Dynamic web applications can be developed by using Servlets, JSP,
+Struts, JSF, Spring MVC, ASP, ASP. Net, . etc.,
+JSP stands for Java Server Pages.
+JSF stands for Java Server Faces.
+MVC stands for Model View Controller.
+ASP stands for Active Server Pages.
+Servlets, JSP, Struts, JSF & Spring MVC are Java programs.
+
+CGI(Common Gateway Interface) Vs Servlets:
+======================================
+
+CGI					Servlets
+==========================		==========================
+1) CGI is a specification		1) Servlets is a specification for
+for developing web			developing web applications with
+applications with C, C++,		Java programming language.
+Perl,. etc.,
+
+2) CGI based web server			 2) Servlets based web server
+creates a new process for		creates a new process for very
+every request.				first request only and remaining
+					requests are handled by child
+					processes.
+
+Servlets API:
+==========
+Servlets APl is a part of server software.
+Upto tomcat 9, Servlets APl divided into the following packages:
+1) javax.servlet package
+2) javax.servlet.http package
+
+Tomcat 10 onwards,
+1) jakarta.servlet package
+2) jakarta.servlet.http package
+
+Servlets API is a part of servlet-api.jar file in tomcat server.
+
+To download Tomcat software:
+===========================
+1) Open the browser
+2) Open google
+3) Type tomcat download in search bar
+4) Click on the following hyperlink
+https://tomcat.apache.org/
+5) Click on Tomcat 10 in Download section
+6) Scroll down
+7) Click on 32-bit/64-bit Windows Service Installer
+
+
+To install Tomcat software
+==========================
+1) Double click on downloaded file in downloads folder
+(apache-tomcat-10.0.23.exe file)
+2) Click on Next button
+3) Click on I Agree button
+4) Select the check boxes of Host Manager & Examples
+5) Click on Next button
+6) Type Server Shutdown Port 8005
+7) Type username admin
+8) Type password admin
+9) Click on Next button
+10) Select the jdk path by clicking on .. button
+Example: C:Program Files\Javaljdk-16.0.2
+11) Click on Next button
+12) Click on Install button
+13) Click on Finish button
+
+To start Tomcat server:
+======================
+1) Open the following folder
+C:Program Files Apache Software Foundation\Tomcat 10.01bin
+2) Double click on Tomcat10 icon
+
+To open Tomcat server home page
+===============================
+1) Open the browser
+2) Type the following URL in address bar
+http://localhost:8080
+Note: Here 8080 is a default port number of tomcat server.
+
+WildFly server default port number is 8080
+Tomcat server default port number is 8080
+Oracle server default port number is 8080
+WeblLogic server default port number is 7001
+
+To change the port number of tomcat server:
+==========================================
+1) Open the following folder 
+C:Program FilesApache Software Foundation\Tomcat 10.0\conf
+2) Open server.xml file
+3) Scroll down
+4) Change the port number 8080 to 8082
+	<Connector port="8082"
+
+Now type the following in address bar to get tomcat home page:
+http://localhost:8082
+
+javax.servlet package (or) jakarta.servlet package
+===================================================
+ 	 Classes				Interfaces
+	============				============
+
+1) GenericServlet			1) Servlet
+2) ServletlnputStream			2) ServletRequest
+3) ServletOutputStream			3) ServletResponse
+4) ServletException			4) ServletConfig
+5) UnavailableException			5) ServletContext
+					6) RequestDispatcher
+					7) SingleThreadModel
+
+
+javax.servlet.http package (or) jakarta.servlet.http package
+===============================================================
+Classes					Interfaces
+===============				=================			
+1) HttpServlet				1) HttpServletRequest
+2) Cookie				2) HttpServletResponse
+					3) HttpSession
+
+To access Servlets API, set the following classpath:
+===================================================
+1) Open File Explorer
+2) Right click on This PC
+3) Click on Properties
+4) Click on Advanced System Settings
+5)Click on Advanced Tab
+6)Click on environment variables button
+7)Select the classpath variable under User variables section
+8)Click on Edit button
+9)Click on New button
+10)Type the following:
+	C:\Program FilesApache Software FoundationlTomcat 10.01
+	liblservlet-api.jar
+11) Click on OK button
+
+To see the profile of jakarta.servlet.Servlet interface:
+=======================================================
+1) Open Command prompt
+2) Type the following at the command prompt
+C:\>javap jakarta.servlet.Servlet
+3) Press Enter key
+
+Steps to develop web application:
+====================================
+1)Create a web application folder structure.
+2)Create &compile web application source code(Servlet program)
+3)Write deployment descriptor(web.xml file)
+4)Create a WAR(Web Archive file)
+  
+		Web Application Folder Structure
+		=================================
+
+jakarta.servlet.Servlet
+
+Methods:
+	public abstract void init(ServletConfig) throws ServletException;
+	public abstract ServletConfig getServletConfig();
+	public abstract void service(ServletRequest, ServletResponse)
+			throws ServletException,IOException;
+	public abstract String getServletinfo();
+	public abstract void destroy();
+
+
+
+
+
+
+11/17/2022(evening)
+
+
+First servelet program
+======================
+
+jakarta.serviet.ServiletResponse
+
+printing statementss
+Methods:
+public abstract ServletOutputStream getOutputStream()
+throws IOException;(byte stream)
+public abstract PrintWriter getWriter() throws IOEXCeption,(character
+stream)
+
+====>The above methods are used send the response to a client.
+
+
+Byte stream supports all types of data where as character stream supports text only.
+
+import jakartha.servlet.*;
+
+class FirstServelet extends GenericServelet
+{
+public void service(ServeletRequest req,ServeletResponse res)throws Exception {
+
+PrintWriter pw=res.gerWriter();
+pw.println("Wel;come to servelets")
+
+system.err.println(e)
+} 
+}
+
+jakarta.servlet. ServletResponse
+
+Methods:
+public abstract ServletOutputStream getOutputStream()
+					throws IOException;
+public abstract PrintWriter getWriter() throws IOException;
+
+
+
+
+
+XMLFile format:
+===============
+
+<web-app>
+<servlet>
+<servlet-name>demo</servlet-name>
+<servlet-class> FirstServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>demo</servlet-name>
+<url-pattern>/test<url-pattern>
+</servelet-mapping>
+</web-app>
+
+Commands to create war file
+===========================
+C:\firstapp\WEB - INF \classes> cd..
+C:\firstapp\WEB-INF>start notepad web. xml
+C:\firstapp \WEB- INF> cd..
+C:firstapp>jar cvf first.war
+
+***********************jar***************************************
+jar is a jdk tool and it is used to create JAR(Java ARchive)
+files, WAR(Web ARchive) files, EAR(Enterprise ARchive)
+Tiles and RAR(ResOurce ARchive) files.
+*************************************************************
+**********************cvf***************************************
+C=> Create
+V=> Verbose(Details of WAR file displayed).
+f=> File to be created
+. => All files and folders of current director:05:
+*********************************************************************
+
+Steps to deploy web application:
+===============================
+1) Start the server
+2) Open tomcat homepage
+3) Click on Manager App button
+4) Type username admin
+5) Type password admin
+6) Click on Sign in button
+7) Scroll down
+8) Click on Choose File button
+9) Select first.war file from firstapp folder
+10) Click on Open button
+11) Click on Deploy button
+
+To run the above application:
+=============================
+1) Open the browser
+2) Type the following url in address bar
+http://localhost:8082/first/test
+
+Commands to create folder structure
+=====================================
+C:\>md secondapp
+C:\>cd secondapp
+C:\secondapp>md WEB-INF
+C:\secondapp>cd WEB-INF
+C:\secondapp\WEB-INF >md classes
+C:\secondapp\WEB-INF >cd classes
+C:\secondapp\WEB-INF\classes>
+C:\secondapp\WEB- INF\classes>start notepade secondservelet.java
+
+import jakarta.servlet.*;
+
+class SecondServlet extends GenericServlet
+{
+public void service(ServletRequest req, ServletResponse res){
+
+try{
+PrintWriter pw=res.getWriter();
+pw.printin("<html><body bgcolor=green text=yellow><h1>");
+pw.printin("Welcome to Naresh i Technologies");
+pw.printin("</h1></body></html>");
+catch(Exception e){
+System.err.printin(e);
+}}}
+
+XML File
+---------
+<web-app>
+<servlet>
+<servlet-name>second</servlet-name>
+servlet-class> SecondServlet</servlet-class>
+</servlet
+<servlet-mapping>
+<servlet-name>second</servlet-name>
+<url-pattern>/second</url-pattern>
+</servlet-mapping>
+</web-app>
+
+	
+Web applications deployment location in Tomcat server
+=========================================
+C:\Program Files\ApacheSoftwareFoundation\Tomcat10.0\webapps>
+
+http://localhost:8082/first/test
+================================
+
+http:
+====
+http stands for Hyper Text Transfer Protocol.
+It transfers hyper text.
+Hyper text means HTML text.
+HTML stands for Hyper Text markup Language
+It is a presentation language and it is used to present the data in different formats.
+This protocol used  by  browser and server to communivate on the web.
+
+Localhost:
+=========
+It is a domain name.
+If the server is installed on same computer then use localhost as
+a domain name otherwise use computer name as a domain name.
+
+8082:
+====
+It is a port number.
+It is used to identify the service.
+Tomcat default  
+
+Oracle default port number is 8080.
+WildFly default port number is 8080.
+Reserved port numbers range is 0 to 1023.
+Free port numbers range is 1024 to 65535.
+
+first:
+======
+It is a war file name.
+
+test:
+=====
+It is a <url-pattern> of a FirstServlet in web.xml.
+
+web.xml:
+---------
+It is called as configuration file and it is used to configure servlets,
+JSPs, Filters, Initialization parameters, Context parameters,
+welcome files, .. etc.,
+
+xml stands for eXtensible Markup Language.
+
+To configure tomcat server in eclipse:
+======================================
+1) Click on Servers view
+2) Right click in a Servers view
+3) Clcik on New
+4) Click on Server
+5) Expand Apache
+6) Select Tomcat v10.0 Server
+7) Click on Next button
+8) Select Tomcat installation directory by clicking on Browse button.
+Example: C:Program FilesiApache Software Foundation
+Tomcat 10.0
+9) Click on Select Folder button
+10) Click on Next button
+11) Click on Finish button.
+
+To check the port numbers or to change the port numbers:
+=======================================================
+1) Double Click on Tomcat v10.0 Server at localhost in Servers view
+2) Tomcat admin port => 8005
+3) HTTP => 8082
+
+Steps to write servlet program:
+================================
+1) Click on File Menu
+2) Click on New
+3) Click on Dynamic Web Project
+4) Type project name (Example: first)
+5) Click on Next button
+6) Click on Next button
+7) Select generate web.xml deployment descriptor check box
+8) Click on Finish button
+9) Right click on first in a Project Explorer
+10) Click on New
+11) Click on Servlet
+12) Type package name(Example: first)
+13) Type class name(Example: FirstServiet)
+14) Type super class jakarta.servlet.GenericServlet
+15) Click on Next button
+16) Select url pattern /FirstServiMet
+17) Click on Edit button
+18) Change to /test
+19) Click on OK button
+20) Click on Next button
+21) Click on Finish button
+22)Write the code in editor
+
+To run the above application:
+=============================
+1)Right click on first in a project explorer
+2) Click on Run As
+3)Click on run on server
+4)Exapand localhost
+5)Select tomcat v10.0 Server at localhot
+6) Click on Next button
+7) Select first in Available section
+8) Click on Add> button
+9) Click on Finish button
+10) Type <url-pattern> test in address bar
+
+To change the browser in eclipse:
+==============================
+1) Click on Window Menu
+2) Click on Web Browser
+3) Select the browser(Example: Chrome)
+
+To add servlet-api.jar file to web application:
+=======================================
+1) Right click on first in Project Explorer
+2) Click on Build path
+3) Click on Configure Build Path
+4) Click on Libraries Tab
+5) Click on Classpath
+6) Click on Add External JARs button
+7) Select servlet-api.jar file from the following folder
+    C:\Program Files Apache Software FoundationlTomcat 10.0lib>
+8) Click on Open button
+9) Click on Apply and Close button
+
+//Program to display system time
+package basics;
+import java.io.*;
+import java.time.*;
+import jakarta.servlet.*;
+
+public class TimeServilet extends GenericServlet
+{
+public void service(ServletRequest request,
+ServletResponse response) throws ServletException,IOException
+{
+LocalTime It=LocalTime.now();
+PrintWriter pw=response.getWriter():
+pw.printin(<html><body bgcolor=yellow text=blue><h1>");
+pw.printin(It.getHour()+":"+it.getMinute()+":"+It.getSecond());
+pw.println("</h1></body></html> );
+}}
+
+
+package basics
+
+import java.io.*;
+import jakarta.servlet.*;
+
+public class Table Serviet extends Generic Servlet
+{
+public void service(ServletRequest request,
+ServletResponse response) throws ServletException,
+IOException
+{
+PrintWriter pw=response.getWriter();
+pw.println(<html><body bgcolor=yellow text=red>");
+pw.println("<table border=20>");
+for(int i=1;i<=100;i++)
+{
+pw.printin("<tr><td> 5 </td>");
+pw.println ("<td> x </td>");
+pw.printin("<td> "+j+" </td>");
+pw.println("<td> = </td>");
+pw.printlin<td> "+5"i+" </td></tr>");
+}
+pw.println("</table></body></html>");
+}}
+
+MIME Type:
+==========
+MIME stands for Multipurpose Internet Mail Extensions.
+MIME types are used to identify the content.
+
+List of MIME types:
+================
+1) "text/html"
+2) "text/pdf"
+3) "application/msword"
+4) "application/vnd.ms-excel"
+5) "image/jpg"
+6) "image/jpeg".. etc.,
+
+"text/html" is a default mime type.
+
+To change the mime type we use setContentType() method of
+ServletResponse interface.
+
+package basics
+
+import java.io.";
+import jakarta.servlet.":
+
+public class MIMEServlet extends GenericServlet
+{
+public void service(ServletRequest request,
+ServletResponse response) throws ServletEXception
+OException
+{
+response.setContentType("application/msword");
+PrintWriter pw=response.getWriter();
+pw.printin("Welcome............");
+}}
+
+
+to send image file to browser:
+=========================
+package basics;
+import jakarta.servlet.*;
+import java.io.*;
+
+public class ImageServlet extends Generic Servlet
+{
+public void service(ServletRequest request,
+ServletResponse response) throws ServletException,
+IOException
+{
+FilelnputStream fis=new Filelnputstream("C:/flowers.jpg");    //it opens a file for reading 
+int n=fis.available();	//lt returns file size
+byte[] b=new byte[n];	//lt allocates the memory in a RAM accordir
+fis.read(b);	//t will read data
+ServletOutputStream sos=response.getOutputStream();
+
+//lt creates a stream from server to browser
+sos.write(b);://lt will send to browser
+
+Annotations in Servlets:
+===================
+Annotations are meta tags that are used to pass some additional
+information to server about servlets, servlet listeners & filters.
+
+The following annotations are used in servlets:
+1)@WebServlet
+2)@WeblListener
+3)@WebFilter
+
+The above all annotations are in jakata.servlet.annotation package.
+
+@Override
+@FunctionalInterface
+
+The above all annotations are in jakarta.servlet.annotation package.
+
+@WebServilet annotation used to specify url pattern of a servlet.
+
+It is an alternative to web.xml configuration.
+
+These annotations are introduced in servlet 3.0 version.
+
+Example:
+========
+package demo;
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.*;
+
+@WebServlet("/sample")
+public class DemoServlet extends GenericServlet
+{
+public void service(ServletRequest request,
+ServietResponse response) throws ServletException,
+OException
+{
+PrintWriter pw=response.getWriter();
+
+pw.printin("<html><body bgcolor=cyan text=blue><h1>");
+pw.printin("Welcome..)
+pw.printin("</h1></body></html>");
+}}
+
+In the above example @WebServiet annotation informs server
+Isample is a url pattern of DemoServlet
+
+example8:
+=========
+
+package demo
+
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.*;
+
+@WebServlet("/count")
+
+public class CounterServlet extends GenericServiet
+{
+int count=0;
+public void service(ServletRequest request,
+ServletResponse response) throws ServletException,
+IOException
+{
+count++
+PrintWriter pw=response.getWriter();
+pw.printin("<html><body bgcolor=yellow text=red><h1>");
+pw.printn("This page has been accessed "+count+" times");
+pw.printin("</h1></body></html>");
+}}
+
+
+The object creation order by web container:
+1) ServletContext 
+2) User defined Servlet
+3) ServletConfig
+4) ServletRequest & ServletResponse
+
+
+ServletContext is created by web container whenever web application
+is deployed on server.
+
+User defined Servlet object is created by web container whenever
+first request comes to a servlet.
+
+ServletConfig is created by web container whenever init() method
+is called by web container.
+
+ServletRequest & ServletResponse are created by web container
+for every request.
+
+	2web applications having 10 servelets 1000 requests
+
+
+1) ServletContext
+2) User defined Servlet
+3) ServletConfig
+4) ServietRequest & ServietResponse
+
+User defined Servlet object is created by web container to call life
+cycle methods.
+
+ServletRequest:
+=============
+It is created by web container for every request.
+It is used to get request parameters.
+
+ServletResponse:
+==============
+It is created by web container for every request.
+It is used to create a stream to send the resnonse to a client
+
+
+Default functionality available for submit& reset buttons only in HTML
+
+Whenever submit button is clicked then the value of action attribute in
+a form tag is executed.
+
+Whenever reset button is clicked then all fields data erased.
+There are 7 http methods:
+1) GET
+2) POST
+3) HEAD
+4) DELETE
+5) PUT
+6) TRACE
+7) OPTIONS
+
+Default http method is GET.
+
+
+Differences between GET& POST:
+============================	
+GET					POST
+================			===============
+1) In this http method request		1) In this http method request
+parameters are included in a		parameters are included in a
+request header in a packet.			request body in a packet.
+
+2) Here size of the data is			2) Here size of the data is not
+limited.					limited.
+
+3) In this approach, request			3) In this approach, request
+parameters are displayed			parameters are not displayed.
+in address bar.
+
+4) Here request parameters			4) Here request parameters are
+are stored in browser history.		not stored in browser memory.
+
+5)It can be bookmarked.			5)It cannot be bookmarked.
+
+6)It is little fast				6)It is slow.
+
+
+
+For collection of values from html
+=============================
+
+jakarta.servlet. ServletRequest
+
+Methods:
+=======
+public abstract String getParameter(String);
+public abstract Enumeration<String> getParameterNames();
+public abstract String[] getParametervalues(String)
+public abstract Map<String, string[]> getParameterMap();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

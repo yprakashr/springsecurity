@@ -1,0 +1,51 @@
+<div class="confirmation">
+    <div class="container">
+
+        <!-- HEADING -->
+        <div class="heading h3 text-center">Verify submitted details</div>
+
+        <!-- DATA -->
+        <div class="row submitted-data mt-5">
+
+            <!-- personal details -->
+            <div class="col">
+                <div class="h6 text-center">Personal Details</div>
+                <ul>
+                    <li *ngFor="let key of keys1">{{key}} : {{finalDetails[0].personalDetails[key]}}</li>
+                </ul>
+            </div>
+
+            <!-- address details -->
+            <div class="col">
+                <div class="h6 text-center">Address</div>
+                <ul>
+                    <li *ngFor="let key of keys2">{{key}} : {{finalDetails[0].address[key]}}</li>
+                </ul>
+            </div>
+
+            <!-- education -->
+            <div class="col">
+                <div class="h6 text-center">Education</div>
+                <ul>
+                    <li *ngFor="let key of keys3">{{key}} : {{finalDetails[0].education[key]}}</li>
+                </ul>
+            </div>
+
+            <!-- career -->
+            <div class="col">
+                <div class="h6 text-center">Career</div>
+                <ul>
+                    <li *ngFor="let key of keys4">{{key}} : {{finalDetails[0].career[key]}}</li>
+                </ul>
+            </div>
+
+            <!-- SUBMIT -->
+            <div class="text-center">
+
+                <button type="button" routerLink="/personal-details" class="btn btn-primary">Edit</button>
+
+                <button type="submit" class="btn btn-success m-4">Submit</button>
+            </div>
+        </div>
+
+    </div>

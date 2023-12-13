@@ -1,0 +1,135 @@
+<div style="padding-left: 15px;padding-top: 10px;padding-bottom: 15px;padding-right: 15px;border-bottom: 1px solid #e5e5e5;">
+  <h3 class="modal-title">
+   Define Data Modal
+    <a class="close-btn pull-right" (click)="dialogRef.close(false)"><i class="fa fa-window-close"></i></a>
+  </h3>
+</div>
+  <div class="container bg-light">
+
+    <div *ngIf="success">
+      <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{message}}</strong>
+      </div>
+    </div>
+    <div *ngIf="error" >
+      <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{message}}</strong>
+      </div>
+    </div>
+  <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+    <!-- <form class="col col-md-12 mr-5" [formGroup]="globalFieldForm"> -->
+    <div class="col col-md-4 mx-auto">
+      <input type="text" hidden formControlName="projectId">
+      <label [for]="'dictionaryname'" class="form-label"></label>
+      <input type="search" class="form-control" placeholder="Enter the Dictionary Name" formControlName="dictionaryname"
+        required />
+      <div
+        *ngIf="empForm.controls.dictionaryname.invalid && (empForm.controls.dictionaryname.dirty || empForm.controls.dictionaryname.touched)">
+
+        <div *ngIf="empForm.controls.dictionaryname.errors?.['required']" class="alert alert-danger">
+          DictionaryName is required.
+        </div>
+      </div>
+    </div>
+    <!-- </form> -->
+    <div formArrayName="formFields">
+      <div *ngFor="let employee of employees().controls; let empIndex=index">
+        <div [formGroupName]="empIndex" style="border: 1px solid blue; padding: 10px; width: 100%; margin: 5px;">
+
+          <div class="row col col-md-12" style="display: flex;">
+            <div class="col col-md-3 mr-5">
+              <div class="mb-3">
+                <label [for]="'fieldName' + empIndex" class="form-label"></label>
+                <input type="text" class="form-control" [id]="'fieldName' + empIndex" placeholder="Field Name"
+                  formControlName="fieldName" />
+              </div>
+            </div>
+            <div class="col col-md-3 mr-5" style="padding-top: 25px;margin-top: -4px;">
+              <div class="mb-3">
+
+                <!-- <label class="form-label">Prefered Type</label> -->
+                <select class="form-select" formControlName="type" (change)="selectedType($event,empIndex)"
+                  [attr.disabled]="empForm.controls.formFields.controls[empIndex].controls.type.value=='Object' ? '' : null">
+                  <option value="">Choose type</option>
+                  <option *ngFor="let dtype of dataTypes" [ngValue]="dtype">
+                    {{ dtype }}
+                  </option>
+
+                </select>
+
+              </div>
+            </div>
+            <div class="col col-md-3 mr-5">
+              <div class="mb-3">
+                <label [for]="'description' + empIndex" class="form-label"></label>
+                <input type="text" class="form-control" [id]="'description' + empIndex" placeholder="description"
+                  formControlName="description" />
+              </div>
+            </div>
+
+            <div class="col col-md-3">
+              <div class="mb-3" style="float: right;">
+                <mat-icon (click)="removeField(empIndex)" class="mt-4">delete</mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <div formArrayName="object">
+            <div *ngFor="let skill of adressDetails(empIndex).controls; let adressIndex=index">
+              <div [formGroupName]="adressIndex">
+                <div class="row col col-md-12" style="display: flex;margin-left: 140px;">
+                  <div class="col col-md-3">
+                    <div class="mb-3">
+                      <label [for]="'key' + adressIndex" class="form-label"></label>
+                      <input type="text" class="form-control" [id]="'key' + adressIndex" placeholder="key"
+                        formControlName="key" />
+                    </div>
+                  </div>
+                  <div class="col col-md-3" style="padding-top: 25px;margin-top: -4px;">
+                    <div class="mb-3">
+                      <select class="form-select" formControlName="types">
+                  <option value="">Choose type</option>
+                  <option *ngFor="let dtype of dataTypes" [ngValue]="dtype">
+                    {{ dtype }}
+                  </option>
+
+                </select>
+                    </div>
+                  </div>
+                  <div class="col col-md-4">
+                    <div class="mb-3">
+                      <label [for]="'desc' + adressIndex" class="form-label"></label>
+                      <input type="text" class="form-control" [id]="'desc' + adressIndex" placeholder="description"
+                        formControlName="desc" />
+                    </div>
+                  </div>
+                  <div class="col col-md-2">
+                    <div class="mb-3">
+                      <mat-icon (click)="removeObject(empIndex,adressIndex)" class="mt-4">delete</mat-icon>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div (click)="addSubKey(empIndex)" style="margin-left: 25px;"
+              *ngIf="empForm.controls.formFields.controls[empIndex].controls.type.value=='Object'">
+              <mat-icon>add_box</mat-icon>
+          </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-primary mt-4" (click)="addEmployee()">Add Fields</button>
+      <button type="submit" class="btn btn-primary mt-4" style="margin-left:25px"
+        [disabled]="empForm.controls.dictionaryname.invalid && (empForm.controls.dictionaryname.dirty || empForm.controls.dictionaryname.touched) || empForm.controls.dictionaryname.value==''">Submit</button>
+    </div>
+    </div>
+  </form>
+</div>
+
+
+<!-- {{this.empForm.value | json}} -->

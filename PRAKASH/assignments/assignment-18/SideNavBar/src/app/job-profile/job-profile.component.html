@@ -1,0 +1,50 @@
+<body class="body mt-5">
+  <div class="justify-content-center  align-center main-block" >
+  <form #personal="ngForm" (ngSubmit)="login(personal)" [formGroup]="regForm2">
+    <h1>Job Profile</h1>
+    <fieldset>
+      <label for=""></label>
+      <label for=""  class="text-danger text-start" *ngIf="errmessage">Please enter the Job description..</label>
+
+      <div class="form-group pxx">
+        <div class="float-start w-50 ">
+        <label for="exampleInputPassword1" class="form-label"><strong>Job-Profile</strong> </label>
+      </div>
+
+      <div class="float-center w-100">
+        <textarea name="Job-Profile" formControlName="job" class="form-control w-75 mx-5 align-item-center "  id="exampleInputPassword1" cols="30" rows="5"></textarea>
+      </div>
+        <div *ngIf="job.invalid && job.touched" >
+          <small class="text-danger valid" *ngIf="job.errors?.['required']">text is required</small>
+          <small class="text-danger valid" *ngIf="job.errors?.['minlength']">Please enter minimum of 12characters</small>
+        </div>
+      </div>
+
+      </fieldset>
+
+<div class="container">
+  <div class="row"><div class="col px">
+    <button [disabled]="regForm2.invalid"  class="w-50" type="submit">Next</button>
+  </div>
+<!-- <div class="col">
+  <button routerLink="/personal" type="submit">Previous</button>
+</div> -->
+</div>
+</div>
+
+
+  </form>
+  </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
