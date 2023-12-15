@@ -221,21 +221,22 @@ SI vs CI vs FI
 +++++++++++++
 -> Setter Injection will be performed through setter method
 -> It is mandatory to specify @Autowired annoation at setter method
-- If we don't specify @Autowired annotation then DI will not happen (Partial Injection)
-> If DI not happend then if we call methods then we will get NullPointerException
+-> If we don't specify @Autowired annotation then DI will not happen (Partial Injection)
+-> If DI not happend then if we call methods then we will get NullPointerException
 -> Target Bean will be created first then setter method will be called to inject dependent
 
 
-> Constructor injection will be performed through constructor
+Constructor injection will be performed through constructor
 -> If we have more than one constructor then we have to specify @Autowired at constructor level
 -> If we have only one parameterized constructor then @Autowired is optional
 -> In Cl, dependent bean will be created first then target bean will be created
 -> Partial Injection is not possible in CI
 
 
--> Fieldinjection will be performed through Reflection API
+Fieldinjection will be performed through Reflection API
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 -> FI violating OOPS principles (private variable getting initialized from outside using Reflecion)
-> It is simple to use
+-> It is simple to use
 
 ++++++++++++++++
 Bean Life Cycle
@@ -263,14 +264,14 @@ Bean Life Cycle
 Spring Data JPA
 +++++++++++++
 -> It is used to develop persistence logic in our application.
-- The logic which is responsible to communicate with database is called as Persistence Logic
-→> Already we have JDBC, Spring JDBC, Hibernate, Spring ORM to develop persistence logic
+-> The logic which is responsible to communicate with database is called as Persistence Logic
+-> Already we have JDBC, Spring JDBC, Hibernate, Spring ORM to develop persistence logic
 -> If we use JDBC, or Spring JDBC or Hibernate or Spring ORM then we should common logics in all DAO classes to
 perform CURD Oper
 -> Data JPA simplified persistence logic development by providing pre-defined interfaces with methods
 -> Data JPA provided Repository methods to perform CURD operations
 Note: If we use Data JPA then we don't need to write logic to perform curd operations bcz Data JPA will take care of that
-- Data JPA provideed Repository interfaces to perform CURD operations
+-> Data JPA provideed Repository interfaces to perform CURD operations
 1)CrudREpository
 2)JPARepository
 
@@ -336,17 +337,17 @@ HQL queries will take more time than SQL queries.
 -> Performance wise SQL queries are good
 -> Maintenence wise HQL queies are good
 
-+++++++++++++
+++++++++
 Sorting
-++++++++++++++
+++++++++
 → Sorting is used to sort the records either in ascending or in descending order
 →> We can pass Sort object as parameter for findAll () method like below
-List<User> users = repository.findAll);
+List<User> users = repository.findAll();
 List<User> users = repository.findAll(Sort.by("age").ascending());
 List<User> users = repository.findAll(Sort.by"username", "age").descending());
 users.forEach(user -> {
 System.out.printin(user);
-
+}
 
 +++++++++++
 Pagination
@@ -361,7 +362,7 @@ Data will be displayed based on below 2 conditions
 int pageSize = 3;
 int pageNo = 0;
 PageRequest pageRequest = PageRequest.of(pageNo, pageSize);
-Page<User> pageData = repository.tindAIl(pagerequest);
+Page<User> pageData = repository.findAll(pagerequest);
 
 int totalPages = pageData.getTotalPages);
 System.out.printin("Total Pages :: "+ totalPages);

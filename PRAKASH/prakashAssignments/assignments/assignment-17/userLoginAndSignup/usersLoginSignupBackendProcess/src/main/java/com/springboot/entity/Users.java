@@ -29,17 +29,17 @@ public class Users {
 	private String 	 email;
 	private String 	 gender;
  
-//	   @JsonIgnore
-//	    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
-//	    private Set<Roles> role;
-//
-//
-//	public Set<Roles> getRole() {
-//		return role;
-//	}
-//	public void setRole(Set<Roles> role) {
-//		this.role = role;
-//	}
+	   @JsonIgnore
+	    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
+	    private Set<Roles> role;
+
+
+	public Set<Roles> getRole() {
+		return role;
+	}
+	public void setRole(Set<Roles> role) {
+		this.role = role;
+	}
 	public Users() {
 		super();
 
@@ -50,9 +50,10 @@ public class Users {
 	@Override
 	public String toString() {
 		return "Users [id=" + id + ", fullname=" + fullname + ", username=" + username + ", password=" + password
-				+ ", phone=" + phone + ", email=" + email + ", gender=" + gender +  "]";
+				+ ", phone=" + phone + ", email=" + email + ", gender=" + gender + ", role=" + role + "]";
 	}
-	public Users(long id, String fullname, String username, String password, long phone, String email, String gender) {
+	public Users(long id, String fullname, String username, String password, long phone, String email, String gender,
+			Set<Roles> role) {
 		super();
 		this.id = id;
 		this.fullname = fullname;
@@ -61,6 +62,7 @@ public class Users {
 		this.phone = phone;
 		this.email = email;
 		this.gender = gender;
+		this.role = role;
 	}
 	public long getId() {
 		return id;

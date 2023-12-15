@@ -58,6 +58,7 @@ public class SecurityConfiguration {
 		.requestMatchers("/user/**").hasRole("ADMIN")
 		.requestMatchers("/user/get").hasRole("ADMIN")
 		.requestMatchers("/user/get/**").hasRole("ADMIN")
+		
          .and().httpBasic();
 		return http.build();
 	}

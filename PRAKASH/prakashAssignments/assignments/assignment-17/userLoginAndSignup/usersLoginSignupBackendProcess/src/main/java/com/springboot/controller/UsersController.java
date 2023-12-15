@@ -67,19 +67,17 @@ public class UsersController {
 
 	
 	@GetMapping
-	public ResponseEntity<?> getExistingPatients(@RequestParam Map<String,String> patient){	
+	public ResponseEntity<?> getExistingPatients(@RequestParam Map<String,String> patient){		
 	String username= patient.get("username");
 	String password= patient.get("password");
 	
 	List<Users> opUser=userRepository.findByusername(username);
-	Random r=new Random();
-	System.out.println(r);
+	
 	String passworddatabase= opUser.get(0).getPassword();
 		if(passwordEncoder.matches(password,passworddatabase)) {
 		map.clear();
 		map.put("status", "200");
 		map.put("data",opUser );
-		map.put("token","tokenVariable" );
 		return new ResponseEntity<>(map,HttpStatus.OK);
 	}else {
 		map.clear();
