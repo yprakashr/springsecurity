@@ -89,9 +89,25 @@ export class ToDoDetailsComponent implements OnChanges {
   //   );
   // }
 
+  getAgeFromColumnName(columnName: string): number {
+    switch (columnName) {
+      case 'cdk-drop-list-0':
+        return 18;
+      case 'cdk-drop-list-1':
+        return 25;
+      case 'cdk-drop-list-2':
+        return 45;
+      case 'cdk-drop-list-3':
+        return 80;
+      default:
+        return 0; // Default value if the column name doesn't match
+    }
+  }
+  
+  // Modify the drop method to use the new column names and age ranges
   drop(event: CdkDragDrop<Task[]>) {
-    const targetContainerId = event.container.id;
-    this.targetColumnName = this.columnMap[targetContainerId];
+    this.targetColumnName = event.container.id;
+    console.log(this.targetColumnName);
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -101,33 +117,15 @@ export class ToDoDetailsComponent implements OnChanges {
     } else {
       const taskToMove = event.previousContainer.data[event.previousIndex];
       taskToMove.age = this.getAgeFromColumnName(this.targetColumnName);
-
+  
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-
-      localStorage.setItem(
-        'toDoBoardData',
-        JSON.stringify(this.toDoBoard1.columns)
-      );
-    }
-  }
-
-  getAgeFromColumnName(columnName: string): number {
-    switch (columnName) {
-      case 'Age 1-18':
-        return 18;
-      case 'Age 19-25':
-        return 25;
-      case 'Age 25-45':
-        return 45;
-      case 'Age 45-80':
-        return 80;
-      default:
-        return 0; // Default value if the column name doesn't match
+  
+      localStorage.setItem('toDoBoardData', JSON.stringify(this.toDoBoard1.columns));
     }
   }
 
