@@ -12,17 +12,13 @@ export class DashboardComponent implements OnInit {
   newTask!: any;
   formValues!: any;
   updatedTask!: any;
+
   currentYear = new Date().getFullYear();
 
   constructor() {}
-  form: any = false;
+form:any;
   ngOnInit(): void {}
-  // receivedEvent = '';
-  // onCustomEvent(eventData: string) {
-  //   this.receivedEvent = eventData;
-  //   console.log(this.receivedEvent)
-  // }
-
+ 
   public addTasks($event: any) {
     this.updatedTask = null;
     this.newTask = $event as Task;
@@ -45,5 +41,4 @@ export class DashboardComponent implements OnInit {
     this.newTask = null;
     this.updatedTask = null;
   }
-
 }
